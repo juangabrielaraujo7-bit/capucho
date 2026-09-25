@@ -329,6 +329,9 @@ main > section:not(.gamer-section) + .section.container::before {
   height: auto;
   object-fit: contain;
   aspect-ratio: 1.35;
+}
+/* Safari: MP4 com fundo branco; o multiply some com o branco (inclusive o da tela) */
+.hero-visual video.is-blend {
   mix-blend-mode: multiply;
 }
 .benefits {

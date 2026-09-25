@@ -38,6 +38,10 @@ Cada página de serviço ganhou a seção "Dúvidas sobre…" (campos `faqTitle`
 
 Perfil do Google conferido em 25/09/2026: nota 5,0 com 368 avaliações, categoria "Assistência Técnica de Informática", horários iguais aos do briefing e "Horário de atendimento on-line: 24 horas" (não usado no site; confirmar). O perfil aponta o site para biolinky.co e usa o nome "Capucho informatica".
 
+## Vídeo da hero com transparência (25/09/2026)
+
+Para a tela do notebook continuar branca sobre o fundo com faixas, `scripts/hero-alpha.mjs` gera `hero-montagem.webm` (1280 px) e `hero-montagem-720.webm` (celular) com canal alfa: o branco ligado às bordas de cada quadro vira transparência, e a tela, cercada pela moldura, fica opaca. O pôster `notebook-alpha.webp` é o último quadro. Chrome, Edge e Firefox usam o WebM. Safari e navegadores no iOS continuam no MP4 com `mix-blend-mode: multiply` (a tela ainda recebe o tom do fundo); para corrigir lá seria preciso um vídeo HEVC com alfa, gerado em um Mac. Se o vídeo da hero mudar, rodar `node scripts/hero-alpha.mjs` de novo.
+
 ## Depoimentos (25/09/2026)
 
 A seção de avaliações usa seis trechos fiéis de avaliações públicas de 5 estrelas no Google: Naiwan, Bruno e Sérgio (prints recebidos) e Messias Castro, Lucas Alexandre e Eduarda Nonemacher (perfil no Maps). Sem fotos: avatares com iniciais. Três avaliações citam o Henrique pelo nome; confirmar que a Capucho aprova essa exposição.

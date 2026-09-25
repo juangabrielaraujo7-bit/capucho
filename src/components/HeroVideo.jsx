@@ -6,6 +6,15 @@ export default function HeroVideo() {
   const [failed, setFailed] = useState(false);
   // Sempre começa com autoplay no HTML gerado; o efeito respeita a redução de movimento no navegador.
   const [reduceMotion, setReduceMotion] = useState(false);
+  // WebM com transparência preserva a tela branca do notebook. O Safari (e todo navegador no iOS)
+  // não exibe essa transparência de forma confiável: lá usamos o MP4 com fundo branco + multiply.
+  const [alpha, setAlpha] = useState(true);
+  useEffect(() => {
+    const ua = navigator.userAgent;
+    const webkitOnly =
+      /iP(hone|ad|od)/.test(ua) || /^((?!chrome|chromium|android|edg).)*safari/i.test(ua);
+    if (webkitOnly) setAlpha(false);
+  }, []);
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => {
@@ -20,15 +29,17 @@ export default function HeroVideo() {
     <div className="hero-visual">
       {failed ? (
         <img
-          src={asset("notebook-720.webp")}
+          src={asset("notebook-alpha.webp")}
           alt="Notebook Capucho Informática"
-          width="1200"
-          height="675"
+          width="960"
+          height="540"
         />
       ) : (
         <video
+          key={alpha ? "alpha" : "blend"}
           ref={ref}
-          poster={asset("notebook-720.webp")}
+          className={alpha ? undefined : "is-blend"}
+          poster={asset("notebook-alpha.webp")}
           autoPlay={!reduceMotion}
           loop
           muted
@@ -40,13 +51,13 @@ export default function HeroVideo() {
         >
           {/* Versão leve para celular; navegadores sem suporte a "media" usam a primeira. */}
           <source
-            src={asset("hero-montagem-720.mp4")}
-            type="video/mp4"
+            src={asset(`hero-montagem-720.${alpha ? "webm" : "mp4"}`)}
+            type={alpha ? "video/webm" : "video/mp4"}
             media="(max-width: 767px)"
           />
           <source
-            src={asset("hero-montagem-agil.mp4")}
-            type="video/mp4"
+            src={asset(alpha ? "hero-montagem.webm" : "hero-montagem-agil.mp4")}
+            type={alpha ? "video/webm" : "video/mp4"}
             onError={() => setFailed(true)}
           />
         </video>
