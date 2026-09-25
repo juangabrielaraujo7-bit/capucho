@@ -11,7 +11,7 @@ import {
   Truck,
 } from "@phosphor-icons/react";
 import HeroVideo from "../components/HeroVideo";
-import ServiceCard from "../components/ServiceCard";
+import ServicesCarousel from "../components/ServicesCarousel";
 import ServiceVideo from "../components/ServiceVideo";
 import Stars from "../components/Stars";
 import TestimonialsColumns from "../components/TestimonialsColumns";
@@ -71,12 +71,7 @@ export default function Home() {
               <br className="desktop-break" /> pode contar com a Capucho.
             </h2>
           </div>
-          <div className="services-grid">
-            {services.map((s) => (
-              <ServiceCard key={s.slug} service={s} />
-            ))}
-            <ServiceCard products />
-          </div>
+          <ServicesCarousel services={services} />
         </div>
       </section>
       <section className="section container">
