@@ -386,18 +386,6 @@ main > section:not(.gamer-section) + .section.container::before {
   transform: translateY(-4px);
   box-shadow: 0 18px 40px -24px rgba(16, 44, 96, 0.45);
 }
-.service-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-  color: var(--blue);
-}
-.service-number {
-  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
-  font-size: 0.8125rem;
-  color: var(--muted);
-}
 .service-image {
   height: 210px;
   border-radius: 16px;

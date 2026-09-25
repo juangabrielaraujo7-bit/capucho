@@ -77,7 +77,7 @@ export default function ServicesCarousel({ services }) {
             <ServiceCard
               service={card.service}
               products={card.products}
-              number={String(i + 1).padStart(2, "0")}
+              index={i + 1}
             />
           </li>
         ))}
