@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   Truck,
 } from "@phosphor-icons/react";
+import HeroBackground from "../components/HeroBackground";
 import HeroVideo from "../components/HeroVideo";
 import ServicesCarousel from "../components/ServicesCarousel";
 import ServiceVideo from "../components/ServiceVideo";
@@ -22,30 +23,32 @@ import { faqs, reviews, services } from "../content";
 export default function Home() {
   return (
     <>
-      <section className="hero container">
-        <div className="hero-copy">
-          <p className="eyebrow">Seu PC em boas mãos</p>
-          <h1>
-            Seu computador pronto pra <span>acompanhar você</span>
-          </h1>
-          <p className="hero-description">
-            Do conserto ao upgrade, a Capucho cuida do seu computador com
-            explicação clara e sem complicação.
-          </p>
-          <div className="hero-actions">
-            <WhatsAppButton />
-            <a className="button button-outline" href="#servicos">
-              Ver serviços
-              <ArrowRight size={20} />
-            </a>
-            <a className="gamer-link" href="#gamer">
-              Área gamer
-              <ArrowUpRight size={18} />
-            </a>
+      <HeroBackground>
+        <section className="hero container">
+          <div className="hero-copy">
+            <p className="eyebrow">Seu PC em boas mãos</p>
+            <h1>
+              Seu computador pronto pra <span>acompanhar você</span>
+            </h1>
+            <p className="hero-description">
+              Do conserto ao upgrade, a Capucho cuida do seu computador com
+              explicação clara e sem complicação.
+            </p>
+            <div className="hero-actions">
+              <WhatsAppButton />
+              <a className="button button-outline" href="#servicos">
+                Ver serviços
+                <ArrowRight size={20} />
+              </a>
+              <a className="gamer-link" href="#gamer">
+                Área gamer
+                <ArrowUpRight size={18} />
+              </a>
+            </div>
           </div>
-        </div>
-        <HeroVideo />
-      </section>
+          <HeroVideo />
+        </section>
+      </HeroBackground>
       <div className="benefits">
         <div className="container benefits-grid">
           <div>
