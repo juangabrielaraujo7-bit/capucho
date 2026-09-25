@@ -1,0 +1,25 @@
+{
+  "name": "capucho-informatica",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.2.0",
+    "@fontsource-variable/sora": "^5.2.0",
+    "@phosphor-icons/react": "^2.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "ffmpeg-static": "^5.2.0",
+    "lighthouse": "^13.5.0",
+    "vite": "^6.3.0"
+  }
+}
