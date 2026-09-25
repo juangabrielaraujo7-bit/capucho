@@ -13,6 +13,8 @@
   --tint: #edf1f5;
   --border: #dce3ed;
   --radius: 14px;
+  --line: #cbd4e1;
+  --gutter: 80px;
   color-scheme: light;
 }
 * {
@@ -78,11 +80,30 @@ section[id] {
   scroll-margin-top: 100px;
 }
 .container {
-  width: min(1224px, calc(100% - 80px));
+  width: min(1224px, calc(100% - var(--gutter)));
   margin-inline: auto;
 }
 .section {
   padding-block: 96px;
+}
+/* Linha divisória entre seções, na largura do conteúdo.
+   A seção gamer é um bloco com borda própria, então não leva nem recebe linha. */
+main > section:not(.gamer-section) + .section {
+  position: relative;
+}
+main > section:not(.gamer-section) + .section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: min(1224px, calc(100% - var(--gutter)));
+  height: 1px;
+  background: var(--line);
+}
+main > section:not(.gamer-section) + .section.container::before {
+  width: 100%;
 }
 .section-tint {
   background: var(--tint);
@@ -1080,7 +1101,6 @@ blockquote {
   margin: 8px 0 0;
 }
 .related-section {
-  border-top: 1px solid var(--border);
   padding-block: 55px;
 }
 .related-section h2 {
@@ -1135,8 +1155,8 @@ blockquote {
     font-size: 0.75rem;
     padding-inline: 12px;
   }
-  .container {
-    width: calc(100% - 56px);
+  :root {
+    --gutter: 56px;
   }
   .hero {
     gap: 12px;
@@ -1232,8 +1252,8 @@ blockquote {
   }
 }
 @media (max-width: 767px) {
-  .container {
-    width: calc(100% - 40px);
+  :root {
+    --gutter: 40px;
   }
   .section {
     padding-block: 64px;
@@ -1489,8 +1509,8 @@ blockquote {
   }
 }
 @media (max-width: 380px) {
-  .container {
-    width: calc(100% - 32px);
+  :root {
+    --gutter: 32px;
   }
   .hero-actions .button {
     font-size: 0.8rem;
