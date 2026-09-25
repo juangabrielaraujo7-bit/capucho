@@ -80,19 +80,8 @@ try {
           await hero.evaluate((v) => v.muted && v.loop && v.playsInline),
           true,
         );
-        await page
-          .getByRole("button", { name: "Pausar vídeo de montagem" })
-          .click();
-        assert.equal(await hero.evaluate((v) => v.paused), true);
-        await page
-          .getByRole("button", { name: "Reproduzir vídeo de montagem" })
-          .click();
-        await page.waitForFunction(
-          () => !document.querySelector(".hero-visual video").paused,
-        );
-        await page
-          .getByRole("button", { name: "Pausar vídeo de montagem" })
-          .click();
+        // Sem botão de pausa na hero (pedido do cliente); pausa só para capturas estáveis.
+        await hero.evaluate((v) => v.pause());
         const sources = await page
           .locator(".service-image img")
           .evaluateAll((imgs) => imgs.map((i) => i.src));

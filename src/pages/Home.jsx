@@ -26,7 +26,6 @@ export default function Home() {
       <HeroBackground>
         <section className="hero container">
           <div className="hero-copy">
-            <p className="eyebrow">Seu PC em boas mãos</p>
             <h1>
               Seu computador pronto pra <span>acompanhar você</span>
             </h1>
