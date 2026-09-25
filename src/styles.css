@@ -4,16 +4,16 @@
 :root {
   font-family: "DM Sans Variable", sans-serif;
   color: #102c60;
-  background: #edf1f5;
+  background: #eff0f2;
   font-synthesis: none;
   font-weight: 400;
   --navy: #102c60;
   --blue: #2045ed;
   --muted: #58667a;
-  --tint: #edf1f5;
-  --border: #dce3ed;
+  --tint: #eff0f2;
+  --border: #dfe1e5;
   --radius: 14px;
-  --line: #cbd4e1;
+  --line: #d2d5da;
   --gutter: 80px;
   color-scheme: light;
 }
@@ -345,7 +345,7 @@ main > section:not(.gamer-section) + .section.container::before {
   display: flex;
   flex-direction: column;
   padding: 22px;
-  border: 1px solid #dfe6f2;
+  border: 1px solid #e1e3e7;
   border-radius: 24px;
   background: linear-gradient(145deg, #ffffff 0%, #e7eeff 100%);
   transition:

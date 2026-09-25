@@ -110,7 +110,7 @@ try {
           card: getComputedStyle(document.querySelector(".review"))
             .backgroundColor,
         }));
-        assert.equal(surfaces.base, "rgb(237, 241, 245)");
+        assert.equal(surfaces.base, "rgb(239, 240, 242)");
         assert.equal(surfaces.card, "rgb(255, 255, 255)");
         await page.screenshot({ path: `.qa/hero-${viewport.width}.png` });
         await page
