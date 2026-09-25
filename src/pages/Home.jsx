@@ -131,28 +131,51 @@ export default function Home() {
       <section id="avaliacoes" className="section container">
         <TestimonialsColumns reviews={reviews}>
           <h2>
-            Quem já contou com a Capucho, conta aqui.
+            Os clientes dizem:
+            <br />
+            <span>Somos a melhor da região!</span>
           </h2>
-          <div className="rating">
-            <strong>5,0</strong>
-            <div>
-              <Stars />
-              <span>368 avaliações no Google</span>
-              <small>Dados recebidos em 25/09/2026</small>
+          <div className="google-proof">
+            <a
+              className="google-badge"
+              href={maps}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src={asset("google-reviews.webp")}
+                alt="Avaliações no Google"
+                width="560"
+                height="228"
+                loading="lazy"
+              />
+            </a>
+            <svg
+              className="google-arrow"
+              viewBox="0 0 170 120"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M6 70 C 30 118, 78 112, 88 78 C 96 50, 66 40, 60 62 C 54 86, 100 104, 158 50" />
+              <path d="M136 50 L 160 48 L 154 72" />
+            </svg>
+            <div className="rating">
+              <strong>5,0</strong>
+              <div>
+                <Stars />
+                <span>368 avaliações no Google</span>
+              </div>
             </div>
+            <a
+              className="text-link"
+              href={maps}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ver todas no Google
+              <ArrowUpRight size={20} />
+            </a>
           </div>
-          <p className="review-source">
-            Trechos de avaliações públicas de clientes.
-          </p>
-          <a
-            className="text-link"
-            href={maps}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Ver todas no Google
-            <ArrowUpRight size={20} />
-          </a>
         </TestimonialsColumns>
       </section>
       <section id="sobre" className="section section-tint">

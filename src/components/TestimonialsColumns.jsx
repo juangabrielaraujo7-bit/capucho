@@ -1,5 +1,4 @@
-import { Fragment, useState } from "react";
-import { Pause, Play } from "@phosphor-icons/react";
+import { Fragment } from "react";
 import Stars from "./Stars";
 
 // Colunas de depoimentos em rolagem contínua (adaptado de testimonials-columns-1).
@@ -45,24 +44,13 @@ function TestimonialsColumn({ reviews, duration, repeat = 1, className = "" }) {
   );
 }
 
-// "children" é o bloco lateral (título e nota); o botão de pausa fica junto dele.
+// "children" é o bloco lateral (título, selo do Google e nota).
+// A rolagem pausa ao passar o mouse ou focar um depoimento e fica parada com redução de movimento.
 export default function TestimonialsColumns({ reviews, children }) {
-  const [paused, setPaused] = useState(false);
   const columns = [0, 1].map((c) => reviews.filter((_, i) => i % 2 === c));
   return (
-    <div className={paused ? "testimonials is-paused" : "testimonials"}>
-      <div className="testimonials-aside">
-        {children}
-        <button
-          className="hero-video-toggle testimonials-toggle"
-          type="button"
-          onClick={() => setPaused(!paused)}
-          aria-pressed={paused}
-        >
-          {paused ? <Play size={17} /> : <Pause size={17} />}
-          <span>{paused ? "Continuar rolagem" : "Pausar depoimentos"}</span>
-        </button>
-      </div>
+    <div className="testimonials">
+      <div className="testimonials-aside">{children}</div>
       <div
         className="testimonials-window"
         role="region"

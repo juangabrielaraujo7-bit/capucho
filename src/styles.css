@@ -501,11 +501,50 @@ blockquote {
   gap: 72px;
   align-items: center;
 }
-.testimonials-aside h2 {
-  max-width: 440px;
+.testimonials-aside {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  padding-top: 40px;
 }
-.testimonials-aside .text-link {
-  margin-top: 6px;
+.testimonials-aside h2 {
+  max-width: 460px;
+}
+.testimonials-aside h2 span {
+  color: var(--blue);
+}
+.google-proof {
+  position: relative;
+  margin-block: auto;
+  padding-block: 40px;
+  width: fit-content;
+}
+.google-badge {
+  display: block;
+  width: 240px;
+}
+.google-badge img {
+  width: 100%;
+  height: auto;
+}
+.google-proof .rating {
+  margin-top: 22px;
+}
+.google-proof .text-link {
+  margin-top: 16px;
+}
+/* Seta desenhada do selo do Google até as colunas de depoimentos */
+.google-arrow {
+  position: absolute;
+  top: 34px;
+  left: 252px;
+  width: 190px;
+  height: auto;
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .testimonials-window {
   display: flex;
@@ -540,24 +579,25 @@ blockquote {
   }
 }
 .testimonials-window:hover .testimonials-track,
-.testimonials-window:focus-within .testimonials-track,
-.testimonials.is-paused .testimonials-track {
+.testimonials-window:focus-within .testimonials-track {
   animation-play-state: paused;
 }
 .testimonial-card blockquote {
   margin-bottom: 22px;
 }
-.testimonials-toggle {
-  margin: 28px 0 0;
-}
-.review-source {
-  margin: 22px 0 0;
-  font-size: 0.875rem;
-}
 @media (max-width: 1023px) {
   .testimonials {
     grid-template-columns: 1fr;
     gap: 36px;
+  }
+  .testimonials-aside {
+    padding-top: 0;
+  }
+  .google-proof {
+    padding-block: 30px 0;
+  }
+  .google-arrow {
+    display: none;
   }
   .testimonials-wide {
     display: none;
@@ -578,9 +618,6 @@ blockquote {
     animation: none;
   }
   .testimonial-card[aria-hidden] {
-    display: none;
-  }
-  .testimonials-toggle {
     display: none;
   }
 }
