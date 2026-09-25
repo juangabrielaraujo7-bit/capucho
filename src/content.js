@@ -1,6 +1,8 @@
 export const services = [
   {
     slug: "conserto",
+    seoDescription:
+      "Conserto de computadores e notebooks na Freguesia do Ó, SP: não liga, sem imagem, tela, teclado, bateria e carregamento. Orçamento aprovado por você. Fale pelo WhatsApp.",
     title: "Conserto de computadores e notebooks",
     short: "Conserto",
     image: "conserto-foto.webp",
@@ -34,6 +36,8 @@ export const services = [
   },
   {
     slug: "formatacao-e-programas",
+    seoDescription:
+      "Formatação de Windows, macOS e Linux, instalação de programas e remoção de vírus na Freguesia do Ó, SP. Fale com a Capucho Informática pelo WhatsApp.",
     title: "Formatação, programas e remoção de vírus",
     short: "Formatação e programas",
     image: "formatacao-foto.webp",
@@ -67,6 +71,8 @@ export const services = [
   },
   {
     slug: "upgrade-e-montagem",
+    seoDescription:
+      "Upgrade e montagem de computadores na Freguesia do Ó, SP: SSD, memória RAM, processador, placa de vídeo e PCs para trabalho e estudo. Fale pelo WhatsApp.",
     title: "Upgrade e montagem de computadores",
     short: "Upgrade e montagem",
     image: "upgrade-foto.webp",
@@ -100,6 +106,8 @@ export const services = [
   },
   {
     slug: "limpeza-preventiva",
+    seoDescription:
+      "Limpeza e manutenção preventiva de computadores e notebooks na Freguesia do Ó, SP: poeira, pasta térmica, ventoinhas e testes de temperatura.",
     title: "Limpeza e manutenção preventiva",
     short: "Limpeza preventiva",
     image: "limpeza-foto.webp",
@@ -133,6 +141,8 @@ export const services = [
   },
   {
     slug: "suporte-e-atendimento",
+    seoDescription:
+      "Suporte técnico remoto para todo o Brasil e atendimento em casa na Freguesia do Ó e região, em São Paulo. Programas, erros, lentidão e vírus.",
     title: "Suporte remoto e atendimento em casa",
     short: "Suporte e atendimento",
     image: "suporte-foto.webp",

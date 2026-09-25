@@ -33,17 +33,29 @@ npm run build
 npm run preview
 ```
 
-O build fica em `dist/`. Para a verificação de navegação, com a prévia de desenvolvimento ativa e Google Chrome instalado:
+O build fica em `dist/`. O `npm run build` faz três etapas: build do navegador, build de servidor (`src/entry-server.jsx`) e `scripts/prerender.mjs`, que gera o HTML completo de cada página (`index.html`, `servicos/*.html`, `404.html`) com título, descrição, link canônico, prévia de compartilhamento (Open Graph), dados estruturados de negócio local, `sitemap.xml` e `robots.txt`. No navegador, o React assume a página já renderizada (hidratação).
+
+**Domínio:** enquanto não houver domínio próprio, o build usa o domínio de produção da Vercel (`VERCEL_PROJECT_PRODUCTION_URL`) ou, localmente, `http://127.0.0.1:4173`. Quando o domínio existir, defina a variável de ambiente `SITE_URL` (ex.: `https://www.seudominio.com.br`) na Vercel.
+
+Para a verificação de navegação, com a prévia ativa e Google Chrome instalado:
 
 ```sh
 node scripts/check-site.mjs
 ```
 
-O arquivo `vercel.json` inclui fallback das páginas de serviços para `index.html`, permitindo abrir e atualizar os links diretamente na Vercel. Não há workflow de publicação no repositório. Se você conectar o repositório à Vercel, novos envios à branch configurada poderão disparar o deploy automático dessa integração.
+Use `PREVIEW_URL=http://127.0.0.1:4173` para verificar o build de produção.
+
+O `vercel.json` usa `cleanUrls`, então `/servicos/conserto` serve `servicos/conserto.html`; endereços inexistentes recebem `404.html`. Não há workflow de publicação no repositório. Se você conectar o repositório à Vercel, novos envios à branch configurada poderão disparar o deploy automático dessa integração.
 
 ## Organização
 
-- `src/main.jsx`: estrutura, navegação, vídeos e componentes.
+- `src/main.jsx`: entrada do navegador (React Router + hidratação).
+- `src/entry-server.jsx`: entrada usada no pré-render.
+- `src/App.jsx`: layout e rotas.
+- `src/pages/`: `Home`, `ServicePage` e `NotFound`.
+- `src/components/`: cabeçalho, rodapé, cards, vídeos e botões.
+- `src/config.js`: dados do negócio, WhatsApp, endereço e mapas (alterar aqui).
+- `src/seo.js`: títulos, descrições e dados estruturados por página.
 - `src/content.js`: textos dos serviços, perguntas frequentes e avaliações.
 - `src/styles.css`: identidade visual e adaptação para celular.
 - `public/assets/`: materiais usados na versão local.
