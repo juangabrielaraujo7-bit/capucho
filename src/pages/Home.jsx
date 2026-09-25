@@ -129,10 +129,9 @@ export default function Home() {
         />
       </section>
       <section id="avaliacoes" className="section container">
-        <div className="review-heading">
+        <TestimonialsColumns reviews={reviews}>
           <h2>
-            Quem já contou com a<br className="desktop-break" /> Capucho, conta
-            aqui.
+            Quem já contou com a Capucho, conta aqui.
           </h2>
           <div className="rating">
             <strong>5,0</strong>
@@ -142,14 +141,19 @@ export default function Home() {
               <small>Dados recebidos em 25/09/2026</small>
             </div>
           </div>
-        </div>
-        <TestimonialsColumns reviews={reviews} />
-        <p className="review-source">
-          Trechos de avaliações públicas.{" "}
-          <a href={maps} target="_blank" rel="noreferrer">
+          <p className="review-source">
+            Trechos de avaliações públicas de clientes.
+          </p>
+          <a
+            className="text-link"
+            href={maps}
+            target="_blank"
+            rel="noreferrer"
+          >
             Ver todas no Google
+            <ArrowUpRight size={20} />
           </a>
-        </p>
+        </TestimonialsColumns>
       </section>
       <section id="sobre" className="section section-tint">
         <div className="container about-layout">

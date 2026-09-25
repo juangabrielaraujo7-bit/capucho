@@ -45,17 +45,30 @@ function TestimonialsColumn({ reviews, duration, repeat = 1, className = "" }) {
   );
 }
 
-export default function TestimonialsColumns({ reviews }) {
+// "children" é o bloco lateral (título e nota); o botão de pausa fica junto dele.
+export default function TestimonialsColumns({ reviews, children }) {
   const [paused, setPaused] = useState(false);
-  const columns = [0, 1, 2].map((c) => reviews.filter((_, i) => i % 3 === c));
+  const columns = [0, 1].map((c) => reviews.filter((_, i) => i % 2 === c));
   return (
     <div className={paused ? "testimonials is-paused" : "testimonials"}>
+      <div className="testimonials-aside">
+        {children}
+        <button
+          className="hero-video-toggle testimonials-toggle"
+          type="button"
+          onClick={() => setPaused(!paused)}
+          aria-pressed={paused}
+        >
+          {paused ? <Play size={17} /> : <Pause size={17} />}
+          <span>{paused ? "Continuar rolagem" : "Pausar depoimentos"}</span>
+        </button>
+      </div>
       <div
         className="testimonials-window"
         role="region"
         aria-label="Depoimentos de clientes"
       >
-        {/* Celular e tablet: uma coluna com todos. Desktop: três colunas. */}
+        {/* Celular e tablet: uma coluna com todos. Desktop: duas colunas. */}
         <TestimonialsColumn
           reviews={reviews}
           duration={70}
@@ -65,21 +78,11 @@ export default function TestimonialsColumns({ reviews }) {
           <TestimonialsColumn
             key={i}
             reviews={col}
-            repeat={2}
-            duration={[46, 56, 50][i]}
+            duration={[48, 58][i]}
             className="testimonials-wide"
           />
         ))}
       </div>
-      <button
-        className="hero-video-toggle testimonials-toggle"
-        type="button"
-        onClick={() => setPaused(!paused)}
-        aria-pressed={paused}
-      >
-        {paused ? <Play size={17} /> : <Pause size={17} />}
-        <span>{paused ? "Continuar rolagem" : "Pausar depoimentos"}</span>
-      </button>
     </div>
   );
 }

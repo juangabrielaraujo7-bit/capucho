@@ -494,12 +494,24 @@ blockquote {
   font-size: 0.75rem;
   color: var(--muted);
 }
-/* Depoimentos em colunas com rolagem contínua */
+/* Depoimentos: título à esquerda, colunas com rolagem contínua à direita */
+.testimonials {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: 72px;
+  align-items: center;
+}
+.testimonials-aside h2 {
+  max-width: 440px;
+}
+.testimonials-aside .text-link {
+  margin-top: 6px;
+}
 .testimonials-window {
   display: flex;
   justify-content: center;
   gap: 24px;
-  max-height: 640px;
+  max-height: 680px;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
   mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
@@ -536,18 +548,17 @@ blockquote {
   margin-bottom: 22px;
 }
 .testimonials-toggle {
-  margin-top: 26px;
+  margin: 28px 0 0;
 }
 .review-source {
-  margin: 18px 0 0;
-  text-align: center;
+  margin: 22px 0 0;
   font-size: 0.875rem;
 }
-.review-source a {
-  color: var(--blue);
-  font-weight: 600;
-}
 @media (max-width: 1023px) {
+  .testimonials {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
   .testimonials-wide {
     display: none;
   }
