@@ -13,7 +13,7 @@
   --tint: #eff0f2;
   --border: #dfe1e5;
   --radius: 14px;
-  --line: #d2d5da;
+  --line: #dcdde1;
   --gutter: 80px;
   color-scheme: light;
 }
@@ -86,24 +86,24 @@ section[id] {
 .section {
   padding-block: 96px;
 }
-/* Linha divisória entre seções, na largura do conteúdo.
-   A seção gamer é um bloco com borda própria, então não leva nem recebe linha. */
-main > section:not(.gamer-section) + .section {
+/* Linha divisória de ponta a ponta na base de cada seção (hero incluída),
+   no estilo de imperiodastelascelular.com.br */
+main {
+  overflow-x: clip;
+}
+main > * {
   position: relative;
 }
-main > section:not(.gamer-section) + .section::before {
+main > *::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin-inline: auto;
-  width: min(1224px, calc(100% - var(--gutter)));
+  left: 50%;
+  bottom: 0;
+  width: 100vw;
   height: 1px;
+  translate: -50% 0;
   background: var(--line);
-}
-main > section:not(.gamer-section) + .section.container::before {
-  width: 100%;
+  pointer-events: none;
 }
 .section-tint {
   background: var(--tint);
@@ -197,7 +197,7 @@ h2.eyebrow {
   position: sticky;
   top: 0;
   background: #fff;
-  border-bottom: 1px solid #e9edf3;
+  border-bottom: 1px solid var(--line);
   z-index: 20;
 }
 .header-inner {
@@ -575,7 +575,6 @@ h2.eyebrow {
   border: 1px solid #dce4ff;
   border-radius: var(--radius);
   overflow: hidden;
-  margin-block: 4px 0;
 }
 .gamer-copy {
   padding: 52px;
