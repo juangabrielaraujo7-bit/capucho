@@ -66,6 +66,11 @@ try {
           return video && !video.paused && video.currentTime > 0.1;
         });
         const hero = page.locator(".hero-visual video");
+        const duration = await hero.evaluate((v) => v.duration);
+        assert.ok(
+          duration > 4.5 && duration < 5.2,
+          "Hero montage should complete in about five seconds",
+        );
         assert.equal(
           await hero.evaluate((v) => v.muted && v.loop && v.playsInline),
           true,

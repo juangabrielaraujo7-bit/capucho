@@ -120,7 +120,7 @@ function ServiceCard({ service, products = false }) {
     >
       <div className="service-image">
         <img
-          src={asset(products ? "produtos.webp" : service.image)}
+          src={asset(products ? "produtos-foto.webp" : service.image)}
           alt=""
           loading="lazy"
           width="1536"
@@ -231,7 +231,7 @@ function HeroVideo() {
         <>
           <video
             ref={ref}
-            src={asset("hero-montagem.mp4")}
+            src={asset("hero-montagem-agil.mp4")}
             poster={asset("notebook.webp")}
             autoPlay={!reduceMotion}
             loop
@@ -364,8 +364,8 @@ function Home() {
           </p>
         </div>
         <img
-          src={asset("upgrade.webp")}
-          alt="Ilustração de PC com componentes para montagem e upgrade"
+          src={asset("upgrade-foto.webp")}
+          alt="Imagem ilustrativa de PC com componentes para montagem e upgrade"
           width="1536"
           height="1024"
           loading="lazy"

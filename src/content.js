@@ -3,8 +3,8 @@ export const services = [
     slug: "conserto",
     title: "Conserto de computadores e notebooks",
     short: "Conserto",
-    image: "reparo.webp",
-    alt: "Ilustração de notebook aberto para manutenção",
+    image: "conserto-foto.webp",
+    alt: "Imagem ilustrativa de notebook aberto em bancada com ferramentas de diagnóstico",
     description:
       "Não liga, está sem imagem ou apareceu um problema? Vamos entender o que aconteceu.",
     intro:
@@ -36,8 +36,8 @@ export const services = [
     slug: "formatacao-e-programas",
     title: "Formatação, programas e remoção de vírus",
     short: "Formatação e programas",
-    image: "formatacao.webp",
-    alt: "Notebook sem marca com símbolo de proteção, pendrive e SSD externo",
+    image: "formatacao-foto.webp",
+    alt: "Imagem ilustrativa de instalação de sistema em notebook com pendrive e SSD externo",
     description:
       "Sistemas e programas funcionando para você trabalhar, estudar e usar seu PC.",
     intro:
@@ -69,8 +69,8 @@ export const services = [
     slug: "upgrade-e-montagem",
     title: "Upgrade e montagem de computadores",
     short: "Upgrade e montagem",
-    image: "upgrade.webp",
-    alt: "Ilustração 3D de computador com memória RAM, SSD e processador",
+    image: "upgrade-foto.webp",
+    alt: "Imagem ilustrativa de computador aberto com memórias e SSD para upgrade",
     description:
       "Mais fôlego para trabalhar e estudar, com peças que fazem sentido para o seu uso.",
     intro:
@@ -102,8 +102,8 @@ export const services = [
     slug: "limpeza-preventiva",
     title: "Limpeza e manutenção preventiva",
     short: "Limpeza preventiva",
-    image: "limpeza-servico.webp",
-    alt: "Ventoinha, dissipadores, pincel, soprador e pasta térmica para manutenção preventiva",
+    image: "limpeza-foto.webp",
+    alt: "Imagem ilustrativa da limpeza de uma ventoinha de notebook com pincel e soprador",
     description:
       "Cuidado por dentro e por fora para manter a manutenção do computador em dia.",
     intro:
@@ -135,8 +135,8 @@ export const services = [
     slug: "suporte-e-atendimento",
     title: "Suporte remoto e atendimento em casa",
     short: "Suporte e atendimento",
-    image: "suporte.webp",
-    alt: "Computador com símbolo de conversa, headset e roteador para suporte remoto",
+    image: "suporte-foto.webp",
+    alt: "Imagem ilustrativa de computador com headset e roteador para suporte remoto",
     description:
       "Ajuda à distância em todo o Brasil ou uma visita combinada na sua casa.",
     intro:

@@ -12,6 +12,12 @@
 - `upgrade.png` e `reparo.png`: ilustrações 3D geradas para o projeto. São imagens ilustrativas, não fotografias de serviços executados ou produtos em estoque.
 - `formatacao.webp`, `limpeza-servico.webp`, `suporte.webp` e `produtos.webp`: novas ilustrações exclusivas por categoria. Os seis cards usam imagens distintas, sem o notebook com a marca Capucho.
 
+## Revisão de ritmo e realismo
+
+- Vídeo da hero acelerado em 1,65x (aproximadamente 4,9 segundos por ciclo), sem áudio, em 1280px, com início rápido de carregamento. O arquivo passou de aproximadamente 5,9 MB para 1,9 MB. O original permanece preservado.
+- As seis categorias agora usam arquivos `*-foto.webp`, gerados com direção fotográfica: luz natural, materiais menos idealizados e equipamentos em bancada. São imagens ilustrativas geradas, não fotografias da loja, de serviços executados ou de produtos realmente em estoque.
+- Os cards exibem as imagens com enquadramento fotográfico, preservando o fundo gelo e as superfícies brancas.
+
 ## Confirmar antes de publicar
 
 - Horários de funcionamento e condições de garantia de 90 dias.
