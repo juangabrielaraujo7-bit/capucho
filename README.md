@@ -39,7 +39,7 @@ O build fica em `dist/`. Para a verificação de navegação, com a prévia de d
 node scripts/check-site.mjs
 ```
 
-Não há publicação configurada, workflows de deploy ou integração com Vercel. O envio do código ao GitHub não publica o site. Para hospedagem futura, as rotas precisam de fallback para `index.html`.
+O arquivo `vercel.json` inclui fallback das páginas de serviços para `index.html`, permitindo abrir e atualizar os links diretamente na Vercel. Não há workflow de publicação no repositório. Se você conectar o repositório à Vercel, novos envios à branch configurada poderão disparar o deploy automático dessa integração.
 
 ## Organização
 
@@ -50,4 +50,4 @@ Não há publicação configurada, workflows de deploy ou integração com Verce
 - `docs/briefing.md`: briefing recebido.
 - `docs/materiais-e-pendencias.md`: origem dos materiais e pontos para revisão.
 
-Não há animações, reprodução automática ou formulário com coleta de dados. Vídeos de serviço iniciam ao clicar e sem som. Links de WhatsApp apenas abrem a conversa com texto preparado; nenhuma mensagem é enviada automaticamente. O mapa usa um serviço externo e precisa de internet; endereço e link de rota continuam disponíveis quando ele não carrega.
+O vídeo da hero inicia automaticamente em loop e sem som, com botão de pausa; respeita a preferência de redução de movimento do dispositivo. Os três vídeos de serviços continuam iniciando somente ao clicar. Não há efeitos de animação de interface ou formulário com coleta de dados. Links de WhatsApp apenas abrem a conversa com texto preparado; nenhuma mensagem é enviada automaticamente. O mapa usa um serviço externo e precisa de internet; endereço e link de rota continuam disponíveis quando ele não carrega.

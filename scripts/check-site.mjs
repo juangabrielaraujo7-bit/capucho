@@ -59,7 +59,57 @@ try {
       assert.deepEqual(report.broken, [], `${route} has broken images`);
       assert.equal(report.wa, true);
       assert.equal(report.motion, false);
-      assert.equal(report.autoplay, 0);
+      assert.equal(report.autoplay, route === "/" ? 1 : 0);
+      if (route === "/") {
+        await page.waitForFunction(() => {
+          const video = document.querySelector(".hero-visual video");
+          return video && !video.paused && video.currentTime > 0.1;
+        });
+        const hero = page.locator(".hero-visual video");
+        assert.equal(
+          await hero.evaluate((v) => v.muted && v.loop && v.playsInline),
+          true,
+        );
+        await page
+          .getByRole("button", { name: "Pausar vídeo de montagem" })
+          .click();
+        assert.equal(await hero.evaluate((v) => v.paused), true);
+        await page
+          .getByRole("button", { name: "Reproduzir vídeo de montagem" })
+          .click();
+        await page.waitForFunction(
+          () => !document.querySelector(".hero-visual video").paused,
+        );
+        await page
+          .getByRole("button", { name: "Pausar vídeo de montagem" })
+          .click();
+        const sources = await page
+          .locator(".service-image img")
+          .evaluateAll((imgs) => imgs.map((i) => i.src));
+        assert.equal(
+          new Set(sources).size,
+          6,
+          "All six service images must be distinct",
+        );
+        assert.equal(
+          sources.some((src) => src.endsWith("/notebook.webp")),
+          false,
+        );
+        const surfaces = await page.evaluate(() => ({
+          base: getComputedStyle(document.documentElement).backgroundColor,
+          card: getComputedStyle(document.querySelector(".review"))
+            .backgroundColor,
+        }));
+        assert.equal(surfaces.base, "rgb(237, 241, 245)");
+        assert.equal(surfaces.card, "rgb(255, 255, 255)");
+        await page.screenshot({ path: `.qa/hero-${viewport.width}.png` });
+        await page
+          .locator("#servicos")
+          .screenshot({ path: `.qa/services-${viewport.width}.png` });
+        await page
+          .locator("#avaliacoes")
+          .screenshot({ path: `.qa/reviews-${viewport.width}.png` });
+      }
       results.push({ route, width: viewport.width, ...report });
       if (
         route === "/" ||
@@ -82,17 +132,17 @@ try {
           })
           .click();
         await page.waitForFunction(
-          () => !document.querySelector("video").paused,
+          () => !document.querySelector(".video-frame video").paused,
         );
         assert.equal(
           await page
-            .locator("video")
+            .locator(".video-frame video")
             .first()
             .evaluate((v) => v.muted),
           true,
         );
         await page
-          .locator("video")
+          .locator(".video-frame video")
           .first()
           .evaluate((v) => v.pause());
         if (viewport.width === 390) {
@@ -108,6 +158,15 @@ try {
     }
     await page.close();
   }
+  const reducedPage = await browser.newPage({ reducedMotion: "reduce" });
+  await reducedPage.goto(base, { waitUntil: "networkidle" });
+  assert.equal(
+    await reducedPage
+      .locator(".hero-visual video")
+      .evaluate((v) => v.paused && !v.autoplay),
+    true,
+  );
+  await reducedPage.close();
   assert.deepEqual(errors, [], "Browser runtime errors");
   await writeFile(".qa/results.json", JSON.stringify(results, null, 2));
   console.log(

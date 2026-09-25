@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/servicos/:path*", "destination": "/index.html" }]
+}

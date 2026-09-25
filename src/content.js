@@ -36,8 +36,8 @@ export const services = [
     slug: "formatacao-e-programas",
     title: "Formatação, programas e remoção de vírus",
     short: "Formatação e programas",
-    image: "notebook.webp",
-    alt: "Notebook com a marca Capucho Informática na tela",
+    image: "formatacao.webp",
+    alt: "Notebook sem marca com símbolo de proteção, pendrive e SSD externo",
     description:
       "Sistemas e programas funcionando para você trabalhar, estudar e usar seu PC.",
     intro:
@@ -102,8 +102,8 @@ export const services = [
     slug: "limpeza-preventiva",
     title: "Limpeza e manutenção preventiva",
     short: "Limpeza preventiva",
-    image: "reparo.webp",
-    alt: "Ilustração de ventoinhas e componentes internos de um notebook com ferramentas de limpeza",
+    image: "limpeza-servico.webp",
+    alt: "Ventoinha, dissipadores, pincel, soprador e pasta térmica para manutenção preventiva",
     description:
       "Cuidado por dentro e por fora para manter a manutenção do computador em dia.",
     intro:
@@ -135,8 +135,8 @@ export const services = [
     slug: "suporte-e-atendimento",
     title: "Suporte remoto e atendimento em casa",
     short: "Suporte e atendimento",
-    image: "notebook.webp",
-    alt: "Notebook preparado para atendimento e suporte",
+    image: "suporte.webp",
+    alt: "Computador com símbolo de conversa, headset e roteador para suporte remoto",
     description:
       "Ajuda à distância em todo o Brasil ou uma visita combinada na sua casa.",
     intro:

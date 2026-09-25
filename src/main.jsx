@@ -14,6 +14,7 @@ import {
   List,
   X,
   Play,
+  Pause,
   Plus,
   GameController,
   DesktopTower,
@@ -119,7 +120,7 @@ function ServiceCard({ service, products = false }) {
     >
       <div className="service-image">
         <img
-          src={asset(products ? "upgrade.webp" : service.image)}
+          src={asset(products ? "produtos.webp" : service.image)}
           alt=""
           loading="lazy"
           width="1536"
@@ -190,6 +191,79 @@ function ServiceVideo({ file, title }) {
   );
 }
 
+function HeroVideo() {
+  const ref = React.useRef(null);
+  const [playing, setPlaying] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  React.useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      setReduceMotion(preference.matches);
+      if (preference.matches) ref.current?.pause();
+    };
+    preference.addEventListener("change", update);
+    return () => preference.removeEventListener("change", update);
+  }, []);
+  async function toggle() {
+    if (!ref.current) return;
+    if (!ref.current.paused) ref.current.pause();
+    else {
+      try {
+        await ref.current.play();
+      } catch {
+        setFailed(true);
+      }
+    }
+  }
+  return (
+    <div className="hero-visual">
+      {failed ? (
+        <img
+          src={asset("notebook.webp")}
+          alt="Notebook Capucho Informática"
+          width="1200"
+          height="675"
+        />
+      ) : (
+        <>
+          <video
+            ref={ref}
+            src={asset("hero-montagem.mp4")}
+            poster={asset("notebook.webp")}
+            autoPlay={!reduceMotion}
+            loop
+            muted
+            playsInline
+            preload={reduceMotion ? "none" : "auto"}
+            width="1920"
+            height="1080"
+            aria-label="Animação de montagem do notebook Capucho Informática"
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+            onError={() => setFailed(true)}
+          />
+          <button
+            className="hero-video-toggle"
+            type="button"
+            onClick={toggle}
+            aria-label={
+              playing
+                ? "Pausar vídeo de montagem"
+                : "Reproduzir vídeo de montagem"
+            }
+          >
+            {playing ? <Pause size={17} /> : <Play size={17} />}
+            <span>{playing ? "Pausar vídeo" : "Reproduzir vídeo"}</span>
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
+
 function Home() {
   return (
     <>
@@ -215,15 +289,7 @@ function Home() {
             </a>
           </div>
         </div>
-        <div className="hero-visual">
-          <img
-            src={asset("notebook.webp")}
-            alt="Notebook com a logo Capucho Informática na tela"
-            width="1200"
-            height="800"
-            fetchPriority="high"
-          />
-        </div>
+        <HeroVideo />
       </section>
       <div className="benefits">
         <div className="container benefits-grid">
