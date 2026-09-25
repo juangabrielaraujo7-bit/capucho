@@ -145,8 +145,8 @@ export default function Home() {
               <img
                 src={asset("google-reviews.webp")}
                 alt="Avaliações no Google"
-                width="560"
-                height="228"
+                width="400"
+                height="164"
                 loading="lazy"
               />
             </a>

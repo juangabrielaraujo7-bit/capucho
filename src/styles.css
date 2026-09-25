@@ -505,10 +505,11 @@ blockquote {
   display: flex;
   flex-direction: column;
   align-self: stretch;
-  padding-top: 40px;
+  padding-top: 12px;
 }
 .testimonials-aside h2 {
-  max-width: 460px;
+  max-width: 400px;
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
 }
 .testimonials-aside h2 span {
   color: var(--blue);
@@ -521,24 +522,36 @@ blockquote {
 }
 .google-badge {
   display: block;
-  width: 240px;
+  width: 190px;
 }
 .google-badge img {
   width: 100%;
   height: auto;
 }
 .google-proof .rating {
-  margin-top: 22px;
+  margin-top: 16px;
+  gap: 14px;
+}
+.google-proof .rating > strong {
+  font-size: 2.4rem;
+}
+.google-proof .rating > div {
+  font-size: 0.875rem;
+}
+.google-proof .stars svg {
+  width: 14px;
+  height: 14px;
 }
 .google-proof .text-link {
-  margin-top: 16px;
+  margin-top: 12px;
+  font-size: 0.875rem;
 }
 /* Seta desenhada do selo do Google até as colunas de depoimentos */
 .google-arrow {
   position: absolute;
-  top: 34px;
-  left: 252px;
-  width: 190px;
+  top: 30px;
+  left: 202px;
+  width: 160px;
   height: auto;
   fill: none;
   stroke: var(--blue);
