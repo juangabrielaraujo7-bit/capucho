@@ -17,19 +17,17 @@ const siteUrl = (
     : "http://127.0.0.1:4173")
 ).replace(/\/$/, "");
 
-const { render, routes, getSeo, localBusinessJsonLd } = await import(
+const { render, routes, getSeo, jsonLdFor } = await import(
   pathToFileURL(resolve(ssrDir, "entry-server.js")).href
 );
 const template = await readFile(resolve(dist, "index.html"), "utf8");
 
 const escape = (s) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-const jsonLd = JSON.stringify(localBusinessJsonLd(siteUrl)).replace(
-  /</g,
-  "\\u003c",
-);
 
 function head(seo) {
+  // Evita que um "<" nos dados feche a tag <script> antes da hora.
+  const jsonLd = JSON.stringify(jsonLdFor(seo, siteUrl)).replace(/</g, "\\u003c");
   const url = siteUrl + (seo.path === "/" ? "/" : seo.path);
   const image = `${siteUrl}/assets/og-image.jpg`;
   return [

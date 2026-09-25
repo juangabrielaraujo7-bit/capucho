@@ -46,7 +46,10 @@ try {
           a.href.startsWith("https://wa.me/5511947009632?text="),
         ),
         motion: [...document.querySelectorAll("*")].some(
-          (e) => getComputedStyle(e).animationName !== "none",
+          // <source> recebe uma animação interna do Chrome, sem efeito visual.
+          (e) =>
+            e.tagName !== "SOURCE" &&
+            getComputedStyle(e).animationName !== "none",
         ),
         autoplay: document.querySelectorAll("video[autoplay]").length,
         title: document.title,

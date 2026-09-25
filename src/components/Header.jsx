@@ -23,10 +23,12 @@ export default function Header() {
           aria-label="Capucho Informática, página inicial"
         >
           <img
-            src={asset("logo.webp")}
+            src={asset("logo-400.webp")}
+            srcSet={`${asset("logo-400.webp")} 400w, ${asset("logo.webp")} 600w`}
+            sizes="194px"
             alt="Capucho Informática"
-            width="2048"
-            height="698"
+            width="600"
+            height="204"
           />
         </Link>
         <button

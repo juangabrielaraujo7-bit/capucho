@@ -9,7 +9,7 @@ import {
   House,
 } from "@phosphor-icons/react";
 import WhatsAppButton from "../components/WhatsAppButton";
-import { asset } from "../config";
+import { asset, photoSrcSet } from "../config";
 import { services } from "../content";
 
 export default function ServicePage({ service }) {
@@ -29,9 +29,11 @@ export default function ServicePage({ service }) {
           </div>
           <img
             src={asset(service.image)}
+            srcSet={photoSrcSet(service.image)}
+            sizes="(max-width: 1023px) calc(100vw - 40px), 50vw"
             alt={service.alt}
-            width="1536"
-            height="1024"
+            width="1200"
+            height="800"
             fetchPriority="high"
           />
         </div>

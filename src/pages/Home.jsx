@@ -15,7 +15,7 @@ import ServiceCard from "../components/ServiceCard";
 import ServiceVideo from "../components/ServiceVideo";
 import Stars from "../components/Stars";
 import WhatsAppButton from "../components/WhatsAppButton";
-import { asset, business, mapEmbed, maps } from "../config";
+import { asset, business, mapEmbed, maps, photoSrcSet } from "../config";
 import { faqs, reviews, services } from "../content";
 
 export default function Home() {
@@ -119,9 +119,11 @@ export default function Home() {
         </div>
         <img
           src={asset("upgrade-foto.webp")}
+          srcSet={photoSrcSet("upgrade-foto.webp")}
+          sizes="(max-width: 1023px) calc(100vw - 40px), 45vw"
           alt="Imagem ilustrativa de PC com componentes para montagem e upgrade"
-          width="1536"
-          height="1024"
+          width="1200"
+          height="800"
           loading="lazy"
         />
       </section>

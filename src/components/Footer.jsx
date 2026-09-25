@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { InstagramLogo } from "@phosphor-icons/react";
 import { business, maps, wa } from "../config";
+import { services } from "../content";
 
 export default function Footer() {
   return (
@@ -15,6 +16,14 @@ export default function Footer() {
             <br />
             pra acompanhar você.
           </p>
+        </div>
+        <div>
+          <h3>Serviços</h3>
+          {services.map((s) => (
+            <Link key={s.slug} to={`/servicos/${s.slug}`}>
+              {s.short}
+            </Link>
+          ))}
         </div>
         <div>
           <h3>Explore</h3>

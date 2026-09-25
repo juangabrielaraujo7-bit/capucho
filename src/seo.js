@@ -1,8 +1,9 @@
-import { services } from "./content";
-import { business } from "./config";
+import { faqs, services } from "./content";
+import { business, maps } from "./config";
 
+// Títulos com até ~60 caracteres para não serem cortados no Google.
 const homeTitle =
-  "Capucho Informática | Conserto e upgrade de computadores na Freguesia do Ó";
+  "Assistência técnica de computadores na Freguesia do Ó | Capucho";
 const homeDescription =
   "Conserto, formatação, limpeza e upgrade de computadores e notebooks na Freguesia do Ó, em São Paulo. Suporte remoto para todo o Brasil. Fale com a Capucho pelo WhatsApp.";
 
@@ -16,7 +17,8 @@ export function getSeo(pathname) {
   if (service)
     return {
       path,
-      title: `${service.title} na Freguesia do Ó | Capucho Informática`,
+      service,
+      title: service.seoTitle || `${service.title} | Capucho Informática`,
       description: service.seoDescription || service.intro,
     };
   return {
@@ -27,8 +29,9 @@ export function getSeo(pathname) {
   };
 }
 
-// Dados estruturados de negócio local. Horários conforme o briefing (confirmar antes de publicar).
-export function localBusinessJsonLd(siteUrl) {
+// Dados estruturados (schema.org). Horários conforme o briefing (confirmar antes de publicar).
+// Não incluímos nota/avaliações: o Google não exibe estrelas de avaliações publicadas pelo próprio negócio.
+function localBusiness(siteUrl) {
   const hours = (days, opens, closes) => ({
     "@type": "OpeningHoursSpecification",
     dayOfWeek: days,
@@ -36,13 +39,15 @@ export function localBusinessJsonLd(siteUrl) {
     closes,
   });
   return {
-    "@context": "https://schema.org",
     "@type": "ComputerStore",
+    "@id": `${siteUrl}/#empresa`,
     name: business.name,
+    description: homeDescription,
     url: siteUrl + "/",
     image: siteUrl + "/assets/fachada.webp",
-    logo: siteUrl + "/assets/logo.webp",
+    logo: siteUrl + "/icon-512.png",
     telephone: business.phoneE164,
+    hasMap: maps,
     address: {
       "@type": "PostalAddress",
       streetAddress: business.street,
@@ -51,19 +56,84 @@ export function localBusinessJsonLd(siteUrl) {
       postalCode: business.postalCode,
       addressCountry: "BR",
     },
-    areaServed: ["Freguesia do Ó", "Vila Palmeiras", "São Paulo"],
+    areaServed: [
+      { "@type": "Place", name: "Freguesia do Ó, São Paulo" },
+      { "@type": "Place", name: "Vila Palmeiras, São Paulo" },
+      { "@type": "Country", name: "Brasil" },
+    ],
     sameAs: [business.instagram],
     openingHoursSpecification: [
       hours(["Monday", "Saturday"], "09:00", "20:00"),
       hours(["Tuesday", "Wednesday", "Thursday", "Friday"], "09:00", "22:00"),
     ],
-    makesOffer: services.map((s) => ({
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: s.title,
-        url: `${siteUrl}/servicos/${s.slug}`,
-      },
-    })),
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Serviços de informática",
+      itemListElement: services.map((s) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          "@id": `${siteUrl}/servicos/${s.slug}#servico`,
+          name: s.title,
+        },
+      })),
+    },
   };
+}
+
+function serviceNode(siteUrl, s) {
+  return {
+    "@type": "Service",
+    "@id": `${siteUrl}/servicos/${s.slug}#servico`,
+    name: s.title,
+    serviceType: s.short,
+    description: s.seoDescription || s.intro,
+    url: `${siteUrl}/servicos/${s.slug}`,
+    image: `${siteUrl}/assets/${s.image}`,
+    provider: { "@id": `${siteUrl}/#empresa` },
+    areaServed:
+      s.slug === "suporte-e-atendimento"
+        ? { "@type": "Country", name: "Brasil" }
+        : { "@type": "City", name: "São Paulo" },
+  };
+}
+
+export function jsonLdFor(seo, siteUrl) {
+  const graph = [localBusiness(siteUrl)];
+  if (seo.path === "/") {
+    graph.push(
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#site`,
+        url: siteUrl + "/",
+        name: business.name,
+        inLanguage: "pt-BR",
+        publisher: { "@id": `${siteUrl}/#empresa` },
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+    );
+  }
+  if (seo.service) {
+    graph.push(serviceNode(siteUrl, seo.service), {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        ["Início", siteUrl + "/"],
+        ["Serviços", siteUrl + "/#servicos"],
+        [seo.service.short, `${siteUrl}${seo.path}`],
+      ].map(([name, item], i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name,
+        item,
+      })),
+    });
+  }
+  return { "@context": "https://schema.org", "@graph": graph };
 }

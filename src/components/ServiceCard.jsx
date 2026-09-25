@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { ArrowUpRight } from "@phosphor-icons/react";
-import { asset, wa } from "../config";
+import { asset, photoSrcSet, wa } from "../config";
 
 const productMessage =
   "Olá, Capucho! Quero consultar computadores, peças e acessórios disponíveis.";
@@ -11,10 +11,12 @@ function CardBody({ image, title, description, cta }) {
       <div className="service-image">
         <img
           src={asset(image)}
+          srcSet={photoSrcSet(image)}
+          sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 50vw, 400px"
           alt=""
           loading="lazy"
-          width="1536"
-          height="1024"
+          width="1200"
+          height="800"
         />
       </div>
       <div className="service-card-content">

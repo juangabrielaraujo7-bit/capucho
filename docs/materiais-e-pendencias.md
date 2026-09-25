@@ -23,6 +23,8 @@
 - Vídeos de serviço recodificados a partir dos originais em 540×960, 30 fps, sem áudio (tocam sem som) e com início rápido: de 41 MB para 14 MB no total. Os originais seguem na pasta do projeto.
 - Removidos de `public/assets` os arquivos sem uso (`hero-montagem.mp4`, PNGs de `reparo`, `fachada`, `upgrade` e `logo`, e ilustrações antigas substituídas pelas versões `*-foto.webp`). A pasta passou de 56 MB para 17 MB.
 - `og-image.jpg` (1200×630) criada a partir do quadro do notebook para a prévia de links no WhatsApp e redes sociais.
+- Fotos `*-foto.webp` com versões de 480 e 800 px (`srcset`), logo em 400 px e vídeo da hero em 720 px (264 KB) para celulares. Ao trocar uma foto, gerar também as versões `-480` e `-800`.
+- Favicon e ícones (`favicon.ico`, `favicon-48.png`, `apple-touch-icon.png`, `icon-192/512.png`) recortados do símbolo da logo, com fundo branco.
 - Os dados estruturados usam os horários do briefing; ao confirmar ou mudar os horários, atualizar também `src/seo.js`.
 
 ## Confirmar antes de publicar

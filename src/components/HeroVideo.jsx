@@ -33,7 +33,7 @@ export default function HeroVideo() {
     <div className="hero-visual">
       {failed ? (
         <img
-          src={asset("notebook.webp")}
+          src={asset("notebook-720.webp")}
           alt="Notebook Capucho Informática"
           width="1200"
           height="675"
@@ -42,8 +42,7 @@ export default function HeroVideo() {
         <>
           <video
             ref={ref}
-            src={asset("hero-montagem-agil.mp4")}
-            poster={asset("notebook.webp")}
+            poster={asset("notebook-720.webp")}
             autoPlay={!reduceMotion}
             loop
             muted
@@ -54,8 +53,19 @@ export default function HeroVideo() {
             aria-label="Animação de montagem do notebook Capucho Informática"
             onPlay={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
-            onError={() => setFailed(true)}
-          />
+          >
+            {/* Versão leve para celular; navegadores sem suporte a "media" usam a primeira. */}
+            <source
+              src={asset("hero-montagem-720.mp4")}
+              type="video/mp4"
+              media="(max-width: 767px)"
+            />
+            <source
+              src={asset("hero-montagem-agil.mp4")}
+              type="video/mp4"
+              onError={() => setFailed(true)}
+            />
+          </video>
           <button
             className="hero-video-toggle"
             type="button"
