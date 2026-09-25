@@ -454,11 +454,6 @@ section[id] {
   gap: 3px;
   color: #b8740b;
 }
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
 .review {
   background: white;
   display: flex;
@@ -472,18 +467,6 @@ blockquote {
   font-size: 1rem;
   line-height: 1.65;
   color: var(--navy);
-}
-.review-detail {
-  margin-bottom: 24px;
-}
-.review-detail summary {
-  font-size: 0.8125rem;
-  color: var(--muted);
-  cursor: pointer;
-}
-.review-detail p {
-  font-size: 0.875rem;
-  margin: 14px 0 0;
 }
 .review-author {
   display: flex;
@@ -510,6 +493,85 @@ blockquote {
 .review-author div > span {
   font-size: 0.75rem;
   color: var(--muted);
+}
+/* Depoimentos em colunas com rolagem contínua */
+.testimonials-window {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  max-height: 640px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+}
+.testimonials-column {
+  flex: 1;
+  min-width: 0;
+  max-width: 380px;
+}
+.testimonials-narrow {
+  display: none;
+}
+.testimonials-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 24px;
+  animation: testimonials-scroll linear infinite;
+}
+@keyframes testimonials-scroll {
+  to {
+    transform: translateY(-50%);
+  }
+}
+.testimonials-window:hover .testimonials-track,
+.testimonials-window:focus-within .testimonials-track,
+.testimonials.is-paused .testimonials-track {
+  animation-play-state: paused;
+}
+.testimonial-card blockquote {
+  margin-bottom: 22px;
+}
+.testimonials-toggle {
+  margin-top: 26px;
+}
+.review-source {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 0.875rem;
+}
+.review-source a {
+  color: var(--blue);
+  font-weight: 600;
+}
+@media (max-width: 1023px) {
+  .testimonials-wide {
+    display: none;
+  }
+  .testimonials-narrow {
+    display: block;
+    max-width: 440px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-window {
+    max-height: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+    flex-wrap: wrap;
+  }
+  .testimonials-track {
+    animation: none;
+  }
+  .testimonial-card[aria-hidden] {
+    display: none;
+  }
+  .testimonials-toggle {
+    display: none;
+  }
 }
 .about-layout {
   display: grid;
@@ -959,9 +1021,6 @@ blockquote {
   .about-layout {
     gap: 44px;
   }
-  .reviews-grid {
-    gap: 14px;
-  }
   .review {
     padding: 20px;
   }
@@ -1108,10 +1167,6 @@ blockquote {
   .gamer-section > img {
     height: 270px;
     padding: 20px;
-  }
-  .reviews-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
   }
   .review {
     padding: 26px;

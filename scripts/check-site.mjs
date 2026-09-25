@@ -47,8 +47,10 @@ try {
         ),
         motion: [...document.querySelectorAll("*")].some(
           // <source> recebe uma animação interna do Chrome, sem efeito visual.
+          // A rolagem dos depoimentos é a única animação permitida.
           (e) =>
             e.tagName !== "SOURCE" &&
+            !e.classList.contains("testimonials-track") &&
             getComputedStyle(e).animationName !== "none",
         ),
         autoplay: document.querySelectorAll("video[autoplay]").length,
@@ -173,6 +175,22 @@ try {
       .locator(".hero-visual video")
       .evaluate((v) => v.paused && !v.autoplay),
     true,
+  );
+  assert.equal(
+    await reducedPage
+      .locator(".testimonials-track")
+      .first()
+      .evaluate((t) => getComputedStyle(t).animationName),
+    "none",
+    "Testimonials must stop with reduced motion",
+  );
+  // Sem animação, cada depoimento aparece uma única vez na coluna visível.
+  await reducedPage.setViewportSize({ width: 390, height: 844 });
+  assert.equal(
+    await reducedPage
+      .locator(".testimonials-narrow .testimonial-card:visible")
+      .count(),
+    6,
   );
   await reducedPage.close();
   assert.deepEqual(errors, [], "Browser runtime errors");

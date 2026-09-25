@@ -14,6 +14,7 @@ import HeroVideo from "../components/HeroVideo";
 import ServiceCard from "../components/ServiceCard";
 import ServiceVideo from "../components/ServiceVideo";
 import Stars from "../components/Stars";
+import TestimonialsColumns from "../components/TestimonialsColumns";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset, business, mapEmbed, maps, photoSrcSet } from "../config";
 import { faqs, reviews, services } from "../content";
@@ -142,25 +143,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="reviews-grid">
-          {reviews.map((r) => (
-            <article className="review" key={r.name}>
-              <Stars />
-              <blockquote>“{r.quote}”</blockquote>
-              <details className="review-detail">
-                <summary>Ler mais do comentário</summary>
-                <p>{r.detail}</p>
-              </details>
-              <div className="review-author">
-                <span className="initials">{r.initials}</span>
-                <div>
-                  <strong>{r.name}</strong>
-                  <span>Avaliação no Google</span>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+        <TestimonialsColumns reviews={reviews} />
+        <p className="review-source">
+          Trechos de avaliações públicas.{" "}
+          <a href={maps} target="_blank" rel="noreferrer">
+            Ver todas no Google
+          </a>
+        </p>
       </section>
       <section id="sobre" className="section section-tint">
         <div className="container about-layout">

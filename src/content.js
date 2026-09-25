@@ -308,28 +308,37 @@ export const faqs = [
   ],
 ];
 
+// Trechos fiéis de avaliações públicas no Google (5 estrelas), conferidas em 25/09/2026.
+// "[…]" marca partes omitidas; a grafia original foi mantida.
 export const reviews = [
   {
     name: "Naiwan Feitosa de Oliveira",
     initials: "NF",
-    quote: "Serviço excelente!! 100% confiável.",
-    detail:
-      "Levei meu notebook que estava com o teclado sem funcionar, touchpad e a bateria..Trocaram tudo pra mim, ficou ótimo, na verdade só o touchpad que não tinha mais jeito, mas o rapaz foi honesto comigo e disse que não valia apena arrumar por que sairia muito caro e era mais fácil comprar outro Note kkk.",
+    text: "Serviço excelente!! 100% confiável. Levei meu notebook que estava com o teclado sem funcionar, touchpad e a bateria..Trocaram tudo pra mim, ficou ótimo, na verdade só o touchpad que não tinha mais jeito, mas o rapaz foi honesto comigo […]",
+  },
+  {
+    name: "Messias Castro",
+    initials: "MC",
+    text: "Nos dias de hoje, é difícil acreditar que ainda existam profissionais como o Henrique. […] fiquei impressionado com a atenção, cordialidade, paciência e profissionalismo que demonstrou durante todo o atendimento.",
   },
   {
     name: "Bruno Campos Martins",
     initials: "BM",
-    quote:
-      "Excelente profissional ! Atencioso, explicativo e sabe o que está fazendo.",
-    detail:
-      "Serviços feitos : Trocado pasta térmica e limpeza de notebook. Atualização de hardware para o Pc. Entenderam minha situação de uso e atualização dela para tal uso!",
+    text: "Excelente profissional ! Atencioso, explicativo e sabe o que está fazendo. Serviços feitos : Trocado pasta térmica e limpeza de notebook. Atualização de hardware para o Pc.",
+  },
+  {
+    name: "Lucas Alexandre",
+    initials: "LA",
+    text: "Henrique é, realmente, uma pessoa inacreditável na prestação de serviço. Não só conseguiu descobrir a causa do problema, mas ele ainda teve a preocupação de ir duas vezes no fornecedor de peças para fazer isso acontecer. […] Serviço fantástico e indico sem medo nenhum.",
   },
   {
     name: "Sérgio Silveira",
     initials: "SS",
-    quote:
-      "Trabalho excelente! Atendimento personalizado que levou em conta as necessidades do cliente",
-    detail:
-      "além de serem muito atenciosos. E o mais importante, foi o resultado, meu notebook, de vários anos, após a manutenção, ficou como novo! Recomendo de olhos fechado, pois são parceiros e competentes!",
+    text: "Trabalho excelente! Atendimento personalizado que levou em conta as necessidades do cliente além de serem muito atenciosos. E o mais importante, foi o resultado, meu notebook, de vários anos, após a manutenção, ficou como novo!",
+  },
+  {
+    name: "Eduarda Nonemacher",
+    initials: "EN",
+    text: "Henrique foi maravilhoso, chegamos la morrendo de medo com o PC molhado imaginando o pior, Henrique nos tranquilizou e resolveu nosso problema rapidamente.",
   },
 ];
