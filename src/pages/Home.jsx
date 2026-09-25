@@ -137,7 +137,7 @@ export default function Home() {
             <strong>5,0</strong>
             <div>
               <Stars />
-              <span>366 avaliações no Google</span>
+              <span>368 avaliações no Google</span>
               <small>Dados recebidos em 25/09/2026</small>
             </div>
           </div>

@@ -27,6 +27,17 @@
 - Favicon e ícones (`favicon.ico`, `favicon-48.png`, `apple-touch-icon.png`, `icon-192/512.png`) recortados do símbolo da logo, com fundo branco.
 - Os dados estruturados usam os horários do briefing; ao confirmar ou mudar os horários, atualizar também `src/seo.js`.
 
+## Textos de SEO das páginas de serviço (rascunho, 25/09/2026)
+
+Cada página de serviço ganhou a seção "Dúvidas sobre…" (campos `faqTitle`, `local` e `faq` em `src/content.js`), também enviada ao Google como FAQ nos dados estruturados. Revisar com a Capucho, em especial:
+
+- Bairros citados como vizinhos (Limão, Casa Verde, Brasilândia, Pirituba) e a cobertura real de retirada/entrega.
+- Suporte remoto "com a sua autorização, e você acompanha tudo pela tela" — confirmar se é assim que funciona.
+- Troca de thermal pads e cuidado com notebooks gamer — tirado do post da própria loja no Google (Predator PH315-55).
+- Garantia de 90 dias, repetida no FAQ de conserto.
+
+Perfil do Google conferido em 25/09/2026: nota 5,0 com 368 avaliações, categoria "Assistência Técnica de Informática", horários iguais aos do briefing e "Horário de atendimento on-line: 24 horas" (não usado no site; confirmar). O perfil aponta o site para biolinky.co e usa o nome "Capucho informatica".
+
 ## Confirmar antes de publicar
 
 - Horários de funcionamento e condições de garantia de 90 dias.

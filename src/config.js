@@ -10,18 +10,16 @@ export const business = {
   postalCode: "02726-000",
 };
 
-export const fullAddress = `${business.street}, ${business.district}, ${business.city}, ${business.state}, ${business.postalCode}`;
-
 export const wa = (
   message = "Olá, Capucho! Gostaria de solicitar atendimento para meu computador.",
 ) => `https://wa.me/5511947009632?text=${encodeURIComponent(message)}`;
 
-export const maps =
-  "https://www.google.com/maps/search/?api=1&query=" +
-  encodeURIComponent(fullAddress);
+// Perfil da Capucho no Google Maps (cid do lugar).
+export const maps = "https://maps.google.com/?cid=17442294160936213830";
+export const geo = { latitude: -23.497871, longitude: -46.6896314 };
 
 export const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(
-  `${business.street}, ${business.district}, ${business.city}`,
+  `${business.name}, ${business.street}, ${business.district}, ${business.city}`,
 )}&output=embed`;
 
 export const asset = (name) => `/assets/${name}`;

@@ -622,6 +622,9 @@ blockquote {
   margin-top: 22px;
   max-width: 280px;
 }
+.faq-layout > div > p.service-local {
+  max-width: 380px;
+}
 .faq-list details {
   border-bottom: 1px solid var(--border);
 }

@@ -7,6 +7,7 @@ import {
   DesktopTower,
   Globe,
   House,
+  Plus,
 } from "@phosphor-icons/react";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset, photoSrcSet } from "../config";
@@ -130,6 +131,25 @@ export default function ServicePage({ service }) {
             <p>O primeiro passo é uma conversa.</p>
           </div>
           <WhatsAppButton message={service.message} />
+        </div>
+      </section>
+      <section className="section section-tint">
+        <div className="container faq-layout">
+          <div>
+            <h2>{service.faqTitle}</h2>
+            <p className="service-local">{service.local}</p>
+          </div>
+          <div className="faq-list">
+            {service.faq.map(([q, a]) => (
+              <details key={q}>
+                <summary>
+                  {q}
+                  <Plus size={21} />
+                </summary>
+                <p>{a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
       <section className="section related-section">

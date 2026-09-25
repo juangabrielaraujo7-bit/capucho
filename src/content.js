@@ -34,6 +34,31 @@ export const services = [
       ],
     ],
     note: "O diagnóstico depende da avaliação do equipamento. A necessidade de peças, o valor e o prazo são informados no orçamento.",
+    faqTitle: "Dúvidas sobre conserto",
+    local:
+      "Assistência técnica de notebooks e computadores na Freguesia do Ó. A loja fica na Vila Palmeiras, pertinho do Limão, da Casa Verde, da Brasilândia e de Pirituba. Se ficar difícil trazer o equipamento, a retirada e a entrega são gratuitas na região atendida: é só confirmar o CEP pelo WhatsApp.",
+    faq: [
+      [
+        "Meu notebook não liga. Tem conserto?",
+        "Muitas vezes tem, mas só a avaliação mostra a causa. Pode ser algo na fonte, na entrada de carregamento, na bateria ou na placa. A gente testa, explica o que encontrou e passa o orçamento antes de fazer qualquer reparo.",
+      ],
+      [
+        "Vale a pena consertar ou é melhor comprar outro?",
+        "Depende do defeito, da idade do equipamento e do custo das peças. Se o conserto não compensar, a gente fala com sinceridade antes de você gastar.",
+      ],
+      [
+        "Vocês trocam tela, teclado e bateria de notebook?",
+        "Sim. A disponibilidade da peça para o seu modelo, o valor e o prazo são informados no orçamento. Envie a marca e o modelo pelo WhatsApp para agilizar.",
+      ],
+      [
+        "Quanto tempo demora o conserto?",
+        "O prazo é informado junto com o orçamento, depois da avaliação. Durante o serviço, você acompanha tudo pelo WhatsApp.",
+      ],
+      [
+        "O conserto tem garantia?",
+        "Sim, a garantia informada para os serviços é de 90 dias. Consulte a cobertura e as condições do seu atendimento antes de aprovar o orçamento.",
+      ],
+    ],
   },
   {
     slug: "formatacao-e-programas",
@@ -70,6 +95,27 @@ export const services = [
       ],
     ],
     note: "Tem arquivos importantes? Avise no primeiro contato. Os cuidados com dados e a possibilidade de backup precisam ser combinados antes de qualquer procedimento.",
+    faqTitle: "Dúvidas sobre formatação",
+    local:
+      "Formatação de notebooks e PCs na Freguesia do Ó, com instalação de programas e remoção de vírus. Muitos problemas de sistema e de programas também podem ser resolvidos pelo suporte remoto, sem você sair de casa, conforme o caso.",
+    faq: [
+      [
+        "Formatar apaga meus arquivos?",
+        "A formatação apaga o conteúdo do disco. Por isso, avise no primeiro contato quais arquivos são importantes: os cuidados com os dados e a possibilidade de backup são combinados antes de qualquer procedimento.",
+      ],
+      [
+        "Meu computador está lento. Formatar resolve?",
+        "Nem sempre. A lentidão pode vir do sistema, de vírus, de pouco espaço livre ou de peças no limite, como um HD antigo ou pouca memória. A gente avalia primeiro; às vezes um upgrade faz mais diferença que a formatação.",
+      ],
+      [
+        "Quais sistemas vocês instalam?",
+        "Windows, macOS e Linux, de acordo com a compatibilidade do equipamento e com o que você precisa no dia a dia.",
+      ],
+      [
+        "Como saber se meu computador está com vírus?",
+        "Alguns sinais comuns: janelas e anúncios que aparecem sozinhos, navegador abrindo páginas estranhas, programas que você não instalou e lentidão repentina. Se notar algo assim, evite digitar senhas e fale com a gente.",
+      ],
+    ],
   },
   {
     slug: "upgrade-e-montagem",
@@ -106,6 +152,31 @@ export const services = [
       ],
     ],
     note: "Já comprou uma peça? Você pode trazê-la. Antes da instalação, verificamos a compatibilidade e as condições do componente.",
+    faqTitle: "Dúvidas sobre upgrade",
+    local:
+      "Upgrade e montagem de computadores na Freguesia do Ó. Trocar o HD por SSD, aumentar a memória ou montar um PC do zero: a gente começa entendendo o que você usa, para indicar só o que faz diferença pra você.",
+    faq: [
+      [
+        "Qual upgrade faz mais diferença?",
+        "Em muitos computadores, trocar o HD por um SSD e ajustar a memória RAM já traz um bom ganho no dia a dia. Mas depende do equipamento e do seu uso, por isso a avaliação vem antes da indicação.",
+      ],
+      [
+        "Meu notebook aceita upgrade?",
+        "Depende do modelo. Alguns permitem trocar SSD e memória; outros têm componentes soldados na placa. Envie a marca e o modelo pelo WhatsApp que a gente verifica.",
+      ],
+      [
+        "Posso levar uma peça que já comprei?",
+        "Pode. Antes da instalação, verificamos a compatibilidade e as condições do componente.",
+      ],
+      [
+        "Vocês montam PC gamer?",
+        "Sim, montagem e upgrades para jogos também. Conte o que você joga e a gente conversa sobre as possibilidades.",
+      ],
+      [
+        "Vocês vendem as peças?",
+        "Computadores, peças e acessórios podem ser consultados pelo WhatsApp, junto com o orçamento do serviço.",
+      ],
+    ],
   },
   {
     slug: "limpeza-preventiva",
@@ -142,6 +213,27 @@ export const services = [
       ],
     ],
     note: "Seu computador está esquentando ou fazendo muito barulho? Conte como isso acontece. A causa e o serviço indicado dependem da avaliação.",
+    faqTitle: "Dúvidas sobre limpeza",
+    local:
+      "Limpeza e manutenção preventiva de notebooks e PCs na Freguesia do Ó. Manutenção preventiva não é só dar uma limpada: é cuidar da temperatura, do desempenho e da vida útil do seu equipamento.",
+    faq: [
+      [
+        "Meu notebook está esquentando muito. É sujeira?",
+        "Pode ser poeira nas ventoinhas, pasta térmica ressecada ou outra causa. A avaliação mostra o que está acontecendo antes de indicar o serviço.",
+      ],
+      [
+        "Com que frequência devo fazer a limpeza?",
+        "Depende do ambiente e do uso. Poeira, pelos de animais e uso intenso, como jogos, aceleram o acúmulo. Ventoinha barulhenta, aquecimento e desligamentos inesperados são sinais para fazer uma avaliação.",
+      ],
+      [
+        "O que é feito na manutenção preventiva?",
+        "Limpeza interna e externa, cuidado com as ventoinhas, troca da pasta térmica e testes de temperatura e funcionamento. Em equipamentos que esquentam mais, a troca dos thermal pads também pode ser indicada.",
+      ],
+      [
+        "Vocês fazem manutenção em notebook gamer?",
+        "Sim. Notebooks gamer trabalham em temperaturas mais altas e merecem atenção especial com limpeza, pasta térmica e thermal pads.",
+      ],
+    ],
   },
   {
     slug: "suporte-e-atendimento",
@@ -161,6 +253,27 @@ export const services = [
     heading: "Escolha como prefere ser atendido.",
     groups: [],
     note: "O atendimento remoto depende do problema e das condições de acesso ao computador. Para visitas, confirme a cobertura, os valores e a disponibilidade no WhatsApp.",
+    faqTitle: "Dúvidas sobre suporte",
+    local:
+      "Suporte técnico remoto para clientes de todo o Brasil e atendimento em casa na Freguesia do Ó e região, em São Paulo. Conte o que está acontecendo que a gente indica o melhor caminho.",
+    faq: [
+      [
+        "Como funciona o suporte remoto?",
+        "Você explica o problema pelo WhatsApp. Se der para resolver à distância, a gente combina o acesso ao seu computador com a sua autorização, e você acompanha tudo pela tela.",
+      ],
+      [
+        "Preciso morar em São Paulo para ter suporte remoto?",
+        "Não. O suporte remoto atende clientes de todo o Brasil.",
+      ],
+      [
+        "O que dá para resolver remotamente?",
+        "Instalação e configuração de programas, erros do Windows e de aplicativos, lentidão, remoção de vírus e orientação de uso. Problemas em peças, como tela ou placa, precisam de avaliação presencial.",
+      ],
+      [
+        "Quais bairros recebem atendimento em casa?",
+        "A Freguesia do Ó e arredores. Envie seu CEP pelo WhatsApp para confirmar a cobertura, o valor da visita e a disponibilidade de dia e horário.",
+      ],
+    ],
   },
 ];
 

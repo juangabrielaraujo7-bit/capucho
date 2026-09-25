@@ -1,5 +1,5 @@
 import { faqs, services } from "./content";
-import { business, maps } from "./config";
+import { business, geo, maps } from "./config";
 
 // Títulos com até ~60 caracteres para não serem cortados no Google.
 const homeTitle =
@@ -48,6 +48,7 @@ function localBusiness(siteUrl) {
     logo: siteUrl + "/icon-512.png",
     telephone: business.phoneE164,
     hasMap: maps,
+    geo: { "@type": "GeoCoordinates", ...geo },
     address: {
       "@type": "PostalAddress",
       streetAddress: business.street,
@@ -61,7 +62,7 @@ function localBusiness(siteUrl) {
       { "@type": "Place", name: "Vila Palmeiras, São Paulo" },
       { "@type": "Country", name: "Brasil" },
     ],
-    sameAs: [business.instagram],
+    sameAs: [business.instagram, maps],
     openingHoursSpecification: [
       hours(["Monday", "Saturday"], "09:00", "20:00"),
       hours(["Tuesday", "Wednesday", "Thursday", "Friday"], "09:00", "22:00"),
@@ -98,6 +99,17 @@ function serviceNode(siteUrl, s) {
   };
 }
 
+function faqPage(items) {
+  return {
+    "@type": "FAQPage",
+    mainEntity: items.map(([q, a]) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+}
+
 export function jsonLdFor(seo, siteUrl) {
   const graph = [localBusiness(siteUrl)];
   if (seo.path === "/") {
@@ -110,18 +122,11 @@ export function jsonLdFor(seo, siteUrl) {
         inLanguage: "pt-BR",
         publisher: { "@id": `${siteUrl}/#empresa` },
       },
-      {
-        "@type": "FAQPage",
-        mainEntity: faqs.map(([q, a]) => ({
-          "@type": "Question",
-          name: q,
-          acceptedAnswer: { "@type": "Answer", text: a },
-        })),
-      },
+      faqPage(faqs),
     );
   }
   if (seo.service) {
-    graph.push(serviceNode(siteUrl, seo.service), {
+    graph.push(serviceNode(siteUrl, seo.service), faqPage(seo.service.faq), {
       "@type": "BreadcrumbList",
       itemListElement: [
         ["Início", siteUrl + "/"],
