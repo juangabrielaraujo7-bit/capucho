@@ -132,6 +132,10 @@ h2.eyebrow {
   line-height: 1.4;
   margin: 0 0 19px;
 }
+#servicos h2.eyebrow {
+  font-size: 0.9rem;
+  padding-left: 8px;
+}
 .button {
   min-height: 50px;
   padding: 13px 20px;
