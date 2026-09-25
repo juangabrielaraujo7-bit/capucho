@@ -124,6 +124,14 @@ main > section:not(.gamer-section) + .section.container::before {
   margin-bottom: 19px;
   line-height: 1.4;
 }
+/* Título de seção com visual de sobretítulo (ex.: "Serviços") */
+h2.eyebrow {
+  font-family: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.13em;
+  line-height: 1.4;
+  margin: 0 0 19px;
+}
 .button {
   min-height: 50px;
   padding: 13px 20px;

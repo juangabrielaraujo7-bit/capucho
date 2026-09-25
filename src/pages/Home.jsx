@@ -50,11 +50,7 @@ export default function Home() {
       <section id="servicos" className="section section-tint">
         <div className="container">
           <div className="section-heading">
-            <p className="eyebrow">Serviços</p>
-            <h2>
-              Do conserto ao upgrade,
-              <br className="desktop-break" /> pode contar com a Capucho.
-            </h2>
+            <h2 className="eyebrow">Serviços</h2>
           </div>
           <ServicesCarousel services={services} />
         </div>
