@@ -334,26 +334,6 @@ main > section:not(.gamer-section) + .section.container::before {
 .hero-visual video.is-blend {
   mix-blend-mode: multiply;
 }
-.benefits {
-  border-block: 1px solid var(--border);
-  background: #fff;
-}
-.benefits-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr 1.12fr;
-  gap: 32px;
-  padding-block: 24px;
-}
-.benefits-grid > div {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.875rem;
-  color: var(--muted);
-}
-.benefits svg {
-  color: var(--blue);
-}
 /* Serviços em carrossel (adaptado de services-card) */
 .services-carousel {
   position: relative;
@@ -1259,15 +1239,6 @@ blockquote {
     font-size: 0.8125rem;
     padding-inline: 15px;
   }
-  .benefits-grid {
-    gap: 20px;
-  }
-  .benefits-grid > div {
-    font-size: 0.8125rem;
-  }
-  .benefits-grid > div:nth-child(2) {
-    max-width: 240px;
-  }
   .gamer-copy .button {
     white-space: normal;
   }
@@ -1346,19 +1317,6 @@ blockquote {
   .eyebrow {
     font-size: 0.6875rem;
     margin-bottom: 15px;
-  }
-  .benefits-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px 28px;
-    padding-block: 24px;
-  }
-  .benefits-grid > div {
-    font-size: 0.8125rem;
-    max-width: none !important;
-  }
-  .benefits-grid svg {
-    width: 20px;
   }
   .section-heading {
     margin-bottom: 28px;

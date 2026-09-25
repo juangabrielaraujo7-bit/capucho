@@ -8,7 +8,6 @@ import {
   MapPin,
   Plus,
   ShieldCheck,
-  Truck,
 } from "@phosphor-icons/react";
 import HeroBackground from "../components/HeroBackground";
 import HeroVideo from "../components/HeroVideo";
@@ -48,22 +47,6 @@ export default function Home() {
           <HeroVideo />
         </section>
       </HeroBackground>
-      <div className="benefits">
-        <div className="container benefits-grid">
-          <div>
-            <MapPin />
-            <span>Freguesia do Ó e região</span>
-          </div>
-          <div>
-            <Truck />
-            <span>Retirada e entrega sob consulta de CEP</span>
-          </div>
-          <div>
-            <ChatCircleText />
-            <span>Você acompanha pelo WhatsApp</span>
-          </div>
-        </div>
-      </div>
       <section id="servicos" className="section section-tint">
         <div className="container">
           <div className="section-heading">
