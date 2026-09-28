@@ -1,8 +1,8 @@
 # Materiais e revisão editorial
 
-## Imagens dos serviços: fundo branco
+## Imagens dos serviços: equipamentos recortados
 
-As seis imagens dos serviços foram revisadas para manter os equipamentos realistas isolados sobre fundo branco, sem ambientes, bancadas, plantas ou móveis. As versões responsivas de 480, 800 e 1200 pixels recebem o mesmo tratamento. São imagens ilustrativas geradas, não registros de trabalhos ou produtos em estoque.
+As seis imagens dos serviços possuem fundo transparente, sem ambientes, bancadas, plantas ou móveis. Os cards e as aberturas das páginas aplicam uma sombra suave ao contorno dos equipamentos para sugerir flutuação. As versões responsivas de 480, 800 e 1200 pixels preservam o canal alfa. São imagens ilustrativas geradas, não registros de trabalhos ou produtos em estoque.
 
 ## Materiais conferidos
 

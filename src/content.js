@@ -7,7 +7,7 @@ export const services = [
     title: "Conserto de computadores e notebooks",
     short: "Conserto",
     image: "conserto-foto.webp",
-    alt: "Imagem ilustrativa de notebook aberto com ferramentas de diagnóstico sobre fundo branco",
+    alt: "Imagem ilustrativa de notebook aberto com ferramentas de diagnóstico",
     description:
       "Não liga, está sem imagem ou apareceu um problema? Vamos entender o que aconteceu.",
     intro:
