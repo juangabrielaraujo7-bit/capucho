@@ -763,7 +763,7 @@ h2.section-label.is-framed {
 /* Arte dos personagens: presa à base da faixa, encostada na borda direita da tela */
 .gamer-art {
   position: absolute;
-  right: 20px;
+  right: 0;
   bottom: 0;
   height: 74%;
   width: auto;
