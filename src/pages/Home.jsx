@@ -13,11 +13,11 @@ import GradientBand from "../components/GradientBand";
 import HeroBackground from "../components/HeroBackground";
 import HeroVideo from "../components/HeroVideo";
 import ServicesCarousel from "../components/ServicesCarousel";
-import ServiceVideo from "../components/ServiceVideo";
+import WorkShowcase from "../components/WorkShowcase";
 import TestimonialsColumns from "../components/TestimonialsColumns";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset, business, mapEmbed, maps, photoSrcSet } from "../config";
-import { faqs, reviews, services } from "../content";
+import { faqs, reviews, services, workVideos } from "../content";
 
 export default function Home() {
   return (
@@ -63,17 +63,7 @@ export default function Home() {
           </h2>
           <p>Um pouco do cuidado que acontece por aqui, de perto.</p>
         </div>
-        <div className="videos-grid">
-          <ServiceVideo file="troca-tela" title="Troca de tela de notebook" />
-          <ServiceVideo
-            file="limpeza"
-            title="Limpeza e manutenção de notebook"
-          />
-          <ServiceVideo
-            file="montagem"
-            title="Reparo de componentes e montagem"
-          />
-        </div>
+        <WorkShowcase items={workVideos} />
       </section>
       <section id="gamer" className="gamer-band">
         <GradientBand>

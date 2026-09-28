@@ -342,3 +342,25 @@ export const reviews = [
     text: "Henrique foi maravilhoso, chegamos la morrendo de medo com o PC molhado imaginando o pior, Henrique nos tranquilizou e resolveu nosso problema rapidamente.",
   },
 ];
+
+// Seção "Quem cuida do seu PC mostra como faz": vídeos reais do trabalho na loja.
+export const workVideos = [
+  {
+    file: "troca-tela",
+    title: "Troca de tela de notebook",
+    text: "Tela trincada, com manchas ou listras? A troca é feita com a peça compatível com o modelo do seu notebook.",
+    link: "/servicos/conserto",
+  },
+  {
+    file: "limpeza",
+    title: "Limpeza e manutenção de notebook",
+    text: "Poeira acumulada nas ventoinhas faz o notebook esquentar. Na manutenção, a limpeza é feita por dentro, com cuidado em cada componente.",
+    link: "/servicos/limpeza-preventiva",
+  },
+  {
+    file: "montagem",
+    title: "Reparo de componentes e montagem",
+    text: "Atenção aos detalhes do diagnóstico ao reparo de componentes, até a montagem completa do computador.",
+    link: "/servicos/upgrade-e-montagem",
+  },
+];

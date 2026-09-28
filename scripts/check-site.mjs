@@ -124,26 +124,28 @@ try {
         const faq = page.locator(".faq-list details").first();
         await faq.locator("summary").click();
         assert.equal(await faq.getAttribute("open"), "");
+        // Cada vídeo existe no palco fixo (desktop) e na fileira (celular); usa o visível.
+        // No desktop o palco mostra o vídeo da fileira no centro da tela: rola até a primeira.
+        await page
+          .locator(".work-row")
+          .first()
+          .evaluate((row) => row.scrollIntoView({ block: "center" }));
+        await page.waitForTimeout(700);
         await page
           .getByRole("button", {
             name: "Reproduzir: Troca de tela de notebook",
             exact: true,
           })
           .click();
-        await page.waitForFunction(
-          () => !document.querySelector(".video-frame video").paused,
+        const workVideo = page.locator(".video-frame video:visible").first();
+        await workVideo.evaluate(
+          (v) =>
+            new Promise((resolve) =>
+              v.paused ? v.addEventListener("playing", resolve, { once: true }) : resolve(),
+            ),
         );
-        assert.equal(
-          await page
-            .locator(".video-frame video")
-            .first()
-            .evaluate((v) => v.muted),
-          true,
-        );
-        await page
-          .locator(".video-frame video")
-          .first()
-          .evaluate((v) => v.pause());
+        assert.equal(await workVideo.evaluate((v) => v.muted), true);
+        await workVideo.evaluate((v) => v.pause());
         if (viewport.width === 390) {
           await page.getByRole("button", { name: "Abrir menu" }).click();
           assert.equal(await page.locator("#main-nav").isVisible(), true);
