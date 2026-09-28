@@ -91,8 +91,9 @@ const hexToRgb = (hex) => {
 };
 
 export default function GradientBand({
-  bg = "#07030f",
-  colors = ["#c4b5fd", "#a78bfa", "#7c3aed", "#000000"],
+  // Paleta "Vice City": Ocean Night de base; Neon Purple, Sunset Pink, Vice Cyan e Miami Peach.
+  bg = "#0b0f2b",
+  colors = ["#bc6cff", "#ff5ca8", "#00f0ff", "#ffb86b"],
   speed = 2,
   grain = 0.3,
   className = "",

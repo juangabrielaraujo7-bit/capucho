@@ -560,12 +560,15 @@ h2.eyebrow {
   text-decoration: underline;
 }
 /* Faixa gamer: fundo em gradiente animado (GradientBand, adaptado de Velaris).
-   Roxo provisório; trocar as cores em Home.jsx/GradientBand quando o tom for definido. */
+   Cores da paleta "Vice City" (padrões em GradientBand.jsx). */
 .gradient-band {
   position: relative;
   overflow: hidden;
   /* Aparece enquanto o WebGL não desenha, ou quando ele não existe */
-  background: radial-gradient(120% 140% at 45% 30%, #6d28d9 0%, #2e1065 45%, #07030f 100%);
+  background:
+    radial-gradient(60% 90% at 30% 20%, rgba(255, 92, 168, 0.55) 0%, transparent 70%),
+    radial-gradient(60% 90% at 75% 80%, rgba(0, 240, 255, 0.35) 0%, transparent 70%),
+    radial-gradient(120% 140% at 50% 40%, #bc6cff 0%, #3a1d6e 45%, #0b0f2b 100%);
 }
 .gradient-band-canvas {
   position: absolute;
@@ -586,7 +589,7 @@ h2.eyebrow {
   padding-block: 56px;
 }
 .gamer-copy > svg {
-  color: #c4b5fd;
+  color: #00f0ff;
   margin-bottom: 16px;
 }
 .gamer-copy h2 {
