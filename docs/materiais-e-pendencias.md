@@ -1,5 +1,9 @@
 # Materiais e revisão editorial
 
+## Imagens dos serviços: fundo branco
+
+As seis imagens dos serviços foram revisadas para manter os equipamentos realistas isolados sobre fundo branco, sem ambientes, bancadas, plantas ou móveis. As versões responsivas de 480, 800 e 1200 pixels recebem o mesmo tratamento. São imagens ilustrativas geradas, não registros de trabalhos ou produtos em estoque.
+
 ## Materiais conferidos
 
 - `571400d0-9537-4b7f-bc5b-188af29fc699.png`: logo RGBA com transparência confirmada, usada no cabeçalho.

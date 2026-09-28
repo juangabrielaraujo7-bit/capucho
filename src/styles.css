@@ -407,7 +407,7 @@ h2.eyebrow {
 .service-image img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .service-card-content {
   padding: 22px 4px 4px;
@@ -1034,7 +1034,8 @@ blockquote {
   width: 100%;
   height: auto;
   aspect-ratio: 1.5;
-  object-fit: cover;
+  object-fit: contain;
+  background: #fff;
   border-radius: var(--radius);
 }
 .problem-grid {
