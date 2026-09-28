@@ -61,19 +61,23 @@ void main() {
   float n2 = snoise(p * 0.9 - t * 0.5 + n1);
   float n3 = snoise(p * 0.7 + vec2(t * 0.3, -t * 0.2) + n2 * 0.5);
 
-  float light = pow(abs(n2), 2.0) * 0.9;
+  float light = pow(abs(n2), 2.2) * 1.1;
 
   vec3 col = u_bg;
-  col += u_colors[0] * smoothstep(-0.4, 1.0, n1) * 0.75;
+  col += u_colors[0] * smoothstep(0.0, 1.0, n1) * 0.7;
   col += u_colors[1] * light;
-  col += u_colors[2] * smoothstep(0.2, 1.0, n3) * 0.45;
-  col += u_colors[3] * smoothstep(0.35, 1.0, n1 * n2 + 0.3) * 0.35;
+  col += u_colors[2] * smoothstep(0.3, 1.0, n3) * 0.6;
+  col += u_colors[3] * smoothstep(0.45, 1.0, n1 * n2 + 0.3) * 0.4;
+
+  // Saturação extra para as cores ficarem vivas em vez de esbranquiçadas ao se somarem
+  float luma = dot(col, vec3(0.299, 0.587, 0.114));
+  col = max(mix(vec3(luma), col, 1.45), 0.0);
 
   float grain = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453 + u_time);
   col += (grain - 0.5) * u_grain * 0.25;
 
   float dist = length(uv - 0.5);
-  col *= mix(0.72, 1.0, smoothstep(1.0, 0.25, dist));
+  col *= mix(0.5, 1.0, smoothstep(1.0, 0.25, dist));
 
   gl_FragColor = vec4(col, 1.0);
 }
@@ -86,7 +90,7 @@ const hexToRgb = (hex) => {
 
 export default function GradientBand({
   // Paleta "Vice City": Ocean Night de base; Neon Purple, Sunset Pink, Vice Cyan e Miami Peach.
-  bg = "#2a1d63",
+  bg = "#0b0f2b",
   colors = ["#bc6cff", "#ff5ca8", "#00f0ff", "#ffb86b"],
   speed = 1,
   grain = 0.4,
