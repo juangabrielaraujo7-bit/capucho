@@ -137,6 +137,15 @@ h2.section-label {
   font-size: 0.9rem;
   padding-left: 8px;
 }
+/* Rótulo emoldurado em pílula (seção de avaliações) */
+h2.section-label.is-framed {
+  display: inline-flex;
+  padding: 9px 20px;
+  margin-bottom: 36px;
+  border: 1px solid rgba(32, 69, 237, 0.28);
+  border-radius: 999px;
+  background: rgba(32, 69, 237, 0.06);
+}
 .button {
   min-height: 50px;
   padding: 13px 20px;
@@ -846,15 +855,15 @@ blockquote {
 .testimonials-aside {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-self: stretch;
-  padding-top: 12px;
 }
 .google-proof {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: fit-content;
-  margin: 72px auto 0;
+  margin: 0 auto;
   text-align: center;
 }
 .google-badge-wrap {
@@ -943,7 +952,11 @@ blockquote {
     padding-top: 0;
   }
   .google-proof {
-    margin: 28px auto 0;
+    margin: 0 auto;
+  }
+  h2.section-label.is-framed {
+    margin-bottom: 28px;
+    line-height: 1.5;
   }
   .google-arrow {
     display: none;

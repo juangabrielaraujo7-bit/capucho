@@ -80,12 +80,10 @@ export default function Home() {
         </GradientBand>
       </section>
       <section id="avaliacoes" className="section container">
+        <h2 className="eyebrow section-label is-framed">
+          Os clientes dizem: Somos a melhor da região!
+        </h2>
         <TestimonialsColumns reviews={reviews}>
-          <h2 className="eyebrow section-label">
-            Os clientes dizem:
-            <br />
-            Somos a melhor da região!
-          </h2>
           <div className="google-proof">
             <div className="google-badge-wrap">
               <a
