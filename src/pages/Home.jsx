@@ -14,7 +14,6 @@ import HeroBackground from "../components/HeroBackground";
 import HeroVideo from "../components/HeroVideo";
 import ServicesCarousel from "../components/ServicesCarousel";
 import ServiceVideo from "../components/ServiceVideo";
-import Stars from "../components/Stars";
 import TestimonialsColumns from "../components/TestimonialsColumns";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset, business, mapEmbed, maps, photoSrcSet } from "../config";
@@ -51,7 +50,7 @@ export default function Home() {
       <section id="servicos" className="section section-tint">
         <div className="container">
           <div className="section-heading">
-            <h2 className="eyebrow">Serviços</h2>
+            <h2 className="eyebrow section-label">Serviços</h2>
           </div>
           <ServicesCarousel services={services} />
         </div>
@@ -111,41 +110,40 @@ export default function Home() {
       </section>
       <section id="avaliacoes" className="section container">
         <TestimonialsColumns reviews={reviews}>
-          <h2>
+          <h2 className="eyebrow section-label">
             Os clientes dizem:
             <br />
-            <span>Somos a melhor da região!</span>
+            Somos a melhor da região!
           </h2>
           <div className="google-proof">
-            <a
-              className="google-badge"
-              href={maps}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src={asset("google-reviews.webp")}
-                alt="Avaliações no Google"
-                width="400"
-                height="164"
-                loading="lazy"
-              />
-            </a>
-            <svg
-              className="google-arrow"
-              viewBox="0 0 170 120"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path d="M6 70 C 30 118, 78 112, 88 78 C 96 50, 66 40, 60 62 C 54 86, 100 104, 158 50" />
-              <path d="M136 50 L 160 48 L 154 72" />
-            </svg>
+            <div className="google-badge-wrap">
+              <a
+                className="google-badge"
+                href={maps}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src={asset("google-reviews.webp")}
+                  alt="Avaliações no Google"
+                  width="400"
+                  height="164"
+                  loading="lazy"
+                />
+              </a>
+              <svg
+                className="google-arrow"
+                viewBox="0 0 170 120"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M6 70 C 30 118, 78 112, 88 78 C 96 50, 66 40, 60 62 C 54 86, 100 104, 158 50" />
+                <path d="M136 50 L 160 48 L 154 72" />
+              </svg>
+            </div>
             <div className="rating">
               <strong>5,0</strong>
-              <div>
-                <Stars />
-                <span>368 avaliações no Google</span>
-              </div>
+              <span>368 avaliações no Google</span>
             </div>
             <a
               className="text-link"

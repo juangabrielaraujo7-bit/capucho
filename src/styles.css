@@ -132,7 +132,8 @@ h2.eyebrow {
   line-height: 1.4;
   margin: 0 0 19px;
 }
-#servicos h2.eyebrow {
+/* Rótulo de seção ("SERVIÇOS", "OS CLIENTES DIZEM: ...") */
+h2.section-label {
   font-size: 0.9rem;
   padding-left: 8px;
 }
@@ -701,51 +702,45 @@ blockquote {
   align-self: stretch;
   padding-top: 12px;
 }
-.testimonials-aside h2 {
-  max-width: 400px;
-  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
-}
-.testimonials-aside h2 span {
-  color: var(--blue);
-}
 .google-proof {
-  position: relative;
-  margin-block: auto;
-  padding-block: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: fit-content;
+  margin: 72px auto 0;
+  text-align: center;
+}
+.google-badge-wrap {
+  position: relative;
 }
 .google-badge {
   display: block;
-  width: 190px;
+  width: 150px;
 }
 .google-badge img {
   width: 100%;
   height: auto;
 }
 .google-proof .rating {
-  margin-top: 16px;
-  gap: 14px;
+  margin-top: 12px;
+  gap: 10px;
 }
 .google-proof .rating > strong {
-  font-size: 2.4rem;
+  font-size: 1.9rem;
 }
-.google-proof .rating > div {
-  font-size: 0.875rem;
-}
-.google-proof .stars svg {
-  width: 14px;
-  height: 14px;
+.google-proof .rating > span {
+  font-size: 0.8125rem;
 }
 .google-proof .text-link {
-  margin-top: 12px;
-  font-size: 0.875rem;
+  margin-top: 8px;
+  font-size: 0.8125rem;
 }
 /* Seta desenhada do selo do Google até as colunas de depoimentos */
 .google-arrow {
   position: absolute;
-  top: 30px;
-  left: 202px;
-  width: 160px;
+  top: -26px;
+  left: calc(100% + 8px);
+  width: 130px;
   height: auto;
   fill: none;
   stroke: var(--blue);
@@ -801,7 +796,7 @@ blockquote {
     padding-top: 0;
   }
   .google-proof {
-    padding-block: 30px 0;
+    margin: 28px auto 0;
   }
   .google-arrow {
     display: none;
