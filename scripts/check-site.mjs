@@ -47,10 +47,11 @@ try {
         ),
         motion: [...document.querySelectorAll("*")].some(
           // <source> recebe uma animação interna do Chrome, sem efeito visual.
-          // A rolagem dos depoimentos é a única animação permitida.
+          // Depoimentos e equipamentos têm animações intencionais.
           (e) =>
             e.tagName !== "SOURCE" &&
             !e.classList.contains("testimonials-track") &&
+            !e.matches(".service-image img, .service-hero-media img") &&
             getComputedStyle(e).animationName !== "none",
         ),
         autoplay: document.querySelectorAll("video[autoplay]").length,
@@ -161,6 +162,11 @@ try {
   }
   const reducedPage = await browser.newPage({ reducedMotion: "reduce" });
   await reducedPage.goto(base, { waitUntil: "networkidle" });
+  assert.equal(
+    await reducedPage.locator(".service-image img").first().evaluate((el) => getComputedStyle(el).animationName),
+    "none",
+    "Equipment float must stop with reduced motion",
+  );
   assert.equal(
     await reducedPage
       .locator(".hero-visual video")

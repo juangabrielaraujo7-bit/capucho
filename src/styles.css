@@ -392,6 +392,8 @@ h2.section-label {
   box-shadow: 0 18px 40px -24px rgba(16, 44, 96, 0.45);
 }
 .service-image {
+  position: relative;
+  isolation: isolate;
   height: 210px;
   overflow: visible;
   background: transparent;
@@ -400,7 +402,33 @@ h2.section-label {
   height: 100%;
   width: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 14px 9px rgba(16, 44, 96, 0.16));
+  position: relative;
+  filter: drop-shadow(0 8px 8px rgba(16, 44, 96, 0.10));
+  animation: equipment-float 3.6s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.3s);
+}
+.service-image::before,
+.service-hero-media::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 76%;
+  height: 20%;
+  left: 12%;
+  bottom: 3%;
+  background: radial-gradient(ellipse, rgba(10, 10, 12, 0.22), rgba(10, 10, 12, 0) 72%);
+  pointer-events: none;
+}
+@keyframes equipment-float {
+  0%, 100% { transform: translateY(-4px); }
+  50% { transform: translateY(-12px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-image img,
+  .service-hero-media img {
+    animation: none !important;
+    transform: translateY(-6px);
+  }
 }
 .service-card-content {
   padding: 22px 4px 4px;
@@ -1173,13 +1201,19 @@ blockquote {
 .service-hero-grid h1 {
   font-size: clamp(2.15rem, 3.5vw, 3.2rem);
 }
-.service-hero-grid > img {
+.service-hero-media {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+}
+.service-hero-media > img {
   width: 100%;
   height: auto;
   aspect-ratio: 1.5;
   object-fit: contain;
   background: transparent;
-  filter: drop-shadow(0 24px 16px rgba(16, 44, 96, 0.18));
+  filter: drop-shadow(0 10px 10px rgba(16, 44, 96, 0.10));
+  animation: equipment-float 3.6s ease-in-out infinite;
 }
 .problem-grid {
   display: grid;
@@ -1580,7 +1614,7 @@ blockquote {
   .service-hero-grid h1 {
     font-size: 2.25rem;
   }
-  .service-hero-grid > img {
+  .service-hero-media > img {
     height: 250px;
     aspect-ratio: auto;
   }

@@ -28,6 +28,7 @@ export default function ServicePage({ service }) {
             <p className="hero-description">{service.intro}</p>
             <WhatsAppButton message={service.message} />
           </div>
+          <div className="service-hero-media">
           <img
             src={asset(service.image)}
             srcSet={photoSrcSet(service.image)}
@@ -37,6 +38,7 @@ export default function ServicePage({ service }) {
             height="800"
             fetchPriority="high"
           />
+          </div>
         </div>
       </section>
       <section className="section section-tint">
