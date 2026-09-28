@@ -1,87 +1,177 @@
 import { useEffect, useRef } from "react";
 
-// Fundo em gradiente animado (WebGL + ruído simplex), adaptado do componente Auralis.
-// Pausa fora da tela, fica em um quadro estático com redução de movimento
-// e, sem WebGL, mostra o degradê de fundo definido no CSS (.gradient-band).
+// Fundo animado da faixa gamer: shader "Waves" (21st.dev Shader Builder), em JSX e sem
+// dependências. Degradê vertical ondulado entre as cores da paleta, com leve distorção
+// orgânica, vinheta e granulado. Pausa fora da tela, fica em um quadro fixo com redução
+// de movimento e, sem WebGL, mostra o degradê de fundo definido no CSS (.gradient-band).
 
-const vertexShader = `
-attribute vec2 position;
-varying vec2 vUv;
+const VERT = `attribute vec2 a_position;
 void main() {
-  vUv = position * 0.5 + 0.5;
-  gl_Position = vec4(position, 0.0, 1.0);
-}
-`;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
 
-// Shader do Auralis (ondas de luz sobre ruído simplex), adaptado para 4 cores e fundo claro:
-// base colorida em vez de quase preto, cada cor da paleta numa camada e vinheta suave.
-const fragmentShader = `
+// Shader original do "Waves", sem a parte de interação com o cursor (desligada no preset).
+const FRAG = `#ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
-varying vec2 vUv;
+#else
+precision mediump float;
+#endif
 
-uniform vec2  u_resolution;
-uniform float u_time;
-uniform float u_grain;
-uniform vec3  u_colors[4];
-uniform vec3  u_bg;
+uniform vec3 u_colors[8];
+uniform vec4 u_scene;      // resolution.xy, time, colour count
+uniform vec4 u_shape;      // scale, intensity, paramA, warp
+uniform vec4 u_surface;    // detail, contrast, brightness, saturation
+uniform vec4 u_finish;     // hue, vignette, blur, grain
+uniform vec4 u_transform;  // seed, rotation, drift, unused
+uniform vec2 u_offset;
 
-vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+#define u_resolution u_scene.xy
+#define u_time u_scene.z
+#define u_colorCount u_scene.w
+#define u_scale u_shape.x
+#define u_intensity u_shape.y
+#define u_warp u_shape.w
+#define u_detail u_surface.x
+#define u_contrast u_surface.y
+#define u_brightness u_surface.z
+#define u_saturation u_surface.w
+#define u_vignette u_finish.y
+#define u_blur u_finish.z
+#define u_grain u_finish.w
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+#define u_seed u_transform.x
+#else
+#define u_seed mod(u_transform.x, 31.0)
+#endif
+#define u_rotate u_transform.y
+#define u_drift u_transform.z
 
-float snoise(vec2 v) {
-  const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
-  vec2 i  = floor(v + dot(v, C.yy));
-  vec2 x0 = v - i + dot(i, C.xx);
-  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-  vec4 x12 = x0.xyxy + C.xxzz;
-  x12.xy -= i1;
-  i = mod289(i);
-  vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
-  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
-  m = m*m; m = m*m;
-  vec3 x = 2.0 * fract(p * C.www) - 1.0;
-  vec3 h = abs(x) - 0.5;
-  vec3 ox = floor(x + 0.5);
-  vec3 a0 = x - ox;
-  m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
-  vec3 g;
-  g.x  = a0.x  * x0.x  + h.x  * x0.y;
-  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-  return 130.0 * dot(m, g);
+float hash21(vec2 p) {
+#ifndef GL_FRAGMENT_PRECISION_HIGH
+  p = mod(p, 31.0);
+#endif
+  p = fract(p * vec2(234.34, 435.345));
+  p += dot(p, p + 34.23);
+  return fract(p.x * p.y);
+}
+
+float grainHash(vec2 p) {
+  vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+  p3 += dot(p3, p3.yzx + 33.33);
+  return fract((p3.x + p3.y) * p3.z);
+}
+
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(hash21(i), hash21(i + vec2(1.0, 0.0)), u.x),
+    mix(hash21(i + vec2(0.0, 1.0)), hash21(i + vec2(1.0, 1.0)), u.x),
+    u.y);
+}
+
+float fbm(vec2 p) {
+  float v = 0.0;
+  float a = 0.5;
+  for (int i = 0; i < 5; i++) {
+    v += a * noise(p);
+    p = p * 2.03 + vec2(17.0, 9.2);
+    a *= 0.5;
+  }
+  return v;
+}
+
+vec3 palette(float x) {
+  float n = max(u_colorCount - 1.0, 1.0);
+  float f = clamp(x, 0.0, 1.0) * n;
+  vec3 col = u_colors[0];
+  for (int i = 0; i < 7; i++) {
+    if (float(i) < n)
+      col = mix(col, u_colors[i + 1],
+        smoothstep(0.0, 1.0, clamp(f - float(i), 0.0, 1.0)));
+  }
+  return col;
+}
+
+vec3 shade(vec2 uv, vec2 p, float t) {
+  float y = uv.y
+    + sin(uv.x * (3.0 + u_intensity * 9.0) + t * 0.8) * 0.08
+    + (fbm(p * 2.0 + t * 0.1) - 0.5) * u_intensity * 0.6;
+  return palette(y);
 }
 
 void main() {
-  vec2 uv = vUv;
-  float ratio = u_resolution.x / u_resolution.y;
-  vec2 p = uv * vec2(ratio, 1.0);
-  float t = u_time * 0.2;
+  vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+  vec2 screenUv = uv;
+  vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy)
+    / min(u_resolution.x, u_resolution.y);
 
-  float n1 = snoise(p * 0.5 + t);
-  float n2 = snoise(p * 0.9 - t * 0.5 + n1);
-  float n3 = snoise(p * 0.7 + vec2(t * 0.3, -t * 0.2) + n2 * 0.5);
-
-  float light = pow(abs(n2), 2.2) * 1.1;
-
-  vec3 col = u_bg;
-  col += u_colors[0] * smoothstep(0.0, 1.0, n1) * 0.7;
-  col += u_colors[1] * light;
-  col += u_colors[2] * smoothstep(0.3, 1.0, n3) * 0.6;
-  col += u_colors[3] * smoothstep(0.45, 1.0, n1 * n2 + 0.3) * 0.4;
-
-  // Saturação extra para as cores ficarem vivas em vez de esbranquiçadas ao se somarem
-  float luma = dot(col, vec3(0.299, 0.587, 0.114));
-  col = max(mix(vec3(luma), col, 1.45), 0.0);
-
-  float grain = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453 + u_time);
-  col += (grain - 0.5) * u_grain * 0.25;
-
-  float dist = length(uv - 0.5);
-  col *= mix(0.5, 1.0, smoothstep(1.0, 0.25, dist));
-
-  gl_FragColor = vec4(col, 1.0);
+  uv = p * min(u_resolution.x, u_resolution.y) / u_resolution.xy + 0.5;
+  p *= u_scale;
+  if (abs(u_rotate) > 0.0001) {
+    float cr = cos(u_rotate), sr = sin(u_rotate);
+    p = mat2(cr, -sr, sr, cr) * p;
+  }
+  p += u_offset;
+  if (u_drift > 0.0001)
+    p += u_drift * vec2(sin(u_time * 0.31), cos(u_time * 0.23));
+  if (u_warp > 0.0) {
+    p += u_warp * (vec2(
+      fbm(p * u_detail + u_seed),
+      fbm(p * u_detail + vec2(5.2, 1.3))) - 0.5);
+  }
+  vec3 col;
+  if (u_blur > 0.0) {
+    float e = u_blur;
+    float pe = e * u_scale;
+    vec2 uvE = vec2(e) * min(u_resolution.x, u_resolution.y) / u_resolution.xy;
+    col  = shade(uv, p, u_time) * 0.36;
+    col += shade(uv + vec2(uvE.x, 0.0), p + vec2(pe, 0.0), u_time) * 0.16;
+    col += shade(uv - vec2(uvE.x, 0.0), p - vec2(pe, 0.0), u_time) * 0.16;
+    col += shade(uv + vec2(0.0, uvE.y), p + vec2(0.0, pe), u_time) * 0.16;
+    col += shade(uv - vec2(0.0, uvE.y), p - vec2(0.0, pe), u_time) * 0.16;
+  } else {
+    col = shade(uv, p, u_time);
+  }
+  if (abs(u_contrast - 1.0) > 0.0001)
+    col = (col - 0.5) * u_contrast + 0.5;
+  if (abs(u_saturation - 1.0) > 0.0001) {
+    float luma = dot(col, vec3(0.299, 0.587, 0.114));
+    col = mix(vec3(luma), col, u_saturation);
+  }
+  if (abs(u_brightness) > 0.0001)
+    col += u_brightness;
+  if (u_vignette > 0.0001) {
+    float vd = length(screenUv - 0.5) * 1.41421356;
+    col *= 1.0 - u_vignette * smoothstep(0.35, 1.0, vd);
+  }
+  if (u_grain > 0.0001)
+    col += (grainHash(
+      gl_FragCoord.xy + vec2(u_seed * 17.0, u_seed * 31.0)) - 0.5) * u_grain;
+  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
 }
 `;
+
+// Parâmetros do preset "Waves" (mesmos do componente original).
+const PRESET = {
+  scale: 2.0,
+  intensity: 0.54,
+  paramA: 0.47,
+  warp: 0.042,
+  detail: 1.536,
+  contrast: 1.158,
+  brightness: 0.0,
+  vignette: 0.21,
+  blur: 0.002,
+  grain: 0.101,
+  seed: 4012.0,
+  rotate: 5.6549,
+  offsetX: 0.11,
+  offsetY: -0.19,
+  drift: 0.116,
+  timeScale: -0.727,
+};
 
 const hexToRgb = (hex) => {
   const h = hex.replace("#", "");
@@ -89,11 +179,10 @@ const hexToRgb = (hex) => {
 };
 
 export default function GradientBand({
-  // Paleta "Vice City": Ocean Night de base; Neon Purple, Sunset Pink, Vice Cyan e Miami Peach.
-  bg = "#0b0f2b",
-  colors = ["#bc6cff", "#ff5ca8", "#00f0ff", "#ffb86b"],
-  speed = 1,
-  grain = 0.4,
+  // Paleta "Vice City" como pôr do sol, de baixo para cima:
+  // Ocean Night, Neon Purple, Sunset Pink, Miami Peach.
+  colors = ["#0b0f2b", "#bc6cff", "#ff5ca8", "#ffb86b"],
+  saturation = 1.25,
   className = "",
   children,
 }) {
@@ -104,7 +193,7 @@ export default function GradientBand({
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
-    const gl = canvas?.getContext("webgl");
+    const gl = canvas?.getContext("webgl", { antialias: false });
     if (!gl) return;
 
     const compile = (type, src) => {
@@ -114,31 +203,30 @@ export default function GradientBand({
       return s;
     };
     const program = gl.createProgram();
-    gl.attachShader(program, compile(gl.VERTEX_SHADER, vertexShader));
-    gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fragmentShader));
+    gl.attachShader(program, compile(gl.VERTEX_SHADER, VERT));
+    gl.attachShader(program, compile(gl.FRAGMENT_SHADER, FRAG));
     gl.linkProgram(program);
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
     gl.useProgram(program);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-    gl.bufferData(
-      gl.ARRAY_BUFFER,
-      new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
-      gl.STATIC_DRAW,
-    );
-    const pos = gl.getAttribLocation(program, "position");
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const pos = gl.getAttribLocation(program, "a_position");
     gl.enableVertexAttribArray(pos);
     gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
 
     const loc = (name) => gl.getUniformLocation(program, name);
-    gl.uniform1f(loc("u_grain"), grain);
-    gl.uniform3f(loc("u_bg"), ...hexToRgb(bg));
-    gl.uniform3fv(
-      loc("u_colors"),
-      new Float32Array(colorKey.split(",").slice(0, 4).flatMap(hexToRgb)),
-    );
-    const uRes = loc("u_resolution");
-    const uTime = loc("u_time");
+    const list = colorKey.split(",").slice(0, 8);
+    const padded = [...list, ...Array(8 - list.length).fill(list[list.length - 1])];
+    gl.uniform3fv(loc("u_colors"), new Float32Array(padded.flatMap(hexToRgb)));
+    const P = PRESET;
+    gl.uniform4f(loc("u_shape"), P.scale, P.intensity, P.paramA, P.warp);
+    gl.uniform4f(loc("u_surface"), P.detail, P.contrast, P.brightness, saturation);
+    gl.uniform4f(loc("u_finish"), 0, P.vignette, P.blur, P.grain);
+    gl.uniform4f(loc("u_transform"), P.seed, P.rotate, P.drift, 0);
+    gl.uniform2f(loc("u_offset"), P.offsetX, P.offsetY);
+    const uScene = loc("u_scene");
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     let raf = 0;
@@ -146,10 +234,10 @@ export default function GradientBand({
     const start = performance.now();
 
     const draw = (now) => {
-      gl.uniform2f(uRes, canvas.width, canvas.height);
-      // Com redução de movimento, um quadro fixo em um ponto bonito da animação.
-      gl.uniform1f(uTime, reduce.matches ? 12 : ((now - start) / 1000) * speed + 12);
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      // Com redução de movimento, um quadro fixo.
+      const seconds = reduce.matches ? 8 : (now - start) / 1000 + 8;
+      gl.uniform4f(uScene, canvas.width, canvas.height, seconds * P.timeScale, list.length);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
     };
     const loop = (now) => {
       draw(now);
@@ -182,8 +270,10 @@ export default function GradientBand({
       ro.disconnect();
       io.disconnect();
       reduce.removeEventListener("change", sync);
+      gl.deleteBuffer(buffer);
+      gl.deleteProgram(program);
     };
-  }, [bg, colorKey, speed, grain]);
+  }, [colorKey, saturation]);
 
   return (
     <div ref={containerRef} className={`gradient-band ${className}`}>
