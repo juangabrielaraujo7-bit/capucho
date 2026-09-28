@@ -9,6 +9,7 @@ import {
   Plus,
   ShieldCheck,
 } from "@phosphor-icons/react";
+import GradientBand from "../components/GradientBand";
 import HeroBackground from "../components/HeroBackground";
 import HeroVideo from "../components/HeroVideo";
 import ServicesCarousel from "../components/ServicesCarousel";
@@ -75,36 +76,38 @@ export default function Home() {
           />
         </div>
       </section>
-      <section id="gamer" className="section">
-        <div className="container gamer-section">
-          <div className="gamer-copy">
-            <GameController size={38} />
-            <h2>
-              Seu próximo nível
-              <br /> começa no PC.
-            </h2>
-            <p>
-              Montagem, upgrades e cuidado com seu setup. Conte o que você joga e
-              vamos conversar sobre as possibilidades.
-            </p>
-            <WhatsAppButton message="Olá, Capucho! Quero conversar sobre meu PC gamer.">
-              Conversar sobre meu PC gamer
-            </WhatsAppButton>
-            <p className="small-note">
-              A página da área gamer está em preparação. O atendimento já está
-              disponível pelo WhatsApp.
-            </p>
+      <section id="gamer" className="gamer-band">
+        <GradientBand>
+          <div className="container gamer-section">
+            <div className="gamer-copy">
+              <GameController size={34} />
+              <h2>
+                Seu próximo nível
+                <br /> começa no PC.
+              </h2>
+              <p>
+                Montagem, upgrades e cuidado com seu setup. Conte o que você
+                joga e vamos conversar sobre as possibilidades.
+              </p>
+              <WhatsAppButton message="Olá, Capucho! Quero conversar sobre meu PC gamer.">
+                Conversar sobre meu PC gamer
+              </WhatsAppButton>
+              <p className="small-note">
+                A página da área gamer está em preparação. O atendimento já
+                está disponível pelo WhatsApp.
+              </p>
+            </div>
+            <img
+              src={asset("upgrade-foto.webp")}
+              srcSet={photoSrcSet("upgrade-foto.webp")}
+              sizes="(max-width: 1023px) calc(100vw - 40px), 45vw"
+              alt="Imagem ilustrativa de PC com componentes para montagem e upgrade"
+              width="1200"
+              height="800"
+              loading="lazy"
+            />
           </div>
-          <img
-            src={asset("upgrade-foto.webp")}
-            srcSet={photoSrcSet("upgrade-foto.webp")}
-            sizes="(max-width: 1023px) calc(100vw - 40px), 45vw"
-            alt="Imagem ilustrativa de PC com componentes para montagem e upgrade"
-            width="1200"
-            height="800"
-            loading="lazy"
-          />
-  </div>
+        </GradientBand>
       </section>
       <section id="avaliacoes" className="section container">
         <TestimonialsColumns reviews={reviews}>

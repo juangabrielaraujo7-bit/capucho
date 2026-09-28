@@ -559,37 +559,56 @@ h2.eyebrow {
 .video-error a {
   text-decoration: underline;
 }
+/* Faixa gamer: fundo em gradiente animado (GradientBand, adaptado de Velaris).
+   Roxo provisório; trocar as cores em Home.jsx/GradientBand quando o tom for definido. */
+.gradient-band {
+  position: relative;
+  overflow: hidden;
+  /* Aparece enquanto o WebGL não desenha, ou quando ele não existe */
+  background: radial-gradient(120% 140% at 45% 30%, #6d28d9 0%, #2e1065 45%, #07030f 100%);
+}
+.gradient-band-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.gradient-band-content {
+  position: relative;
+  z-index: 1;
+}
 .gamer-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
-  background: #eef2ff;
-  border: 1px solid #dce4ff;
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.gamer-copy {
-  padding: 52px;
+  gap: 48px;
+  padding-block: 56px;
 }
 .gamer-copy > svg {
-  color: var(--blue);
-  margin-bottom: 22px;
+  color: #c4b5fd;
+  margin-bottom: 16px;
 }
 .gamer-copy h2 {
-  margin-bottom: 22px;
+  color: #fff;
+  font-size: clamp(1.8rem, 2.4vw, 2.3rem);
+  margin-bottom: 16px;
 }
 .gamer-copy > p:not(.small-note) {
-  max-width: 420px;
+  max-width: 440px;
+  color: rgba(255, 255, 255, 0.8);
 }
 .gamer-copy .small-note {
-  max-width: 370px;
-  margin: 20px 0 0;
+  max-width: 380px;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.6);
 }
 .gamer-section > img {
   object-fit: contain;
   width: 100%;
-  height: auto;
-  padding: 24px;
+  height: 280px;
+  border-radius: 16px;
+  background: #fff;
 }
 .review-heading {
   margin-bottom: 38px;
@@ -1189,9 +1208,6 @@ blockquote {
     display: block;
     margin: 16px 0 0;
   }
-  .gamer-copy {
-    padding: 36px;
-  }
 }
 @media (max-width: 1023px) {
   .menu-toggle {
@@ -1332,16 +1348,14 @@ blockquote {
   }
   .gamer-section {
     grid-template-columns: 1fr;
-  }
-  .gamer-copy {
-    padding: 30px 26px 0;
+    gap: 28px;
+    padding-block: 44px;
   }
   .gamer-copy h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   .gamer-section > img {
-    height: 270px;
-    padding: 20px;
+    height: 220px;
   }
   .review {
     padding: 26px;
