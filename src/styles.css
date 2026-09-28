@@ -745,11 +745,7 @@ h2.section-label {
   pointer-events: none;
 }
 .gamer-section {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
-  gap: 48px;
-  padding-block: 56px;
+  padding-block: 64px;
 }
 .gamer-copy > svg {
   color: #00f0ff;
@@ -769,13 +765,6 @@ h2.section-label {
   max-width: 380px;
   margin: 18px 0 0;
   color: rgba(255, 255, 255, 0.78);
-}
-.gamer-section > img {
-  object-fit: contain;
-  width: 100%;
-  height: 280px;
-  border-radius: 16px;
-  background: #fff;
 }
 .review-heading {
   margin-bottom: 38px;
@@ -1497,15 +1486,10 @@ blockquote {
     margin-bottom: 28px;
   }
   .gamer-section {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    padding-block: 44px;
+    padding-block: 48px;
   }
   .gamer-copy h2 {
     font-size: 1.75rem;
-  }
-  .gamer-section > img {
-    height: 220px;
   }
   .gamer-band .gradient-band::after {
     background: linear-gradient(180deg, rgba(11, 15, 43, 0.5) 0%, rgba(11, 15, 43, 0.25) 45%, transparent 65%);

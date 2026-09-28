@@ -16,7 +16,7 @@ import ServicesCarousel from "../components/ServicesCarousel";
 import WorkShowcase from "../components/WorkShowcase";
 import TestimonialsColumns from "../components/TestimonialsColumns";
 import WhatsAppButton from "../components/WhatsAppButton";
-import { asset, business, mapEmbed, maps, photoSrcSet } from "../config";
+import { asset, business, mapEmbed, maps } from "../config";
 import { faqs, reviews, services, workVideos } from "../content";
 
 export default function Home() {
@@ -76,15 +76,6 @@ export default function Home() {
                 Conversar sobre meu PC gamer
               </WhatsAppButton>
             </div>
-            <img
-              src={asset("upgrade-foto.webp")}
-              srcSet={photoSrcSet("upgrade-foto.webp")}
-              sizes="(max-width: 1023px) calc(100vw - 40px), 45vw"
-              alt="Imagem ilustrativa de PC com componentes para montagem e upgrade"
-              width="1200"
-              height="800"
-              loading="lazy"
-            />
           </div>
         </GradientBand>
       </section>
