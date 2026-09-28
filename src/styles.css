@@ -393,14 +393,14 @@ h2.section-label {
 }
 .service-image {
   height: 210px;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #fff;
+  overflow: visible;
+  background: transparent;
 }
 .service-image img {
   height: 100%;
   width: 100%;
   object-fit: contain;
+  filter: drop-shadow(0 14px 9px rgba(16, 44, 96, 0.16));
 }
 .service-card-content {
   padding: 22px 4px 4px;
@@ -1178,8 +1178,8 @@ blockquote {
   height: auto;
   aspect-ratio: 1.5;
   object-fit: contain;
-  background: #fff;
-  border-radius: var(--radius);
+  background: transparent;
+  filter: drop-shadow(0 24px 16px rgba(16, 44, 96, 0.18));
 }
 .problem-grid {
   display: grid;
