@@ -70,21 +70,11 @@ export default function Home() {
           <div className="container gamer-section">
             <div className="gamer-copy">
               <GameController size={34} />
-              <h2>
-                Seu próximo nível
-                <br /> começa no PC.
-              </h2>
-              <p>
-                Montagem, upgrades e cuidado com seu setup. Conte o que você
-                joga e vamos conversar sobre as possibilidades.
-              </p>
+              <h2>Seu setup gamer começa aqui</h2>
+              <p>PC gamer montado do seu jeito</p>
               <WhatsAppButton message="Olá, Capucho! Quero conversar sobre meu PC gamer.">
                 Conversar sobre meu PC gamer
               </WhatsAppButton>
-              <p className="small-note">
-                A página da área gamer está em preparação. O atendimento já
-                está disponível pelo WhatsApp.
-              </p>
             </div>
             <img
               src={asset("upgrade-foto.webp")}

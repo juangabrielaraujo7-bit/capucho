@@ -763,6 +763,7 @@ h2.section-label {
 .gamer-copy > p:not(.small-note) {
   max-width: 440px;
   color: rgba(255, 255, 255, 0.9);
+  font-size: 1.25rem;
 }
 .gamer-copy .small-note {
   max-width: 380px;
