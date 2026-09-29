@@ -10,7 +10,6 @@ import {
   ShieldCheck,
 } from "@phosphor-icons/react";
 import GradientBand from "../components/GradientBand";
-import GamerSetup from "../components/GamerSetup";
 import HeroBackground from "../components/HeroBackground";
 import HeroVideo from "../components/HeroVideo";
 import ServicesCarousel from "../components/ServicesCarousel";
@@ -77,7 +76,6 @@ export default function Home() {
                 Conversar sobre meu PC gamer
               </WhatsAppButton>
             </div>
-            <GamerSetup />
           </div>
         </GradientBand>
       </section>

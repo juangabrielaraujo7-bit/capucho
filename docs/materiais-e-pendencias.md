@@ -6,8 +6,6 @@ As seis imagens dos serviços possuem fundo transparente, sem ambientes, bancada
 
 ## Materiais conferidos
 
-- `gamer-setup.webp` e `gamer-setup-800.webp`: recriação ilustrativa por IA do setup de referência aprovado, com transparência, dois monitores e iluminação roxa. Não representa uma configuração específica à venda. `GamerSetup` usa a mesma foto em duas camadas e máscaras nas telas para uma entrada única de aproximadamente dois segundos. A cena permanece ligada depois da entrada e aparece estática com redução de movimento ou sem JavaScript. Verificação: `node scripts/check-gamer.mjs` com a prévia na porta 4173.
-
 - `571400d0-9537-4b7f-bc5b-188af29fc699.png`: logo RGBA com transparência confirmada, usada no cabeçalho.
 - `ba8c4e12-8e4e-4574-9642-f802d0a99c83.png`: segunda logo, com fundo claro, preservada na pasta original.
 - `e690de25-3c7b-4c0e-9a62-67f3366bcd4d.png`: referência da paleta branca, azul-marinho e azul intenso.
