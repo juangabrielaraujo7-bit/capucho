@@ -47,10 +47,11 @@ try {
         ),
         motion: [...document.querySelectorAll("*")].some(
           // <source> recebe uma animação interna do Chrome, sem efeito visual.
-          // Depoimentos e equipamentos têm animações intencionais.
+          // Depoimentos, equipamentos e a varredura do botão gamer têm animações intencionais.
           (e) =>
             e.tagName !== "SOURCE" &&
             !e.classList.contains("testimonials-track") &&
+            !e.classList.contains("glitch-slice") &&
             !e.matches(".service-image img, .service-hero-media img") &&
             getComputedStyle(e).animationName !== "none",
         ),
@@ -180,6 +181,11 @@ try {
       .evaluate((t) => getComputedStyle(t).animationName),
     "none",
     "Testimonials must stop with reduced motion",
+  );
+  assert.equal(
+    await reducedPage.locator(".glitch-slice").evaluate((s) => getComputedStyle(s).animationName),
+    "none",
+    "Gamer button scan must stop with reduced motion",
   );
   // Sem animação, cada depoimento aparece uma única vez na coluna visível.
   await reducedPage.setViewportSize({ width: 390, height: 844 });
