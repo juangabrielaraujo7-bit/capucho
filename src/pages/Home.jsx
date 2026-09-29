@@ -11,7 +11,7 @@ import {
 } from "@phosphor-icons/react";
 import { Link } from "react-router";
 // Fonte em teste só no título da faixa gamer da home.
-import "@fontsource/chakra-petch/700.css";
+import "@fontsource/space-grotesk/700.css";
 import GamerVideo from "../components/GamerVideo";
 import GlitchButton from "../components/GlitchButton";
 import GradientBand from "../components/GradientBand";
