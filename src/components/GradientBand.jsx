@@ -134,7 +134,7 @@ vec3 shade(vec2 uv, vec2 p, float t) {
     q = q.yx * vec2(-1.08, 1.04);
   }
   // Ganho reduzido para compensar o pico mais alto dos filamentos finos.
-  float glow = 1.0 - exp(-field * (0.018 + u_paramA * 0.04) * 0.21);
+  float glow = 1.0 - exp(-field * (0.018 + u_paramA * 0.04) * 0.185);
   vec3 col = palette(clamp(glow, 0.0, 1.0));
   // Névoa roxa lenta ao fundo, como nuvens iluminadas.
   float haze = fbm(p * 0.8 + vec2(t * 0.04, -t * 0.03));
