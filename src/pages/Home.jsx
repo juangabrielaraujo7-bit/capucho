@@ -10,6 +10,8 @@ import {
   ShieldCheck,
 } from "@phosphor-icons/react";
 import { Link } from "react-router";
+// Fonte em teste só no título da faixa gamer da home.
+import "@fontsource/oxanium/700.css";
 import GamerVideo from "../components/GamerVideo";
 import GlitchButton from "../components/GlitchButton";
 import GradientBand from "../components/GradientBand";
@@ -73,7 +75,7 @@ export default function Home() {
           <div className="container gamer-section">
             <div className="gamer-copy">
               <GameController size={34} />
-              <h2>Seu setup gamer começa aqui</h2>
+              <h2 className="gamer-title">Seu setup gamer começa aqui</h2>
               <p>PC gamer montado do seu jeito</p>
               <GlitchButton to="/gamer">
                 Acessar Área Gamer
