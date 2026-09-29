@@ -1,16 +1,16 @@
 import { useEffect, useRef } from "react";
 
-// Fundo animado da faixa gamer: shader "Waves" (21st.dev Shader Builder), em JSX e sem
-// dependências. Degradê vertical ondulado entre as cores da paleta, com leve distorção
-// orgânica, vinheta e granulado. Pausa fora da tela, fica em um quadro fixo com redução
-// de movimento e, sem WebGL, mostra o degradê de fundo definido no CSS (.gradient-band).
+// Fundo animado da faixa gamer: shader "Neuro Noise" (21st.dev Shader Builder), em JSX e sem
+// dependências. Adaptado de Paper Shaders (https://shaders.paper.design/neuro-noise),
+// licença Apache-2.0 (https://github.com/paper-design/shaders).
+// Filamentos de luz em movimento, com ondulação sob o cursor. Pausa fora da tela e com a aba
+// oculta, fica em um quadro fixo com redução de movimento e, sem WebGL, mostra o degradê do CSS.
 
 const VERT = `attribute vec2 a_position;
 void main() {
   gl_Position = vec4(a_position, 0.0, 1.0);
 }`;
 
-// Shader original do "Waves", sem a parte de interação com o cursor (desligada no preset).
 const FRAG = `#ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
 #else
@@ -22,19 +22,22 @@ uniform vec4 u_scene;      // resolution.xy, time, colour count
 uniform vec4 u_shape;      // scale, intensity, paramA, warp
 uniform vec4 u_surface;    // detail, contrast, brightness, saturation
 uniform vec4 u_finish;     // hue, vignette, blur, grain
-uniform vec4 u_transform;  // seed, rotation, drift, unused
-uniform vec2 u_offset;
+uniform vec4 u_transform;  // seed, rotation, drift, OKLab toggle
+uniform vec4 u_space;      // offset.xy, pointer.xy
+uniform vec4 u_cursor;
 
 #define u_resolution u_scene.xy
 #define u_time u_scene.z
 #define u_colorCount u_scene.w
 #define u_scale u_shape.x
 #define u_intensity u_shape.y
+#define u_paramA u_shape.z
 #define u_warp u_shape.w
 #define u_detail u_surface.x
 #define u_contrast u_surface.y
 #define u_brightness u_surface.z
 #define u_saturation u_surface.w
+#define u_hue u_finish.x
 #define u_vignette u_finish.y
 #define u_blur u_finish.z
 #define u_grain u_finish.w
@@ -45,6 +48,13 @@ uniform vec2 u_offset;
 #endif
 #define u_rotate u_transform.y
 #define u_drift u_transform.z
+#define u_oklab u_transform.w
+#define u_offset u_space.xy
+#define u_mouse u_space.zw
+#define u_cursorPresence u_cursor.x
+#define u_cursorEffect u_cursor.y
+#define u_cursorStrength u_cursor.z
+#define u_cursorRadius u_cursor.w
 
 float hash21(vec2 p) {
 #ifndef GL_FRAGMENT_PRECISION_HIGH
@@ -94,11 +104,36 @@ vec3 palette(float x) {
   return col;
 }
 
+vec3 hueRotate(vec3 col, float a) {
+  const mat3 toYIQ = mat3(0.299, 0.596, 0.211,
+                          0.587, -0.274, -0.523,
+                          0.114, -0.322, 0.312);
+  const mat3 toRGB = mat3(1.0, 1.0, 1.0,
+                          0.956, -0.272, -1.106,
+                          0.621, -0.647, 1.703);
+  vec3 yiq = toYIQ * col;
+  float ca = cos(a), sa = sin(a);
+  yiq = vec3(yiq.x, yiq.y * ca - yiq.z * sa, yiq.y * sa + yiq.z * ca);
+  return toRGB * yiq;
+}
+
 vec3 shade(vec2 uv, vec2 p, float t) {
-  float y = uv.y
-    + sin(uv.x * (3.0 + u_intensity * 9.0) + t * 0.8) * 0.08
-    + (fbm(p * 2.0 + t * 0.1) - 0.5) * u_intensity * 0.6;
-  return palette(y);
+  vec2 q = p * (1.6 + u_intensity * 2.4);
+  float field = 0.0;
+  float weight = 0.55;
+  for (int i = 0; i < 6; i++) {
+    float fi = float(i);
+    q += vec2(
+      sin(q.y * (1.7 + fi * 0.09) + t * (0.35 + fi * 0.04) + u_seed),
+      cos(q.x * (1.5 + fi * 0.11) - t * (0.28 + fi * 0.03))
+    ) * (0.22 + u_intensity * 0.14);
+    float filaments = abs(sin(q.x + q.y + fi * 0.72));
+    field += weight / (0.08 + filaments);
+    weight *= 0.62;
+    q = q.yx * vec2(-1.08, 1.04);
+  }
+  float glow = 1.0 - exp(-field * (0.018 + u_paramA * 0.04));
+  return palette(clamp(glow, 0.0, 1.0));
 }
 
 void main() {
@@ -106,6 +141,32 @@ void main() {
   vec2 screenUv = uv;
   vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy)
     / min(u_resolution.x, u_resolution.y);
+  float cursorMask = 0.0;
+
+  if (u_cursorPresence > 0.001) {
+    vec2 cursor = (0.5 * u_mouse * u_resolution.xy)
+      / min(u_resolution.x, u_resolution.y);
+    vec2 cursorDelta = p - cursor;
+    if (u_cursorEffect < 0.5) {
+      p += cursor * u_cursorPresence * u_cursorStrength * 0.55;
+    } else {
+      float cursorDistance = length(cursorDelta);
+      vec2 cursorDirection = cursorDelta / max(cursorDistance, 0.0001);
+      cursorMask = u_cursorPresence
+        * (1.0 - smoothstep(0.0, u_cursorRadius, cursorDistance));
+      if (u_cursorEffect < 1.5) {
+        p -= cursorDirection * cursorMask * u_cursorStrength * 0.24;
+      } else if (u_cursorEffect < 2.5) {
+        float cursorAngle = cursorMask * u_cursorStrength * 2.2;
+        float cc = cos(cursorAngle), cs = sin(cursorAngle);
+        p = cursor + mat2(cc, -cs, cs, cc) * cursorDelta;
+      } else if (u_cursorEffect < 3.5) {
+        float ripple = sin(
+          cursorDistance / max(u_cursorRadius, 0.001) * 18.0 - u_time * 5.0);
+        p -= cursorDirection * ripple * cursorMask * u_cursorStrength * 0.07;
+      }
+    }
+  }
 
   uv = p * min(u_resolution.x, u_resolution.y) / u_resolution.xy + 0.5;
   p *= u_scale;
@@ -140,12 +201,16 @@ void main() {
     float luma = dot(col, vec3(0.299, 0.587, 0.114));
     col = mix(vec3(luma), col, u_saturation);
   }
+  if (abs(u_hue) > 0.0001)
+    col = hueRotate(col, u_hue);
   if (abs(u_brightness) > 0.0001)
     col += u_brightness;
   if (u_vignette > 0.0001) {
     float vd = length(screenUv - 0.5) * 1.41421356;
     col *= 1.0 - u_vignette * smoothstep(0.35, 1.0, vd);
   }
+  if (u_cursorPresence > 0.001 && u_cursorEffect > 3.5)
+    col += (vec3(0.18) + col * 0.12) * cursorMask * u_cursorStrength;
   if (u_grain > 0.0001)
     col += (grainHash(
       gl_FragCoord.xy + vec2(u_seed * 17.0, u_seed * 31.0)) - 0.5) * u_grain;
@@ -153,24 +218,27 @@ void main() {
 }
 `;
 
-// Parâmetros do preset "Waves" (mesmos do componente original).
+// Preset "Neuro Noise" (mesmos valores da receita; matiz zerada para manter as cores exatas).
 const PRESET = {
-  scale: 2.0,
-  intensity: 0.54,
-  paramA: 0.47,
-  warp: 0.042,
-  detail: 1.536,
-  contrast: 1.158,
-  brightness: 0.0,
-  vignette: 0.21,
-  blur: 0.002,
-  grain: 0.101,
-  seed: 4012.0,
-  rotate: 5.6549,
-  offsetX: 0.11,
-  offsetY: -0.19,
-  drift: 0.116,
-  timeScale: -0.727,
+  scale: 1.48,
+  intensity: 0.52,
+  paramA: 0.51,
+  warp: 0.19,
+  detail: 2.75,
+  contrast: 1.0,
+  brightness: -0.03,
+  saturation: 1.48,
+  hue: 0,
+  vignette: 0,
+  blur: 0.001,
+  grain: 0.03,
+  seed: 9994.0,
+  rotate: 0.65,
+  drift: 0.2,
+  timeScale: 0.82,
+  cursorEffect: 3.0, // ondulação
+  cursorStrength: 0.45,
+  cursorRadius: 0.46,
 };
 
 const hexToRgb = (hex) => {
@@ -179,9 +247,8 @@ const hexToRgb = (hex) => {
 };
 
 export default function GradientBand({
-  // Paleta synthwave (azul-noite, azul, ciano, roxo e rosa), de baixo para cima.
-  colors = ["#042142", "#153c6a", "#2475ac", "#3de0fc", "#733e85", "#e977f5"],
-  saturation = 1.25,
+  // Roxo neon das referências, do fundo escuro ao brilho dos filamentos.
+  colors = ["#06021a", "#4b1fa8", "#b44cff", "#f3ddff"],
   className = "",
   children,
 }) {
@@ -221,21 +288,39 @@ export default function GradientBand({
     gl.uniform3fv(loc("u_colors"), new Float32Array(padded.flatMap(hexToRgb)));
     const P = PRESET;
     gl.uniform4f(loc("u_shape"), P.scale, P.intensity, P.paramA, P.warp);
-    gl.uniform4f(loc("u_surface"), P.detail, P.contrast, P.brightness, saturation);
-    gl.uniform4f(loc("u_finish"), 0, P.vignette, P.blur, P.grain);
+    gl.uniform4f(loc("u_surface"), P.detail, P.contrast, P.brightness, P.saturation);
+    gl.uniform4f(loc("u_finish"), P.hue, P.vignette, P.blur, P.grain);
     gl.uniform4f(loc("u_transform"), P.seed, P.rotate, P.drift, 0);
-    gl.uniform2f(loc("u_offset"), P.offsetX, P.offsetY);
     const uScene = loc("u_scene");
+    const uSpace = loc("u_space");
+    const uCursor = loc("u_cursor");
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     let raf = 0;
-    let visible = false;
+    let inView = false;
+    let last = null;
     const start = performance.now();
+    // Cursor: posição normalizada -1..1 e presença, suavizadas a cada quadro.
+    const pointer = { x: 0, y: 0, tx: 0, ty: 0, presence: 0, target: 0 };
 
     const draw = (now) => {
-      // Com redução de movimento, um quadro fixo.
-      const seconds = reduce.matches ? 8 : (now - start) / 1000 + 8;
+      const dt = last === null ? 0 : Math.min((now - last) / 1000, 0.1);
+      last = now;
+      const follow = 1 - Math.exp(-12 * dt);
+      pointer.x += (pointer.tx - pointer.x) * follow;
+      pointer.y += (pointer.ty - pointer.y) * follow;
+      pointer.presence += (pointer.target - pointer.presence) * follow;
+      // Com redução de movimento, um quadro fixo e sem ondulação.
+      const seconds = reduce.matches ? 10 : (now - start) / 1000 + 10;
       gl.uniform4f(uScene, canvas.width, canvas.height, seconds * P.timeScale, list.length);
+      gl.uniform4f(uSpace, 0, 0, pointer.x, pointer.y);
+      gl.uniform4f(
+        uCursor,
+        reduce.matches ? 0 : pointer.presence,
+        P.cursorEffect,
+        P.cursorStrength,
+        P.cursorRadius,
+      );
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     };
     const loop = (now) => {
@@ -244,35 +329,62 @@ export default function GradientBand({
     };
     const sync = () => {
       cancelAnimationFrame(raf);
-      if (visible && !reduce.matches) raf = requestAnimationFrame(loop);
+      raf = 0;
+      last = null;
+      if (inView && !document.hidden && !reduce.matches) raf = requestAnimationFrame(loop);
       else draw(performance.now());
     };
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = Math.max(1, Math.round(container.clientWidth * dpr));
-      canvas.height = Math.max(1, Math.round(container.clientHeight * dpr));
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      // Limita a ~2 milhões de pixels para não pesar em telas grandes.
+      const w = container.clientWidth * dpr;
+      const h = container.clientHeight * dpr;
+      const k = Math.min(1, Math.sqrt(2_000_000 / Math.max(1, w * h)));
+      canvas.width = Math.max(1, Math.round(w * k));
+      canvas.height = Math.max(1, Math.round(h * k));
       gl.viewport(0, 0, canvas.width, canvas.height);
       draw(performance.now());
     };
+
+    const onMove = (e) => {
+      const r = container.getBoundingClientRect();
+      pointer.tx = ((e.clientX - r.left) / r.width) * 2 - 1;
+      pointer.ty = -(((e.clientY - r.top) / r.height) * 2 - 1);
+      if (pointer.target === 0 && pointer.presence < 0.01) {
+        pointer.x = pointer.tx;
+        pointer.y = pointer.ty;
+      }
+      pointer.target = 1;
+    };
+    const onLeave = () => {
+      pointer.target = 0;
+    };
+
     const ro = new ResizeObserver(resize);
     ro.observe(container);
     const io = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
+      inView = entry.isIntersecting;
       sync();
     });
     io.observe(container);
     reduce.addEventListener("change", sync);
+    document.addEventListener("visibilitychange", sync);
+    container.addEventListener("pointermove", onMove, { passive: true });
+    container.addEventListener("pointerleave", onLeave);
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
       io.disconnect();
       reduce.removeEventListener("change", sync);
+      document.removeEventListener("visibilitychange", sync);
+      container.removeEventListener("pointermove", onMove);
+      container.removeEventListener("pointerleave", onLeave);
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
     };
-  }, [colorKey, saturation]);
+  }, [colorKey]);
 
   return (
     <div ref={containerRef} className={`gradient-band ${className}`}>
