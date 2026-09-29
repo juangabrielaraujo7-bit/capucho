@@ -9,6 +9,7 @@ import {
   Plus,
   ShieldCheck,
 } from "@phosphor-icons/react";
+import GamerVideo from "../components/GamerVideo";
 import GradientBand from "../components/GradientBand";
 import HeroBackground from "../components/HeroBackground";
 import HeroVideo from "../components/HeroVideo";
@@ -77,6 +78,7 @@ export default function Home() {
               </WhatsAppButton>
             </div>
           </div>
+          <GamerVideo />
         </GradientBand>
       </section>
       <section id="avaliacoes" className="section container">

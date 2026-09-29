@@ -731,11 +731,14 @@ h2.section-label.is-framed {
 .gradient-band {
   position: relative;
   overflow: hidden;
+  /* Contexto próprio: o vídeo do setup (mix-blend-mode) mistura com o shader aqui dentro */
+  isolation: isolate;
   /* Aparece enquanto o WebGL não desenha, ou quando ele não existe */
   background: radial-gradient(90% 120% at 60% 50%, #7b2bb8 0%, #34104f 45%, #12041f 100%);
 }
 .gradient-band-canvas {
   position: absolute;
+  z-index: -2;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -743,12 +746,12 @@ h2.section-label.is-framed {
 }
 .gradient-band-content {
   position: relative;
-  z-index: 1;
 }
 /* Sombra suave atrás dos textos da faixa gamer para manter a leitura sobre as cores claras */
 .gamer-band .gradient-band::after {
   content: "";
   position: absolute;
+  z-index: -1;
   inset: 0;
   background: linear-gradient(90deg, rgba(18, 4, 31, 0.5) 0%, rgba(18, 4, 31, 0.25) 40%, transparent 65%);
   pointer-events: none;
@@ -759,6 +762,38 @@ h2.section-label.is-framed {
   align-items: center;
   min-height: 420px;
   padding-block: 64px;
+}
+/* Vídeo do setup no terço direito da faixa */
+/* Sem transform nem z-index aqui: criariam um contexto próprio e o screen deixaria de ver o shader */
+.gamer-media {
+  position: absolute;
+  inset-block: 0;
+  right: 3%;
+  display: flex;
+  align-items: center;
+  width: min(36%, 660px);
+}
+/* Sombra escura atrás do setup: dá peso aos monitores, que no modo screen ficariam translúcidos */
+.gamer-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 56% 52% at 50% 52%, #0e0319 0%, #0e0319 62%, transparent 100%);
+}
+/* Só as bordas esmaecem (o preto já some com o screen); o setup fica inteiro */
+.gamer-media video,
+.gamer-media img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent),
+    linear-gradient(transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent),
+    linear-gradient(transparent, #000 6%, #000 94%, transparent);
+  mask-composite: intersect;
 }
 .gamer-copy > svg {
   color: #e59cff;
@@ -1507,6 +1542,14 @@ blockquote {
     align-items: stretch;
     min-height: 0;
     padding-block: 48px;
+  }
+  .gamer-media {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: auto;
+    margin: -24px 8px 24px;
+    transform: none;
   }
   .gamer-copy h2 {
     font-size: 1.75rem;
