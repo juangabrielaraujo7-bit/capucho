@@ -77,16 +77,6 @@ export default function Home() {
               </WhatsAppButton>
             </div>
           </div>
-          <img
-            className="gamer-art"
-            src={asset("gamer-personagens-1000.webp")}
-            srcSet={`${asset("gamer-personagens-640.webp")} 640w, ${asset("gamer-personagens-1000.webp")} 1000w`}
-            sizes="(max-width: 1023px) 100vw, 640px"
-            alt=""
-            width="1000"
-            height="590"
-            loading="lazy"
-          />
         </GradientBand>
       </section>
       <section id="avaliacoes" className="section container">
