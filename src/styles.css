@@ -727,12 +727,12 @@ h2.section-label.is-framed {
   text-decoration: underline;
 }
 /* Faixa gamer: fundo em gradiente animado (GradientBand, shader "Waves" do 21st.dev).
-   Cores da paleta "Vice City" (padrões em GradientBand.jsx). */
+   Cores da paleta synthwave (padrões em GradientBand.jsx). */
 .gradient-band {
   position: relative;
   overflow: hidden;
   /* Aparece enquanto o WebGL não desenha, ou quando ele não existe */
-  background: linear-gradient(0deg, #0b0f2b 0%, #bc6cff 45%, #ff5ca8 75%, #ffb86b 100%);
+  background: linear-gradient(0deg, #042142 0%, #153c6a 20%, #2475ac 40%, #3de0fc 60%, #733e85 80%, #e977f5 100%);
 }
 .gradient-band-canvas {
   position: absolute;
@@ -750,7 +750,7 @@ h2.section-label.is-framed {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(11, 15, 43, 0.5) 0%, rgba(11, 15, 43, 0.25) 40%, transparent 65%);
+  background: linear-gradient(90deg, rgba(4, 33, 66, 0.5) 0%, rgba(4, 33, 66, 0.25) 40%, transparent 65%);
   pointer-events: none;
 }
 .gamer-section {
@@ -773,7 +773,7 @@ h2.section-label.is-framed {
   pointer-events: none;
 }
 .gamer-copy > svg {
-  color: #00f0ff;
+  color: #3de0fc;
   margin-bottom: 16px;
 }
 .gamer-copy h2 {
@@ -1532,7 +1532,7 @@ blockquote {
     font-size: 1.75rem;
   }
   .gamer-band .gradient-band::after {
-    background: linear-gradient(180deg, rgba(11, 15, 43, 0.5) 0%, rgba(11, 15, 43, 0.25) 45%, transparent 65%);
+    background: linear-gradient(180deg, rgba(4, 33, 66, 0.5) 0%, rgba(4, 33, 66, 0.25) 45%, transparent 65%);
   }
   .review {
     padding: 26px;

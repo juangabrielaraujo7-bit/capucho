@@ -179,9 +179,8 @@ const hexToRgb = (hex) => {
 };
 
 export default function GradientBand({
-  // Paleta "Vice City" como pôr do sol, de baixo para cima:
-  // Ocean Night, Neon Purple, Sunset Pink, Miami Peach.
-  colors = ["#0b0f2b", "#bc6cff", "#ff5ca8", "#ffb86b"],
+  // Paleta synthwave (azul-noite, azul, ciano, roxo e rosa), de baixo para cima.
+  colors = ["#042142", "#153c6a", "#2475ac", "#3de0fc", "#733e85", "#e977f5"],
   saturation = 1.25,
   className = "",
   children,
