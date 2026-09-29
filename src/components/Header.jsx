@@ -47,7 +47,11 @@ export default function Header() {
           aria-label="Navegação principal"
         >
           {links.map(([label, id]) => (
-            <Link key={id} to={`/#${id}`} onClick={() => setOpen(false)}>
+            <Link
+              key={id}
+              to={id === "gamer" ? "/gamer" : `/#${id}`}
+              onClick={() => setOpen(false)}
+            >
               {label}
             </Link>
           ))}

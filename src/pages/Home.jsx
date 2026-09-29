@@ -9,6 +9,7 @@ import {
   Plus,
   ShieldCheck,
 } from "@phosphor-icons/react";
+import { Link } from "react-router";
 import GamerVideo from "../components/GamerVideo";
 import GlitchButton from "../components/GlitchButton";
 import GradientBand from "../components/GradientBand";
@@ -18,7 +19,7 @@ import ServicesCarousel from "../components/ServicesCarousel";
 import WorkShowcase from "../components/WorkShowcase";
 import TestimonialsColumns from "../components/TestimonialsColumns";
 import WhatsAppButton from "../components/WhatsAppButton";
-import { asset, business, mapEmbed, maps, wa } from "../config";
+import { asset, business, mapEmbed, maps } from "../config";
 import { faqs, reviews, services, workVideos } from "../content";
 
 export default function Home() {
@@ -40,10 +41,10 @@ export default function Home() {
                 Ver serviços
                 <ArrowRight size={20} />
               </a>
-              <a className="gamer-link" href="#gamer">
+              <Link className="gamer-link" to="/gamer">
                 Área gamer
                 <ArrowUpRight size={18} />
-              </a>
+              </Link>
             </div>
           </div>
           <HeroVideo />
@@ -74,11 +75,7 @@ export default function Home() {
               <GameController size={34} />
               <h2>Seu setup gamer começa aqui</h2>
               <p>PC gamer montado do seu jeito</p>
-              <GlitchButton
-                href={wa("Olá, Capucho! Quero conversar sobre meu PC gamer.")}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <GlitchButton to="/gamer">
                 Acessar Área Gamer
               </GlitchButton>
             </div>

@@ -1892,3 +1892,633 @@ blockquote {
     height: 220px;
   }
 }
+
+/* ===== Área Gamer (GamerPage.jsx) ===== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.gamer-hero .gamer-section {
+  min-height: 480px;
+}
+.gamer-copy h1 {
+  color: #fff;
+  font-size: clamp(2.3rem, 3.6vw, 3.2rem);
+  margin-bottom: 16px;
+}
+.build-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.build-item {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+}
+.build-item img,
+.build-item video {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #12041f;
+}
+.build-item figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+}
+.build-item figcaption span {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.build-empty {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: 40px 24px;
+  border: 1.5px dashed #c9b3e6;
+  border-radius: var(--radius);
+  background: rgba(123, 43, 184, 0.04);
+  text-align: center;
+}
+.build-empty p {
+  margin: 0;
+}
+.gamer-services {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.gamer-service {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  transition: border-color 0.2s;
+}
+.gamer-service:hover {
+  border-color: #a45ee0;
+}
+.gamer-service > svg {
+  color: #7b2bb8;
+}
+.gamer-service p {
+  margin: 0;
+  flex: 1;
+}
+.gamer-cta .gradient-band::after {
+  background: radial-gradient(60% 90% at 50% 50%, rgba(18, 4, 31, 0.55), transparent);
+}
+.gamer-cta-inner {
+  padding-block: 88px;
+  text-align: center;
+}
+.gamer-cta-inner h2 {
+  color: #fff;
+  margin-bottom: 14px;
+}
+.gamer-cta-inner p {
+  max-width: 560px;
+  margin: 0 auto 20px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.125rem;
+}
+.gamer-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 20px;
+}
+
+/* ===== Monte seu PC (PcBuilder.jsx), no estilo do montador da KaBuM ===== */
+.builder {
+  --gamer: #7b2bb8;
+  --gamer-soft: #f6effd;
+  padding-block: 36px 40px;
+}
+.builder-head {
+  max-width: 760px;
+  margin-bottom: 32px;
+}
+.builder-head h1 {
+  margin-bottom: 14px;
+}
+.builder-presets {
+  margin-bottom: 28px;
+}
+.builder-presets ul,
+.builder-steps ol,
+.part-grid,
+.builder-summary ul,
+.builder-review ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.builder-presets ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.builder-presets button {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--navy);
+  text-align: left;
+  transition: border-color 0.2s;
+}
+.builder-presets button:hover {
+  border-color: var(--gamer);
+}
+.builder-presets strong {
+  font-family: "Sora Variable", sans-serif;
+  font-size: 1.05rem;
+}
+.builder-presets span {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.builder-presets em {
+  margin-top: 6px;
+  color: var(--gamer);
+  font-style: normal;
+  font-weight: 650;
+  font-size: 0.875rem;
+}
+.builder-steps {
+  margin-bottom: 28px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.builder-steps ol {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 6px;
+}
+/* No desktop as etapas quebram linha; no celular a barra rola de lado */
+@media (min-width: 1024px) {
+  .builder-steps ol {
+    flex-wrap: wrap;
+  }
+}
+.builder-steps button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 7px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--navy);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.builder-step-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--tint);
+  color: var(--muted);
+}
+.builder-steps button.is-done .builder-step-icon {
+  background: var(--gamer);
+  color: #fff;
+}
+.builder-steps button[aria-current="step"] {
+  border-color: var(--gamer);
+  background: var(--gamer-soft);
+  color: var(--gamer);
+}
+.builder-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 32px;
+  align-items: start;
+}
+.builder-main {
+  scroll-margin-top: 100px;
+  min-width: 0;
+}
+.builder-main-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.builder-main-head h2,
+.builder-review h2 {
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
+}
+.builder-count {
+  margin: 0 0 4px;
+  color: var(--gamer);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.builder-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.builder-chips {
+  display: flex;
+  gap: 6px;
+}
+.builder-chips button {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--navy);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.builder-chips button[aria-pressed="true"] {
+  border-color: var(--gamer);
+  background: var(--gamer);
+  color: #fff;
+}
+.builder-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+}
+.builder-search:focus-within {
+  border-color: var(--gamer);
+}
+.builder-search input {
+  width: 170px;
+  height: 38px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--navy);
+  font: inherit;
+  font-size: 0.875rem;
+}
+.part-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+}
+.part-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--navy);
+  text-align: left;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.part-card:hover:not(:disabled) {
+  border-color: var(--gamer);
+}
+.part-card.is-selected {
+  border-color: var(--gamer);
+  box-shadow: inset 0 0 0 1px var(--gamer);
+  background: var(--gamer-soft);
+}
+.part-card:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+.part-card.is-option {
+  border-style: dashed;
+}
+.part-card.is-option > svg {
+  color: var(--gamer);
+}
+.part-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.part-brand,
+.part-stock {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--tint);
+  color: var(--muted);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.part-stock.is-in {
+  background: #e3f6ea;
+  color: #1d7a45;
+}
+.part-name {
+  font-family: "Sora Variable", sans-serif;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+.part-specs {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+.part-foot {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 8px;
+}
+.part-price {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.15rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+.part-price small {
+  color: var(--muted);
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+.part-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+  color: var(--gamer);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+.part-reason {
+  margin-top: auto;
+  color: #b42318;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.part-empty {
+  grid-column: 1 / -1;
+  color: var(--muted);
+}
+.builder-summary {
+  position: sticky;
+  top: 100px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+}
+.builder-summary-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.builder-summary-head h2 {
+  font-size: 1.2rem;
+}
+.builder-summary-head span {
+  color: var(--gamer);
+  font-weight: 750;
+}
+.builder-progress {
+  height: 8px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #ece3f7;
+}
+.builder-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gamer);
+  transition: width 0.3s;
+}
+.builder-summary li + li {
+  border-top: 1px solid var(--line);
+}
+.builder-summary li button {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: 9px 0;
+  border: 0;
+  background: none;
+  color: var(--navy);
+  text-align: left;
+}
+.builder-summary li span {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.builder-summary li strong {
+  font-size: 0.875rem;
+  font-weight: 650;
+}
+.builder-summary li button:hover strong {
+  color: var(--gamer);
+}
+.builder .is-missing {
+  color: #98a2b3;
+  font-weight: 500;
+}
+.builder-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 8px 0 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.builder-total strong {
+  font-size: 1.4rem;
+}
+.builder-summary .button {
+  width: 100%;
+}
+.builder-summary .small-note {
+  margin: 12px 0 0;
+}
+.builder-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+.builder-clear:hover {
+  color: #b42318;
+}
+.builder-review ul {
+  margin: 20px 0 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+}
+.builder-review li {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+}
+.builder-review li + li {
+  border-top: 1px solid var(--line);
+}
+.builder-review-label {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.builder-review-price {
+  font-weight: 700;
+}
+.builder-review .text-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 0.875rem;
+}
+.builder-assembly {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  background: var(--gamer-soft);
+}
+.builder-assembly svg {
+  color: var(--gamer);
+}
+.builder-assembly p {
+  margin: 0;
+}
+.builder-assembly strong {
+  color: var(--navy);
+}
+.builder-bar {
+  position: sticky;
+  bottom: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(16, 44, 96, 0.12);
+}
+.builder-bar .button {
+  min-height: 44px;
+}
+.builder-bar .button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.builder-bar-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+.builder-bar-total span {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.builder-bar-total strong {
+  font-size: 1.15rem;
+}
+@media (max-width: 1023px) {
+  .gamer-services {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .build-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .builder-layout {
+    grid-template-columns: 1fr;
+  }
+  .builder-summary {
+    position: static;
+  }
+}
+@media (max-width: 767px) {
+  .gamer-hero .gamer-section {
+    min-height: 0;
+  }
+  .gamer-services,
+  .build-grid,
+  .builder-presets ul {
+    grid-template-columns: 1fr;
+  }
+  .gamer-cta-inner {
+    padding-block: 64px;
+  }
+  .builder-search {
+    flex: 1;
+  }
+  .builder-search input {
+    width: 100%;
+  }
+  .builder-review li {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 12px;
+  }
+  .builder-review-label {
+    grid-column: 1 / -1;
+  }
+  .builder-review-price {
+    display: none;
+  }
+  .builder-bar {
+    bottom: 10px;
+    padding: 10px;
+    gap: 10px;
+  }
+  .builder-bar .button {
+    padding-inline: 14px;
+  }
+}

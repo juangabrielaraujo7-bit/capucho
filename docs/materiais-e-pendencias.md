@@ -50,6 +50,16 @@ Para a tela do notebook continuar branca sobre o fundo com faixas, `scripts/hero
 
 A seção de avaliações usa seis trechos fiéis de avaliações públicas de 5 estrelas no Google: Naiwan, Bruno e Sérgio (prints recebidos) e Messias Castro, Lucas Alexandre e Eduarda Nonemacher (perfil no Maps). Sem fotos: avatares com iniciais. Três avaliações citam o Henrique pelo nome; confirmar que a Capucho aprova essa exposição.
 
+## Área Gamer e Monte seu PC (29/09/2026)
+
+Páginas `/gamer` (galeria de PCs montados, serviços para gamers e chamada para o montador) e `/gamer/monte-seu-pc` (montador por etapas no estilo do "Monte seu PC" da KaBuM, com checagem de compatibilidade: soquete, tipo de memória, potência da fonte, tamanho da placa e do radiador). A lista é enviada pelo WhatsApp para orçamento; a montagem é guardada só no navegador do visitante. Dados em `src/gamer.js`.
+
+Pendente com o cliente:
+- **Peças e preços do montador:** o catálogo atual é uma base inicial com valores **estimados** de mercado, só para o montador funcionar. Trocar pelos itens e preços reais da Capucho e marcar `stock: true` nas peças em estoque (o restante aparece como "Sob encomenda").
+- Valor da montagem (hoje: "confirmado junto com o orçamento").
+- Fotos e vídeos dos PCs gamer montados para a galeria (`gamerBuilds` em `src/gamer.js`); até lá a seção mostra "Em breve".
+- O vídeo do setup gamer é uma animação ilustrativa, não um PC montado pela loja.
+
 ## Confirmar antes de publicar
 
 - Horários de funcionamento e condições de garantia de 90 dias.

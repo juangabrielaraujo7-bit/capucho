@@ -28,7 +28,7 @@ export default function Footer() {
         <div>
           <h3>Explore</h3>
           <Link to="/#servicos">Serviços</Link>
-          <Link to="/#gamer">Área gamer</Link>
+          <Link to="/gamer">Área gamer</Link>
           <Link to="/#sobre">Sobre a Capucho</Link>
           <Link to="/#avaliacoes">Avaliações</Link>
         </div>

@@ -7,12 +7,31 @@ const homeTitle =
 const homeDescription =
   "Conserto, formatação, limpeza e upgrade de computadores e notebooks na Freguesia do Ó, em São Paulo. Suporte remoto para todo o Brasil. Fale com a Capucho pelo WhatsApp.";
 
-export const routes = ["/", ...services.map((s) => `/servicos/${s.slug}`)];
+export const routes = [
+  "/",
+  ...services.map((s) => `/servicos/${s.slug}`),
+  "/gamer",
+  "/gamer/monte-seu-pc",
+];
+
+const gamerPages = {
+  "/gamer": {
+    title: "Área Gamer: PC gamer montado e upgrade | Capucho",
+    description:
+      "PC gamer montado, upgrade de peças, limpeza e formatação na Freguesia do Ó, em São Paulo. Monte seu PC no site e peça o orçamento pelo WhatsApp.",
+  },
+  "/gamer/monte-seu-pc": {
+    title: "Monte seu PC gamer | Capucho Informática",
+    description:
+      "Escolha processador, placa de vídeo e demais peças com checagem de compatibilidade, veja o total estimado e peça o orçamento com montagem à Capucho.",
+  },
+};
 
 export function getSeo(pathname) {
   const path = pathname.replace(/\/$/, "") || "/";
   if (path === "/")
     return { path, title: homeTitle, description: homeDescription };
+  if (gamerPages[path]) return { path, ...gamerPages[path] };
   const service = services.find((s) => path === `/servicos/${s.slug}`);
   if (service)
     return {

@@ -12,6 +12,8 @@ const routes = [
   "/servicos/upgrade-e-montagem",
   "/servicos/limpeza-preventiva",
   "/servicos/suporte-e-atendimento",
+  "/gamer",
+  "/gamer/monte-seu-pc",
 ];
 const results = [];
 try {
@@ -110,6 +112,23 @@ try {
         await page
           .locator("#avaliacoes")
           .screenshot({ path: `.qa/reviews-${viewport.width}.png` });
+      }
+      if (route === "/gamer/monte-seu-pc") {
+        // Montador: com um processador AM5, só placas AM5 ficam liberadas.
+        await page.evaluate(() => localStorage.clear());
+        await page.getByRole("button", { name: /AMD Ryzen 5 7600/ }).click();
+        const boards = await page
+          .locator(".part-card:not(:disabled):not(.is-option) .part-name")
+          .allTextContents();
+        assert.ok(boards.length > 0 && boards.every((b) => /A620M|B650/.test(b)), "Only AM5 boards");
+        // Configuração pronta vai para a revisão e entra na mensagem do WhatsApp.
+        await page.getByRole("button", { name: /Intermediário/ }).click();
+        const text = decodeURIComponent(
+          (await page.locator(".builder-summary a.button").getAttribute("href")).split("text=")[1],
+        );
+        assert.ok(text.includes("Placa-mãe B650M") && text.includes("Total estimado"), text);
+        assert.equal(await page.locator(".floating-whatsapp").count(), 0);
+        await page.evaluate(() => localStorage.clear());
       }
       results.push({ route, width: viewport.width, ...report });
       if (
