@@ -806,9 +806,9 @@ h2.section-label.is-framed {
 }
 /* Teste de tipografia só no título da faixa gamer da home */
 .gamer-copy h2.gamer-title {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
 }
 .gamer-copy > p:not(.small-note) {
   max-width: 440px;
