@@ -242,8 +242,8 @@ const PRESET = {
   grain: 0.03,
   seed: 9994.0,
   rotate: 0.65,
-  drift: 0.2,
-  timeScale: 0.82,
+  drift: 0.08, // original 0.2; menor = deslocamento geral mais discreto
+  timeScale: 0.4, // original 0.82; menor = movimento mais lento
   cursorEffect: 3.0, // ondulação
   cursorStrength: 0.45,
   cursorRadius: 0.46,
