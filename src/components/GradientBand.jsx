@@ -129,12 +129,12 @@ vec3 shade(vec2 uv, vec2 p, float t) {
     ) * (0.22 + u_intensity * 0.14);
     float filaments = abs(sin(q.x + q.y + fi * 0.72));
     // Denominador menor = filamentos mais finos (original: 0.08).
-    field += weight / (0.006 + filaments);
+    field += weight / (0.0025 + filaments);
     weight *= 0.62;
     q = q.yx * vec2(-1.08, 1.04);
   }
   // Ganho reduzido para compensar o pico mais alto dos filamentos finos.
-  float glow = 1.0 - exp(-field * (0.018 + u_paramA * 0.04) * 0.26);
+  float glow = 1.0 - exp(-field * (0.018 + u_paramA * 0.04) * 0.21);
   vec3 col = palette(clamp(glow, 0.0, 1.0));
   // Névoa roxa lenta ao fundo, como nuvens iluminadas.
   float haze = fbm(p * 0.8 + vec2(t * 0.04, -t * 0.03));
