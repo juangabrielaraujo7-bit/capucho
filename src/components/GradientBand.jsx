@@ -128,12 +128,20 @@ vec3 shade(vec2 uv, vec2 p, float t) {
       cos(q.x * (1.5 + fi * 0.11) - t * (0.28 + fi * 0.03))
     ) * (0.22 + u_intensity * 0.14);
     float filaments = abs(sin(q.x + q.y + fi * 0.72));
-    field += weight / (0.08 + filaments);
+    // Denominador menor = filamentos mais finos (original: 0.08).
+    field += weight / (0.012 + filaments);
     weight *= 0.62;
     q = q.yx * vec2(-1.08, 1.04);
   }
-  float glow = 1.0 - exp(-field * (0.018 + u_paramA * 0.04));
-  return palette(clamp(glow, 0.0, 1.0));
+  // Ganho reduzido para compensar o pico mais alto dos filamentos finos.
+  float glow = 1.0 - exp(-field * (0.018 + u_paramA * 0.04) * 0.32);
+  vec3 col = palette(clamp(glow, 0.0, 1.0));
+  // Névoa roxa lenta ao fundo, como nuvens iluminadas.
+  float haze = fbm(p * 0.8 + vec2(t * 0.04, -t * 0.03));
+  col += mix(u_colors[1], u_colors[2], 0.35) * smoothstep(0.25, 0.8, haze) * 0.85;
+  // Brilho roxo-magenta vindo da base, como o horizonte das referências synthwave.
+  col += u_colors[2] * pow(1.0 - clamp(uv.y, 0.0, 1.0), 2.2) * 0.45;
+  return col;
 }
 
 void main() {
@@ -227,7 +235,7 @@ const PRESET = {
   detail: 2.75,
   contrast: 1.0,
   brightness: -0.03,
-  saturation: 1.48,
+  saturation: 1.2,
   hue: 0,
   vignette: 0,
   blur: 0.001,
@@ -247,8 +255,8 @@ const hexToRgb = (hex) => {
 };
 
 export default function GradientBand({
-  // Roxo neon das referências, do fundo escuro ao brilho dos filamentos.
-  colors = ["#06021a", "#4b1fa8", "#b44cff", "#f3ddff"],
+  // Roxo-magenta das referências: fundo roxo profundo, névoa roxa, filamentos neon.
+  colors = ["#1c0833", "#6a22a8", "#c64cff", "#ffe3ff"],
   className = "",
   children,
 }) {

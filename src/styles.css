@@ -732,7 +732,7 @@ h2.section-label.is-framed {
   position: relative;
   overflow: hidden;
   /* Aparece enquanto o WebGL não desenha, ou quando ele não existe */
-  background: radial-gradient(90% 120% at 60% 50%, #4b1fa8 0%, #1d0a4a 45%, #06021a 100%);
+  background: radial-gradient(90% 120% at 60% 50%, #7b2bb8 0%, #34104f 45%, #12041f 100%);
 }
 .gradient-band-canvas {
   position: absolute;
@@ -750,7 +750,7 @@ h2.section-label.is-framed {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(6, 2, 26, 0.5) 0%, rgba(6, 2, 26, 0.25) 40%, transparent 65%);
+  background: linear-gradient(90deg, rgba(18, 4, 31, 0.5) 0%, rgba(18, 4, 31, 0.25) 40%, transparent 65%);
   pointer-events: none;
 }
 .gamer-section {
@@ -773,7 +773,7 @@ h2.section-label.is-framed {
   pointer-events: none;
 }
 .gamer-copy > svg {
-  color: #d9a8ff;
+  color: #e59cff;
   margin-bottom: 16px;
 }
 .gamer-copy h2 {
@@ -1532,7 +1532,7 @@ blockquote {
     font-size: 1.75rem;
   }
   .gamer-band .gradient-band::after {
-    background: linear-gradient(180deg, rgba(6, 2, 26, 0.5) 0%, rgba(6, 2, 26, 0.25) 45%, transparent 65%);
+    background: linear-gradient(180deg, rgba(18, 4, 31, 0.5) 0%, rgba(18, 4, 31, 0.25) 45%, transparent 65%);
   }
   .review {
     padding: 26px;
