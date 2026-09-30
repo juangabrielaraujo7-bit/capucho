@@ -16,9 +16,11 @@ import {
   MagnifyingGlass,
   Memory,
   Package,
+  PencilSimple,
   Screwdriver,
   Trash,
   WhatsappLogo,
+  X,
 } from "@phosphor-icons/react";
 import { asset, wa } from "../config";
 import {
@@ -200,6 +202,19 @@ export default function PcBuilder() {
   function choose(step, id) {
     setPick((prev) => sanitize({ ...prev, [step]: id }, step));
     go(Math.min(current + 1, REVIEW));
+  }
+
+  function remove(step) {
+    setPick((prev) => {
+      const { [step]: _, ...rest } = prev;
+      return rest;
+    });
+  }
+
+  function clearAll() {
+    if (!window.confirm("Limpar todas as peças escolhidas e começar de novo?")) return;
+    setPick({});
+    go(0);
   }
 
   function loadPreset(preset) {
@@ -387,9 +402,20 @@ export default function PcBuilder() {
                       <span className="builder-review-price">
                         {part ? brl(part.price) : ""}
                       </span>
-                      <button type="button" className="text-link" onClick={() => go(i)}>
-                        {pick[s.id] ? "Trocar" : "Escolher"}
-                      </button>
+                      <span className="builder-review-actions">
+                        <button type="button" className="text-link" onClick={() => go(i)}>
+                          {pick[s.id] ? "Trocar" : "Escolher"}
+                        </button>
+                        {pick[s.id] && (
+                          <button
+                            type="button"
+                            className="text-link is-remove"
+                            onClick={() => remove(s.id)}
+                          >
+                            Remover
+                          </button>
+                        )}
+                      </span>
                     </li>
                   );
                 })}
@@ -420,15 +446,42 @@ export default function PcBuilder() {
           >
             <span style={{ width: `${progress}%` }} />
           </div>
+          {done > 0 && (
+            <button type="button" className="builder-clear" onClick={clearAll}>
+              <Trash size={16} />
+              Limpar montagem
+            </button>
+          )}
           <ul>
             {steps.map((s, i) => (
-              <li key={s.id}>
-                <button type="button" onClick={() => go(i)}>
+              <li key={s.id} className={pick[s.id] ? "is-picked" : ""}>
+                <button type="button" className="builder-summary-item" onClick={() => go(i)}>
                   <span>{s.short}</span>
                   <strong className={pick[s.id] ? "" : "is-missing"}>
                     {describe(s.id, pick[s.id]) ?? "Escolher"}
                   </strong>
                 </button>
+                {pick[s.id] && (
+                  <span className="builder-item-actions">
+                    <button
+                      type="button"
+                      aria-label={`Trocar ${s.label.toLowerCase()}`}
+                      title="Trocar"
+                      onClick={() => go(i)}
+                    >
+                      <PencilSimple size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      className="is-remove"
+                      aria-label={`Remover ${s.label.toLowerCase()}`}
+                      title="Remover"
+                      onClick={() => remove(s.id)}
+                    >
+                      <X size={16} />
+                    </button>
+                  </span>
+                )}
               </li>
             ))}
           </ul>
@@ -444,12 +497,6 @@ export default function PcBuilder() {
             Valores estimados, sujeitos à confirmação de preço e disponibilidade. Montagem cobrada à
             parte.
           </p>
-          {done > 0 && (
-            <button type="button" className="builder-clear" onClick={() => { setPick({}); go(0); }}>
-              <Trash size={16} />
-              Limpar montagem
-            </button>
-          )}
         </aside>
       </div>
 

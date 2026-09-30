@@ -2569,7 +2569,9 @@ blockquote {
 .builder-summary li + li {
   border-top: 1px solid var(--line);
 }
-.builder-summary li button {
+.builder-summary li .builder-summary-item {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -2588,7 +2590,7 @@ blockquote {
   font-size: 0.875rem;
   font-weight: 650;
 }
-.builder-summary li button:hover strong {
+.builder-summary li .builder-summary-item:hover strong {
   color: var(--gamer);
 }
 .builder .is-missing {
@@ -2612,19 +2614,62 @@ blockquote {
 .builder-summary .small-note {
   margin: 12px 0 0;
 }
+/* Limpar montagem: logo abaixo do progresso, bem visível */
 .builder-clear {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 10px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--muted);
-  font-size: 0.8125rem;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 6px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 122, 154, 0.35);
+  border-radius: 8px;
+  background: rgba(255, 122, 154, 0.06);
+  color: #ff9fb6;
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 .builder-clear:hover {
+  border-color: #ff7a9a;
+  background: rgba(255, 122, 154, 0.14);
+  color: #fff;
+}
+/* Cada peça escolhida no resumo tem botões de trocar e remover */
+.builder-summary li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.builder-item-actions {
+  display: flex;
+  gap: 4px;
+}
+.builder-item-actions button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+}
+.builder-item-actions button:hover {
+  border-color: var(--gamer);
+  color: #fff;
+}
+.builder-item-actions button.is-remove:hover {
+  border-color: #ff7a9a;
   color: #ff7a9a;
+}
+.builder-review-actions {
+  display: flex;
+  gap: 14px;
+}
+.builder-review .text-link.is-remove {
+  color: #ff9fb6;
 }
 .builder-review ul {
   margin: 20px 0 24px;
