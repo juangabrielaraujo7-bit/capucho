@@ -35,8 +35,8 @@ export default function Home() {
               <br /> <span className="hero-title-mark">acompanhar você</span>
             </h1>
             <p className="hero-description">
-              Do conserto ao upgrade, a Capucho cuida do seu computador com
-              explicação clara e sem complicação.
+              Do conserto ao upgrade, a Capucho cuida do seu computador com explicação clara e sem
+              complicação.
             </p>
             <div className="hero-actions">
               <WhatsAppButton />
@@ -95,12 +95,7 @@ export default function Home() {
         <TestimonialsColumns reviews={reviews}>
           <div className="google-proof">
             <div className="google-badge-wrap">
-              <a
-                className="google-badge"
-                href={maps}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="google-badge" href={maps} target="_blank" rel="noreferrer">
                 <img
                   src={asset("google-reviews.webp")}
                   alt="Avaliações no Google"
@@ -109,26 +104,12 @@ export default function Home() {
                   loading="lazy"
                 />
               </a>
-              <svg
-                className="google-arrow"
-                viewBox="0 0 170 120"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <path d="M6 70 C 30 118, 78 112, 88 78 C 96 50, 66 40, 60 62 C 54 86, 100 104, 158 50" />
-                <path d="M136 50 L 160 48 L 154 72" />
-              </svg>
             </div>
             <div className="rating">
               <strong>5,0</strong>
               <span>368 avaliações no Google</span>
             </div>
-            <a
-              className="text-link"
-              href={maps}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="text-link" href={maps} target="_blank" rel="noreferrer">
               Ver todas no Google
               <ArrowUpRight size={20} />
             </a>
@@ -148,13 +129,12 @@ export default function Home() {
           </div>
           <div className="about-copy">
             <p>
-              Tem computador que guarda trabalho. Tem notebook que acompanha os
-              estudos. E tem aquele PC que é o seu momento de descanso.
+              Tem computador que guarda trabalho. Tem notebook que acompanha os estudos. E tem
+              aquele PC que é o seu momento de descanso.
             </p>
             <p>
-              Aqui, o atendimento começa entendendo a sua rotina. A gente
-              avalia, explica o que pode ser feito e conversa sobre o orçamento
-              antes de colocar a mão na massa.
+              Aqui, o atendimento começa entendendo a sua rotina. A gente avalia, explica o que pode
+              ser feito e conversa sobre o orçamento antes de colocar a mão na massa.
             </p>
             <div className="about-values">
               <div>
@@ -182,81 +162,80 @@ export default function Home() {
           </h2>
         </div>
         <div className="contact-layout">
-          <figure className="storefront">
-            <img
-              src={asset("fachada.webp")}
-              alt="Fachada da Capucho Informática, com a entrada da loja"
-              width="1297"
-              height="1212"
-              loading="lazy"
-            />
-          </figure>
-          <div className="contact-info">
+          <div className="contact-info contact-card">
             <h3>Vem falar com a Capucho.</h3>
-            <div className="contact-row">
-              <MapPin />
-              <div>
-                <strong>Nosso endereço</strong>
-                <p>
-                  Rua Antônio de Couros, 461
-                  <br />
-                  Vila Palmeiras, São Paulo - SP
-                  <br />
-                  CEP 02726-000
-                </p>
-                <a
-                  className="text-link"
-                  href={maps}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Como chegar
-                  <ArrowUpRight />
-                </a>
+            <div className="contact-rows">
+              <div className="contact-row">
+                <MapPin />
+                <div>
+                  <strong>Nosso endereço</strong>
+                  <p>
+                    Rua Antônio de Couros, 461
+                    <br />
+                    Vila Palmeiras, São Paulo - SP
+                    <br />
+                    CEP 02726-000
+                  </p>
+                  <a className="text-link" href={maps} target="_blank" rel="noreferrer">
+                    Como chegar
+                    <ArrowUpRight />
+                  </a>
+                </div>
+              </div>
+              <div className="contact-row">
+                <Clock />
+                <div>
+                  <strong>Horários de atendimento</strong>
+                  <dl className="hours">
+                    <div>
+                      <dt>Segunda e sábado</dt>
+                      <dd>09h às 20h</dd>
+                    </div>
+                    <div>
+                      <dt>Terça a sexta</dt>
+                      <dd>09h às 22h</dd>
+                    </div>
+                    <div>
+                      <dt>Domingo</dt>
+                      <dd>Fechado</dd>
+                    </div>
+                  </dl>
+                  <p className="small-note">Confirme o horário pelo WhatsApp antes de vir.</p>
+                </div>
               </div>
             </div>
-            <div className="contact-row">
-              <Clock />
-              <div>
-                <strong>Horários de atendimento</strong>
-                <dl className="hours">
-                  <div>
-                    <dt>Segunda e sábado</dt>
-                    <dd>09h às 20h</dd>
-                  </div>
-                  <div>
-                    <dt>Terça a sexta</dt>
-                    <dd>09h às 22h</dd>
-                  </div>
-                  <div>
-                    <dt>Domingo</dt>
-                    <dd>Fechado</dd>
-                  </div>
-                </dl>
-                <p className="small-note">
-                  Confirme o horário pelo WhatsApp antes de vir.
-                </p>
-              </div>
+            <div className="contact-actions">
+              <WhatsAppButton />
+              <a className="phone-link" href={`tel:${business.phoneE164}`}>
+                (11) 94700-9632
+              </a>
             </div>
-            <WhatsAppButton />
-            <a className="phone-link" href={`tel:${business.phoneE164}`}>
-              (11) 94700-9632
-            </a>
+          </div>
+          <div className="contact-media">
+            <figure className="storefront">
+              <img
+                src={asset("fachada.webp")}
+                alt="Fachada da Capucho Informática, com a entrada da loja"
+                width="1297"
+                height="1212"
+                loading="lazy"
+              />
+            </figure>
+            <iframe
+              className="map"
+              title="Localização da Capucho Informática no Google Maps"
+              src={mapEmbed}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <p className="map-fallback">
+              Não carregou o mapa?{" "}
+              <a href={maps} target="_blank" rel="noreferrer">
+                Veja a rota no Google Maps.
+              </a>
+            </p>
           </div>
         </div>
-        <iframe
-          className="map"
-          title="Localização da Capucho Informática no Google Maps"
-          src={mapEmbed}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-        <p className="map-fallback">
-          Não carregou o mapa?{" "}
-          <a href={maps} target="_blank" rel="noreferrer">
-            Veja a rota no Google Maps.
-          </a>
-        </p>
       </section>
       <section className="section section-tint">
         <div className="container faq-layout">

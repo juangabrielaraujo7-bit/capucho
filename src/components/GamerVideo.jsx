@@ -26,7 +26,7 @@ export default function GamerVideo() {
         observer.disconnect();
         video.play().catch(() => {});
       },
-      { threshold: 0.5 },
+      { threshold: 0.25 },
     );
     observer.observe(video);
     return () => observer.disconnect();
