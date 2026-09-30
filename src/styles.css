@@ -820,21 +820,94 @@ h2.section-label.is-framed {
    reflexo fino de vidro e brilho neon em volta */
 .gamer-title-glass {
   display: inline-block;
-  background: linear-gradient(
-    180deg,
-    #fbe0ff 0%,
-    #eea2ff 40%,
-    #fff1ff 45%,
-    #e37dff 48%,
-    #b536ff 52%,
-    #9f22ff 78%,
-    #df9cff 100%
-  );
+  /* Camada de cima: o líquido lilás com a superfície ondulada (a onda se repete a cada 200 px).
+     Camada de baixo: o vidro lilás-claro acima do líquido. */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 36 Q25 24 50 36 T100 36 T150 36 T200 36 V100 H0Z' fill='%23d46cff'/%3E%3Cpath d='M0 36 Q25 24 50 36 T100 36 T150 36 T200 36' fill='none' stroke='%23ffe6ff' stroke-width='3'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #f6d8ff 0%, #e8adff 100%);
+  background-size: 200px 100%, 100% 100%;
+  background-repeat: repeat-x, no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 3px rgba(226, 125, 255, 0.9))
-    drop-shadow(0 0 16px rgba(180, 60, 255, 0.7));
+  filter: drop-shadow(0 0 4px rgba(229, 140, 255, 0.95))
+    drop-shadow(0 0 18px rgba(214, 110, 255, 0.65))
+    drop-shadow(0 0 36px rgba(190, 80, 255, 0.35));
+  animation: liquid-wave 3.5s linear infinite;
+}
+@keyframes liquid-wave {
+  to {
+    background-position: 200px 0, 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gamer-title-glass {
+    animation: none;
+  }
+}
+/* Botão de vidro líquido da faixa gamer (LiquidButton.jsx), versão escura do original */
+.liquid-button {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 40px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform 0.3s;
+}
+.liquid-button:hover {
+  transform: scale(1.05);
+}
+.liquid-button:focus-visible {
+  outline: 3px solid #e59cff;
+  outline-offset: 4px;
+}
+.liquid-button-glass {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: url("#liquid-glass");
+}
+.liquid-button-rim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 3px 3px 0.5px -3.5px rgba(255, 255, 255, 0.09),
+    inset -3px -3px 0.5px -3.5px rgba(255, 255, 255, 0.85),
+    inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.6),
+    inset -1px -1px 1px -0.5px rgba(255, 255, 255, 0.6),
+    inset 0 0 6px 6px rgba(255, 255, 255, 0.12),
+    inset 0 0 2px 2px rgba(255, 255, 255, 0.06),
+    0 0 12px rgba(0, 0, 0, 0.15);
+}
+.liquid-button-label {
+  position: relative;
+  pointer-events: none;
+}
+.liquid-button-filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .liquid-button,
+  .liquid-button:hover {
+    transition: none;
+    transform: none;
+  }
 }
 /* Demais títulos da área gamer na mesma fonte, sem caixa alta */
 .gamer-service h3,

@@ -49,11 +49,12 @@ try {
         ),
         motion: [...document.querySelectorAll("*")].some(
           // <source> recebe uma animação interna do Chrome, sem efeito visual.
-          // Depoimentos, equipamentos e a varredura do botão gamer têm animações intencionais.
+          // Depoimentos, equipamentos, a varredura do botão glitch e o líquido do título gamer são intencionais.
           (e) =>
             e.tagName !== "SOURCE" &&
             !e.classList.contains("testimonials-track") &&
             !e.classList.contains("glitch-slice") &&
+            !e.classList.contains("gamer-title-glass") &&
             !e.matches(".service-image img, .service-hero-media img") &&
             getComputedStyle(e).animationName !== "none",
         ),

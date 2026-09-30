@@ -11,7 +11,7 @@ import {
 } from "@phosphor-icons/react";
 import { Link } from "react-router";
 import GamerVideo from "../components/GamerVideo";
-import GlitchButton from "../components/GlitchButton";
+import LiquidButton from "../components/LiquidButton";
 import GradientBand from "../components/GradientBand";
 import HeroBackground from "../components/HeroBackground";
 import HeroVideo from "../components/HeroVideo";
@@ -78,9 +78,7 @@ export default function Home() {
                 <br /> começa aqui
               </h2>
               <p className="gamer-subtitle">PC gamer montado do seu jeito</p>
-              <GlitchButton to="/gamer">
-                Acessar Área Gamer
-              </GlitchButton>
+              <LiquidButton to="/gamer">Acessar Área Gamer</LiquidButton>
             </div>
           </div>
           <GamerVideo />
