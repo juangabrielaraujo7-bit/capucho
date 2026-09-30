@@ -73,7 +73,10 @@ export default function Home() {
           <div className="container gamer-section">
             <div className="gamer-copy">
               <GameController size={34} />
-              <h2 className="gamer-title">Seu setup gamer começa aqui</h2>
+              <h2 className="gamer-title">
+                Seu setup gamer
+                <br /> começa aqui
+              </h2>
               <p>PC gamer montado do seu jeito</p>
               <GlitchButton to="/gamer">
                 Acessar Área Gamer
