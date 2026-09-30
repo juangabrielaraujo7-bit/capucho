@@ -74,7 +74,7 @@ export default function Home() {
             <div className="gamer-copy">
               <GameController size={34} />
               <h2 className="gamer-title">
-                Seu setup gamer
+                Seu <span className="gamer-title-glass">setup gamer</span>
                 <br /> começa aqui
               </h2>
               <p>PC gamer montado do seu jeito</p>
