@@ -309,6 +309,16 @@ h2.section-label.is-framed {
 .hero h1 span {
   color: var(--blue);
 }
+/* "acompanhar você" com fundo de destaque em degradê azul, como um trecho selecionado */
+.hero h1 .hero-title-mark {
+  padding: 0 0.12em;
+  margin: 0 -0.02em;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #2045ed 0%, #4a7dff 100%);
+  color: #fff;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
 .hero-description {
   font-size: 1.0625rem;
   margin: 25px 0 28px;
