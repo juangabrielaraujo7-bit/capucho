@@ -826,6 +826,15 @@ h2.section-label.is-framed {
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
+/* Faixa gamer da home: contorno externo fino em lilás no subtítulo e no botão */
+#gamer .gamer-copy > p {
+  text-shadow:
+    1px 0 0 rgba(192, 132, 252, 0.85), -1px 0 0 rgba(192, 132, 252, 0.85),
+    0 1px 0 rgba(192, 132, 252, 0.85), 0 -1px 0 rgba(192, 132, 252, 0.85);
+}
+#gamer .liquid-button {
+  box-shadow: 0 0 0 1px rgba(192, 132, 252, 0.85);
+}
 /* Botão de vidro líquido da faixa gamer (LiquidButton.jsx), versão escura do original */
 .liquid-button {
   position: relative;
