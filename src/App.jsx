@@ -25,34 +25,38 @@ export default function App() {
   // No montador, a barra fixa de baixo já tem o envio pelo WhatsApp.
   const { pathname } = useLocation();
   const builder = pathname.startsWith("/gamer/monte-seu-pc");
+  // Área gamer (/gamer e subpáginas) usa o tema escuro roxo, separado das cores do site principal.
+  const gamer = /^\/gamer(\/|$)/.test(pathname);
   return (
     <IconContext.Provider value={{ size: 24, weight: "regular" }}>
-      <RouteEffects />
-      <a className="skip-link" href="#conteudo">
-        Pular para o conteúdo
-      </a>
-      <Header />
-      <main id="conteudo">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/servicos/:slug" element={<ServiceRoute />} />
-          <Route path="/gamer" element={<GamerPage />} />
-          <Route path="/gamer/monte-seu-pc" element={<PcBuilder />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
-      {!builder && (
-        <a
-          className="floating-whatsapp"
-          href={wa()}
-          aria-label="Falar com a Capucho pelo WhatsApp"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <WhatsappLogo size={30} />
+      <div className={gamer ? "site theme-gamer" : "site"}>
+        <RouteEffects />
+        <a className="skip-link" href="#conteudo">
+          Pular para o conteúdo
         </a>
-      )}
+        <Header />
+        <main id="conteudo">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/servicos/:slug" element={<ServiceRoute />} />
+            <Route path="/gamer" element={<GamerPage />} />
+            <Route path="/gamer/monte-seu-pc" element={<PcBuilder />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+        {!builder && (
+          <a
+            className="floating-whatsapp"
+            href={wa()}
+            aria-label="Falar com a Capucho pelo WhatsApp"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <WhatsappLogo size={30} />
+          </a>
+        )}
+      </div>
     </IconContext.Provider>
   );
 }

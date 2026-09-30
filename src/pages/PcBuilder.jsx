@@ -223,7 +223,9 @@ export default function PcBuilder() {
       </Link>
       <div className="builder-head">
         <p className="eyebrow">Área Gamer</p>
-        <h1>Monte seu PC</h1>
+        <h1>
+          Monte seu <span className="gamer-accent">PC</span>
+        </h1>
         <p>
           Escolha as peças etapa por etapa: o montador só libera o que é compatível com o que você já
           escolheu. No fim, envie a lista pelo WhatsApp e a Capucho confirma preços, disponibilidade e

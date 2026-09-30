@@ -74,7 +74,9 @@ export default function GamerPage() {
           <div className="container gamer-section">
             <div className="gamer-copy">
               <GameController size={34} />
-              <h1>Área Gamer</h1>
+              <h1>
+                Área <span className="gamer-accent">Gamer</span>
+              </h1>
               <p>PC gamer montado, upgrade e manutenção feitos pela Capucho.</p>
               <GlitchButton to="/gamer/monte-seu-pc">Monte seu PC</GlitchButton>
             </div>
@@ -120,7 +122,9 @@ export default function GamerPage() {
       <section className="gamer-band gamer-cta">
         <GradientBand>
           <div className="container gamer-cta-inner">
-            <h2>Monte o PC do seu jeito</h2>
+            <h2>
+              Monte o PC <span className="gamer-accent">do seu jeito</span>
+            </h2>
             <p>
               Escolha peça por peça, veja o total estimado e mande a lista para a Capucho pelo
               WhatsApp.

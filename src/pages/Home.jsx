@@ -77,7 +77,7 @@ export default function Home() {
                 Seu <span className="gamer-title-glass">setup gamer</span>
                 <br /> começa aqui
               </h2>
-              <p>PC gamer montado do seu jeito</p>
+              <p className="gamer-subtitle">PC gamer montado do seu jeito</p>
               <GlitchButton to="/gamer">
                 Acessar Área Gamer
               </GlitchButton>
