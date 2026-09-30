@@ -57,7 +57,8 @@ Páginas `/gamer` (galeria de PCs montados, serviços para gamers e chamada para
 Pendente com o cliente:
 - **Peças e preços do montador:** o catálogo atual é uma base inicial com valores **estimados** de mercado, só para o montador funcionar. Trocar pelos itens e preços reais da Capucho e marcar `stock: true` nas peças em estoque (o restante aparece como "Sob encomenda").
 - Valor da montagem (hoje: "confirmado junto com o orçamento").
-- Fotos e vídeos dos PCs gamer montados para a galeria (`gamerBuilds` em `src/gamer.js`); até lá a seção mostra "Em breve".
+- Galeria de PCs montados: três vídeos da Capucho no carrossel (`gamerBuilds` em `src/gamer.js`); novos vídeos entram na mesma lista.
+- A arte da hero da área gamer imita o estilo e os personagens de um jogo comercial. Confirmar se a Capucho quer assumir esse uso ou trocar por uma arte própria.
 - O vídeo do setup gamer é uma animação ilustrativa, não um PC montado pela loja.
 
 ## Confirmar antes de publicar

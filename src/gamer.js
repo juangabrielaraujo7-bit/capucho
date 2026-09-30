@@ -4,10 +4,13 @@
 // ESTIMADOS de mercado, só para o montador funcionar. Trocar pelos itens e preços reais da Capucho.
 // "stock: true" mostra o selo "Em estoque"; sem ele, a peça aparece como "Sob encomenda".
 
-// PCs montados pela Capucho (fotos em public/assets, vídeos .mp4 com capa .webp de mesmo nome).
-// Ex.: { type: "image", file: "pc-gamer-01.webp", title: "PC gamer RGB", specs: ["Ryzen 5 5600", "RTX 5060"] }
-//      { type: "video", file: "pc-gamer-02", title: "Montagem completa", specs: [...] }
-export const gamerBuilds = [];
+// PCs montados pela Capucho: vídeos verticais em public/assets (.mp4, 540x960, sem áudio) com capa
+// .webp de mesmo nome. Para incluir outro, adicione { file, title } aqui.
+export const gamerBuilds = [
+  { file: "pc-capucho-1", title: "PC gamer com gabinete branco e RGB montado pela Capucho" },
+  { file: "pc-capucho-2", title: "Setup gamer completo montado pela Capucho" },
+  { file: "pc-capucho-3", title: "PC gamer com GeForce RTX e water cooler montado pela Capucho" },
+];
 
 export const steps = [
   { id: "cpu", label: "Processador", short: "Processador" },

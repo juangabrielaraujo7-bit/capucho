@@ -7,9 +7,10 @@ import {
   Screwdriver,
   WindowsLogo,
 } from "@phosphor-icons/react";
-import GamerVideo from "../components/GamerVideo";
+import BuildCarousel from "../components/BuildCarousel";
 import GlitchButton from "../components/GlitchButton";
 import GradientBand from "../components/GradientBand";
+import LiquidButton from "../components/LiquidButton";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset } from "../config";
 import { gamerBuilds } from "../gamer";
@@ -42,30 +43,6 @@ const gamerServices = [
   },
 ];
 
-function BuildItem({ item }) {
-  return (
-    <figure className="build-item">
-      {item.type === "video" ? (
-        <video
-          src={asset(`${item.file}.mp4`)}
-          poster={asset(`${item.file}.webp`)}
-          controls
-          muted
-          playsInline
-          preload="none"
-          aria-label={item.title}
-        />
-      ) : (
-        <img src={asset(item.file)} alt={item.title} loading="lazy" />
-      )}
-      <figcaption>
-        <strong>{item.title}</strong>
-        {item.specs?.length > 0 && <span>{item.specs.join(" · ")}</span>}
-      </figcaption>
-    </figure>
-  );
-}
-
 export default function GamerPage() {
   return (
     <>
@@ -75,48 +52,43 @@ export default function GamerPage() {
             <div className="gamer-copy">
               <GameController size={34} />
               <h1>
-                Área <span className="gamer-accent">Gamer</span>
+                Capucho <span className="gamer-accent">Gamer</span>
               </h1>
-              <p>PC gamer montado, upgrade e manutenção feitos pela Capucho.</p>
-              <GlitchButton to="/gamer/monte-seu-pc">Monte seu PC</GlitchButton>
+              <p className="gamer-hero-sub">
+                Sua área gamer para upgrade, manutenção, e montagem do seu jeito
+              </p>
+              <LiquidButton to="/gamer/monte-seu-pc">Monte seu PC</LiquidButton>
             </div>
           </div>
-          <GamerVideo />
+          {/* Arte na extrema direita, com a base encostada na linha de baixo da seção */}
+          <img
+            className="gamer-hero-art"
+            src={asset("gamer-hero-personagens.webp")}
+            srcSet={`${asset("gamer-hero-personagens-520.webp")} 569w, ${asset("gamer-hero-personagens.webp")} 985w`}
+            sizes="(max-width: 767px) 90vw, 569px"
+            alt=""
+            width="985"
+            height="900"
+            fetchPriority="high"
+          />
         </GradientBand>
       </section>
 
-      <section className="section container">
-        <h2 className="eyebrow section-label">PCs montados pela Capucho</h2>
+      <section className="section builds-section">
+        <div className="builds-glow" aria-hidden="true" />
+        <div className="container builds-head">
+          <h2>
+            PCs montados pela <span className="gamer-accent">Capucho</span>
+          </h2>
+          <p>Alguns dos PCs gamer que saíram da nossa bancada.</p>
+        </div>
         {gamerBuilds.length > 0 ? (
-          <div className="build-grid">
-            {gamerBuilds.map((item) => (
-              <BuildItem key={item.file} item={item} />
-            ))}
-          </div>
+          <BuildCarousel items={gamerBuilds} />
         ) : (
-          <div className="build-empty">
+          <div className="container build-empty">
             <p>Em breve, fotos e vídeos dos PCs gamer montados aqui na loja.</p>
           </div>
         )}
-      </section>
-
-      <section className="section section-tint">
-        <div className="container">
-          <h2 className="eyebrow section-label">O que fazemos no seu PC gamer</h2>
-          <div className="gamer-services">
-            {gamerServices.map(({ icon: Icon, title, text, link }) => (
-              <Link key={title} className="gamer-service" to={link}>
-                <Icon size={34} weight="duotone" />
-                <h3>{title}</h3>
-                <p>{text}</p>
-                <span className="text-link">
-                  Saiba mais
-                  <ArrowUpRight size={18} />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
       </section>
 
       <section className="gamer-band gamer-cta">
@@ -140,6 +112,25 @@ export default function GamerPage() {
             </div>
           </div>
         </GradientBand>
+      </section>
+
+      <section className="section section-tint">
+        <div className="container">
+          <h2 className="eyebrow section-label">O que fazemos no seu PC gamer</h2>
+          <div className="gamer-services">
+            {gamerServices.map(({ icon: Icon, title, text, link }) => (
+              <Link key={title} className="gamer-service" to={link}>
+                <Icon size={34} weight="duotone" />
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <span className="text-link">
+                  Saiba mais
+                  <ArrowUpRight size={18} />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
     </>
   );
