@@ -826,6 +826,16 @@ h2.section-label.is-framed {
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
+/* Tubos de luz que seguem o cursor (TubesCursor.jsx): cobrem a faixa, atrás do texto */
+.tubes-cursor {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* O fundo do canvas é preto: no modo screen o preto some e só a luz dos tubos aparece */
+  mix-blend-mode: screen;
+}
 /* Botão de vidro líquido da faixa gamer (LiquidButton.jsx), versão escura do original */
 .liquid-button {
   position: relative;

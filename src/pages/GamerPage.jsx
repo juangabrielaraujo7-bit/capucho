@@ -10,6 +10,7 @@ import {
 import BuildCarousel from "../components/BuildCarousel";
 import GlitchButton from "../components/GlitchButton";
 import GradientBand from "../components/GradientBand";
+import TubesCursor from "../components/TubesCursor";
 import LiquidButton from "../components/LiquidButton";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset } from "../config";
@@ -48,6 +49,7 @@ export default function GamerPage() {
     <>
       <section className="gamer-band gamer-hero">
         <GradientBand>
+          <TubesCursor />
           <div className="container gamer-section">
             <div className="gamer-copy">
               <GameController size={34} />

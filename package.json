@@ -15,7 +15,8 @@
     "@phosphor-icons/react": "^2.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router": "^7.18.4"
+    "react-router": "^7.18.4",
+    "threejs-components": "^0.0.19"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",

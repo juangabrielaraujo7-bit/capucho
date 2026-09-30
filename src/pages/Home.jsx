@@ -13,6 +13,7 @@ import { Link } from "react-router";
 import GamerVideo from "../components/GamerVideo";
 import LiquidButton from "../components/LiquidButton";
 import GradientBand from "../components/GradientBand";
+import TubesCursor from "../components/TubesCursor";
 import HeroBackground from "../components/HeroBackground";
 import HeroVideo from "../components/HeroVideo";
 import ServicesCarousel from "../components/ServicesCarousel";
@@ -72,6 +73,7 @@ export default function Home() {
       </section>
       <section id="gamer" className="gamer-band">
         <GradientBand>
+          <TubesCursor />
           <div className="container gamer-section">
             <div className="gamer-copy">
               <GameController size={34} />
