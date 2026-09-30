@@ -2,6 +2,7 @@ import { Route, Routes, useLocation, useParams } from "react-router";
 import { IconContext, WhatsappLogo } from "@phosphor-icons/react";
 import "@fontsource-variable/sora";
 import "@fontsource-variable/dm-sans";
+import "@fontsource-variable/montserrat";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import RouteEffects from "./components/RouteEffects";

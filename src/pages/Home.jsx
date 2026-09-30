@@ -10,8 +10,6 @@ import {
   ShieldCheck,
 } from "@phosphor-icons/react";
 import { Link } from "react-router";
-// Fonte em teste só no título da faixa gamer da home.
-import "@fontsource/michroma/400.css";
 import GamerVideo from "../components/GamerVideo";
 import GlitchButton from "../components/GlitchButton";
 import GradientBand from "../components/GradientBand";

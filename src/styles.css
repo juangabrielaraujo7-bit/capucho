@@ -804,11 +804,24 @@ h2.section-label.is-framed {
   font-size: clamp(1.8rem, 2.4vw, 2.3rem);
   margin-bottom: 16px;
 }
-/* Teste de tipografia só no título da faixa gamer da home */
-.gamer-copy h2.gamer-title {
-  font-family: "Michroma", sans-serif;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+/* Títulos da área gamer: Montserrat ExtraBold em caixa alta, na linha da referência
+   (estilo Gilroy, que é paga). Vale para a faixa da home, /gamer e o Monte seu PC. */
+.gamer-copy h2.gamer-title,
+.gamer-copy h1,
+.gamer-cta-inner h2,
+.builder-head h1 {
+  font-family: "Montserrat Variable", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.08;
+}
+/* Demais títulos da área gamer na mesma fonte, sem caixa alta */
+.gamer-service h3,
+.builder h2:not(.eyebrow) {
+  font-family: "Montserrat Variable", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 .gamer-copy > p:not(.small-note) {
   max-width: 440px;
