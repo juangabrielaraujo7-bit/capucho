@@ -10,6 +10,9 @@ export const gamerBuilds = [
   { file: "pc-capucho-1", title: "PC gamer com gabinete branco e RGB montado pela Capucho" },
   { file: "pc-capucho-2", title: "Setup gamer completo montado pela Capucho" },
   { file: "pc-capucho-3", title: "PC gamer com GeForce RTX e water cooler montado pela Capucho" },
+  { file: "pc-capucho-4", title: "PC gamer com GeForce RTX 5070 e fans ARGB montado pela Capucho" },
+  { file: "pc-capucho-5", title: "PC gamer com gabinete branco aquário montado pela Capucho" },
+  { file: "pc-capucho-6", title: "PC gamer com GeForce RTX e iluminação rosa montado pela Capucho" },
 ];
 
 export const steps = [

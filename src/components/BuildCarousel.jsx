@@ -100,6 +100,18 @@ export default function BuildCarousel({ items }) {
       >
         <CaretRight size={20} weight="bold" />
       </button>
+      <div className="build-carousel-dots">
+        {items.map((item, index) => (
+          <button
+            key={item.file}
+            type="button"
+            className={index === current ? "is-active" : ""}
+            aria-label={`Ver vídeo ${index + 1} de ${items.length}`}
+            aria-current={index === current || undefined}
+            onClick={() => setCurrent(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 }
