@@ -74,10 +74,10 @@ export default function Home() {
             <div className="gamer-copy">
               <GameController size={34} />
               <h2 className="gamer-title">
-                Seu <span className="gamer-title-glass">setup gamer</span>
+                Seu setup gamer
                 <br /> começa aqui
               </h2>
-              <p className="gamer-subtitle">PC gamer montado do seu jeito</p>
+              <p>PC gamer montado do seu jeito</p>
               <LiquidButton to="/gamer">Acessar Área Gamer</LiquidButton>
             </div>
           </div>

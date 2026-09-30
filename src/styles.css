@@ -816,35 +816,6 @@ h2.section-label.is-framed {
   letter-spacing: 0.01em;
   line-height: 1.08;
 }
-/* "SETUP GAMER" em vidro lilás fluorescente: degradê com reflexo no meio recortado nas letras,
-   reflexo fino de vidro e brilho neon em volta */
-.gamer-title-glass {
-  display: inline-block;
-  /* Camada de cima: o líquido lilás com a superfície ondulada (a onda se repete a cada 200 px).
-     Camada de baixo: o vidro lilás-claro acima do líquido. */
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 36 Q25 24 50 36 T100 36 T150 36 T200 36 V100 H0Z' fill='%23d46cff'/%3E%3Cpath d='M0 36 Q25 24 50 36 T100 36 T150 36 T200 36' fill='none' stroke='%23ffe6ff' stroke-width='3'/%3E%3C/svg%3E"),
-    linear-gradient(180deg, #f6d8ff 0%, #e8adff 100%);
-  background-size: 200px 100%, 100% 100%;
-  background-repeat: repeat-x, no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 4px rgba(229, 140, 255, 0.95))
-    drop-shadow(0 0 18px rgba(214, 110, 255, 0.65))
-    drop-shadow(0 0 36px rgba(190, 80, 255, 0.35));
-  animation: liquid-wave 3.5s linear infinite;
-}
-@keyframes liquid-wave {
-  to {
-    background-position: 200px 0, 0 0;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .gamer-title-glass {
-    animation: none;
-  }
-}
 /* Botão de vidro líquido da faixa gamer (LiquidButton.jsx), versão escura do original */
 .liquid-button {
   position: relative;
@@ -920,16 +891,6 @@ h2.section-label.is-framed {
   max-width: 440px;
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.25rem;
-}
-/* Subtítulo da faixa gamer da home: um pouco menor, com contorno rosa fluorescente */
-.gamer-copy > p.gamer-subtitle {
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-shadow:
-    1px 0 0 #ff4fd8, -1px 0 0 #ff4fd8, 0 1px 0 #ff4fd8, 0 -1px 0 #ff4fd8,
-    1px 1px 0 #ff4fd8, -1px -1px 0 #ff4fd8, 1px -1px 0 #ff4fd8, -1px 1px 0 #ff4fd8,
-    0 0 12px rgba(255, 79, 216, 0.75);
 }
 .gamer-copy .small-note {
   max-width: 380px;

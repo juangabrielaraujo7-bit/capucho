@@ -49,12 +49,11 @@ try {
         ),
         motion: [...document.querySelectorAll("*")].some(
           // <source> recebe uma animação interna do Chrome, sem efeito visual.
-          // Depoimentos, equipamentos, a varredura do botão glitch e o líquido do título gamer são intencionais.
+          // Depoimentos, equipamentos e a varredura do botão glitch são intencionais.
           (e) =>
             e.tagName !== "SOURCE" &&
             !e.classList.contains("testimonials-track") &&
             !e.classList.contains("glitch-slice") &&
-            !e.classList.contains("gamer-title-glass") &&
             !e.matches(".service-image img, .service-hero-media img") &&
             getComputedStyle(e).animationName !== "none",
         ),
@@ -201,11 +200,6 @@ try {
       .evaluate((t) => getComputedStyle(t).animationName),
     "none",
     "Testimonials must stop with reduced motion",
-  );
-  assert.equal(
-    await reducedPage.locator(".gamer-title-glass").evaluate((s) => getComputedStyle(s).animationName),
-    "none",
-    "Gamer title liquid must stop with reduced motion",
   );
   // Sem animação, cada depoimento aparece uma única vez na coluna visível.
   await reducedPage.setViewportSize({ width: 390, height: 844 });
