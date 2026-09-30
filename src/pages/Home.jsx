@@ -29,7 +29,9 @@ export default function Home() {
         <section className="hero container">
           <div className="hero-copy">
             <h1>
-              Seu computador em <span>boas mãos</span>
+              Seu computador
+              <br /> pronto pra
+              <br /> <span>acompanhar você</span>
             </h1>
             <p className="hero-description">
               Do conserto ao upgrade, a Capucho cuida do seu computador com
