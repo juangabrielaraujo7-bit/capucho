@@ -20,7 +20,7 @@ import {
   Trash,
   WhatsappLogo,
 } from "@phosphor-icons/react";
-import { wa } from "../config";
+import { asset, wa } from "../config";
 import {
   HELP,
   OWN,
@@ -85,6 +85,9 @@ function message(pick) {
     .join("\n");
 }
 
+// Foto provisória usada em todas as peças até a Capucho enviar as fotos reais (campo "image" em gamer.js).
+const PLACEHOLDER_IMAGE = "peca-modelo.webp";
+
 function PartCard({ part, selected, reason, onPick }) {
   return (
     <li>
@@ -95,6 +98,15 @@ function PartCard({ part, selected, reason, onPick }) {
         disabled={Boolean(reason)}
         onClick={onPick}
       >
+        <span className="part-image">
+          <img
+            src={asset(part.image ?? PLACEHOLDER_IMAGE)}
+            alt=""
+            width="480"
+            height="394"
+            loading="lazy"
+          />
+        </span>
         <span className="part-tags">
           {part.brand && <span className="part-brand">{part.brand}</span>}
           <span className={part.stock ? "part-stock is-in" : "part-stock"}>

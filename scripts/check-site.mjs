@@ -54,7 +54,7 @@ try {
             e.tagName !== "SOURCE" &&
             !e.classList.contains("testimonials-track") &&
             !e.classList.contains("glitch-slice") &&
-            !e.matches(".service-image img, .service-hero-media img") &&
+            !e.matches(".service-image img, .service-hero-media img, .part-image img") &&
             getComputedStyle(e).animationName !== "none",
         ),
         autoplay: document.querySelectorAll("video[autoplay]").length,
