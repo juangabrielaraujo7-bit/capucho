@@ -203,9 +203,9 @@ try {
     "Testimonials must stop with reduced motion",
   );
   assert.equal(
-    await reducedPage.locator(".glitch-slice").evaluate((s) => getComputedStyle(s).animationName),
+    await reducedPage.locator(".gamer-title-glass").evaluate((s) => getComputedStyle(s).animationName),
     "none",
-    "Gamer button scan must stop with reduced motion",
+    "Gamer title liquid must stop with reduced motion",
   );
   // Sem animação, cada depoimento aparece uma única vez na coluna visível.
   await reducedPage.setViewportSize({ width: 390, height: 844 });
