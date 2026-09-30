@@ -959,9 +959,9 @@ h2.section-label.is-framed {
   border-radius: 999px;
   background: #fff;
   color: #000;
-  font-family: "Sora Variable", sans-serif;
+  font-family: "Montserrat Variable", sans-serif;
   font-size: 0.95rem;
-  font-weight: 750;
+  font-weight: 900;
   line-height: 1.2;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -2100,6 +2100,7 @@ blockquote {
   margin-inline: auto;
 }
 .build-carousel-stage {
+  touch-action: pan-y;
   position: relative;
   display: flex;
   align-items: center;
@@ -2153,6 +2154,12 @@ blockquote {
 }
 .build-carousel-nav.is-next {
   right: 8px;
+}
+/* Em telas de toque troca-se arrastando o dedo: as setas saem */
+@media (hover: none) {
+  .build-carousel-nav {
+    display: none;
+  }
 }
 .build-carousel-dots {
   position: absolute;

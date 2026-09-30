@@ -130,7 +130,7 @@ export default function WorkShowcase({ items }) {
       <div className="work-mobile">
         <BuildCarousel
           light
-          items={items}
+          items={items.map((item) => ({ ...item, video: `${item.file}-leve.mp4` }))}
           renderCaption={(item) => {
             const Icon = icons[item.file];
             return (

@@ -6,10 +6,10 @@ import {
   Clock,
   GameController,
   MapPin,
-  Plus,
   ShieldCheck,
 } from "@phosphor-icons/react";
 import { Link } from "react-router";
+import FaqList from "../components/FaqList";
 import GamerVideo from "../components/GamerVideo";
 import LiquidButton from "../components/LiquidButton";
 import GradientBand from "../components/GradientBand";
@@ -246,17 +246,7 @@ export default function Home() {
             </h2>
             <p>Vamos deixar tudo combinado antes de começar.</p>
           </div>
-          <div className="faq-list">
-            {faqs.map(([q, a]) => (
-              <details key={q}>
-                <summary>
-                  {q}
-                  <Plus size={21} />
-                </summary>
-                <p>{a}</p>
-              </details>
-            ))}
-          </div>
+          <FaqList items={faqs} />
         </div>
       </section>
     </>

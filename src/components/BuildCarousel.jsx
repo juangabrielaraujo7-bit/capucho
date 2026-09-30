@@ -15,6 +15,7 @@ export default function BuildCarousel({ items, light = false, renderCaption }) {
   const [reduceMotion, setReduceMotion] = useState(false);
   const rootRef = useRef(null);
   const videos = useRef([]);
+  const touch = useRef(null);
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -51,12 +52,28 @@ export default function BuildCarousel({ items, light = false, renderCaption }) {
   const next = () => setCurrent((i) => (i + 1) % items.length);
   const prev = () => setCurrent((i) => (i - 1 + items.length) % items.length);
 
+  // No celular, arrastar o dedo para o lado troca de vídeo (a rolagem vertical continua normal).
+  const onTouchStart = (e) => {
+    touch.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  };
+  const onTouchEnd = (e) => {
+    if (!touch.current) return;
+    const dx = e.changedTouches[0].clientX - touch.current.x;
+    const dy = e.changedTouches[0].clientY - touch.current.y;
+    touch.current = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) (dx < 0 ? next : prev)();
+  };
+
   return (
     <div
       className={light ? "build-carousel-wrap is-light" : "build-carousel-wrap"}
     >
       <div className="build-carousel" ref={rootRef}>
-        <div className="build-carousel-stage">
+        <div
+          className="build-carousel-stage"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
           {items.map((item, index) => {
             const total = items.length;
             let pos = (index - current + total) % total;
@@ -79,11 +96,12 @@ export default function BuildCarousel({ items, light = false, renderCaption }) {
               >
                 <video
                   ref={(el) => (videos.current[index] = el)}
-                  src={asset(`${item.file}.mp4`)}
+                  src={asset(item.video ?? `${item.file}.mp4`)}
                   poster={asset(`${item.file}.webp`)}
                   muted
                   playsInline
-                  preload={isCenter ? "metadata" : "none"}
+                  // O do centro e o próximo já vão baixando, para a troca ser imediata.
+                  preload={isCenter || pos === 1 ? "auto" : "none"}
                   controls={isCenter && reduceMotion}
                   aria-label={item.title}
                   onEnded={isCenter ? next : undefined}
