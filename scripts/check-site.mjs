@@ -145,28 +145,44 @@ try {
         const faq = page.locator(".faq-list details").first();
         await faq.locator("summary").click();
         assert.equal(await faq.getAttribute("open"), "");
-        // Cada vídeo existe no palco fixo (desktop) e na fileira (celular); usa o visível.
-        // No desktop o palco mostra o vídeo da fileira no centro da tela: rola até a primeira.
-        await page
-          .locator(".work-row")
-          .first()
-          .evaluate((row) => row.scrollIntoView({ block: "center" }));
-        await page.waitForTimeout(700);
-        await page
-          .getByRole("button", {
-            name: "Reproduzir: Troca de tela de notebook",
-            exact: true,
-          })
-          .click();
-        const workVideo = page.locator(".video-frame video:visible").first();
-        await workVideo.evaluate(
-          (v) =>
-            new Promise((resolve) =>
-              v.paused ? v.addEventListener("playing", resolve, { once: true }) : resolve(),
-            ),
-        );
-        assert.equal(await workVideo.evaluate((v) => v.muted), true);
-        await workVideo.evaluate((v) => v.pause());
+        if (viewport.width < 768) {
+          // No celular os vídeos de serviço viram carrossel: o do centro toca sozinho, sem som.
+          await page.locator(".work-mobile").scrollIntoViewIfNeeded();
+          const center = page.locator(".work-mobile .build-card.is-center video");
+          await page.waitForFunction(
+            () => !document.querySelector(".work-mobile .build-card.is-center video").paused,
+          );
+          assert.equal(await center.evaluate((v) => v.muted), true);
+          await page.locator(".work-mobile .build-carousel-nav.is-next").click();
+          assert.equal(
+            await page.locator(".work-mobile .build-carousel-caption h3").textContent(),
+            "Reparo de componentes e montagem",
+          );
+          await page.locator(".work-mobile .build-card video").evaluateAll((vs) => vs.forEach((v) => v.pause()));
+        } else {
+          // Cada vídeo existe no palco fixo (desktop) e na fileira (celular); usa o visível.
+          // No desktop o palco mostra o vídeo da fileira no centro da tela: rola até a primeira.
+          await page
+            .locator(".work-row")
+            .first()
+            .evaluate((row) => row.scrollIntoView({ block: "center" }));
+          await page.waitForTimeout(700);
+          await page
+            .getByRole("button", {
+              name: "Reproduzir: Troca de tela de notebook",
+              exact: true,
+            })
+            .click();
+          const workVideo = page.locator(".video-frame video:visible").first();
+          await workVideo.evaluate(
+            (v) =>
+              new Promise((resolve) =>
+                v.paused ? v.addEventListener("playing", resolve, { once: true }) : resolve(),
+              ),
+          );
+          assert.equal(await workVideo.evaluate((v) => v.muted), true);
+          await workVideo.evaluate((v) => v.pause());
+        }
         if (viewport.width === 390) {
           await page.getByRole("button", { name: "Abrir menu" }).click();
           assert.equal(await page.locator("#main-nav").isVisible(), true);

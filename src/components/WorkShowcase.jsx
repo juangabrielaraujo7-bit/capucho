@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { Cpu, Fan, Monitor, Play } from "@phosphor-icons/react";
 import { asset } from "../config";
+import BuildCarousel from "./BuildCarousel";
 
 // Vídeos do trabalho em fileiras, inspirado na seção de soluções do leadedu.com.br:
 // no desktop, a coluna do meio fica fixa na tela e troca de vídeo conforme cada fileira
-// passa pelo centro; no celular, cada fileira mostra o próprio vídeo.
-// Os vídeos só começam com um clique, sem som.
+// passa pelo centro; no tablet, cada fileira mostra o próprio vídeo (só começam com um clique, sem som).
+// No celular, as fileiras dão lugar ao mesmo carrossel da Área Gamer, em versão clara, com o texto
+// do vídeo do centro logo abaixo.
 
 const icons = { "troca-tela": Monitor, limpeza: Fan, montagem: Cpu };
 
@@ -125,6 +127,27 @@ export default function WorkShowcase({ items }) {
           </article>
         );
       })}
+      <div className="work-mobile">
+        <BuildCarousel
+          light
+          items={items}
+          renderCaption={(item) => {
+            const Icon = icons[item.file];
+            return (
+              <>
+                <h3>
+                  <Icon size={30} weight="duotone" />
+                  {item.title}
+                </h3>
+                <p>{item.text}</p>
+                <Link className="work-button" to={item.link}>
+                  Saiba mais
+                </Link>
+              </>
+            );
+          }}
+        />
+      </div>
     </div>
   );
 }
