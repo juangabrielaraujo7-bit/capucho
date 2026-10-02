@@ -5,3 +5,6 @@ dist/
 .env*
 !.env.example
 dist-ssr/
+
+# Sanity Studio
+studio/.sanity/

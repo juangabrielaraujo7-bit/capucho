@@ -22,6 +22,7 @@ import {
   WhatsappLogo,
   X,
 } from "@phosphor-icons/react";
+import { loadCatalog } from "../catalog";
 import { asset, wa } from "../config";
 import {
   HELP,
@@ -102,7 +103,7 @@ function PartCard({ part, selected, reason, onPick }) {
       >
         <span className="part-image">
           <img
-            src={asset(part.image ?? PLACEHOLDER_IMAGE)}
+            src={part.image?.startsWith("http") ? part.image : asset(part.image ?? PLACEHOLDER_IMAGE)}
             alt=""
             width="480"
             height="394"
@@ -172,7 +173,22 @@ export default function PcBuilder() {
   const [current, setCurrent] = useState(0);
   const [brand, setBrand] = useState("");
   const [query, setQuery] = useState("");
+  const [catalogVersion, setCatalogVersion] = useState(0);
   const mainRef = useRef(null);
+
+  // Catálogo do painel Sanity (src/catalog.js). Ao chegar, refaz a lista e tira da montagem
+  // salva o que não existe mais ou deixou de combinar.
+  useEffect(() => {
+    let alive = true;
+    loadCatalog().then((changed) => {
+      if (!alive || !changed) return;
+      setCatalogVersion((v) => v + 1);
+      setPick((prev) => sanitize(prev));
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   // Guarda a montagem só neste navegador, para quem voltar depois.
   useEffect(() => {
@@ -236,7 +252,7 @@ export default function PcBuilder() {
       .filter((p) => !q || `${p.name} ${p.specs}`.toLowerCase().includes(q))
       .map((p) => ({ part: p, reason: incompatibility(step.id, p, pick) }))
       .sort((a, b) => Boolean(a.reason) - Boolean(b.reason));
-  }, [step, brand, query, pick]);
+  }, [step, brand, query, pick, catalogVersion]);
   const brands = step
     ? [...new Set(parts[step.id].map((p) => p.brand).filter(Boolean))]
     : [];
