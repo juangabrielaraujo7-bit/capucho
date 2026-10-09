@@ -1,4 +1,4 @@
-import { faqs, services } from "./content";
+import { faqs, legacyHubs, services } from "./content";
 import { business, geo, maps } from "./config";
 
 // Títulos com até ~60 caracteres para não serem cortados no Google.
@@ -13,6 +13,9 @@ export const routes = [
   "/gamer",
   "/gamer/monte-seu-pc",
 ];
+
+// Endereços antigos mantidos como índice (pré-renderizados, mas fora do sitemap e com noindex).
+export const hubRoutes = legacyHubs.map((h) => `/servicos/${h.slug}`);
 
 const gamerPages = {
   "/gamer": {
@@ -39,6 +42,14 @@ export function getSeo(pathname) {
       service,
       title: service.seoTitle || `${service.title} | Capucho Informática`,
       description: service.seoDescription || service.intro,
+    };
+  const hub = legacyHubs.find((h) => path === `/servicos/${h.slug}`);
+  if (hub)
+    return {
+      path,
+      title: `${hub.title} | Capucho Informática`,
+      description: hub.intro,
+      noindex: true,
     };
   return {
     path,
@@ -109,7 +120,7 @@ function serviceNode(siteUrl, s) {
     serviceType: s.short,
     description: s.seoDescription || s.intro,
     url: `${siteUrl}/servicos/${s.slug}`,
-    image: `${siteUrl}/assets/${s.image}`,
+    image: `${siteUrl}/assets/${s.image ?? "og-image.jpg"}`,
     provider: { "@id": `${siteUrl}/#empresa` },
     areaServed:
       s.slug === "suporte-e-atendimento"

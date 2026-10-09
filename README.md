@@ -18,13 +18,12 @@ No Windows, também pode abrir `ABRIR-PREVIA.cmd` com dois cliques, após instal
 ## Páginas
 
 - `/`: home
-- `/servicos/conserto`
-- `/servicos/formatacao-e-programas`
-- `/servicos/upgrade-e-montagem`
-- `/servicos/limpeza-preventiva`
-- `/servicos/suporte-e-atendimento`
+- Serviços (`/servicos/<slug>`, conteúdo em `src/content.js`): `diagnostico-e-solucao-de-problemas`, `troca-de-tela-de-notebook`, `troca-de-hardware`, `reparo-de-placa`, `upgrade-de-ssd-e-memoria`, `formatacao-e-backup`, `instalacao-de-softwares`, `manutencao-preventiva`, `suporte-e-atendimento`
+- Endereços antigos mantidos como índice (noindex, fora do sitemap): `/servicos/conserto`, `/servicos/formatacao-e-programas`, `/servicos/upgrade-e-montagem`
+- Redirecionamento permanente (`vercel.json`): `/servicos/limpeza-preventiva` → `/servicos/manutencao-preventiva`
+- Área gamer: `/gamer` e `/gamer/monte-seu-pc`
 
-O cartão de produtos abre uma consulta no WhatsApp. A navegação gamer leva à seção da home; a página gamer completa permanece fora desta etapa.
+O cartão de produtos abre uma consulta no WhatsApp.
 
 ## Verificar
 

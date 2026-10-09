@@ -2,18 +2,22 @@ import { Link } from "react-router";
 import {
   ArrowLeft,
   ArrowUpRight,
-  ChatCircleText,
   CheckCircle,
-  DesktopTower,
   Globe,
   House,
+  Info,
 } from "@phosphor-icons/react";
 import FaqList from "../components/FaqList";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset, photoSrcSet } from "../config";
 import { services } from "../content";
 
+const bySlug = (slug) => services.find((s) => s.slug === slug);
+
+// Página de um serviço: abertura → sinais percebidos → verificações e soluções → aviso (quando
+// existe) → dúvidas → contato e serviços relacionados. Conteúdo em src/content.js.
 export default function ServicePage({ service }) {
+  const related = (service.related ?? []).map(bySlug).filter(Boolean);
   return (
     <>
       <section className="service-hero container">
@@ -21,32 +25,54 @@ export default function ServicePage({ service }) {
           <ArrowLeft />
           Todos os serviços
         </Link>
-        <div className="service-hero-grid">
+        <div className={service.image ? "service-hero-grid" : "service-hero-grid is-text"}>
           <div>
-            <p className="eyebrow">Capucho cuida</p>
+            <p className="eyebrow">Serviço</p>
             <h1>{service.title}</h1>
             <p className="hero-description">{service.intro}</p>
             <WhatsAppButton message={service.message} />
           </div>
-          <div className="service-hero-media">
-          <img
-            src={asset(service.image)}
-            srcSet={photoSrcSet(service.image)}
-            sizes="(max-width: 1023px) calc(100vw - 40px), 50vw"
-            alt={service.alt}
-            width="1200"
-            height="800"
-            fetchPriority="high"
-          />
-          </div>
+          {service.image && (
+            <div className={service.photo ? "service-hero-media is-photo" : "service-hero-media"}>
+              <img
+                src={asset(service.image)}
+                srcSet={photoSrcSet(service.image)}
+                sizes="(max-width: 1023px) calc(100vw - 40px), 50vw"
+                alt={service.alt}
+                width="1200"
+                height="800"
+                fetchPriority="high"
+              />
+            </div>
+          )}
         </div>
       </section>
-      <section className="section section-tint">
-        <div className="container">
-          <div className="section-heading">
-            <h2>{service.heading}</h2>
+
+      {service.signs ? (
+        <section className="section section-tint">
+          <div className="container">
+            <div className="signs-panel">
+              <h2>{service.signsTitle}</h2>
+              <ul>
+                {service.signs.map(([title, text]) => (
+                  <li key={title}>
+                    <CheckCircle size={24} weight="fill" />
+                    <div>
+                      <h3>{title}</h3>
+                      <p>{text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          {service.slug === "suporte-e-atendimento" ? (
+        </section>
+      ) : (
+        <section className="section section-tint">
+          <div className="container">
+            <div className="section-heading">
+              <h2>{service.heading}</h2>
+            </div>
             <div className="support-grid">
               <article>
                 <Globe size={36} />
@@ -77,64 +103,31 @@ export default function ServicePage({ service }) {
                 </WhatsAppButton>
               </article>
             </div>
-          ) : (
-            <div className="problem-grid">
-              {service.groups.map(([title, body]) => (
-                <article key={title}>
-                  <CheckCircle size={26} />
-                  <div>
-                    <h3>{title}</h3>
-                    <p>{body}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          )}
-          <p className="service-note">{service.note}</p>
-        </div>
-      </section>
-      <section className="section container">
-        <div className="section-heading">
-          <h2>
-            Sem complicação.
-            <br />
-            Tudo combinado com você.
-          </h2>
-        </div>
-        <div className="process-grid">
-          <article>
-            <ChatCircleText />
-            <h3>Conte o que precisa</h3>
-            <p>
-              Explique o problema ou o que você quer melhorar. Se souber, envie
-              o modelo do computador.
-            </p>
-          </article>
-          <article>
-            <DesktopTower />
-            <h3>A gente avalia</h3>
-            <p>
-              Entendemos o caso e explicamos o serviço indicado, com orçamento e
-              prazo.
-            </p>
-          </article>
-          <article>
-            <CheckCircle />
-            <h3>Você aprova, a gente cuida</h3>
-            <p>
-              O serviço começa com a sua aprovação. E você acompanha o
-              atendimento pelo WhatsApp.
-            </p>
-          </article>
-        </div>
-        <div className="service-cta">
-          <div>
-            <h3>Vamos cuidar do seu computador?</h3>
-            <p>O primeiro passo é uma conversa.</p>
+            {service.note && <p className="service-note">{service.note}</p>}
           </div>
-          <WhatsAppButton message={service.message} />
-        </div>
-      </section>
+        </section>
+      )}
+
+      {service.checks && (
+        <section className="section container">
+          <h2 className="checks-title">{service.checksTitle}</h2>
+          <ol className="checks-list">
+            {service.checks.map(([title, text]) => (
+              <li key={title}>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </li>
+            ))}
+          </ol>
+          {service.note && (
+            <p className="service-note">
+              <Info size={22} />
+              <span>{service.note}</span>
+            </p>
+          )}
+        </section>
+      )}
+
       <section className="section section-tint">
         <div className="container faq-layout">
           <div>
@@ -144,20 +137,29 @@ export default function ServicePage({ service }) {
           <FaqList items={service.faq} />
         </div>
       </section>
+
       <section className="section related-section">
         <div className="container">
-          <h2>Seu PC também pode precisar de…</h2>
-          <div className="related-grid">
-            {services
-              .filter((s) => s.slug !== service.slug)
-              .slice(0, 3)
-              .map((s) => (
-                <Link to={`/servicos/${s.slug}`} key={s.slug}>
-                  <span>{s.short}</span>
-                  <ArrowUpRight />
-                </Link>
-              ))}
+          <div className="service-cta">
+            <div>
+              <h3>Quer um orçamento para {service.short.charAt(0).toLowerCase() + service.short.slice(1)}?</h3>
+              <p>Você recebe o orçamento e aprova antes de o serviço começar.</p>
+            </div>
+            <WhatsAppButton message={service.message} />
           </div>
+          {related.length > 0 && (
+            <>
+              <h2>Serviços relacionados</h2>
+              <div className="related-grid">
+                {related.map((s) => (
+                  <Link to={`/servicos/${s.slug}`} key={s.slug}>
+                    <span>{s.short}</span>
+                    <ArrowUpRight />
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
     </>

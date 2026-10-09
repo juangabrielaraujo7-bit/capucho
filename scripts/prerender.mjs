@@ -17,7 +17,7 @@ const siteUrl = (
     : "http://127.0.0.1:4173")
 ).replace(/\/$/, "");
 
-const { render, routes, getSeo, jsonLdFor } = await import(
+const { render, routes, hubRoutes, getSeo, jsonLdFor } = await import(
   pathToFileURL(resolve(ssrDir, "entry-server.js")).href
 );
 const template = await readFile(resolve(dist, "index.html"), "utf8");
@@ -34,7 +34,7 @@ function head(seo) {
     `<title>${escape(seo.title)}</title>`,
     `<meta name="description" content="${escape(seo.description)}" />`,
     seo.noindex
-      ? `<meta name="robots" content="noindex" />`
+      ? `<meta name="robots" content="noindex, follow" />`
       : `<link rel="canonical" href="${url}" />`,
     `<meta property="og:type" content="website" />`,
     `<meta property="og:locale" content="pt_BR" />`,
@@ -66,7 +66,7 @@ async function write(file, content) {
   await writeFile(file, content);
 }
 
-for (const route of routes) {
+for (const route of [...routes, ...hubRoutes]) {
   // Com "cleanUrls" na Vercel, /servicos/conserto serve servicos/conserto.html
   const file = route === "/" ? "index.html" : `${route.slice(1)}.html`;
   await write(resolve(dist, file), page(route));

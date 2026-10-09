@@ -1,23 +1,31 @@
 import { Link } from "react-router";
-import { ArrowUpRight } from "@phosphor-icons/react";
+import { AppWindow, ArrowUpRight } from "@phosphor-icons/react";
 import { asset, photoSrcSet, wa } from "../config";
 
 const productMessage =
   "Olá, Capucho! Quero consultar computadores, peças e acessórios disponíveis.";
 
-function CardBody({ image, title, description, cta }) {
+// Serviços sem foto adequada mostram um ícone no lugar da imagem.
+const icons = { AppWindow };
+
+function CardBody({ image, photo, icon, title, description, cta }) {
+  const Icon = icons[icon];
   return (
     <>
-      <div className="service-image">
-        <img
-          src={asset(image)}
-          srcSet={photoSrcSet(image)}
-          sizes="(max-width: 767px) 80vw, (max-width: 1023px) 45vw, 380px"
-          alt=""
-          loading="lazy"
-          width="1200"
-          height="800"
-        />
+      <div className={photo ? "service-image is-photo" : "service-image"}>
+        {image ? (
+          <img
+            src={asset(image)}
+            srcSet={photoSrcSet(image)}
+            sizes="(max-width: 767px) 80vw, (max-width: 1023px) 45vw, 380px"
+            alt=""
+            loading="lazy"
+            width="1200"
+            height="800"
+          />
+        ) : (
+          Icon && <Icon className="service-icon" size={96} weight="duotone" aria-hidden="true" />
+        )}
       </div>
       <div className="service-card-content">
         <h3>{title}</h3>
@@ -54,6 +62,8 @@ export default function ServiceCard({ service, index = 0, products = false }) {
     <Link className={tone} to={`/servicos/${service.slug}`}>
       <CardBody
         image={service.image}
+        photo={service.photo}
+        icon={service.icon}
         title={service.title}
         description={service.description}
         cta="Conhecer o serviço"

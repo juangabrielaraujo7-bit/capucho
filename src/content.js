@@ -1,239 +1,596 @@
+// Serviços com página própria (/servicos/<slug>). Cada página segue a lógica:
+// sinais percebidos → verificações e soluções → informação importante (opcional) → dúvidas.
+// Textos curtos e específicos; condições comerciais só as confirmadas no briefing.
+// "photo: true" marca imagens que são fotos reais da loja (recortadas dos vídeos), exibidas com
+// cantos arredondados em vez do recorte 3D flutuante. Sem "image", o card mostra o ícone "icon".
+// Resinagem: pendente de definição com a Capucho (docs/materiais-e-pendencias.md).
 export const services = [
   {
-    slug: "conserto",
-    seoTitle: "Conserto de notebook e PC na Freguesia do Ó | Capucho",
+    slug: "diagnostico-e-solucao-de-problemas",
+    seoTitle: "Diagnóstico de PC e notebook na Freguesia do Ó | Capucho",
     seoDescription:
-      "Conserto de computadores e notebooks na Freguesia do Ó, SP: não liga, sem imagem, tela, teclado, bateria e carregamento. Orçamento aprovado por você. Fale pelo WhatsApp.",
-    title: "Conserto de computadores e notebooks",
-    short: "Conserto",
+      "Computador que não liga, reinicia, trava ou fica sem imagem? Diagnóstico para encontrar a causa antes do reparo, na Freguesia do Ó, em São Paulo.",
+    title: "Diagnóstico e solução de problemas",
+    short: "Diagnóstico",
     image: "conserto-foto.webp",
-    alt: "Imagem ilustrativa de notebook aberto com ferramentas de diagnóstico",
+    alt: "Notebook aberto com multímetro e chave de precisão",
     description:
-      "Não liga, está sem imagem ou apareceu um problema? Vamos entender o que aconteceu.",
+      "Não liga, reinicia, trava ou perde imagem? A causa é investigada antes de qualquer reparo.",
     intro:
-      "Seu computador faz parte da rotina. A gente avalia o problema, explica as opções e combina o reparo com você.",
+      "O mesmo sintoma pode ter causas bem diferentes. O diagnóstico identifica onde está a falha antes de trocar qualquer peça.",
     message:
-      "Olá, Capucho! Preciso de um orçamento para conserto de computador ou notebook.",
-    heading: "O que aconteceu com seu computador?",
-    groups: [
+      "Olá, Capucho! Meu computador está com um problema e preciso de um diagnóstico.",
+    signsTitle: "Problemas que investigamos",
+    signs: [
       [
-        "Não liga ou está sem imagem",
-        "Computador ou notebook que não liga, liga sem dar imagem ou apresenta falhas na inicialização.",
+        "Não liga",
+        "Sem luz, sem ventoinha ou sem resposta ao botão. Pode ser fonte, carregador, bateria, placa ou outro componente.",
       ],
       [
-        "Desliga ou reinicia sozinho",
-        "Avaliação de desligamentos inesperados e reinicializações durante o uso.",
+        "Liga, mas não dá imagem",
+        "A ventoinha gira e a tela fica preta. A falha pode estar na memória, no vídeo, na tela ou na placa.",
       ],
       [
-        "Tela, teclado e estrutura",
-        "Problemas na tela, teclado, dobradiças ou carcaça do notebook.",
+        "Reinicia ou desliga sozinho",
+        "Pode envolver temperatura, alimentação de energia ou erro de sistema.",
       ],
       [
-        "Bateria e carregamento",
-        "Falhas na bateria ou na entrada de carregamento, com avaliação antes da troca de peças.",
+        "Trava durante o uso",
+        "Travamentos podem vir de software, memória, armazenamento ou aquecimento.",
+      ],
+      [
+        "Tela azul e mensagens de erro",
+        "O código do erro ajuda a direcionar os testes. Fotografe a mensagem quando ela aparecer.",
       ],
     ],
-    note: "O diagnóstico depende da avaliação do equipamento. A necessidade de peças, o valor e o prazo são informados no orçamento.",
-    faqTitle: "Dúvidas sobre conserto",
+    checksTitle: "Como as causas são separadas",
+    checks: [
+      [
+        "Software",
+        "Erros de sistema e de drivers são descartados antes de suspeitar das peças.",
+      ],
+      [
+        "Alimentação",
+        "Carregador, fonte, bateria e entrada de energia entram nos testes quando o equipamento não liga ou desliga.",
+      ],
+      [
+        "Memória e armazenamento",
+        "Testes mostram se a memória RAM ou o disco estão por trás de travamentos e erros.",
+      ],
+      [
+        "Temperatura",
+        "O aquecimento é observado durante o uso para confirmar ou descartar uma falha térmica.",
+      ],
+      [
+        "Placa e demais componentes",
+        "Descartadas as causas anteriores, a investigação segue para a placa e os outros componentes.",
+      ],
+    ],
+    note: "O diagnóstico e o orçamento são apresentados antes de qualquer reparo. Se houver cobrança pela avaliação, o valor é informado no primeiro contato.",
+    faqTitle: "Dúvidas sobre diagnóstico",
     local:
-      "Assistência técnica de notebooks e computadores na Freguesia do Ó. A loja fica na Vila Palmeiras, pertinho do Limão, da Casa Verde, da Brasilândia e de Pirituba. Se ficar difícil trazer o equipamento, a retirada e a entrega são gratuitas na região atendida: é só confirmar o CEP pelo WhatsApp.",
+      "Diagnóstico de notebooks e PCs na Vila Palmeiras, Freguesia do Ó.",
     faq: [
       [
-        "Meu notebook não liga. Tem conserto?",
-        "Muitas vezes tem, mas só a avaliação mostra a causa. Pode ser algo na fonte, na entrada de carregamento, na bateria ou na placa. A gente testa, explica o que encontrou e passa o orçamento antes de fazer qualquer reparo.",
+        "Meu computador não liga. Tem conserto?",
+        "Muitas vezes tem, mas só os testes mostram a causa. Depois deles, você recebe a explicação e o orçamento antes de aprovar.",
       ],
       [
-        "Vale a pena consertar ou é melhor comprar outro?",
-        "Depende do defeito, da idade do equipamento e do custo das peças. Se o conserto não compensar, a gente fala com sinceridade antes de você gastar.",
+        "Dá para resolver sem levar o computador?",
+        "Erros de sistema e de programas podem ser atendidos pelo suporte remoto. Falhas em peças precisam de avaliação presencial.",
       ],
       [
-        "Vocês trocam tela, teclado e bateria de notebook?",
-        "Sim. A disponibilidade da peça para o seu modelo, o valor e o prazo são informados no orçamento. Envie a marca e o modelo pelo WhatsApp para agilizar.",
-      ],
-      [
-        "Quanto tempo demora o conserto?",
-        "O prazo é informado junto com o orçamento, depois da avaliação. Durante o serviço, você acompanha tudo pelo WhatsApp.",
-      ],
-      [
-        "O conserto tem garantia?",
-        "Sim, a garantia informada para os serviços é de 90 dias. Consulte a cobertura e as condições do seu atendimento antes de aprovar o orçamento.",
+        "O que devo informar no primeiro contato?",
+        "Marca e modelo, o que acontece e quando começou. Se aparecer uma mensagem de erro, envie uma foto dela.",
       ],
     ],
+    related: ["reparo-de-placa", "troca-de-hardware", "suporte-e-atendimento"],
   },
   {
-    slug: "formatacao-e-programas",
-    seoTitle: "Formatação e remoção de vírus na Freguesia do Ó | Capucho",
+    slug: "troca-de-tela-de-notebook",
+    seoTitle: "Troca de tela de notebook na Freguesia do Ó | Capucho",
     seoDescription:
-      "Formatação de Windows, macOS e Linux, instalação de programas e remoção de vírus na Freguesia do Ó, SP. Fale com a Capucho Informática pelo WhatsApp.",
-    title: "Formatação, programas e remoção de vírus",
-    short: "Formatação e programas",
-    image: "formatacao-foto.webp",
-    alt: "Imagem ilustrativa de instalação de sistema em notebook com pendrive e SSD externo",
+      "Tela de notebook trincada, com manchas, linhas, piscando ou sem imagem. Identificamos a causa e indicamos o painel compatível com o seu modelo.",
+    title: "Troca de tela de notebook",
+    short: "Troca de tela",
+    image: "troca-tela-foto.webp",
+    photo: true,
+    alt: "Notebook com a tela danificada, cheia de linhas coloridas",
     description:
-      "Sistemas e programas funcionando para você trabalhar, estudar e usar seu PC.",
+      "Trincas, manchas, linhas ou tela sem imagem, com peça compatível com o seu modelo.",
     intro:
-      "Do sistema aos programas do dia a dia, a Capucho ajuda a identificar o que precisa ser ajustado no seu computador.",
+      "Trincas, manchas e linhas na imagem costumam exigir a troca do painel. Antes, confirmamos se a falha está mesmo na tela.",
     message:
-      "Olá, Capucho! Quero atendimento para formatação, instalação de programas ou remoção de vírus.",
-    heading: "Ajuda com o sistema e seus programas.",
-    groups: [
+      "Olá, Capucho! Quero um orçamento para troca de tela de notebook. Marca e modelo: ",
+    signsTitle: "Sinais na tela",
+    signs: [
       [
-        "Windows, macOS e Linux",
-        "Avaliação e orientação para formatação e configuração do sistema, conforme o equipamento.",
+        "Tela trincada",
+        "A trinca costuma se espalhar e pode gerar manchas ou áreas sem imagem.",
       ],
       [
-        "Instalação de programas",
-        "Instalação e configuração de aplicativos compatíveis com o computador e com a sua necessidade.",
+        "Manchas na imagem",
+        "Manchas escuras ou coloridas geralmente vêm de dano no painel.",
       ],
       [
-        "Remoção de vírus",
-        "Verificação de comportamentos suspeitos e atendimento para remoção de vírus.",
+        "Linhas na tela",
+        "Linhas fixas apontam para o painel. Linhas que mudam ao mexer na tampa podem indicar o cabo de vídeo.",
       ],
       [
-        "Configuração para sua rotina",
-        "Ajustes e orientação para os programas que você usa no trabalho ou nos estudos.",
+        "Imagem piscando",
+        "A cintilação pode vir do painel, do cabo, da iluminação da tela ou do driver de vídeo.",
+      ],
+      [
+        "Tela sem imagem",
+        "A falha pode estar no painel, no cabo ou em outro componente. É preciso identificar a origem antes de indicar a troca.",
       ],
     ],
-    note: "Tem arquivos importantes? Avise no primeiro contato. Os cuidados com dados e a possibilidade de backup precisam ser combinados antes de qualquer procedimento.",
-    faqTitle: "Dúvidas sobre formatação",
-    local:
-      "Formatação de notebooks e PCs na Freguesia do Ó, com instalação de programas e remoção de vírus. Muitos problemas de sistema e de programas também podem ser resolvidos pelo suporte remoto, sem você sair de casa, conforme o caso.",
+    checksTitle: "Antes de trocar o painel",
+    checks: [
+      [
+        "Teste com monitor externo",
+        "Se a imagem aparece em um monitor externo, o vídeo do notebook funciona e a suspeita recai sobre a tela ou o cabo.",
+      ],
+      [
+        "Cabo e conexão",
+        "Um cabo de vídeo danificado ou mal encaixado causa sintomas parecidos com os de uma tela quebrada.",
+      ],
+      [
+        "Peça compatível",
+        "Tamanho, resolução, conector e fixação variam entre modelos. O painel novo precisa ser compatível com o seu notebook.",
+      ],
+    ],
+    note: "Envie a marca e o modelo do notebook pelo WhatsApp. Eles costumam estar na etiqueta embaixo do aparelho e agilizam a consulta da peça.",
+    faqTitle: "Dúvidas sobre troca de tela",
+    local: "Troca de tela de notebook na Freguesia do Ó, em São Paulo.",
     faq: [
       [
-        "Formatar apaga meus arquivos?",
-        "A formatação apaga o conteúdo do disco. Por isso, avise no primeiro contato quais arquivos são importantes: os cuidados com os dados e a possibilidade de backup são combinados antes de qualquer procedimento.",
+        "Dá para trocar só o vidro?",
+        "Na maioria dos notebooks, não. O vidro e a parte que forma a imagem são uma peça só, por isso a troca é do painel.",
       ],
       [
-        "Meu computador está lento. Formatar resolve?",
-        "Nem sempre. A lentidão pode vir do sistema, de vírus, de pouco espaço livre ou de peças no limite, como um HD antigo ou pouca memória. A gente avalia primeiro; às vezes um upgrade faz mais diferença que a formatação.",
+        "Perco meus arquivos trocando a tela?",
+        "Não. A troca da tela não mexe no armazenamento do notebook.",
       ],
       [
-        "Quais sistemas vocês instalam?",
-        "Windows, macOS e Linux, de acordo com a compatibilidade do equipamento e com o que você precisa no dia a dia.",
-      ],
-      [
-        "Como saber se meu computador está com vírus?",
-        "Alguns sinais comuns: janelas e anúncios que aparecem sozinhos, navegador abrindo páginas estranhas, programas que você não instalou e lentidão repentina. Se notar algo assim, evite digitar senhas e fale com a gente.",
+        "Quanto tempo demora?",
+        "Depende da disponibilidade da peça para o modelo. O prazo é informado junto com o orçamento.",
       ],
     ],
+    related: ["diagnostico-e-solucao-de-problemas", "troca-de-hardware", "reparo-de-placa"],
   },
   {
-    slug: "upgrade-e-montagem",
-    seoTitle: "Upgrade e montagem de PC na Freguesia do Ó | Capucho",
+    slug: "troca-de-hardware",
+    seoTitle: "Troca de peças de PC e notebook na Freguesia do Ó | Capucho",
     seoDescription:
-      "Upgrade e montagem de computadores na Freguesia do Ó, SP: SSD, memória RAM, processador, placa de vídeo e PCs para trabalho e estudo. Fale pelo WhatsApp.",
-    title: "Upgrade e montagem de computadores",
-    short: "Upgrade e montagem",
+      "Substituição de teclado, bateria, fonte, disco, ventoinha e placa-mãe com defeito. O defeito é confirmado antes da troca. Fale com a Capucho pelo WhatsApp.",
+    title: "Troca de hardware",
+    short: "Troca de hardware",
+    image: "troca-hardware-foto.webp",
+    photo: true,
+    alt: "Processador na mão de um técnico na bancada da Capucho",
+    description:
+      "Substituição de peças com defeito, depois de confirmar qual componente falhou.",
+    intro:
+      "Quando um componente falha, ele pode ser substituído por outro compatível. Primeiro confirmamos qual peça está com defeito.",
+    message:
+      "Olá, Capucho! Preciso trocar uma peça do meu computador ou notebook.",
+    signsTitle: "Peças que costumam precisar de troca",
+    signs: [
+      [
+        "Teclado falhando",
+        "Teclas que não respondem ou digitam sozinhas. Em notebooks, a troca depende da peça para o modelo.",
+      ],
+      [
+        "Bateria que não segura carga",
+        "Descarrega rápido, não carrega ou está estufada. Bateria estufada não deve continuar em uso.",
+      ],
+      [
+        "Fonte com defeito",
+        "No computador de mesa, a fonte com falha pode impedir que ele ligue ou causar desligamentos.",
+      ],
+      [
+        "HD ou SSD com falha",
+        "Erros de leitura, travamentos e ruídos no disco. Com o disco novo, o sistema precisa ser reinstalado.",
+      ],
+      [
+        "Ventoinha com ruído ou parada",
+        "Ventoinha barulhenta, presa ou parada compromete a refrigeração do equipamento.",
+      ],
+      [
+        "Placa-mãe danificada",
+        "Quando o reparo não é viável, a placa pode ser substituída por uma compatível.",
+      ],
+    ],
+    checksTitle: "Troca por defeito",
+    checks: [
+      [
+        "Confirmação do defeito",
+        "Testes indicam se o problema está mesmo na peça. Um sintoma como não ligar pode ter outras causas.",
+      ],
+      [
+        "Peça compatível",
+        "A peça nova precisa ser compatível com o modelo e com a configuração do equipamento.",
+      ],
+      [
+        "Defeito ou desempenho",
+        "Trocar uma peça para ganhar velocidade, e não para corrigir uma falha, é upgrade. Veja o upgrade de SSD e memória.",
+      ],
+    ],
+    faqTitle: "Dúvidas sobre troca de peças",
+    local: "Troca de peças de notebooks e PCs na Freguesia do Ó.",
+    faq: [
+      [
+        "Vale trocar a peça ou o computador?",
+        "Depende do defeito, da idade do equipamento e do custo da peça. Se a troca não compensar, você fica sabendo antes de aprovar.",
+      ],
+      [
+        "Vocês têm a peça para o meu modelo?",
+        "A disponibilidade varia. Envie a marca e o modelo pelo WhatsApp para consultarmos a peça, o valor e o prazo.",
+      ],
+      [
+        "A bateria estufou. É perigoso?",
+        "Pode ser. A bateria estufada pode deformar a carcaça e danificar outros componentes. Tire o equipamento da tomada e evite usá-lo até a avaliação.",
+      ],
+    ],
+    related: ["diagnostico-e-solucao-de-problemas", "upgrade-de-ssd-e-memoria", "reparo-de-placa"],
+  },
+  {
+    slug: "reparo-de-placa",
+    seoTitle: "Reparo de placa de notebook e PC na Freguesia do Ó | Capucho",
+    seoDescription:
+      "Placa com defeito nem sempre precisa ser trocada inteira. Avaliação da viabilidade do reparo ou da substituição, na Freguesia do Ó, em São Paulo.",
+    title: "Reparo de placa",
+    short: "Reparo de placa",
+    image: "reparo-placa-foto.webp",
+    photo: true,
+    alt: "Soquete de processador ampliado em um microscópio digital na bancada da Capucho",
+    description:
+      "Avaliação da placa para saber se o defeito tem reparo antes de substituí-la.",
+    intro:
+      "Quando a falha está na placa, nem sempre é preciso trocá-la inteira. A viabilidade do reparo depende do defeito e do estado da placa.",
+    message:
+      "Olá, Capucho! Quero uma avaliação para reparo de placa do meu computador ou notebook.",
+    signsTitle: "Quando a placa pode ser a causa",
+    signs: [
+      [
+        "Não liga depois de queda de energia",
+        "Picos e oscilações de energia podem danificar componentes da placa ou da fonte.",
+      ],
+      [
+        "Contato com líquido",
+        "O líquido pode causar curto-circuito e oxidação. Desligue o equipamento e não tente ligá-lo de novo até a avaliação.",
+      ],
+      [
+        "Não carrega",
+        "Se o carregador e a bateria estão bons, a falha pode estar no circuito de carga da placa.",
+      ],
+      [
+        "Portas sem funcionar",
+        "USB, vídeo ou áudio que pararam de funcionar podem indicar defeito no conector ou no circuito ligado a ele.",
+      ],
+    ],
+    checksTitle: "Reparo ou substituição",
+    checks: [
+      [
+        "Reparo eletrônico",
+        "Corrige o componente ou o trecho do circuito com defeito e mantém a placa original.",
+      ],
+      [
+        "Substituição da placa",
+        "Troca a placa inteira por uma compatível. Indicada quando o dano é extenso ou o reparo não compensa.",
+      ],
+      [
+        "Viabilidade",
+        "Oxidação avançada ou danos em vários pontos podem inviabilizar o reparo. Isso é informado antes da aprovação.",
+      ],
+    ],
+    faqTitle: "Dúvidas sobre reparo de placa",
+    local: "Reparo de placa de notebooks e PCs na Freguesia do Ó.",
+    faq: [
+      [
+        "É melhor reparar ou trocar a placa?",
+        "Depende do defeito, do custo e da disponibilidade de uma placa compatível. As opções aparecem no orçamento.",
+      ],
+      [
+        "Meu notebook molhou. O que eu faço?",
+        "Desligue, tire da tomada e não tente ligar para testar. Quanto antes a avaliação, maiores as chances de reparo.",
+      ],
+      [
+        "Meus arquivos ficam salvos?",
+        "O reparo da placa não mexe no armazenamento, mas o defeito pode ter afetado o disco. Avise se há arquivos importantes.",
+      ],
+    ],
+    related: ["diagnostico-e-solucao-de-problemas", "troca-de-hardware", "troca-de-tela-de-notebook"],
+  },
+  {
+    slug: "upgrade-de-ssd-e-memoria",
+    seoTitle: "Upgrade de SSD e memória RAM na Freguesia do Ó | Capucho",
+    seoDescription:
+      "SSD para iniciar e abrir programas mais rápido, memória RAM para usar mais aplicativos ao mesmo tempo. Avaliação de compatibilidade antes do upgrade.",
+    title: "Upgrade de SSD e memória RAM",
+    short: "Upgrade de SSD e RAM",
     image: "upgrade-foto.webp",
-    alt: "Imagem ilustrativa de computador aberto com memórias e SSD para upgrade",
+    alt: "Computador aberto com pentes de memória RAM e SSD",
     description:
-      "Mais fôlego para trabalhar e estudar, com peças que fazem sentido para o seu uso.",
+      "SSD e memória RAM resolvem limitações diferentes. Indicamos o que faz sentido para o seu uso.",
     intro:
-      "Antes de trocar tudo, vamos entender o que você precisa. A gente avalia o que vale melhorar ou monta um PC para sua rotina.",
+      "SSD e memória RAM resolvem limitações diferentes. Avaliamos o seu uso e o que o equipamento aceita antes de indicar a peça.",
     message:
-      "Olá, Capucho! Quero conversar sobre upgrade ou montagem de um computador para trabalho e estudo.",
-    heading: "Uma configuração que faz sentido pra você.",
-    groups: [
+      "Olá, Capucho! Quero um orçamento de upgrade de SSD ou memória RAM. Meu computador é: ",
+    signsTitle: "Sinais de que o equipamento está no limite",
+    signs: [
       [
-        "Armazenamento e memória",
-        "SSD, HD e memória RAM, com avaliação da capacidade e da compatibilidade do equipamento.",
+        "Demora para iniciar",
+        "Em equipamentos com HD, um SSD compatível pode reduzir o tempo de inicialização e de abertura de programas. A indicação depende da causa da lentidão.",
       ],
       [
-        "Processamento e vídeo",
-        "Processador, placa-mãe e placa de vídeo escolhidos de acordo com os programas e tarefas que você utiliza.",
+        "Disco sempre em 100%",
+        "No Gerenciador de Tarefas, o disco no máximo durante o uso comum costuma indicar HD lento ou desgastado.",
       ],
       [
-        "Fonte, gabinete e refrigeração",
-        "Componentes dimensionados para a configuração, incluindo espaço, energia e resfriamento.",
+        "Trava com vários programas abertos",
+        "Falta de memória RAM pode limitar o uso simultâneo de aplicativos. A possibilidade de expansão depende do modelo e da configuração.",
       ],
       [
-        "Montagem para trabalho e estudo",
-        "Uma conversa sobre seu uso orienta a escolha das peças e o orçamento da montagem.",
+        "Pouco espaço livre",
+        "Disco cheio atrapalha atualizações e o uso diário. Um SSD maior ou um segundo disco pode resolver, se houver espaço no equipamento.",
       ],
     ],
-    note: "Já comprou uma peça? Você pode trazê-la. Antes da instalação, verificamos a compatibilidade e as condições do componente.",
+    checksTitle: "Armazenamento e memória são coisas diferentes",
+    checks: [
+      [
+        "SSD: armazenamento",
+        "Guarda o sistema, os programas e os arquivos. Lê e grava dados muito mais rápido que um HD.",
+      ],
+      [
+        "RAM: memória de trabalho",
+        "Mantém abertos os programas em uso. Mais memória permite usar mais aplicativos ao mesmo tempo, mas não acelera um disco lento.",
+      ],
+      [
+        "Compatibilidade",
+        "O tipo de memória, os slots livres e a conexão do SSD (SATA ou M.2) variam por modelo. Alguns notebooks têm memória soldada na placa.",
+      ],
+    ],
+    note: "Já comprou a peça? Você pode trazê-la. Antes da instalação, verificamos a compatibilidade e as condições do componente.",
     faqTitle: "Dúvidas sobre upgrade",
-    local:
-      "Upgrade e montagem de computadores na Freguesia do Ó. Trocar o HD por SSD, aumentar a memória ou montar um PC do zero: a gente começa entendendo o que você usa, para indicar só o que faz diferença pra você.",
+    local: "Upgrade de SSD e memória em notebooks e PCs na Freguesia do Ó.",
     faq: [
       [
-        "Qual upgrade faz mais diferença?",
-        "Em muitos computadores, trocar o HD por um SSD e ajustar a memória RAM já traz um bom ganho no dia a dia. Mas depende do equipamento e do seu uso, por isso a avaliação vem antes da indicação.",
+        "O upgrade aumenta o FPS nos jogos?",
+        "Nem sempre. Nos jogos, o desempenho depende mais da placa de vídeo e do processador. SSD e RAM ajudam no carregamento e quando a memória está no limite.",
       ],
       [
         "Meu notebook aceita upgrade?",
-        "Depende do modelo. Alguns permitem trocar SSD e memória; outros têm componentes soldados na placa. Envie a marca e o modelo pelo WhatsApp que a gente verifica.",
+        "Depende do modelo. Envie a marca e o modelo pelo WhatsApp para verificarmos os slots, o tipo de memória e a conexão do SSD.",
       ],
       [
-        "Posso levar uma peça que já comprei?",
-        "Pode. Antes da instalação, verificamos a compatibilidade e as condições do componente.",
+        "Quanta memória RAM eu preciso?",
+        "Depende dos programas que você usa. Navegação e escritório pedem menos que edição de vídeo ou jogos. Conte o seu uso que indicamos a capacidade.",
       ],
       [
-        "Vocês montam PC gamer?",
-        "Sim, montagem e upgrades para jogos também. Conte o que você joga e a gente conversa sobre as possibilidades.",
-      ],
-      [
-        "Vocês vendem as peças?",
-        "Computadores, peças e acessórios podem ser consultados pelo WhatsApp, junto com o orçamento do serviço.",
+        "Meus arquivos passam para o SSD novo?",
+        "Isso é combinado antes do serviço. A cópia depende do estado do disco antigo.",
       ],
     ],
+    related: ["formatacao-e-backup", "troca-de-hardware", "manutencao-preventiva"],
   },
   {
-    slug: "limpeza-preventiva",
-    seoTitle: "Limpeza de notebook e PC na Freguesia do Ó | Capucho",
+    slug: "formatacao-e-backup",
+    seoTitle: "Formatação e backup de PC e notebook | Capucho Informática",
     seoDescription:
-      "Limpeza e manutenção preventiva de computadores e notebooks na Freguesia do Ó, SP: poeira, pasta térmica, ventoinhas e testes de temperatura.",
-    title: "Limpeza e manutenção preventiva",
-    short: "Limpeza preventiva",
-    image: "limpeza-foto.webp",
-    alt: "Imagem ilustrativa da limpeza de uma ventoinha de notebook com pincel e soprador",
+      "Reinstalação de Windows, macOS e Linux quando o problema é de sistema, com backup combinado antes. Formatação na Freguesia do Ó, em São Paulo.",
+    title: "Formatação e backup",
+    short: "Formatação e backup",
+    image: "formatacao-foto.webp",
+    alt: "Notebook instalando o sistema, com pendrive e HD externo conectados",
     description:
-      "Cuidado por dentro e por fora para manter a manutenção do computador em dia.",
+      "Reinstalação do sistema quando a falha é de software, com backup combinado antes.",
     intro:
-      "Poeira, ventoinhas e temperaturas merecem atenção. A manutenção considera as condições e as necessidades do seu equipamento.",
+      "Reinstalação do Windows, macOS ou Linux para computadores com falhas de sistema. Antes de apagar o disco, combinamos o que precisa ser copiado.",
     message:
-      "Olá, Capucho! Quero um orçamento para limpeza e manutenção preventiva do meu computador ou notebook.",
-    heading: "O cuidado também está nos detalhes.",
-    groups: [
+      "Olá, Capucho! Quero um orçamento para formatação. Tenho arquivos importantes para salvar.",
+    signsTitle: "Quando a formatação pode ser indicada",
+    signs: [
       [
-        "Limpeza interna",
-        "Remoção da poeira acumulada nos componentes e nas áreas de ventilação.",
+        "Erros ao iniciar o sistema",
+        "Reparo automático, reinícios em sequência ou mensagens de arquivo corrompido podem indicar falha no sistema operacional.",
       ],
       [
-        "Pasta térmica e ventoinhas",
-        "Cuidados com a pasta térmica e com as ventoinhas, conforme a avaliação do equipamento.",
+        "Lentidão que piora com o tempo",
+        "Programas na inicialização e restos de instalações antigas pesam no uso. Antes, vale descartar disco com defeito ou falta de memória.",
       ],
       [
-        "Temperatura e funcionamento",
-        "Testes para observar as temperaturas e o funcionamento após a manutenção.",
+        "Vírus e anúncios aparecendo sozinhos",
+        "Janelas que abrem sozinhas, navegador alterado e programas que você não instalou são sinais de infecção.",
       ],
       [
-        "Limpeza externa",
-        "Limpeza da parte externa, respeitando os materiais e as condições do computador.",
+        "Disco novo",
+        "Um SSD ou HD novo precisa receber o sistema e os programas antes do uso.",
+      ],
+      [
+        "Venda ou repasse do computador",
+        "Apagar os dados pessoais antes de entregar o equipamento a outra pessoa.",
       ],
     ],
-    note: "Seu computador está esquentando ou fazendo muito barulho? Conte como isso acontece. A causa e o serviço indicado dependem da avaliação.",
-    faqTitle: "Dúvidas sobre limpeza",
+    checksTitle: "Software ou defeito físico?",
+    checks: [
+      [
+        "Estado do disco",
+        "Um HD ou SSD com falha pode corromper o sistema de novo depois da formatação. Se o disco estiver com defeito, a troca vem antes.",
+      ],
+      [
+        "Remoção de vírus",
+        "Em alguns casos, a limpeza do sistema resolve sem apagar o disco. Depende do tipo de infecção.",
+      ],
+      [
+        "Reinstalação completa",
+        "Sistema instalado do zero, com os drivers do equipamento. Os programas que você usa são instalados em seguida.",
+      ],
+    ],
+    note: "A formatação apaga o conteúdo do disco. Avise no primeiro contato quais arquivos são importantes: o backup é combinado antes e depende do acesso e do estado do armazenamento.",
+    faqTitle: "Dúvidas sobre formatação",
     local:
-      "Limpeza e manutenção preventiva de notebooks e PCs na Freguesia do Ó. Manutenção preventiva não é só dar uma limpada: é cuidar da temperatura, do desempenho e da vida útil do seu equipamento.",
+      "Formatação de notebooks e PCs na Freguesia do Ó. Problemas só de sistema também podem ser atendidos pelo suporte remoto, conforme o caso.",
     faq: [
       [
-        "Meu notebook está esquentando muito. É sujeira?",
-        "Pode ser poeira nas ventoinhas, pasta térmica ressecada ou outra causa. A avaliação mostra o que está acontecendo antes de indicar o serviço.",
+        "Formatar resolve a lentidão?",
+        "Só quando a causa está no sistema. Se o HD estiver no limite ou faltar memória, a lentidão volta, e um upgrade pode fazer mais diferença.",
       ],
       [
-        "Com que frequência devo fazer a limpeza?",
-        "Depende do ambiente e do uso. Poeira, pelos de animais e uso intenso, como jogos, aceleram o acúmulo. Ventoinha barulhenta, aquecimento e desligamentos inesperados são sinais para fazer uma avaliação.",
+        "Meus programas continuam instalados?",
+        "Não. A formatação remove os programas junto com o sistema. Eles precisam ser reinstalados, e os pagos exigem a licença ou o acesso à sua conta.",
       ],
       [
-        "O que é feito na manutenção preventiva?",
-        "Limpeza interna e externa, cuidado com as ventoinhas, troca da pasta térmica e testes de temperatura e funcionamento. Em equipamentos que esquentam mais, a troca dos thermal pads também pode ser indicada.",
+        "Dá para salvar arquivos de um disco com defeito?",
+        "Depende do estado do disco. Se ele não permitir a leitura, a cópia pode não ser possível. A avaliação mostra o que dá para fazer.",
       ],
       [
-        "Vocês fazem manutenção em notebook gamer?",
-        "Sim. Notebooks gamer trabalham em temperaturas mais altas e merecem atenção especial com limpeza, pasta térmica e thermal pads.",
+        "Quais sistemas vocês instalam?",
+        "Windows, macOS e Linux, conforme a compatibilidade do equipamento.",
       ],
     ],
+    related: ["instalacao-de-softwares", "upgrade-de-ssd-e-memoria", "suporte-e-atendimento"],
+  },
+  {
+    slug: "instalacao-de-softwares",
+    seoTitle: "Instalação de programas e drivers | Capucho Informática",
+    seoDescription:
+      "Instalação e configuração de programas e drivers, com checagem de requisitos e compatibilidade. Na loja, na Freguesia do Ó, ou pelo suporte remoto.",
+    title: "Instalação de softwares",
+    short: "Instalação de softwares",
+    icon: "AppWindow",
+    description:
+      "Programas, drivers e configurações, com checagem de requisitos e compatibilidade.",
+    intro:
+      "Instalação e configuração dos programas que você usa, sem formatar o computador. Antes, verificamos se o equipamento atende aos requisitos.",
+    message:
+      "Olá, Capucho! Preciso instalar ou configurar um programa. O programa é: ",
+    signsTitle: "Quando pedir ajuda",
+    signs: [
+      [
+        "Programa que não instala ou não abre",
+        "Pode faltar um requisito, um componente do sistema ou uma permissão.",
+      ],
+      [
+        "Impressora ou dispositivo parado",
+        "Muitas vezes falta o driver correto ou a configuração do aparelho.",
+      ],
+      [
+        "Computador novo",
+        "Programas de trabalho e estudo instalados e configurados para a sua rotina.",
+      ],
+      [
+        "Erro depois de uma atualização",
+        "Atualizações do sistema podem causar incompatibilidade com programas ou drivers.",
+      ],
+    ],
+    checksTitle: "O que é verificado",
+    checks: [
+      [
+        "Requisitos",
+        "Versão do sistema, memória e espaço em disco precisam atender ao que o programa exige.",
+      ],
+      [
+        "Drivers",
+        "Vídeo, áudio, rede e periféricos precisam dos drivers corretos para funcionar bem.",
+      ],
+      [
+        "Configuração",
+        "Contas, pastas e preferências ajustadas conforme o seu uso.",
+      ],
+    ],
+    note: "Programas pagos exigem licença. Ela precisa ser fornecida por você ou adquirida antes da instalação.",
+    faqTitle: "Dúvidas sobre instalação",
+    local:
+      "Instalação de programas na loja, na Freguesia do Ó, ou pelo suporte remoto, para todo o Brasil.",
+    faq: [
+      [
+        "Instalar um programa é o mesmo que formatar?",
+        "Não. A instalação acrescenta programas ao sistema atual, sem apagar seus arquivos. A formatação reinstala o sistema do zero.",
+      ],
+      [
+        "Dá para instalar remotamente?",
+        "Em muitos casos, sim, pelo suporte remoto, com o seu acompanhamento pela tela.",
+      ],
+      [
+        "O programa vai funcionar no meu computador?",
+        "Depende dos requisitos. Envie o nome do programa e o modelo do computador pelo WhatsApp para verificarmos.",
+      ],
+    ],
+    related: ["formatacao-e-backup", "suporte-e-atendimento", "upgrade-de-ssd-e-memoria"],
+  },
+  {
+    slug: "manutencao-preventiva",
+    seoTitle: "Limpeza e manutenção preventiva de PC | Capucho Informática",
+    seoDescription:
+      "Notebook ou PC esquentando ou com ventoinha alta? Limpeza da refrigeração, avaliação da pasta térmica e testes de temperatura, na Freguesia do Ó.",
+    title: "Manutenção preventiva",
+    short: "Manutenção preventiva",
+    image: "limpeza-foto.webp",
+    alt: "Ventoinha de notebook sendo limpa com pincel, soprador e pasta térmica ao lado",
+    description:
+      "Limpeza da refrigeração e avaliação dos materiais térmicos para controlar temperatura e ruído.",
+    intro:
+      "A poeira acumulada dificulta a ventilação e faz o equipamento esquentar. A manutenção limpa a refrigeração e avalia os materiais térmicos.",
+    message:
+      "Olá, Capucho! Quero um orçamento para manutenção preventiva e limpeza do meu computador ou notebook.",
+    signsTitle: "Sinais de que a refrigeração precisa de atenção",
+    signs: [
+      [
+        "Ventoinha alta o tempo todo",
+        "Ruído constante, mesmo em tarefas leves, pode indicar poeira acumulada ou ventoinha desgastada.",
+      ],
+      [
+        "Aquecimento excessivo",
+        "Calor forte no teclado, na base ou na saída de ar durante o uso comum.",
+      ],
+      [
+        "Perde desempenho depois de um tempo",
+        "Quando esquenta demais, o processador reduz a velocidade para se proteger.",
+      ],
+      [
+        "Desliga em uso pesado",
+        "O sistema pode desligar para se proteger da temperatura. A causa também pode ser fonte ou outro defeito.",
+      ],
+    ],
+    checksTitle: "O que a manutenção inclui",
+    checks: [
+      [
+        "Inspeção",
+        "Verificação da poeira, das ventoinhas e das saídas de ar.",
+      ],
+      [
+        "Limpeza da refrigeração",
+        "Remoção da poeira de dissipadores, ventoinhas e áreas de ventilação, além da limpeza externa.",
+      ],
+      [
+        "Materiais térmicos",
+        "A pasta térmica é avaliada e trocada quando necessário. Em alguns equipamentos, os thermal pads também podem precisar de troca.",
+      ],
+      [
+        "Teste de temperatura",
+        "Temperaturas e funcionamento são observados depois da manutenção.",
+      ],
+    ],
+    note: "Nem todo aquecimento vem da poeira. Se a temperatura continuar alta depois da limpeza, a causa é investigada no diagnóstico.",
+    faqTitle: "Dúvidas sobre manutenção",
+    local: "Limpeza e manutenção preventiva de notebooks e PCs na Freguesia do Ó.",
+    faq: [
+      [
+        "Com que frequência devo fazer?",
+        "Depende do ambiente e do uso. Poeira, pelos de animais e uso intenso, como jogos, aceleram o acúmulo.",
+      ],
+      [
+        "Notebook gamer precisa de mais atenção?",
+        "Sim. Ele trabalha com temperaturas mais altas, e o uso intenso acelera o acúmulo de poeira.",
+      ],
+      [
+        "A manutenção mexe nos meus arquivos?",
+        "Não. A limpeza é física e não altera o sistema nem os arquivos.",
+      ],
+    ],
+    related: ["diagnostico-e-solucao-de-problemas", "troca-de-hardware", "upgrade-de-ssd-e-memoria"],
   },
   {
     slug: "suporte-e-atendimento",
@@ -274,6 +631,46 @@ export const services = [
         "A Freguesia do Ó e arredores. Envie seu CEP pelo WhatsApp para confirmar a cobertura, o valor da visita e a disponibilidade de dia e horário.",
       ],
     ],
+    related: ["diagnostico-e-solucao-de-problemas", "instalacao-de-softwares", "formatacao-e-backup"],
+  },
+];
+
+// Páginas antigas que agrupavam vários serviços. Continuam no ar (links e buscas antigas) como
+// índice para as páginas específicas; ficam fora do sitemap e com "noindex, follow".
+// /servicos/limpeza-preventiva virou /servicos/manutencao-preventiva (redirecionamento em vercel.json).
+export const redirects = { "limpeza-preventiva": "manutencao-preventiva" };
+
+export const legacyHubs = [
+  {
+    slug: "conserto",
+    title: "Conserto de computadores e notebooks",
+    intro:
+      "Os serviços de conserto agora têm páginas próprias. Escolha o que mais se aproxima do seu problema.",
+    message: "Olá, Capucho! Preciso de um orçamento para conserto de computador ou notebook.",
+    links: [
+      "diagnostico-e-solucao-de-problemas",
+      "troca-de-tela-de-notebook",
+      "troca-de-hardware",
+      "reparo-de-placa",
+      "manutencao-preventiva",
+    ],
+  },
+  {
+    slug: "formatacao-e-programas",
+    title: "Formatação e programas",
+    intro:
+      "Formatação e instalação de programas agora têm páginas próprias. Escolha o serviço que você procura.",
+    message: "Olá, Capucho! Quero atendimento para formatação ou instalação de programas.",
+    links: ["formatacao-e-backup", "instalacao-de-softwares", "suporte-e-atendimento"],
+  },
+  {
+    slug: "upgrade-e-montagem",
+    title: "Upgrade e montagem de computadores",
+    intro:
+      "Upgrade, troca de peças e montagem agora têm páginas próprias. Escolha o que você procura.",
+    message: "Olá, Capucho! Quero conversar sobre upgrade ou montagem de computador.",
+    links: ["upgrade-de-ssd-e-memoria", "troca-de-hardware"],
+    gamer: true,
   },
 ];
 
@@ -349,18 +746,18 @@ export const workVideos = [
     file: "troca-tela",
     title: "Troca de tela de notebook",
     text: "Tela trincada, com manchas ou listras? A troca é feita com a peça compatível com o modelo do seu notebook.",
-    link: "/servicos/conserto",
+    link: "/servicos/troca-de-tela-de-notebook",
   },
   {
     file: "limpeza",
     title: "Limpeza e manutenção de notebook",
     text: "Poeira acumulada nas ventoinhas faz o notebook esquentar. Na manutenção, a limpeza é feita por dentro, com cuidado em cada componente.",
-    link: "/servicos/limpeza-preventiva",
+    link: "/servicos/manutencao-preventiva",
   },
   {
     file: "montagem",
     title: "Reparo de componentes e montagem",
     text: "Atenção aos detalhes do diagnóstico ao reparo de componentes, até a montagem completa do computador.",
-    link: "/servicos/upgrade-e-montagem",
+    link: "/servicos/reparo-de-placa",
   },
 ];

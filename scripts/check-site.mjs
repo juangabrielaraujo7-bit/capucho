@@ -7,11 +7,19 @@ const errors = [];
 const base = process.env.PREVIEW_URL || "http://127.0.0.1:5173";
 const routes = [
   "/",
+  "/servicos/diagnostico-e-solucao-de-problemas",
+  "/servicos/troca-de-tela-de-notebook",
+  "/servicos/troca-de-hardware",
+  "/servicos/reparo-de-placa",
+  "/servicos/upgrade-de-ssd-e-memoria",
+  "/servicos/formatacao-e-backup",
+  "/servicos/instalacao-de-softwares",
+  "/servicos/manutencao-preventiva",
+  "/servicos/suporte-e-atendimento",
+  // Endereços antigos que viraram índice dos serviços específicos.
   "/servicos/conserto",
   "/servicos/formatacao-e-programas",
   "/servicos/upgrade-e-montagem",
-  "/servicos/limpeza-preventiva",
-  "/servicos/suporte-e-atendimento",
   "/gamer",
   "/gamer/monte-seu-pc",
 ];
@@ -91,9 +99,10 @@ try {
           .evaluateAll((imgs) => imgs.map((i) => i.src));
         assert.equal(
           new Set(sources).size,
-          6,
-          "All six service images must be distinct",
+          sources.length,
+          "Service card images must be distinct",
         );
+        assert.equal(await page.locator(".services-slide").count(), 10, "9 services + products");
         assert.equal(
           sources.some((src) => src.endsWith("/notebook.webp")),
           false,
@@ -133,7 +142,7 @@ try {
       results.push({ route, width: viewport.width, ...report });
       if (
         route === "/" ||
-        route === "/servicos/conserto" ||
+        route === "/servicos/troca-de-tela-de-notebook" ||
         route === "/servicos/suporte-e-atendimento"
       ) {
         await page.screenshot({

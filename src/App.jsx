@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation, useParams } from "react-router";
+import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import { IconContext, WhatsappLogo } from "@phosphor-icons/react";
 import "@fontsource-variable/sora";
 import "@fontsource-variable/dm-sans";
@@ -8,17 +8,23 @@ import Footer from "./components/Footer";
 import RouteEffects from "./components/RouteEffects";
 import Home from "./pages/Home";
 import ServicePage from "./pages/ServicePage";
+import ServiceHubPage from "./pages/ServiceHubPage";
 import GamerPage from "./pages/GamerPage";
 import PcBuilder from "./pages/PcBuilder";
 import NotFound from "./pages/NotFound";
-import { services } from "./content";
+import { legacyHubs, redirects, services } from "./content";
 import { wa } from "./config";
 import "./styles.css";
 
 function ServiceRoute() {
   const { slug } = useParams();
   const service = services.find((s) => s.slug === slug);
-  return service ? <ServicePage key={slug} service={service} /> : <NotFound />;
+  if (service) return <ServicePage key={slug} service={service} />;
+  const hub = legacyHubs.find((h) => h.slug === slug);
+  if (hub) return <ServiceHubPage key={slug} hub={hub} />;
+  // Endereço substituído (o 301 de verdade fica em vercel.json; aqui cobre a navegação no app).
+  if (redirects[slug]) return <Navigate to={`/servicos/${redirects[slug]}`} replace />;
+  return <NotFound />;
 }
 
 export default function App() {

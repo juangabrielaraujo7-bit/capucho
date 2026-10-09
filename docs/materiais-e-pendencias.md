@@ -61,6 +61,27 @@ Pendente com o cliente:
 - A arte da hero da área gamer imita o estilo e os personagens de um jogo comercial. Confirmar se a Capucho quer assumir esse uso ou trocar por uma arte própria.
 - O vídeo do setup gamer é uma animação ilustrativa, não um PC montado pela loja.
 
+## Páginas de serviço específicas (09/10/2026)
+
+Os serviços passaram a ter uma página cada, com a lógica sinal percebido → verificações → intervenção possível (referência de organização: imperiodastelascelular.com.br/troca-de-tela, sem copiar texto nem condições). Mapeamento:
+
+| Antes | Agora |
+| --- | --- |
+| /servicos/conserto | Índice com links para diagnóstico, troca de tela, troca de hardware, reparo de placa e manutenção |
+| /servicos/formatacao-e-programas | Índice com links para formatação e backup, instalação de softwares e suporte |
+| /servicos/upgrade-e-montagem | Índice com links para upgrade de SSD e RAM, troca de hardware e área gamer |
+| /servicos/limpeza-preventiva | Redirecionamento 301 para /servicos/manutencao-preventiva |
+| /servicos/suporte-e-atendimento | Mantida |
+
+Imagens: diagnóstico usa a antiga imagem de conserto. Troca de tela, troca de hardware e reparo de placa usam quadros dos vídeos reais da loja (fotos com cantos arredondados). Instalação de softwares está sem imagem (o card mostra um ícone): falta uma foto ou ilustração no padrão 3D dos demais serviços.
+
+Pendente com o cliente:
+- **Resinagem:** o serviço não aparece nos materiais. A foto melhorada da vitrine mostra “Personalização” no mesmo lugar, mas o briefing avisa que os textos pequenos dessa foto foram reconstruídos de forma imprecisa. Confirmar o que a Capucho chama de resinagem, quais problemas e peças atende, antes de criar a página.
+- Componentes trocados em troca de hardware: a página cita teclado, bateria, fonte, HD/SSD, ventoinha e placa-mãe (briefing, vitrine e avaliações). Confirmar se há outros, como tela touch, entrada de carregamento e carcaça.
+- Backup: a página explica que é combinado antes e depende do disco; confirmar se o backup é cobrado à parte e como é feito.
+- Troca de thermal pads na manutenção (mencionada como possibilidade).
+- Se o diagnóstico/avaliação tem valor fixo por tipo de equipamento.
+
 ## Confirmar antes de publicar
 
 - Horários de funcionamento e condições de garantia de 90 dias.
