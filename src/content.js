@@ -824,4 +824,22 @@ export const workVideos = [
     text: "Atenção aos detalhes do diagnóstico ao reparo de componentes, até a montagem completa do computador.",
     link: "/servicos/reparo-de-placa",
   },
+  {
+    file: "reparo-placa",
+    title: "Reparo de placa",
+    text: "Diagnóstico de componentes na placa-mãe, com testes e reparo do que for identificado como a causa do problema.",
+    link: "/servicos/reparo-de-placa",
+  },
+  {
+    file: "resinagem",
+    title: "Resinagem",
+    text: "Reforço estrutural em rachaduras da carcaça ou em pontos de fixação danificados, como parafusos e dobradiças.",
+    link: "/servicos/resinagem",
+  },
+  {
+    file: "manutencao-gamer",
+    title: "Manutenção preventiva em PC gamer",
+    text: "Limpeza interna e revisão dos componentes, cuidando das ventoinhas e do fluxo de ar do PC gamer.",
+    link: "/servicos/manutencao-preventiva",
+  },
 ];

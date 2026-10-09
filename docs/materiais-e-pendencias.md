@@ -77,6 +77,8 @@ Resinagem (10/10/2026): o usuário confirmou a definição — reparo estrutural
 
 Imagens: diagnóstico usa a antiga imagem de conserto (3D, sem fundo). Troca de tela, troca de hardware, reparo de placa, instalação de softwares e resinagem ficam sem foto por enquanto (o card mostra um ícone): as únicas imagens disponíveis para os quatro primeiros eram prints reais dos vídeos da loja, com fundo, fora do padrão 3D sem fundo das demais; resinagem nunca teve material próprio. Falta uma foto ou ilustração nesse padrão para cada um — o usuário vai providenciar.
 
+Vídeos "Quem cuida do seu PC mostra como faz" (09/10/2026): três vídeos novos enviados pelo usuário, recodificados do mesmo jeito dos três originais (540×960, 30 fps, sem áudio, com versão leve para o carrossel do celular) — `reparo-placa`, `resinagem` e `manutencao-gamer` (manutenção preventiva em PC gamer), adicionados em `workVideos` sem remover os três já existentes.
+
 Pendente com o cliente:
 - Componentes trocados em troca de hardware: a página cita teclado, bateria, fonte, HD/SSD, ventoinha e placa-mãe (briefing, vitrine e avaliações). Confirmar se há outros, como tela touch, entrada de carregamento e carcaça.
 - Backup: a página explica que é combinado antes e depende do disco; confirmar se o backup é cobrado à parte e como é feito.

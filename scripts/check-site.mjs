@@ -166,7 +166,7 @@ try {
           await page.locator(".work-mobile .build-carousel-nav.is-next").click();
           assert.equal(
             await page.locator(".work-mobile .build-carousel-caption h3").textContent(),
-            "Reparo de componentes e montagem",
+            "Resinagem",
           );
           await page.locator(".work-mobile .build-card video").evaluateAll((vs) => vs.forEach((v) => v.pause()));
         } else {

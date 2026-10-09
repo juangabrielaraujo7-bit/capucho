@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
-import { Cpu, Fan, Monitor, Play } from "@phosphor-icons/react";
+import { Bandaids, Circuitry, Cpu, Fan, Monitor, Play } from "@phosphor-icons/react";
 import { asset } from "../config";
 import BuildCarousel from "./BuildCarousel";
 
@@ -10,7 +10,14 @@ import BuildCarousel from "./BuildCarousel";
 // No celular, as fileiras dão lugar ao mesmo carrossel da Área Gamer, em versão clara, com o texto
 // do vídeo do centro logo abaixo.
 
-const icons = { "troca-tela": Monitor, limpeza: Fan, montagem: Cpu };
+const icons = {
+  "troca-tela": Monitor,
+  limpeza: Fan,
+  montagem: Cpu,
+  "reparo-placa": Circuitry,
+  resinagem: Bandaids,
+  "manutencao-gamer": Fan,
+};
 
 function VideoFrame({ file, title, active = true, className = "" }) {
   const ref = useRef(null);
