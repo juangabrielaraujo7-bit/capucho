@@ -73,10 +73,11 @@ Os serviços passaram a ter uma página cada, com a lógica sinal percebido → 
 | /servicos/limpeza-preventiva | Redirecionamento 301 para /servicos/manutencao-preventiva |
 | /servicos/suporte-e-atendimento | Mantida |
 
-Imagens: diagnóstico usa a antiga imagem de conserto (3D, sem fundo). Troca de tela, troca de hardware, reparo de placa e instalação de softwares ficam sem foto por enquanto (o card mostra um ícone): as únicas imagens disponíveis para esses quatro eram prints reais dos vídeos da loja, com fundo, fora do padrão 3D sem fundo das demais. Falta uma foto ou ilustração nesse padrão para cada um.
+Resinagem (10/10/2026): o usuário confirmou a definição — reparo estrutural para rachaduras e quebras na carcaça ou nos pontos de fixação (parafusos, suportes de dobradiça). Página criada em `/servicos/resinagem`, também listada no índice de `/servicos/conserto`.
+
+Imagens: diagnóstico usa a antiga imagem de conserto (3D, sem fundo). Troca de tela, troca de hardware, reparo de placa, instalação de softwares e resinagem ficam sem foto por enquanto (o card mostra um ícone): as únicas imagens disponíveis para os quatro primeiros eram prints reais dos vídeos da loja, com fundo, fora do padrão 3D sem fundo das demais; resinagem nunca teve material próprio. Falta uma foto ou ilustração nesse padrão para cada um — o usuário vai providenciar.
 
 Pendente com o cliente:
-- **Resinagem:** o serviço não aparece nos materiais. A foto melhorada da vitrine mostra “Personalização” no mesmo lugar, mas o briefing avisa que os textos pequenos dessa foto foram reconstruídos de forma imprecisa. Confirmar o que a Capucho chama de resinagem, quais problemas e peças atende, antes de criar a página.
 - Componentes trocados em troca de hardware: a página cita teclado, bateria, fonte, HD/SSD, ventoinha e placa-mãe (briefing, vitrine e avaliações). Confirmar se há outros, como tela touch, entrada de carregamento e carcaça.
 - Backup: a página explica que é combinado antes e depende do disco; confirmar se o backup é cobrado à parte e como é feito.
 - Troca de thermal pads na manutenção (mencionada como possibilidade).

@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import {
   AppWindow,
   ArrowUpRight,
+  Bandaids,
   Circuitry,
   Monitor,
   Wrench,
@@ -12,7 +13,7 @@ const productMessage =
   "Olá, Capucho! Quero consultar computadores, peças e acessórios disponíveis.";
 
 // Serviços sem foto adequada mostram um ícone no lugar da imagem.
-const icons = { AppWindow, Circuitry, Monitor, Wrench };
+const icons = { AppWindow, Bandaids, Circuitry, Monitor, Wrench };
 
 function CardBody({ image, photo, icon, title, description, cta }) {
   const Icon = icons[icon];

@@ -11,6 +11,7 @@ const routes = [
   "/servicos/troca-de-tela-de-notebook",
   "/servicos/troca-de-hardware",
   "/servicos/reparo-de-placa",
+  "/servicos/resinagem",
   "/servicos/upgrade-de-ssd-e-memoria",
   "/servicos/formatacao-e-backup",
   "/servicos/instalacao-de-softwares",
@@ -102,7 +103,7 @@ try {
           sources.length,
           "Service card images must be distinct",
         );
-        assert.equal(await page.locator(".services-slide").count(), 10, "9 services + products");
+        assert.equal(await page.locator(".services-slide").count(), 11, "10 services + products");
         assert.equal(
           sources.some((src) => src.endsWith("/notebook.webp")),
           false,

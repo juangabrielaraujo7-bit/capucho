@@ -3,7 +3,6 @@
 // Textos curtos e específicos; condições comerciais só as confirmadas no briefing.
 // Sem "image", o card e o topo da página mostram o ícone "icon" no lugar da foto (pendente de
 // imagem 3D no padrão dos demais serviços — ver docs/materiais-e-pendencias.md).
-// Resinagem: pendente de definição com a Capucho (docs/materiais-e-pendencias.md).
 export const services = [
   {
     slug: "diagnostico-e-solucao-de-problemas",
@@ -296,6 +295,76 @@ export const services = [
       ],
     ],
     related: ["diagnostico-e-solucao-de-problemas", "troca-de-hardware", "troca-de-tela-de-notebook"],
+  },
+  {
+    slug: "resinagem",
+    seoTitle: "Resinagem de notebook na Freguesia do Ó | Capucho",
+    seoDescription:
+      "Reforço estrutural para carcaça rachada, quebrada ou pontos de fixação danificados em notebooks, como parafusos e dobradiças. Avaliação antes do reparo.",
+    title: "Resinagem",
+    short: "Resinagem",
+    icon: "Bandaids",
+    description:
+      "Reforço estrutural para carcaça rachada ou pontos de fixação danificados, como parafusos e dobradiças.",
+    intro:
+      "Rachaduras na carcaça e pontos de fixação danificados comprometem a estrutura do notebook. A resinagem reforça essas áreas depois de avaliar o dano.",
+    message:
+      "Olá, Capucho! Quero um orçamento para resinagem do meu notebook.",
+    signsTitle: "Sinais de dano estrutural",
+    signs: [
+      [
+        "Carcaça rachada",
+        "Trincas na base ou na tampa, principalmente perto dos parafusos e das dobradiças.",
+      ],
+      [
+        "Dobradiça com folga ou solta",
+        "A tela balança ou o suporte da dobradiça está rachado ou quebrado.",
+      ],
+      [
+        "Parafuso que não segura mais",
+        "O encaixe plástico ao redor do parafuso quebrou, e ele gira sem fixar.",
+      ],
+      [
+        "Peças se soltando ao abrir e fechar",
+        "Partes da carcaça se movem ou rangem ao manusear o notebook.",
+      ],
+      [
+        "Quebra perto de dobradiças ou encaixes",
+        "São pontos que recebem mais força no dia a dia e costumam rachar primeiro.",
+      ],
+    ],
+    checksTitle: "Avaliação e reforço",
+    checks: [
+      [
+        "Avaliação do dano",
+        "O tamanho e o local da rachadura ou quebra definem se a resinagem resolve o problema.",
+      ],
+      [
+        "Reforço estrutural",
+        "A resina reconstrói e reforça o ponto danificado, devolvendo fixação à área quebrada.",
+      ],
+      [
+        "Resinagem ou troca de peça",
+        "Em danos muito extensos na carcaça, a troca da peça pode ser indicada no lugar do reforço.",
+      ],
+    ],
+    faqTitle: "Dúvidas sobre resinagem",
+    local: "Resinagem de notebooks na Freguesia do Ó, em São Paulo.",
+    faq: [
+      [
+        "O que é resinagem?",
+        "É o reforço estrutural de carcaça rachada, quebrada ou de pontos de fixação danificados, como onde ficam parafusos e dobradiças.",
+      ],
+      [
+        "A resinagem serve para qualquer rachadura ou quebra?",
+        "Depende do tamanho e do local do dano. A avaliação mostra se a resinagem resolve ou se é necessária a troca da peça.",
+      ],
+      [
+        "A dobradiça da minha tela está solta. É resinagem?",
+        "Pode ser, quando a folga vem de um ponto de fixação rachado ou quebrado na carcaça. A causa é confirmada na avaliação.",
+      ],
+    ],
+    related: ["troca-de-tela-de-notebook", "troca-de-hardware", "diagnostico-e-solucao-de-problemas"],
   },
   {
     slug: "upgrade-de-ssd-e-memoria",
@@ -646,6 +715,7 @@ export const legacyHubs = [
       "troca-de-tela-de-notebook",
       "troca-de-hardware",
       "reparo-de-placa",
+      "resinagem",
       "manutencao-preventiva",
     ],
   },
