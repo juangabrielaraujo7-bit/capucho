@@ -1,12 +1,18 @@
 import { Link } from "react-router";
-import { AppWindow, ArrowUpRight } from "@phosphor-icons/react";
+import {
+  AppWindow,
+  ArrowUpRight,
+  Circuitry,
+  Monitor,
+  Wrench,
+} from "@phosphor-icons/react";
 import { asset, photoSrcSet, wa } from "../config";
 
 const productMessage =
   "Olá, Capucho! Quero consultar computadores, peças e acessórios disponíveis.";
 
 // Serviços sem foto adequada mostram um ícone no lugar da imagem.
-const icons = { AppWindow };
+const icons = { AppWindow, Circuitry, Monitor, Wrench };
 
 function CardBody({ image, photo, icon, title, description, cta }) {
   const Icon = icons[icon];

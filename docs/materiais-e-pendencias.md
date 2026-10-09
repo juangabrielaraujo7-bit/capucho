@@ -73,7 +73,7 @@ Os serviços passaram a ter uma página cada, com a lógica sinal percebido → 
 | /servicos/limpeza-preventiva | Redirecionamento 301 para /servicos/manutencao-preventiva |
 | /servicos/suporte-e-atendimento | Mantida |
 
-Imagens: diagnóstico usa a antiga imagem de conserto. Troca de tela, troca de hardware e reparo de placa usam quadros dos vídeos reais da loja (fotos com cantos arredondados). Instalação de softwares está sem imagem (o card mostra um ícone): falta uma foto ou ilustração no padrão 3D dos demais serviços.
+Imagens: diagnóstico usa a antiga imagem de conserto (3D, sem fundo). Troca de tela, troca de hardware, reparo de placa e instalação de softwares ficam sem foto por enquanto (o card mostra um ícone): as únicas imagens disponíveis para esses quatro eram prints reais dos vídeos da loja, com fundo, fora do padrão 3D sem fundo das demais. Falta uma foto ou ilustração nesse padrão para cada um.
 
 Pendente com o cliente:
 - **Resinagem:** o serviço não aparece nos materiais. A foto melhorada da vitrine mostra “Personalização” no mesmo lugar, mas o briefing avisa que os textos pequenos dessa foto foram reconstruídos de forma imprecisa. Confirmar o que a Capucho chama de resinagem, quais problemas e peças atende, antes de criar a página.

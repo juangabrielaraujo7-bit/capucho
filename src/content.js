@@ -1,8 +1,8 @@
 // Serviços com página própria (/servicos/<slug>). Cada página segue a lógica:
 // sinais percebidos → verificações e soluções → informação importante (opcional) → dúvidas.
 // Textos curtos e específicos; condições comerciais só as confirmadas no briefing.
-// "photo: true" marca imagens que são fotos reais da loja (recortadas dos vídeos), exibidas com
-// cantos arredondados em vez do recorte 3D flutuante. Sem "image", o card mostra o ícone "icon".
+// Sem "image", o card e o topo da página mostram o ícone "icon" no lugar da foto (pendente de
+// imagem 3D no padrão dos demais serviços — ver docs/materiais-e-pendencias.md).
 // Resinagem: pendente de definição com a Capucho (docs/materiais-e-pendencias.md).
 export const services = [
   {
@@ -93,9 +93,7 @@ export const services = [
       "Tela de notebook trincada, com manchas, linhas, piscando ou sem imagem. Identificamos a causa e indicamos o painel compatível com o seu modelo.",
     title: "Troca de tela de notebook",
     short: "Troca de tela",
-    image: "troca-tela-foto.webp",
-    photo: true,
-    alt: "Notebook com a tela danificada, cheia de linhas coloridas",
+    icon: "Monitor",
     description:
       "Trincas, manchas, linhas ou tela sem imagem, com peça compatível com o seu modelo.",
     intro:
@@ -166,9 +164,7 @@ export const services = [
       "Substituição de teclado, bateria, fonte, disco, ventoinha e placa-mãe com defeito. O defeito é confirmado antes da troca. Fale com a Capucho pelo WhatsApp.",
     title: "Troca de hardware",
     short: "Troca de hardware",
-    image: "troca-hardware-foto.webp",
-    photo: true,
-    alt: "Processador na mão de um técnico na bancada da Capucho",
+    icon: "Wrench",
     description:
       "Substituição de peças com defeito, depois de confirmar qual componente falhou.",
     intro:
@@ -242,9 +238,7 @@ export const services = [
       "Placa com defeito nem sempre precisa ser trocada inteira. Avaliação da viabilidade do reparo ou da substituição, na Freguesia do Ó, em São Paulo.",
     title: "Reparo de placa",
     short: "Reparo de placa",
-    image: "reparo-placa-foto.webp",
-    photo: true,
-    alt: "Soquete de processador ampliado em um microscópio digital na bancada da Capucho",
+    icon: "Circuitry",
     description:
       "Avaliação da placa para saber se o defeito tem reparo antes de substituí-la.",
     intro:
