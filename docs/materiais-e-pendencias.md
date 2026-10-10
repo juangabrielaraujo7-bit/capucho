@@ -111,3 +111,14 @@ A hero alterna o notebook com o vídeo `pc-gamer-fechamento-agil.mp4` (aprovado,
 - O arquivo original tem fade do preto (0–0,6 s) e para o preto (a partir de 5,8 s): o vídeo usa os quadros 8–138 (0,33–5,75 s). A montagem em si não foi alterada.
 - Enquadramento: escala 0,65 no quadro 1280×720 do notebook, para as alturas baterem nas duas trocas e as peças mais abertas caberem inteiras.
 - Limitação: o recorte é exato sobre branco e muito próximo sobre o fundo claro da hero; onde passam as faixas azuis, os vidros e as partes claras de dentro do gabinete ficam levemente azulados (como vidro de verdade). No Safari, o multiply faz o mesmo efeito.
+
+## Hero: tema gamer (10/10/2026, primeiro teste visual)
+
+Enquanto o PC gamer está na hero, ela assume os roxos da área gamer: fundo violeta escuro com luz roxa atrás do gabinete e acentos magenta nas bordas (mais calmo atrás dos textos), título branco, "acompanhar você" em roxo-magenta, descrição em branco suavizado, WhatsApp em roxo sólido e "Ver serviços" com contorno lilás. O acesso "Área gamer" da hero ganha contorno luminoso, um pulso quando o PC entra e arcos elétricos curtos; no cabeçalho, o link fica roxo com sublinhado discreto. No fundo aparecem poucos raios lilás, atrás do gabinete e nas bordas, nunca sobre o título. Os textos não mudam.
+
+- O estado vem da troca dos vídeos (`HeroVideo.jsx`): o tema muda junto com o início da poeira e volta quando o notebook começa a se formar. Não há temporizador próprio controlando o tema.
+- Cores e tempos da transição: bloco "Tema gamer da hero" no fim de `src/styles.css` (`--hero-bg-time`, `--hero-ink-time`, `--hero-ink-in`, `--hero-ink-out`). Na entrada o fundo escurece primeiro e o texto clareia depois; na volta o texto escurece antes, para manter o contraste.
+- Raios (intervalo, tamanho, ramificações, duração, cores): `src/heroGamerFx.js`. `HERO_GAMER_THEME = false` desliga o teste inteiro.
+- Os raios só rodam no tema gamer, com a hero visível e a aba aberta; com redução de movimento não há troca nem raios. No celular aparecem menos raios, menores e sem ramificação dupla.
+- Limitação: no Safari/iPhone o vídeo do gabinete usa o MP4 sobre branco com multiply, que escureceria o gabinete sobre fundo escuro. Lá o tema continua claro. Para levar o tema ao Safari seria preciso desfazer o "cor para alfa" do MP4 num canvas (WebGL), sem gerar outro vídeo.
+- Sobre o fundo escuro, as partes claras do interior do gabinete (vistas pelo vidro) ficam levemente tingidas de roxo, porque o recorte representa tons claros como transparência. Não aparecem bordas, halos nem retângulo.

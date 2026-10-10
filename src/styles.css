@@ -3209,3 +3209,185 @@ blockquote {
     margin-bottom: 36px;
   }
 }
+
+/* ===== Tema gamer da hero (teste visual) =====
+   Com o PC gamer na tela, a hero assume os roxos da área gamer; com o notebook, volta ao original.
+   O estado vem da troca dos vídeos (HeroVideo → Home → data-theme no .hero-backdrop) e muda junto
+   com o início da poeira. Cores e tempos ficam aqui; frequência e tamanho dos raios em
+   src/heroGamerFx.js. Na entrada, o fundo escurece primeiro e os textos clareiam depois; na volta,
+   os textos escurecem cedo, para não haver um momento de texto claro sobre fundo claro. */
+@property --hero-mark-a {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #2045ed;
+}
+@property --hero-mark-b {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #4a7dff;
+}
+.hero-backdrop {
+  --hero-bg-time: 0.95s; /* fundo claro ↔ roxo */
+  --hero-ink-time: 0.45s; /* textos */
+  --hero-ink-in: 0.42s; /* atraso dos textos ao entrar no tema gamer */
+  --hero-ink-out: 0.12s; /* atraso dos textos ao voltar para o notebook */
+  --hero-mark-a: #2045ed;
+  --hero-mark-b: #4a7dff;
+  transition:
+    --hero-mark-a var(--hero-ink-time) ease var(--hero-ink-out),
+    --hero-mark-b var(--hero-ink-time) ease var(--hero-ink-out);
+}
+.hero-backdrop[data-theme="gamer"] {
+  --hero-mark-a: #7c3aed;
+  --hero-mark-b: #c026d3;
+  transition-delay: var(--hero-ink-in);
+}
+.hero h1 .hero-title-mark {
+  background: linear-gradient(90deg, var(--hero-mark-a) 0%, var(--hero-mark-b) 100%);
+}
+/* Luz roxa: base violeta escura, violeta intenso atrás do gabinete, acentos magenta nas bordas e
+   uma região mais calma (ainda roxa) atrás dos textos. */
+.hero-gamer-light {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--hero-bg-time) ease-in-out;
+  background:
+    radial-gradient(55% 75% at 76% 52%, rgba(168, 85, 247, 0.55) 0%, rgba(123, 43, 184, 0.32) 42%, transparent 72%),
+    radial-gradient(26% 42% at 98% 6%, rgba(217, 70, 239, 0.45), transparent 72%),
+    radial-gradient(30% 40% at 62% 104%, rgba(192, 38, 211, 0.32), transparent 72%),
+    radial-gradient(60% 85% at 14% 46%, rgba(28, 8, 51, 0.85), transparent 78%),
+    linear-gradient(118deg, #1c0833 0%, #2b0d4b 42%, #45166f 100%);
+}
+.hero-backdrop[data-theme="gamer"] .hero-gamer-light {
+  opacity: 1;
+}
+.hero-backdrop .hero h1,
+.hero-backdrop .hero-description,
+.hero-backdrop .gamer-link {
+  transition: color var(--hero-ink-time) ease var(--hero-ink-out);
+}
+.hero-backdrop[data-theme="gamer"] .hero h1 {
+  color: #f7f2ff;
+}
+.hero-backdrop[data-theme="gamer"] .hero-description {
+  color: #e2d8f3;
+}
+.hero-backdrop[data-theme="gamer"] :is(.hero h1, .hero-description, .gamer-link) {
+  transition-delay: var(--hero-ink-in);
+}
+.hero-backdrop .hero-actions .button {
+  transition:
+    background-color 0.6s ease 0.08s,
+    border-color 0.6s ease 0.08s,
+    color var(--hero-ink-time) ease var(--hero-ink-out),
+    box-shadow 0.6s ease 0.08s;
+}
+.hero-backdrop[data-theme="gamer"] .hero-actions .button {
+  transition-delay: 0.3s, 0.3s, var(--hero-ink-in), 0.3s;
+}
+.hero-backdrop[data-theme="gamer"] .hero-actions .button-primary {
+  background-color: #7c3aed;
+  box-shadow: 0 6px 22px rgba(168, 85, 247, 0.45);
+}
+.hero-backdrop[data-theme="gamer"] .hero-actions .button-primary:hover {
+  background-color: #8b4cf5;
+}
+.hero-backdrop[data-theme="gamer"] .hero-actions .button-outline {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(192, 132, 252, 0.55);
+  color: #fff;
+}
+.hero-backdrop[data-theme="gamer"] .hero-actions .button-outline:hover {
+  background-color: rgba(168, 85, 247, 0.16);
+  border-color: #d8b4fe;
+  color: #fff;
+}
+.hero-backdrop[data-theme="gamer"] .hero :is(a, button):focus-visible {
+  outline-color: #d8b4fe;
+}
+/* Acesso "Área gamer" da hero: contorno desenhado por fora do texto, sem mudar o espaço ocupado */
+.gamer-link {
+  position: relative;
+  isolation: isolate;
+}
+.gamer-link::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 1px -11px;
+  border: 1px solid rgba(216, 180, 254, 0);
+  border-radius: 8px;
+  background-color: rgba(124, 58, 237, 0);
+  pointer-events: none;
+  transition:
+    border-color 0.6s ease,
+    box-shadow 0.6s ease,
+    background-color 0.6s ease;
+}
+.hero-backdrop[data-theme="gamer"] .gamer-link {
+  color: #f5ecff;
+}
+.hero-backdrop[data-theme="gamer"] .gamer-link::before {
+  border-color: rgba(216, 180, 254, 0.75);
+  background-color: rgba(124, 58, 237, 0.16);
+  box-shadow:
+    0 0 14px rgba(168, 85, 247, 0.4),
+    inset 0 0 10px rgba(168, 85, 247, 0.18);
+  transition-delay: 0.35s;
+}
+.hero-backdrop[data-theme="gamer"] .gamer-link:hover {
+  color: #fff;
+}
+.hero-backdrop[data-theme="gamer"] .gamer-link:hover::before {
+  border-color: #f5ecff;
+}
+.gamer-link-arcs {
+  position: absolute;
+  top: 1px;
+  left: -11px;
+  width: calc(100% + 22px);
+  height: calc(100% - 2px);
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(0 0 3px rgba(168, 85, 247, 0.95)) drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
+}
+/* Arcos do fundo: atrás do gabinete (a camada fica abaixo do conteúdo) e nas bordas */
+.hero-arcs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.95)) drop-shadow(0 0 12px rgba(168, 85, 247, 0.55));
+}
+@media (max-width: 767px) {
+  /* No celular o link já tem respiro interno: o contorno acompanha esse espaço */
+  .gamer-link::before {
+    inset: 1px 0;
+  }
+  .gamer-link-arcs {
+    left: 0;
+    width: 100%;
+  }
+}
+/* Link "Área gamer" do cabeçalho: roxo e sublinhado discreto enquanto o PC gamer está na hero */
+.main-nav a.nav-gamer {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+  text-decoration-color: transparent;
+  transition:
+    color 0.6s ease,
+    text-decoration-color 0.6s ease,
+    text-shadow 0.6s ease;
+}
+:root[data-hero-theme="gamer"] .main-nav a.nav-gamer {
+  color: #7c3aed;
+  text-decoration-color: rgba(168, 85, 247, 0.7);
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
+}
+:root[data-hero-theme="gamer"] .main-nav a.nav-gamer:hover {
+  color: #6d28d9;
+}

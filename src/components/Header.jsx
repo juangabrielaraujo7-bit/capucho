@@ -49,6 +49,7 @@ export default function Header() {
           {links.map(([label, id]) => (
             <Link
               key={id}
+              className={id === "gamer" ? "nav-gamer" : undefined}
               to={id === "gamer" ? "/gamer" : `/#${id}`}
               onClick={() => setOpen(false)}
             >

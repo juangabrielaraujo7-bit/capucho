@@ -21,11 +21,14 @@ const DUST_DURATION = 3.6; // troca em poeira, em segundos
 const DUST_COLOR = { notebook: [74, 125, 255], gamer: [150, 82, 255] };
 const WAIT_LIMIT = 4000; // se o próximo vídeo não carregar, o atual recomeça (como o loop antigo)
 
-export default function HeroVideo() {
+export default function HeroVideo({ onThemeChange }) {
   const root = useRef(null);
   const notebook = useRef(null);
   const gamer = useRef(null);
   const canvasRef = useRef(null);
+  // O tema da hero segue o equipamento: muda junto com o início da poeira.
+  const themeRef = useRef(onThemeChange);
+  themeRef.current = onThemeChange;
   const [failed, setFailed] = useState(false);
   const [gamerFailed, setGamerFailed] = useState(false);
   // Sempre começa com autoplay no HTML gerado; o efeito respeita a redução de movimento no navegador.
@@ -90,6 +93,9 @@ export default function HeroVideo() {
     }
 
     let current = "notebook";
+    // Safari/iOS usa o vídeo sobre branco com multiply, que some sobre fundo escuro: lá o tema não muda.
+    const setTheme = (name) => alpha && themeRef.current?.(name);
+    setTheme("notebook");
     let pending = null;
     let pendingRevealed = () => false;
     let switching = false;
@@ -175,6 +181,7 @@ export default function HeroVideo() {
       // O quadro montado vira poeira; no meio da dissolução o próximo equipamento começa a aparecer.
       setGlow(next === "gamer" ? "purple" : "blue");
       setDust(current);
+      setTheme(next);
       cancelDust = dustSwap({
         canvas: canvasRef.current,
         from: out,
@@ -249,6 +256,7 @@ export default function HeroVideo() {
       for (const v of Object.values(videos)) v.removeEventListener("ended", onEnded);
       unwatch();
       cancelDust?.();
+      themeRef.current?.("notebook");
       clearTimeout(holdTimer);
       clearTimeout(waitTimer);
     };

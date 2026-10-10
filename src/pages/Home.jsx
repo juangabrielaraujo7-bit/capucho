@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -8,13 +9,14 @@ import {
   MapPin,
   ShieldCheck,
 } from "@phosphor-icons/react";
-import { Link } from "react-router";
 import FaqList from "../components/FaqList";
 import GamerVideo from "../components/GamerVideo";
 import LiquidButton from "../components/LiquidButton";
 import GradientBand from "../components/GradientBand";
 import TubesCursor from "../components/TubesCursor";
 import HeroBackground from "../components/HeroBackground";
+import { GamerLink } from "../components/HeroGamerFx";
+import { HERO_GAMER_THEME } from "../heroGamerFx";
 import HeroVideo from "../components/HeroVideo";
 import ServicesCarousel from "../components/ServicesCarousel";
 import WorkShowcase from "../components/WorkShowcase";
@@ -24,9 +26,19 @@ import { asset, business, mapEmbed, maps } from "../config";
 import { faqs, reviews, services, workVideos } from "../content";
 
 export default function Home() {
+  // Equipamento na tela da hero ("notebook" ou "gamer"), vindo da troca dos vídeos (HeroVideo).
+  // Muda as cores da hero e acende o link "Área gamer" do cabeçalho (via atributo no <html>).
+  const [heroTheme, setHeroTheme] = useState("notebook");
+  useEffect(() => {
+    const root = document.documentElement;
+    if (heroTheme === "gamer") root.dataset.heroTheme = "gamer";
+    else delete root.dataset.heroTheme;
+    return () => delete root.dataset.heroTheme;
+  }, [heroTheme]);
+
   return (
     <>
-      <HeroBackground>
+      <HeroBackground theme={heroTheme}>
         <section className="hero container">
           <div className="hero-copy">
             <h1>
@@ -44,13 +56,10 @@ export default function Home() {
                 Ver serviços
                 <ArrowRight size={20} />
               </a>
-              <Link className="gamer-link" to="/gamer">
-                Área gamer
-                <ArrowUpRight size={18} />
-              </Link>
+              <GamerLink active={heroTheme === "gamer"} />
             </div>
           </div>
-          <HeroVideo />
+          <HeroVideo onThemeChange={HERO_GAMER_THEME ? setHeroTheme : undefined} />
         </section>
       </HeroBackground>
       <section id="servicos" className="section section-tint">
