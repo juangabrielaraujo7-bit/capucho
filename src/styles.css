@@ -360,6 +360,73 @@ h2.section-label.is-framed {
 .hero-visual video.is-blend {
   mix-blend-mode: multiply;
 }
+/* Troca notebook ↔ PC gamer (HeroVideo.jsx): os dois vídeos ocupam a mesma caixa. O equipamento que
+   sai vira poeira no canvas (src/vaporize.js) e o que entra aparece durante a dissolução. */
+.hero-visual .hero-media {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.34s ease;
+}
+.hero-visual .hero-gamer {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+.hero-visual[data-show="notebook"] .hero-notebook,
+.hero-visual[data-show="gamer"] .hero-gamer {
+  opacity: 1;
+}
+/* Durante a poeira quem aparece é o canvas: o vídeo que sai some na hora e o que entra já surge
+   pronto por baixo da nuvem, que só então é apagada. Sem isso, apareceria um vão entre os dois. */
+.hero-visual[data-dust] .hero-media {
+  transition: none;
+}
+.hero-visual .hero-media.is-dust {
+  opacity: 0;
+  transition: none;
+}
+.hero-visual .hero-dust {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+/* Brilho difuso atrás do equipamento, restrito à área da mídia */
+.hero-visual::before,
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 8% 12%;
+  z-index: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.hero-visual::before {
+  background: radial-gradient(
+    closest-side,
+    rgba(150, 82, 255, 0.28),
+    rgba(150, 82, 255, 0.1) 60%,
+    rgba(150, 82, 255, 0)
+  );
+}
+.hero-visual::after {
+  background: radial-gradient(
+    closest-side,
+    rgba(32, 69, 237, 0.2),
+    rgba(32, 69, 237, 0.07) 60%,
+    rgba(32, 69, 237, 0)
+  );
+}
+.hero-visual[data-glow="purple"]::before,
+.hero-visual[data-glow="blue"]::after {
+  opacity: 1;
+  transition-duration: 0.3s;
+}
 /* Serviços em carrossel (adaptado de services-card) */
 .services-carousel {
   position: relative;

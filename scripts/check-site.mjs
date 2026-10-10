@@ -83,16 +83,28 @@ try {
           const video = document.querySelector(".hero-visual video");
           return video && !video.paused && video.currentTime > 0.1;
         });
-        const hero = page.locator(".hero-visual video");
+        const hero = page.locator(".hero-visual video.hero-notebook");
         const duration = await hero.evaluate((v) => v.duration);
         assert.ok(
           duration > 4.5 && duration < 5.2,
           "Hero montage should complete in about five seconds",
         );
+        // O notebook não fica em loop: ao terminar montado, dá lugar ao PC gamer (HeroVideo.jsx).
         assert.equal(
-          await hero.evaluate((v) => v.muted && v.loop && v.playsInline),
+          await hero.evaluate((v) => v.muted && !v.loop && v.playsInline),
           true,
         );
+        const gamerHero = page.locator(".hero-visual video.hero-gamer");
+        assert.equal(await gamerHero.evaluate((v) => v.muted && !v.autoplay), true);
+        await page.waitForFunction(
+          () => document.querySelector(".hero-visual").dataset.show === "gamer",
+          null,
+          { timeout: 15000 },
+        );
+        // O gamer começa junto com o próprio fade de entrada.
+        await page.waitForFunction(() => !document.querySelector(".hero-gamer").paused, null, { timeout: 3000 });
+        assert.equal(await hero.evaluate((v) => v.paused), true, "Only one hero video plays");
+        await gamerHero.evaluate((v) => v.pause());
         // Sem botão de pausa na hero (pedido do cliente); pausa só para capturas estáveis.
         await hero.evaluate((v) => v.pause());
         const sources = await page

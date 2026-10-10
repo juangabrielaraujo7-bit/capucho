@@ -99,3 +99,15 @@ Pendente com o cliente:
 DESIGN_VARIANCE: 5. MOTION_INTENSITY: 1. VISUAL_DENSITY: 3.
 
 Tema claro fixo, com fundo cinza-claro neutro (#eff0f2, antes gelo azulado #edf1f5) e cards brancos conforme revisão do usuário. Rodapé azul-marinho, grade de seis serviços em três colunas no desktop e repetição dos CTAs de WhatsApp preservam os requisitos do usuário, mesmo onde diferem dos padrões gerais da Taste. A única reprodução automática é o vídeo solicitado na hero. Não foram adicionados efeitos de interface, dark mode, página gamer, catálogo, preços ou captura de leads.
+
+## Hero: notebook → PC gamer (09/10/2026, prévia local)
+
+A hero alterna o notebook com o vídeo `pc-gamer-fechamento-agil.mp4` (aprovado, ritmo preservado). Troca: o equipamento termina de montar, fica parado um instante (notebook ~0,5 s; gabinete ~1,8 s depois de fechar os painéis), um brilho difuso surge atrás dele (roxo na ida, azul na volta) e ele vira poeira; a mesma poeira se junta na direção contrária e forma o próximo. A troca leva 3,6 s: o notebook se desmancha da esquerda para a direita e o gabinete se forma da direita para a esquerda; na volta, o caminho é o contrário. A sequência segue o tempo real dos vídeos (`HeroVideo.jsx`); o gamer só carrega depois do notebook e, se atrasar, o notebook continua visível.
+
+- A poeira é `src/vaporize.js`, adaptado do "vapour-text-effect" (21st.dev) para a stack do site (sem Tailwind nem TypeScript) e aplicado a quadros de vídeo em vez de um texto: os dois quadros (o último do que sai e o primeiro do que entra) viram partículas no mesmo canvas; uma onda solta as de saída e a onda contrária chama as de entrada de volta ao lugar, com folga aleatória para a frente da onda não ficar reta. No Safari, onde o vídeo vem sobre branco, o branco não vira poeira. Cada nuvem tem a cor do seu equipamento (notebook em azul, gabinete em roxo): a partícula assume a cor ao soltar e volta à cor real ao se encaixar no outro lado.
+- O avanço da troca segue o relógio, não a contagem de quadros: num aparelho mais lento ela perde quadros em vez de demorar mais.
+
+- `scripts/gamer-alpha.mjs` gera `hero-gamer.webm` / `-720.webm` (VP9 com alfa) e `hero-gamer.mp4` / `-720.mp4` sobre branco (Safari/iOS, com multiply). O fundo cinza do estúdio é ajustado quadro a quadro e removido ("cor para alfa" sobre branco); vidros e sombra ficam translúcidos.
+- O arquivo original tem fade do preto (0–0,6 s) e para o preto (a partir de 5,8 s): o vídeo usa os quadros 8–138 (0,33–5,75 s). A montagem em si não foi alterada.
+- Enquadramento: escala 0,65 no quadro 1280×720 do notebook, para as alturas baterem nas duas trocas e as peças mais abertas caberem inteiras.
+- Limitação: o recorte é exato sobre branco e muito próximo sobre o fundo claro da hero; onde passam as faixas azuis, os vidros e as partes claras de dentro do gabinete ficam levemente azulados (como vidro de verdade). No Safari, o multiply faz o mesmo efeito.
