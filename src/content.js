@@ -1,8 +1,7 @@
 // Serviços com página própria (/servicos/<slug>). Cada página segue a lógica:
 // sinais percebidos → verificações e soluções → informação importante (opcional) → dúvidas.
 // Textos curtos e específicos; condições comerciais só as confirmadas no briefing.
-// Sem "image", o card e o topo da página mostram o ícone "icon" no lugar da foto (pendente de
-// imagem 3D no padrão dos demais serviços — ver docs/materiais-e-pendencias.md).
+// Imagens recortadas com transparência são compartilhadas pelos cards e páginas de serviço.
 export const services = [
   {
     slug: "diagnostico-e-solucao-de-problemas",
@@ -92,7 +91,8 @@ export const services = [
       "Tela de notebook trincada, com manchas, linhas, piscando ou sem imagem. Identificamos a causa e indicamos o painel compatível com o seu modelo.",
     title: "Troca de tela de notebook",
     short: "Troca de tela",
-    icon: "Monitor",
+    image: "troca-de-tela-foto.webp",
+    alt: "Notebook com painel de tela e moldura separados para substituição",
     description:
       "Trincas, manchas, linhas ou tela sem imagem, com peça compatível com o seu modelo.",
     intro:
@@ -163,7 +163,8 @@ export const services = [
       "Substituição de teclado, bateria, fonte, disco, ventoinha e placa-mãe com defeito. O defeito é confirmado antes da troca. Fale com a Capucho pelo WhatsApp.",
     title: "Troca de hardware",
     short: "Troca de hardware",
-    icon: "Wrench",
+    image: "troca-de-hardware-foto.webp",
+    alt: "Notebook aberto com bateria removida e ventoinha de reposição",
     description:
       "Substituição de peças com defeito, depois de confirmar qual componente falhou.",
     intro:
@@ -237,7 +238,8 @@ export const services = [
       "Placa com defeito nem sempre precisa ser trocada inteira. Avaliação da viabilidade do reparo ou da substituição, na Freguesia do Ó, em São Paulo.",
     title: "Reparo de placa",
     short: "Reparo de placa",
-    icon: "Circuitry",
+    image: "reparo-de-placa-foto.webp",
+    alt: "Placa-mãe com ferro de solda e pinça de precisão para reparo eletrônico",
     description:
       "Avaliação da placa para saber se o defeito tem reparo antes de substituí-la.",
     intro:
@@ -303,7 +305,8 @@ export const services = [
       "Reforço estrutural para carcaça rachada, quebrada ou pontos de fixação danificados em notebooks, como parafusos e dobradiças. Avaliação antes do reparo.",
     title: "Resinagem",
     short: "Resinagem",
-    icon: "Bandaids",
+    image: "resinagem-foto.webp",
+    alt: "Carcaça de notebook com dobradiça e reforço de resina nos pontos de fixação",
     description:
       "Reforço estrutural para carcaça rachada ou pontos de fixação danificados, como parafusos e dobradiças.",
     intro:
@@ -522,7 +525,8 @@ export const services = [
       "Instalação e configuração de programas e drivers, com checagem de requisitos e compatibilidade. Na loja, na Freguesia do Ó, ou pelo suporte remoto.",
     title: "Instalação de softwares",
     short: "Instalação de softwares",
-    icon: "AppWindow",
+    image: "instalacao-de-softwares-foto.webp",
+    alt: "Notebook com instalação de programas na tela e pendrive ao lado",
     description:
       "Programas, drivers e configurações, com checagem de requisitos e compatibilidade.",
     intro:

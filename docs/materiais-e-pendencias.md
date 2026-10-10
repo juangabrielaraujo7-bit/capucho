@@ -75,7 +75,7 @@ Os serviços passaram a ter uma página cada, com a lógica sinal percebido → 
 
 Resinagem (10/10/2026): o usuário confirmou a definição — reparo estrutural para rachaduras e quebras na carcaça ou nos pontos de fixação (parafusos, suportes de dobradiça). Página criada em `/servicos/resinagem`, também listada no índice de `/servicos/conserto`.
 
-Imagens: diagnóstico usa a antiga imagem de conserto (3D, sem fundo). Troca de tela, troca de hardware, reparo de placa, instalação de softwares e resinagem ficam sem foto por enquanto (o card mostra um ícone): as únicas imagens disponíveis para os quatro primeiros eram prints reais dos vídeos da loja, com fundo, fora do padrão 3D sem fundo das demais; resinagem nunca teve material próprio. Falta uma foto ou ilustração nesse padrão para cada um — o usuário vai providenciar.
+Imagens: diagnóstico usa a antiga imagem de conserto. Troca de tela, troca de hardware, reparo de placa, instalação de softwares e resinagem receberam imagens ilustrativas fotorrealistas geradas e aprovadas pelo usuário, com transparência, no padrão dos demais serviços. Os arquivos `*-foto.webp` possuem versões de 480, 800 e 1200 px e são compartilhados entre os cards e as páginas internas. Não representam fotografias de reparos realizados pela loja.
 
 Vídeos "Quem cuida do seu PC mostra como faz" (09/10/2026): três vídeos novos enviados pelo usuário, recodificados do mesmo jeito dos três originais (540×960, 30 fps, sem áudio, com versão leve para o carrossel do celular) — `reparo-placa`, `resinagem` e `manutencao-gamer` (manutenção preventiva em PC gamer), adicionados em `workVideos` sem remover os três já existentes.
 
