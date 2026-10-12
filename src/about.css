@@ -1,0 +1,84 @@
+/* About prototype: existing brand, editorial spacing, no additional motion. */
+.about-intro h2 span,.about-page-opening h1 span,.about-instagram-section h2 span{color:var(--blue)}
+.about-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-intro-copy h2{font-size:clamp(1.9rem,2.7vw,2.65rem);max-width:590px}
+.about-intro-copy>p:not(.eyebrow){max-width:460px;margin:24px 0;font-size:1.05rem}
+.about-film{min-width:0;border:1px solid #ccd3e0;border-radius:20px;overflow:hidden;background:#fff}
+.about-film-placeholder{aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;gap:16px;background:linear-gradient(135deg,#e4e9f1,#f9fafc);color:var(--navy)}
+.about-film-placeholder>svg{color:var(--blue);margin-bottom:8px}
+.about-film-placeholder strong{font-family:"Sora Variable",sans-serif;font-size:1.4rem;letter-spacing:-.04em}
+.about-film-placeholder span{max-width:250px;color:var(--muted);line-height:1.6;font-size:.9rem}
+.about-film video{width:100%;aspect-ratio:16/10;object-fit:contain;background:#111}
+.about-film-caption{display:flex;justify-content:space-between;gap:12px;padding:18px 22px;font-size:.78rem;line-height:1.5}
+.about-film-caption span:last-child{color:var(--muted)}
+.about-intro-social{margin-top:48px;padding-top:28px;border-top:1px solid var(--line);display:grid;grid-template-columns:.7fr 1.3fr;gap:40px;align-items:center}
+.about-intro-social h3{font-size:1.3rem;margin-bottom:8px}
+.about-intro-social p{font-size:.95rem;margin:0;max-width:330px}
+.about-social-map{min-width:0}
+.about-branch-space{height:90px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px dashed #c1cada;border-radius:14px}
+.about-branch-space img{width:100%;height:100%;object-fit:contain}
+.about-branch-placeholder{text-align:center;display:grid;gap:5px}
+.about-branch-placeholder>span{font-family:"Sora Variable",sans-serif;font-weight:700;letter-spacing:.13em;font-size:.85rem}
+.about-branch-placeholder small{color:var(--muted);font-size:.75rem}
+.about-social-nodes{display:grid;grid-template-columns:1.2fr .85fr 1fr;gap:10px}
+.about-social-node{display:flex;align-items:center;gap:10px;padding:15px 12px;border-radius:12px;background:#fff;border:1px solid var(--border);font-weight:650;font-size:.85rem;min-width:0}
+.about-social-node>span{flex:1}
+.about-social-node small{display:block;font-weight:400;font-size:.7rem;line-height:1.5;margin-top:3px}
+.about-social-node-main{background:var(--blue);color:#fff;border-color:var(--blue)}
+a.about-social-node:hover{box-shadow:0 4px 16px #102c6014}
+.about-social-pending{color:var(--muted)}
+.about-page>.section{border-bottom:1px solid var(--line)}
+.about-page-opening{padding-top:40px;padding-bottom:0!important}
+.about-back{margin-bottom:36px}
+.about-page-opening h1{max-width:870px;font-size:clamp(2.2rem,4vw,3.5rem)}
+.about-lead{font-size:1.15rem;max-width:610px;margin-top:24px;margin-bottom:40px}
+.about-page-nav{display:flex;flex-wrap:wrap;gap:12px 32px;padding:23px 0;border-top:1px solid var(--line);font-weight:600;font-size:.95rem}
+.about-page-nav a:hover{color:var(--blue)}
+.about-person-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center}
+.about-person-copy h2{margin-bottom:24px}
+.about-principles{margin:30px 0 0}
+.about-principles>div{display:grid;grid-template-columns:135px 1fr;gap:15px;padding:14px 0;border-top:1px solid var(--line);font-size:.9rem;line-height:1.6}
+.about-principles dt{font-weight:650}
+.about-principles dd{margin:0;color:var(--muted)}
+.about-instagram-section{background:#e8edf8}
+.about-instagram-heading{display:flex;align-items:center;gap:16px;margin-bottom:32px;color:var(--blue);font-weight:600;font-size:1.1rem}
+.about-instagram-section h2{font-size:clamp(2rem,3.6vw,3.15rem);max-width:850px}
+.about-instagram-section>.container>p{margin:24px 0;max-width:530px}
+.about-instagram-gallery{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:24px;margin-top:48px}
+.about-instagram-gallery figure{margin:0;min-width:0}
+.about-instagram-gallery img{width:100%;height:310px;object-fit:cover;border-radius:14px}
+.about-instagram-gallery figcaption{margin-top:12px;font-size:.85rem}
+.about-section-heading{margin-bottom:36px;max-width:650px}
+.about-section-heading p{margin:20px 0 0}
+.about-project-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.about-project-video{width:100%;aspect-ratio:4/3;object-fit:contain;background:#121722;border-radius:14px}
+.about-project-grid h3,.about-repair-grid h3{margin:20px 0 10px;max-width:460px}
+.about-after-grid{margin-top:28px}
+.about-repair-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.about-repair-grid .about-project-video{aspect-ratio:4/5}
+.about-repair-grid p{font-size:.95rem}
+.about-tiktok-row{display:flex;align-items:center;gap:32px}
+.about-tiktok-row>div{flex:1}
+.about-tiktok-row h2{font-size:1.7rem}
+.about-tiktok-row p{margin:12px 0 0}
+.about-pending-label{font-size:.9rem;color:var(--muted);white-space:nowrap}
+.about-google-section{background:#f7f8fb}
+.about-google-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.about-google-logo{width:180px;height:auto;margin-bottom:28px}
+.about-google-rating{display:flex;align-items:center;gap:24px;margin:24px 0}
+.about-google-rating>strong{font-family:"Sora Variable",sans-serif;font-size:3.4rem;letter-spacing:-.05em}
+.about-google-rating .stars{margin-bottom:6px}
+.about-google-rating span{font-size:.9rem}
+.about-quotes figure{margin:0;padding:28px 0}
+.about-quotes figure+figure{border-top:1px solid var(--line)}
+.about-quotes blockquote{margin:16px 0;font-size:1.05rem;line-height:1.7}
+.about-quotes figcaption{font-weight:650;font-size:.88rem}
+.about-quotes figcaption span{display:block;font-weight:400;color:var(--muted);font-size:.8rem;margin-top:5px}
+.about-close{display:flex;align-items:center;justify-content:space-between;gap:32px}
+.about-close h2{font-size:clamp(1.7rem,2.6vw,2.4rem)}
+@media(max-width:1050px){
+ .about-intro-grid,.about-person-grid{gap:32px}.about-intro-social{grid-template-columns:1fr;gap:22px}.about-intro-social p{max-width:none}.about-social-node{padding:16px}.about-social-nodes{grid-template-columns:1.2fr 1fr 1fr}.about-google-grid{gap:35px}.about-tiktok-row{flex-wrap:wrap}
+}
+@media(max-width:700px){
+ .about-intro-grid,.about-person-grid,.about-google-grid{grid-template-columns:1fr;gap:32px}.about-intro-copy h2{font-size:2rem}.about-film-caption{padding:14px;font-size:.7rem}.about-intro-social{margin-top:32px}.about-social-nodes{grid-template-columns:1fr 1fr}.about-social-node-main{grid-column:1/-1}.about-social-node{padding:14px 12px}.about-social-node small{font-size:.72rem}.about-person-copy{order:-1}.about-page-opening h1{font-size:2.15rem}.about-lead{font-size:1rem}.about-page-nav{gap:18px 24px;font-size:.85rem}.about-principles>div{grid-template-columns:110px 1fr}.about-instagram-heading{font-size:.95rem}.about-instagram-gallery{gap:12px;grid-template-columns:1fr 1fr}.about-instagram-gallery figure:first-child{grid-column:1/-1}.about-instagram-gallery img{height:210px}.about-instagram-gallery figure:first-child img{height:300px}.about-instagram-gallery figcaption{font-size:.75rem}.about-project-grid,.about-repair-grid{grid-template-columns:1fr;gap:32px}.about-repair-grid .about-project-video{aspect-ratio:4/3}.about-instagram-section .button{font-size:.82rem;padding-inline:12px}.about-tiktok-row{gap:20px}.about-tiktok-row>div{flex-basis:calc(100% - 84px)}.about-tiktok-row h2{font-size:1.4rem}.about-tiktok-row p{font-size:.9rem}.about-close{align-items:flex-start;flex-direction:column}.about-google-rating{gap:18px}
+}

@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import RouteEffects from "./components/RouteEffects";
 import Home from "./pages/Home";
+import AboutPage from "./pages/AboutPage";
 import ServicePage from "./pages/ServicePage";
 import ServiceHubPage from "./pages/ServiceHubPage";
 import GamerPage from "./pages/GamerPage";
@@ -44,6 +45,7 @@ export default function App() {
         <main id="conteudo">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/sobre" element={<AboutPage />} />
             <Route path="/servicos/:slug" element={<ServiceRoute />} />
             <Route path="/gamer" element={<GamerPage />} />
             <Route path="/gamer/monte-seu-pc" element={<PcBuilder />} />

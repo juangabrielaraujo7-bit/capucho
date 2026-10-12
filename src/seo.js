@@ -9,6 +9,7 @@ const homeDescription =
 
 export const routes = [
   "/",
+  "/sobre",
   ...services.map((s) => `/servicos/${s.slug}`),
   "/gamer",
   "/gamer/monte-seu-pc",
@@ -32,6 +33,11 @@ const gamerPages = {
 
 export function getSeo(pathname) {
   const path = pathname.replace(/\/$/, "") || "/";
+  if (path === "/sobre") return {
+    path,
+    title: "Sobre a Capucho | 5 anos cuidando do seu computador",
+    description: "Conheça Henrique, os projetos gamer, os consertos e a rotina da Capucho Informática. Acompanhe no Instagram e confira nossa reputação no Google.",
+  };
   if (path === "/")
     return { path, title: homeTitle, description: homeDescription };
   if (gamerPages[path]) return { path, ...gamerPages[path] };

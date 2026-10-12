@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
-  ChatCircleText,
-  CheckCircle,
   Clock,
   GameController,
   MapPin,
-  ShieldCheck,
 } from "@phosphor-icons/react";
 import FaqList from "../components/FaqList";
+import AboutIntro from "../components/AboutIntro";
 import GamerVideo from "../components/GamerVideo";
 import LiquidButton from "../components/LiquidButton";
 import GradientBand from "../components/GradientBand";
@@ -125,43 +123,7 @@ export default function Home() {
           </div>
         </TestimonialsColumns>
       </section>
-      <section id="sobre" className="section section-tint">
-        <div className="container about-layout">
-          <div>
-            <p className="eyebrow">Prazer, somos a Capucho</p>
-            <h2>
-              Tecnologia faz parte
-              <br /> da sua vida.
-              <br />
-              <span>A gente cuida dela.</span>
-            </h2>
-          </div>
-          <div className="about-copy">
-            <p>
-              Tem computador que guarda trabalho. Tem notebook que acompanha os estudos. E tem
-              aquele PC que é o seu momento de descanso.
-            </p>
-            <p>
-              Aqui, o atendimento começa entendendo a sua rotina. A gente avalia, explica o que pode
-              ser feito e conversa sobre o orçamento antes de colocar a mão na massa.
-            </p>
-            <div className="about-values">
-              <div>
-                <CheckCircle />
-                <span>Orçamento aprovado por você</span>
-              </div>
-              <div>
-                <ChatCircleText />
-                <span>Explicação clara, do começo ao fim</span>
-              </div>
-              <div>
-                <ShieldCheck />
-                <span>Cuidado com cada equipamento</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AboutIntro />
       <section id="contato" className="section container">
         <div className="section-heading">
           <h2>
