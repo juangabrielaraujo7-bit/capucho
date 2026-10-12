@@ -4,7 +4,7 @@
 // ESTIMADOS de mercado, só para o montador funcionar. Trocar pelos itens e preços reais da Capucho.
 // "stock: true" mostra o selo "Em estoque"; sem ele, a peça aparece como "Sob encomenda".
 
-// PCs montados pela Capucho: vídeos verticais em public/assets (.mp4, 540x960, sem áudio) com capa
+// PCs montados pela Capucho: vídeos verticais em public/assets (.mp4, 432x768, sem áudio) com capa
 // .webp de mesmo nome. Para incluir outro, adicione { file, title } aqui.
 export const gamerBuilds = [
   { file: "pc-capucho-1", title: "PC gamer com gabinete branco e RGB montado pela Capucho" },
@@ -13,6 +13,11 @@ export const gamerBuilds = [
   { file: "pc-capucho-4", title: "PC gamer com GeForce RTX 5070 e fans ARGB montado pela Capucho" },
   { file: "pc-capucho-5", title: "PC gamer com gabinete branco aquário montado pela Capucho" },
   { file: "pc-capucho-6", title: "PC gamer com GeForce RTX e iluminação rosa montado pela Capucho" },
+  { file: "pc-capucho-7", title: "PC gamer com water cooler e iluminação azul e roxa montado pela Capucho" },
+  { file: "pc-capucho-8", title: "PC gamer preto com GeForce RTX e water cooler montado pela Capucho" },
+  { file: "pc-capucho-9", title: "PC gamer com gabinete branco e RGB colorido montado pela Capucho" },
+  { file: "pc-capucho-10", title: "PCs gamer com GeForce RTX e iluminação RGB montados pela Capucho" },
+  { file: "pc-capucho-11", title: "PC gamer com water cooler e fans ARGB montado pela Capucho" },
 ];
 
 export const steps = [
