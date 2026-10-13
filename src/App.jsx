@@ -12,6 +12,7 @@ import ServicePage from "./pages/ServicePage";
 import ServiceHubPage from "./pages/ServiceHubPage";
 import GamerPage from "./pages/GamerPage";
 import PcBuilder from "./pages/PcBuilder";
+import AssemblyPage from "./pages/AssemblyPage";
 import NotFound from "./pages/NotFound";
 import { legacyHubs, redirects, services } from "./content";
 import { wa } from "./config";
@@ -34,9 +35,11 @@ export default function App() {
   const builder = pathname.startsWith("/gamer/monte-seu-pc");
   // Área gamer (/gamer e subpáginas) usa o tema escuro roxo, separado das cores do site principal.
   const gamer = /^\/gamer(\/|$)/.test(pathname);
+  // Montagem completa tem tema próprio, claro e frio (assembly.css).
+  const assembly = pathname.startsWith("/gamer/montagem-completa");
   return (
     <IconContext.Provider value={{ size: 24, weight: "regular" }}>
-      <div className={gamer ? "site theme-gamer" : "site"}>
+      <div className={assembly ? "site theme-assembly" : gamer ? "site theme-gamer" : "site"}>
         <RouteEffects />
         <a className="skip-link" href="#conteudo">
           Pular para o conteúdo
@@ -49,6 +52,7 @@ export default function App() {
             <Route path="/servicos/:slug" element={<ServiceRoute />} />
             <Route path="/gamer" element={<GamerPage />} />
             <Route path="/gamer/monte-seu-pc" element={<PcBuilder />} />
+            <Route path="/gamer/montagem-completa" element={<AssemblyPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

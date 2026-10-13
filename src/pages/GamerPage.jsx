@@ -22,7 +22,7 @@ const gamerServices = [
     icon: Screwdriver,
     title: "Montagem completa",
     text: "Seu PC gamer montado do zero com as peças escolhidas e testado antes da entrega.",
-    link: "/servicos/upgrade-e-montagem",
+    link: "/gamer/montagem-completa",
   },
   {
     icon: Cpu,

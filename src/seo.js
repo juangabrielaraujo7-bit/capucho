@@ -13,6 +13,7 @@ export const routes = [
   ...services.map((s) => `/servicos/${s.slug}`),
   "/gamer",
   "/gamer/monte-seu-pc",
+  "/gamer/montagem-completa",
 ];
 
 // Endereços antigos mantidos como índice (pré-renderizados, mas fora do sitemap e com noindex).
@@ -28,6 +29,11 @@ const gamerPages = {
     title: "Monte seu PC gamer | Capucho Informática",
     description:
       "Escolha processador, placa de vídeo e demais peças com checagem de compatibilidade, veja o total estimado e peça o orçamento com montagem à Capucho.",
+  },
+  "/gamer/montagem-completa": {
+    title: "Montagem de PC gamer | Capucho Informática",
+    description:
+      "Escolha as peças do seu PC gamer ou conte com a Capucho para definir a configuração. Montagem e testes antes da entrega, com orçamento pelo WhatsApp.",
   },
 };
 
