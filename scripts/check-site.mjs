@@ -138,11 +138,12 @@ try {
       if (route === "/gamer/monte-seu-pc") {
         // Montador: com um processador AM5, só placas AM5 ficam liberadas.
         await page.evaluate(() => localStorage.clear());
-        await page.getByRole("button", { name: /AMD Ryzen 5 7600/ }).click();
+        await page.getByRole("button", { name: /AMD Ryzen 5 7600 6 núcleos/ }).click();
+        // Com o catálogo do painel, as placas liberadas são todas AM5 (o resumo técnico traz o soquete).
         const boards = await page
-          .locator(".part-card:not(:disabled):not(.is-option) .part-name")
+          .locator(".part-card:not(:disabled):not(.is-option) .part-specs")
           .allTextContents();
-        assert.ok(boards.length > 0 && boards.every((b) => /A620M|B650/.test(b)), "Only AM5 boards");
+        assert.ok(boards.length > 0 && boards.every((b) => /AM5/.test(b)), "Only AM5 boards");
         // Configuração pronta vai para a revisão e entra na mensagem do WhatsApp.
         await page.getByRole("button", { name: /Intermediário/ }).click();
         const text = decodeURIComponent(
