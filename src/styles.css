@@ -3267,92 +3267,14 @@ blockquote {
   position: absolute;
   inset: 0;
 }
-/* Raios da hero gamer: luz somada ao fundo (screen), com deriva, ondulação e brilho que pulsa.
-   Tamanhos e posições: ajuste aqui. Só animam no tema gamer e sem redução de movimento. */
-.hero-raios {
+/* Raios da hero gamer (HeroRaios.jsx): luz somada ao fundo, atrás do conteúdo */
+.hero-raios-canvas {
   position: absolute;
   inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.hero-raio {
-  position: absolute;
-  max-width: none;
+  width: 100%;
+  height: 100%;
   mix-blend-mode: screen;
-  opacity: 0;
-  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.55));
-  animation: hero-raio-drift 14s ease-in-out infinite alternate, hero-raio-pulse 7s ease-in-out infinite;
-  animation-play-state: paused;
-}
-.hero-backdrop[data-theme="gamer"] .hero-raio {
-  animation-play-state: running;
-}
-.hero-raio.raio-ramificado {
-  top: -6%;
-  right: -4%;
-  width: min(44vw, 640px);
-  --raio-opacity: 0.85;
-  --raio-rot: -4deg;
-}
-.hero-raio.raio-vertical {
-  top: 2%;
-  right: 22%;
-  height: 112%;
-  --raio-opacity: 0.6;
-  --raio-rot: 6deg;
-  animation-duration: 17s, 9s;
-  animation-delay: -5s, -2s;
-}
-.hero-raio.raio-diagonal {
-  bottom: -8%;
-  right: 4%;
-  width: min(52vw, 760px);
-  --raio-opacity: 0.75;
-  --raio-rot: 2deg;
-  animation-duration: 19s, 8s;
-  animation-delay: -9s, -4s;
-}
-.hero-raio.raio-duplo {
-  top: 4%;
-  right: 30%;
-  width: min(26vw, 380px);
-  --raio-opacity: 0.7;
-  --raio-rot: -8deg;
-  animation-duration: 15s, 6s;
-  animation-delay: -3s, -1s;
-}
-@keyframes hero-raio-drift {
-  0% { transform: translate(0, 0) rotate(var(--raio-rot)) scale(1) skewX(0deg); }
-  33% { transform: translate(-1.5%, 1%) rotate(calc(var(--raio-rot) + 1.5deg)) scale(1.03) skewX(1.5deg); }
-  66% { transform: translate(1%, -1.2%) rotate(calc(var(--raio-rot) - 1deg)) scale(0.98) skewX(-1deg); }
-  100% { transform: translate(-0.5%, 0.8%) rotate(calc(var(--raio-rot) + 0.5deg)) scale(1.02) skewX(0.8deg); }
-}
-@keyframes hero-raio-pulse {
-  0%, 100% { opacity: calc(var(--raio-opacity) * 0.55); }
-  40% { opacity: var(--raio-opacity); }
-  46% { opacity: calc(var(--raio-opacity) * 0.7); }
-  52% { opacity: var(--raio-opacity); }
-  75% { opacity: calc(var(--raio-opacity) * 0.65); }
-}
-@media (max-width: 767px) {
-  .hero-raio.raio-vertical,
-  .hero-raio.raio-duplo {
-    display: none;
-  }
-  .hero-raio.raio-ramificado {
-    width: 78vw;
-    --raio-opacity: 0.6;
-  }
-  .hero-raio.raio-diagonal {
-    width: 110vw;
-    --raio-opacity: 0.55;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-raio {
-    animation: none;
-    opacity: calc(var(--raio-opacity) * 0.7);
-  }
+  pointer-events: none;
 }
 .hero-gamer-light .hero-gamer-band::after {
   content: "";

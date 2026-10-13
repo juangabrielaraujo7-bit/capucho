@@ -1,13 +1,11 @@
-import { asset } from "../config";
 import GradientBand from "./GradientBand";
+import HeroRaios from "./HeroRaios";
 import { HeroArcs } from "./HeroGamerFx";
 
 // Fundo da hero, adaptado de elegant-dark-pattern (DarkGradientBg) para a paleta clara do site:
 // base clareando a partir do canto superior esquerdo e faixas diagonais em azul da marca. Só decoração; o conteúdo vem por "children".
 // "theme" acompanha o equipamento na tela: com o PC gamer, uma camada roxa escura cobre o fundo
 // claro (com transição) e aparecem arcos elétricos curtos (HeroGamerFx.jsx).
-const RAIOS = ["raio-ramificado", "raio-vertical", "raio-diagonal", "raio-duplo"];
-
 export default function HeroBackground({ children, theme = "notebook" }) {
   return (
     <div className="hero-backdrop" data-theme={theme}>
@@ -22,13 +20,8 @@ export default function HeroBackground({ children, theme = "notebook" }) {
         <div className="hero-gamer-light">
           {/* Sem os filamentos da área gamer (intensidade 0): fica só a névoa roxa e o brilho da base */}
           <GradientBand className="hero-gamer-band" paused={theme !== "gamer"} lines={[0.0025, 0]} />
-          {/* Raios roxos (fotos recortadas em scripts/raios-alpha.mjs) com o mesmo movimento lento e
-              ondulado dos filamentos da área gamer; ficam do lado do gabinete, longe do texto. */}
-          <div className="hero-raios">
-            {RAIOS.map((name) => (
-              <img key={name} className={`hero-raio ${name}`} src={asset(`raios/${name}.webp`)} alt="" decoding="async" loading="lazy" />
-            ))}
-          </div>
+          {/* Raios roxos recortados, com o mesmo movimento ondulado do fundo (HeroRaios.jsx) */}
+          <HeroRaios active={theme === "gamer"} />
         </div>
         <HeroArcs active={theme === "gamer"} />
       </div>

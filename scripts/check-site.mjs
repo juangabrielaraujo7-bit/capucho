@@ -58,12 +58,11 @@ try {
         ),
         motion: [...document.querySelectorAll("*")].some(
           // <source> recebe uma animação interna do Chrome, sem efeito visual.
-          // Depoimentos, equipamentos, a varredura do botão glitch e os raios da hero gamer são intencionais.
+          // Depoimentos, equipamentos e a varredura do botão glitch são intencionais.
           (e) =>
             e.tagName !== "SOURCE" &&
             !e.classList.contains("testimonials-track") &&
             !e.classList.contains("glitch-slice") &&
-            !e.classList.contains("hero-raio") &&
             !e.matches(".service-image img, .service-hero-media img, .part-image img") &&
             getComputedStyle(e).animationName !== "none",
         ),
