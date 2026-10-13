@@ -21,11 +21,18 @@
 .about-intro-social h3{font-size:1.3rem;margin-bottom:8px}
 .about-intro-social p{font-size:.95rem;margin:0;max-width:330px}
 .about-social-map{min-width:0}
-.about-branch-space{height:90px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px dashed #c1cada;border-radius:14px}
-.about-branch-space img{width:100%;height:100%;object-fit:contain}
-.about-branch-placeholder{text-align:center;display:grid;gap:5px}
-.about-branch-placeholder>span{font-family:"Sora Variable",sans-serif;font-weight:700;letter-spacing:.13em;font-size:.85rem}
-.about-branch-placeholder small{color:var(--muted);font-size:.75rem}
+.about-branch-space{position:relative;padding-bottom:96px;margin-bottom:8px}
+.animated-text{margin:0;white-space:pre}
+.animated-text span{display:inline-block;font-variation-settings:"wght" var(--breath-min);animation:breath var(--breath-time) cubic-bezier(.37,0,.63,1) infinite alternate both}
+@keyframes breath{from{font-variation-settings:"wght" var(--breath-min)}to{font-variation-settings:"wght" var(--breath-max)}}
+.about-intro-social .about-branch-title{position:relative;z-index:1;height:50px;max-width:none;display:flex;align-items:center;justify-content:center;font-family:"Sora Variable",sans-serif;font-size:clamp(1.7rem,2.8vw,2.4rem);letter-spacing:-.03em;color:var(--navy)}
+.about-branches{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+.about-branch-track{fill:none;stroke:#c3cbe0;stroke-width:1.5}
+.about-branch-flow{fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-dasharray:14 220;animation:branch-flow 2.4s linear infinite}
+@keyframes branch-flow{from{stroke-dashoffset:234}to{stroke-dashoffset:0}}
+.about-branch-root{fill:var(--blue)}
+.about-branch-tip{fill:var(--tint);stroke:var(--blue);stroke-width:2}
+@media(prefers-reduced-motion:reduce){.animated-text span{animation:none;font-variation-settings:"wght" 700}.about-branch-flow{animation:none;stroke-dasharray:none;opacity:.35}}
 .about-social-nodes{display:grid;grid-template-columns:1.2fr .85fr 1fr;gap:10px}
 .about-social-node{display:flex;align-items:center;gap:10px;padding:15px 12px;border-radius:12px;background:#fff;border:1px solid var(--border);font-weight:650;font-size:.85rem;min-width:0}
 .about-social-node>span{flex:1}
@@ -86,5 +93,5 @@ a.about-social-node:hover{box-shadow:0 4px 16px #102c6014}
  .about-intro-grid,.about-person-grid{gap:32px}.about-intro-social{grid-template-columns:1fr;gap:22px}.about-intro-social p{max-width:none}.about-social-node{padding:16px}.about-social-nodes{grid-template-columns:1.2fr 1fr 1fr}.about-google-grid{gap:35px}.about-tiktok-row{flex-wrap:wrap}
 }
 @media(max-width:700px){
- .about-intro-grid,.about-person-grid,.about-google-grid{grid-template-columns:1fr;gap:32px}.about-intro-copy h2{font-size:2rem}.about-film-caption{padding:14px;font-size:.7rem}.about-intro-social{margin-top:32px}.about-social-nodes{grid-template-columns:1fr 1fr}.about-social-node-main{grid-column:1/-1}.about-social-node{padding:14px 12px}.about-social-node small{font-size:.72rem}.about-person-copy{order:-1}.about-page-opening h1{font-size:2.15rem}.about-lead{font-size:1rem}.about-page-nav{gap:18px 24px;font-size:.85rem}.about-principles>div{grid-template-columns:110px 1fr}.about-instagram-heading{font-size:.95rem}.about-instagram-gallery{gap:12px;grid-template-columns:1fr 1fr}.about-instagram-gallery figure:first-child{grid-column:1/-1}.about-instagram-gallery img{height:210px}.about-instagram-gallery figure:first-child img{height:300px}.about-instagram-gallery figcaption{font-size:.75rem}.about-project-grid,.about-repair-grid{grid-template-columns:1fr;gap:32px}.about-repair-grid .about-project-video{aspect-ratio:4/3}.about-instagram-section .button{font-size:.82rem;padding-inline:12px}.about-tiktok-row{gap:20px}.about-tiktok-row>div{flex-basis:calc(100% - 84px)}.about-tiktok-row h2{font-size:1.4rem}.about-tiktok-row p{font-size:.9rem}.about-close{align-items:flex-start;flex-direction:column}.about-google-rating{gap:18px}
+ .about-intro-grid,.about-person-grid,.about-google-grid{grid-template-columns:1fr;gap:32px}.about-intro-copy h2{font-size:2rem}.about-film-caption{padding:14px;font-size:.7rem}.about-intro-social{margin-top:32px}.about-branch-space{padding-bottom:0;margin-bottom:16px}.about-intro-social .about-branch-title{font-size:1.8rem}.about-social-nodes{grid-template-columns:1fr 1fr}.about-social-node-main{grid-column:1/-1}.about-social-node{padding:14px 12px}.about-social-node small{font-size:.72rem}.about-person-copy{order:-1}.about-page-opening h1{font-size:2.15rem}.about-lead{font-size:1rem}.about-page-nav{gap:18px 24px;font-size:.85rem}.about-principles>div{grid-template-columns:110px 1fr}.about-instagram-heading{font-size:.95rem}.about-instagram-gallery{gap:12px;grid-template-columns:1fr 1fr}.about-instagram-gallery figure:first-child{grid-column:1/-1}.about-instagram-gallery img{height:210px}.about-instagram-gallery figure:first-child img{height:300px}.about-instagram-gallery figcaption{font-size:.75rem}.about-project-grid,.about-repair-grid{grid-template-columns:1fr;gap:32px}.about-repair-grid .about-project-video{aspect-ratio:4/3}.about-instagram-section .button{font-size:.82rem;padding-inline:12px}.about-tiktok-row{gap:20px}.about-tiktok-row>div{flex-basis:calc(100% - 84px)}.about-tiktok-row h2{font-size:1.4rem}.about-tiktok-row p{font-size:.9rem}.about-close{align-items:flex-start;flex-direction:column}.about-google-rating{gap:18px}
 }

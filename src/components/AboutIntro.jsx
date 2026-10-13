@@ -1,7 +1,9 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { ArrowRight, ArrowUpRight, VideoCamera } from "@phosphor-icons/react";
 import { asset, business, maps } from "../config";
 import { aboutMedia, googleReputation } from "../about";
+import AnimatedText from "./AnimatedText";
 import "../about.css";
 
 export function HenriqueVideo() {
@@ -26,12 +28,52 @@ export function HenriqueVideo() {
   );
 }
 
+// Ramos do "mapa mental": saem do título e terminam no centro de cada botão (medido, acompanha o layout).
+function useBranches(mapRef) {
+  const [branches, setBranches] = useState(null);
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const measure = () => {
+      const box = map.querySelector(".about-branch-space").getBoundingClientRect();
+      const ends = [...map.querySelectorAll(".about-social-node")].map(node => {
+        const r = node.getBoundingClientRect();
+        return { x: r.left + r.width / 2 - box.left, y: r.top - box.top };
+      });
+      // no celular os botões quebram em duas linhas: os ramos só fazem sentido com os três lado a lado
+      const sideBySide = ends.length === 3 && ends.every(e => Math.abs(e.y - ends[0].y) < 2);
+      setBranches(sideBySide ? { w: box.width, h: ends[0].y, ends } : null);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(map);
+    return () => observer.disconnect();
+  }, [mapRef]);
+  return branches;
+}
+
 export function SocialBranches() {
+  const mapRef = useRef(null);
+  const branches = useBranches(mapRef);
   return (
-    <div className="about-social-map">
+    <div className="about-social-map" ref={mapRef}>
       <div className="about-branch-space">
-        {aboutMedia.branchesIllustration ? <img src={aboutMedia.branchesIllustration} alt="" loading="lazy" /> : (
-          <div className="about-branch-placeholder"><span>CAPUCHO</span><small>Espaço para a ilustração dos ramos</small></div>
+        <AnimatedText className="about-branch-title" text="Conheça a Capucho" />
+        {branches && (
+          <svg className="about-branches" width={branches.w} height={branches.h} viewBox={`0 0 ${branches.w} ${branches.h}`} aria-hidden="true">
+            {branches.ends.map((end, i) => {
+              const sx = branches.w / 2, sy = 58, ey = end.y - 4, my = (sy + ey) / 2;
+              const d = `M ${sx} ${sy} C ${sx} ${my}, ${end.x} ${my}, ${end.x} ${ey}`;
+              return (
+                <g key={i}>
+                  <path className="about-branch-track" d={d} />
+                  <path className="about-branch-flow" d={d} style={{ animationDelay: `${i * -0.6}s` }} />
+                  <circle className="about-branch-tip" cx={end.x} cy={ey} r="4" />
+                </g>
+              );
+            })}
+            <circle className="about-branch-root" cx={branches.w / 2} cy="58" r="5" />
+          </svg>
         )}
       </div>
       <div className="about-social-nodes">
