@@ -21,10 +21,6 @@ export default function AboutPage() {
           <Link className="text-link about-back" to="/#sobre"><ArrowLeft size={18} /> Voltar para a home</Link>
           <p className="eyebrow">Sobre a Capucho</p>
           <h1>5 anos no mercado.<br /><span>A melhor assistência técnica da região.</span></h1>
-          <p className="about-lead">Conheça quem cuida do seu computador e acompanhe o trabalho que acontece na nossa bancada.</p>
-          <nav className="about-page-nav" aria-label="Nesta página">
-            <a href="#henrique">Henrique</a><a href="#instagram">Instagram</a><a href="#projetos">Projetos gamer</a><a href="#consertos">Consertos</a><a href="#tiktok">TikTok</a><a href="#reputacao">Google</a>
-          </nav>
         </div>
       </section>
       <section id="henrique" className="section">
