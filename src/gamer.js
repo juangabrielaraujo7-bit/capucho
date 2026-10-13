@@ -131,31 +131,98 @@ export const find = (step, id) => parts[step].find((p) => p.id === id);
 export function minWatts(pick) {
   const cpu = find("cpu", pick.cpu);
   const gpu = find("gpu", pick.gpu);
-  const base = gpu ? gpu.psu : 450;
+  const base = gpu?.psu ?? 450;
   return base + (cpu && cpu.tdp > 100 ? 100 : 0);
 }
 
+export const FORM_LABEL = { mITX: "Mini-ITX", mATX: "Micro-ATX", ATX: "ATX", EATX: "E-ATX" };
+
 // Diz se a peça combina com as já escolhidas; devolve o motivo quando não combina.
+// Só bloqueia com dado conhecido dos dois lados: o que falta aparece em unverified().
 export function incompatibility(step, part, pick) {
   const cpu = find("cpu", pick.cpu);
   const board = find("board", pick.board);
+  const gpu = find("gpu", pick.gpu);
   const cooler = find("cooler", pick.cooler);
+  const psu = find("psu", pick.psu);
   const pcCase = find("case", pick.case);
   if (step === "board" && cpu && part.socket !== cpu.socket)
     return `Soquete ${part.socket}, o processador usa ${cpu.socket}`;
   if (step === "ram" && board && part.memory !== board.memory)
     return `A placa-mãe usa ${board.memory}`;
+  if (step === "ram" && board?.memSlots != null && part.modules > board.memSlots)
+    return `A placa-mãe tem ${board.memSlots} slots de memória`;
+  if (step === "ram" && board?.memMax != null && part.gb > board.memMax)
+    return `A placa-mãe aceita até ${board.memMax} GB`;
+  if (step === "storage" && board && part.iface && part.iface !== "sata" && board.m2Slots === 0)
+    return "A placa-mãe não tem slot M.2";
+  if (step === "storage" && board && part.iface === "sata" && board.sataPorts === 0)
+    return "A placa-mãe não tem porta SATA";
+  if (step === "gpu" && pcCase?.maxGpu != null && part.length != null && part.length > pcCase.maxGpu)
+    return `O gabinete aceita placa de vídeo de até ${pcCase.maxGpu} mm`;
   if (step === "cooler" && cpu && part.maxTdp < cpu.tdp)
     return "Não dá conta do calor desse processador";
+  if (step === "cooler" && cpu && part.sockets && !part.sockets.includes(cpu.socket))
+    return `Não encaixa no soquete ${cpu.socket}`;
   if (step === "cooler" && part.radiator && pcCase && part.radiator > pcCase.radiator)
     return `O gabinete aceita radiador de até ${pcCase.radiator} mm`;
+  if (step === "cooler" && !part.radiator && pcCase?.maxCooler != null && part.height != null && part.height > pcCase.maxCooler)
+    return `O gabinete aceita cooler de até ${pcCase.maxCooler} mm de altura`;
   if (step === "psu" && part.watts < minWatts(pick))
     return `Recomendado a partir de ${minWatts(pick)} W`;
+  if (step === "psu" && gpu?.pcie8 != null && part.pcie8 != null && part.pcie8 < gpu.pcie8)
+    return `A placa de vídeo usa ${gpu.pcie8} conectores PCIe`;
+  if (step === "psu" && pcCase?.psuForms && part.psuForm && !pcCase.psuForms.includes(part.psuForm))
+    return `O gabinete aceita fonte ${pcCase.psuForms.join(", ")}`;
   if (step === "case" && board && !part.forms.includes(board.form))
-    return `Não comporta placa ${board.form === "ATX" ? "ATX" : "Micro-ATX"}`;
+    return `Não comporta placa ${FORM_LABEL[board.form] ?? board.form}`;
   if (step === "case" && cooler?.radiator && cooler.radiator > part.radiator)
     return `Aceita radiador de até ${part.radiator} mm`;
+  if (step === "case" && gpu?.length != null && part.maxGpu != null && gpu.length > part.maxGpu)
+    return `Aceita placa de vídeo de até ${part.maxGpu} mm`;
+  if (step === "case" && cooler && !cooler.radiator && cooler.height != null && part.maxCooler != null && cooler.height > part.maxCooler)
+    return `Aceita cooler de até ${part.maxCooler} mm de altura`;
+  if (step === "case" && psu?.psuForm && part.psuForms && !part.psuForms.includes(psu.psuForm))
+    return `Aceita fonte ${part.psuForms.join(", ")}`;
   return null;
+}
+
+// Conferências que o montador não consegue fazer porque falta informação nas peças escolhidas.
+// Aparecem na revisão: a Capucho confirma esses pontos na montagem, e a compatibilidade nunca é
+// apresentada como completa quando há dado ausente.
+export function unverified(pick) {
+  const cpu = find("cpu", pick.cpu);
+  const board = find("board", pick.board);
+  const ram = find("ram", pick.ram);
+  const gpu = find("gpu", pick.gpu);
+  const storage = find("storage", pick.storage);
+  const cooler = find("cooler", pick.cooler);
+  const psu = find("psu", pick.psu);
+  const pcCase = find("case", pick.case);
+  // Só peças importadas do fornecedor (campo "imported") entram aqui: a lista fixa antiga tem outro nível de detalhe.
+  const any = (...list) => list.some((p) => p?.imported);
+  const notes = [];
+  if (cpu && board && any(cpu, board)) {
+    if (cpu.chipsets && board.chipset && !cpu.chipsets.includes(board.chipset))
+      notes.push(`O chipset ${board.chipset} não consta na lista de placas do fabricante do processador.`);
+    else notes.push("Suporte do processador e versão de BIOS da placa-mãe: a Capucho confirma antes de montar.");
+  }
+  if (board && ram && any(board, ram) && (board.memSlots == null || board.memMax == null))
+    notes.push("Slots e capacidade máxima de memória da placa-mãe não informados.");
+  if (board && storage && any(board, storage) && storage.iface && storage.iface !== "sata" && board.m2Slots == null)
+    notes.push("Quantidade de slots M.2 da placa-mãe não informada.");
+  if (gpu && pcCase && any(gpu, pcCase) && (gpu.length == null || pcCase.maxGpu == null))
+    notes.push("Espaço para a placa de vídeo no gabinete: comprimento não informado.");
+  if (cooler && pcCase && any(cooler, pcCase)) {
+    if (cooler.radiator && pcCase.radiator == null) notes.push("Suporte do gabinete ao radiador não informado.");
+    if (!cooler.radiator && (cooler.height == null || pcCase.maxCooler == null))
+      notes.push("Altura do cooler ou espaço do gabinete não informado.");
+  }
+  if (cooler && cpu && any(cooler) && cooler.maxTdp == null) notes.push("Capacidade de refrigeração do cooler não informada.");
+  if (psu && gpu && any(psu, gpu) && (psu.pcie8 == null || gpu.pcie8 == null))
+    notes.push("Conectores de energia da fonte e da placa de vídeo não informados.");
+  if (gpu?.p16 && psu && !psu.p16) notes.push("A placa de vídeo usa conector de 16 pinos: confira o cabo ou adaptador.");
+  return notes;
 }
 
 // Etapas que podem ficar sem peça do catálogo.

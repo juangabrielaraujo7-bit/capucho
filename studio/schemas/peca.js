@@ -12,11 +12,13 @@ export const categories = [
   { value: "case", title: "Gabinetes" },
 ];
 
-const sockets = ["AM4", "AM5", "LGA1700", "LGA1851"];
+const sockets = ["AM4", "AM5", "LGA1700", "LGA1851", "LGA1200"];
 const memories = ["DDR4", "DDR5"];
 const forms = [
+  { value: "mITX", title: "Mini-ITX" },
   { value: "mATX", title: "Micro-ATX" },
   { value: "ATX", title: "ATX" },
+  { value: "EATX", title: "E-ATX" },
 ];
 
 // Campo técnico que só aparece (e só é obrigatório) nas categorias indicadas.
@@ -29,6 +31,9 @@ const only = (cats) => ({
         : true,
     ),
 });
+
+// Campo técnico opcional, visível só nas categorias indicadas.
+const opt = (cats) => ({ hidden: ({ parent }) => !cats.includes(parent?.category) });
 
 export const peca = defineType({
   name: "peca",
@@ -67,7 +72,12 @@ export const peca = defineType({
       name: "price",
       title: "Preço estimado (R$)",
       type: "number",
-      validation: (rule) => rule.required().min(0),
+      description: "Peças importadas do fornecedor chegam sem preço e ocultas: defina o preço e ligue “Mostrar no site”.",
+      validation: (rule) =>
+        rule.custom((value, { document }) => {
+          if (value == null) return document?.active === false ? true : "Defina o preço para mostrar a peça no site";
+          return value > 0 ? true : "O preço precisa ser maior que zero";
+        }),
     }),
     defineField({
       name: "stock",
@@ -104,7 +114,7 @@ export const peca = defineType({
       title: "Radiador do water cooler (mm)",
       description: "Deixe vazio para cooler a ar.",
       type: "number",
-      options: { list: [240, 280, 360] },
+      options: { list: [120, 140, 240, 280, 360, 420] },
       hidden: ({ parent }) => parent?.category !== "cooler",
     }),
     defineField({ name: "watts", title: "Potência da fonte (W)", type: "number", ...only(["psu"]) }),
@@ -116,15 +126,74 @@ export const peca = defineType({
       options: { list: forms, layout: "grid" },
       ...only(["case"]),
     }),
-    defineField({ name: "caseRadiator", title: "Maior radiador que cabe (mm)", type: "number", options: { list: [240, 280, 360] }, ...only(["case"]) }),
+    defineField({ name: "caseRadiator", title: "Maior radiador que cabe (mm)", type: "number", options: { list: [120, 140, 240, 280, 360, 420] }, ...only(["case"]) }),
+
+    // Revisão técnica e dados do fornecedor (importação CIAPC, studio/import/ciapc)
+    defineField({
+      name: "revisao",
+      title: "Revisão técnica",
+      description: "“Pendente” = faltam dados para o montador conferir a compatibilidade; a peça não aparece no site até a revisão ficar “ok”.",
+      type: "string",
+      options: { list: [{ value: "pendente", title: "Pendente de revisão" }, { value: "ok", title: "Revisada" }], layout: "radio", direction: "horizontal" },
+    }),
+    defineField({
+      name: "fornecedor",
+      title: "Dados do fornecedor (somente leitura)",
+      description: "Origem da peça no fornecedor. Atualizado pela importação; preço, estoque e “Mostrar no site” nunca são tocados por ela.",
+      type: "object",
+      readOnly: true,
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        { name: "fonte", title: "Fornecedor", type: "string" },
+        { name: "sku", title: "Código do fornecedor", type: "string" },
+        { name: "modelo", title: "Código do fabricante", type: "string" },
+        { name: "gtin", title: "EAN/GTIN", type: "string" },
+        { name: "nomeOriginal", title: "Nome no fornecedor", type: "string" },
+        { name: "url", title: "Página de origem", type: "url" },
+        { name: "imagem", title: "Imagem no fornecedor (não usada no site)", type: "url" },
+        { name: "imagemStatus", title: "Uso da imagem", type: "string" },
+        { name: "disponibilidade", title: "Disponibilidade observada no fornecedor", type: "string" },
+        { name: "condicao", title: "Condição", type: "string" },
+        { name: "situacao", title: "Situação na última coleta", type: "string" },
+        { name: "coletadoEm", title: "Coletado em", type: "datetime" },
+        { name: "pendencias", title: "Dados que faltam", type: "array", of: [{ type: "string" }] },
+        { name: "especificacoes", title: "Especificações coletadas", type: "text", rows: 6 },
+        { name: "complementos", title: "Dados complementados (fonte)", type: "array", of: [{ type: "string" }] },
+      ],
+    }),
+
+    // Compatibilidade detalhada (opcional: quando falta, o montador avisa que a Capucho confere)
+    defineField({ name: "chipset", title: "Chipset", type: "string", ...opt(["board"]) }),
+    defineField({ name: "chipsets", title: "Chipsets que o processador lista como compatíveis", type: "array", of: [{ type: "string" }], ...opt(["cpu"]) }),
+    defineField({ name: "memSlots", title: "Slots de memória", type: "number", ...opt(["board"]) }),
+    defineField({ name: "memMax", title: "Memória máxima (GB)", type: "number", ...opt(["board"]) }),
+    defineField({ name: "m2Slots", title: "Slots M.2 (NVMe)", type: "number", ...opt(["board"]) }),
+    defineField({ name: "sataPorts", title: "Portas SATA", type: "number", ...opt(["board"]) }),
+    defineField({ name: "gb", title: "Capacidade total (GB)", type: "number", ...opt(["ram", "storage"]) }),
+    defineField({ name: "modules", title: "Módulos no kit", type: "number", ...opt(["ram"]) }),
+    defineField({ name: "speed", title: "Frequência (MHz)", type: "number", ...opt(["ram"]) }),
+    defineField({ name: "length", title: "Comprimento (mm)", type: "number", ...opt(["gpu"]) }),
+    defineField({ name: "vram", title: "Memória de vídeo (GB)", type: "number", ...opt(["gpu"]) }),
+    defineField({ name: "slots", title: "Slots que a placa ocupa", type: "number", ...opt(["gpu"]) }),
+    defineField({ name: "pcie8", title: "Conectores PCIe de 8 pinos exigidos / oferecidos", description: "Placa de vídeo: quantos exige. Fonte: quantos oferece (6+2 pinos).", type: "number", ...opt(["gpu", "psu"]) }),
+    defineField({ name: "p16", title: "Conector de 16 pinos (12VHPWR / 12V-2x6)", description: "Placa de vídeo: exige. Fonte: oferece.", type: "boolean", ...opt(["gpu", "psu"]) }),
+    defineField({ name: "iface", title: "Interface", type: "string", options: { list: [{ value: "sata", title: "SATA" }, { value: "nvme", title: "M.2 NVMe" }, { value: "m2-sata", title: "M.2 SATA" }], layout: "radio", direction: "horizontal" }, ...opt(["storage"]) }),
+    defineField({ name: "storageForm", title: "Formato físico", type: "string", ...opt(["storage"]) }),
+    defineField({ name: "sockets", title: "Sockets compatíveis", type: "array", of: [{ type: "string" }], options: { list: sockets }, ...opt(["cooler"]) }),
+    defineField({ name: "height", title: "Altura do cooler a ar (mm)", type: "number", ...opt(["cooler"]) }),
+    defineField({ name: "maxGpu", title: "Comprimento máximo da placa de vídeo (mm)", type: "number", ...opt(["case"]) }),
+    defineField({ name: "maxCooler", title: "Altura máxima do cooler a ar (mm)", type: "number", ...opt(["case"]) }),
+    defineField({ name: "psuForms", title: "Formatos de fonte aceitos", type: "array", of: [{ type: "string" }], ...opt(["case"]) }),
+    defineField({ name: "psuForm", title: "Formato da fonte", type: "string", ...opt(["psu"]) }),
   ],
   preview: {
-    select: { title: "name", price: "price", stock: "stock", active: "active", media: "image" },
-    prepare: ({ title, price, stock, active, media }) => ({
+    select: { title: "name", price: "price", stock: "stock", active: "active", revisao: "revisao", media: "image" },
+    prepare: ({ title, price, stock, active, revisao, media }) => ({
       title,
       subtitle: [
         price != null ? `R$ ${price.toLocaleString("pt-BR")}` : "Sem preço",
         stock ? "Em estoque" : "Sob encomenda",
+        revisao === "pendente" ? "Revisão pendente" : null,
         active === false ? "Oculta" : null,
       ]
         .filter(Boolean)

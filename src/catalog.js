@@ -11,10 +11,21 @@ const projectId = "9in9aaz1";
 const dataset = "production";
 const CACHE_KEY = "capucho-catalogo";
 
-const query = `*[_type == "peca" && active != false] | order(price asc) {
+// Só entra no montador a peça ativa, com preço definido e sem revisão técnica pendente: peças importadas
+// do fornecedor chegam ocultas e sem preço, e nunca contam como R$ 0 no total.
+const query = `*[_type == "peca" && active != false && defined(price) && price > 0 && revisao != "pendente"] | order(price asc) {
   _id, category, name, brand, specs, price, stock, socket, memory, form, igpu, boxCooler,
-  tdp, psu, maxTdp, radiator, watts, forms, caseRadiator, "image": image.asset->url
+  tdp, psu, maxTdp, radiator, watts, forms, caseRadiator, "image": image.asset->url, "imported": defined(fornecedor.sku), "supplierSku": fornecedor.sku,
+  chipset, chipsets, memSlots, memMax, m2Slots, sataPorts, gb, modules, speed, length, vram, slots,
+  pcie8, p16, iface, storageForm, sockets, height, maxGpu, maxCooler, psuForms, psuForm
 }`;
+
+// Campos técnicos extras (importação do fornecedor) que o montador usa nas conferências de compatibilidade.
+const EXTRA = [
+  "chipset", "chipsets", "memSlots", "memMax", "m2Slots", "sataPorts", "gb", "modules", "speed", "length",
+  "vram", "slots", "pcie8", "p16", "iface", "storageForm", "sockets", "height", "maxGpu", "maxCooler",
+  "psuForms", "psuForm",
+];
 
 // Converte um documento do Sanity no formato que src/gamer.js usa.
 function toPart(doc) {
@@ -23,10 +34,10 @@ function toPart(doc) {
     id: doc._id.replace(/^peca-[a-z]+-/, ""),
     name: doc.name,
     specs: doc.specs ?? "",
-    price: doc.price ?? 0,
+    price: doc.price,
     stock: Boolean(doc.stock),
   };
-  for (const key of ["brand", "socket", "memory", "form", "tdp", "psu", "maxTdp", "watts"])
+  for (const key of ["brand", "socket", "memory", "form", "tdp", "psu", "maxTdp", "watts", ...EXTRA])
     if (doc[key] != null) part[key] = doc[key];
   if (doc.category === "cpu") {
     part.igpu = Boolean(doc.igpu);
@@ -37,13 +48,17 @@ function toPart(doc) {
     part.forms = doc.forms ?? [];
     part.radiator = doc.caseRadiator ?? 0;
   }
+  if (doc.imported) part.imported = true;
+  // Peça importada sem foto enviada no painel usa a foto otimizada de public/assets/catalogo (studio/import/ciapc/imagens.mjs).
+  if (!doc.image && doc.supplierSku) part.image = `catalogo/${doc.supplierSku}.webp`;
   if (doc.image) part.image = `${doc.image}?w=480&fit=max&auto=format`;
   return part;
 }
 
 function apply(docs) {
   const next = Object.fromEntries(Object.keys(parts).map((step) => [step, []]));
-  for (const doc of docs) if (next[doc.category] && doc.name) next[doc.category].push(toPart(doc));
+  // Defesa extra: peça sem preço válido nunca entra (nem como R$ 0).
+  for (const doc of docs) if (next[doc.category] && doc.name && doc.price > 0) next[doc.category].push(toPart(doc));
   // Etapa sem nenhuma peça cadastrada continua com a lista fixa.
   for (const step of Object.keys(parts)) if (next[step].length) parts[step] = next[step];
 }

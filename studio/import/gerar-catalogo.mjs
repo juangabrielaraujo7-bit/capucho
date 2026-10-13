@@ -1,3 +1,5 @@
+// ATENÇÃO: o comando abaixo usa --replace e APAGA o que estiver no dataset (inclusive as peças importadas da CIAPC e os preços do dono).
+// Use só para recriar o painel do zero; para trazer produtos do fornecedor use import/ciapc.
 // Gera catalogo-inicial.ndjson a partir da lista fixa de ../../src/gamer.js, para importar no Sanity:
 //   node import/gerar-catalogo.mjs && npx sanity dataset import import/catalogo-inicial.ndjson production --replace
 // Os _id "peca-<etapa>-<id>" mantêm os ids antigos, usados pelas configurações prontas do site.

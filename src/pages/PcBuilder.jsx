@@ -19,6 +19,7 @@ import {
   PencilSimple,
   Screwdriver,
   Trash,
+  Warning,
   WhatsappLogo,
   X,
 } from "@phosphor-icons/react";
@@ -35,6 +36,7 @@ import {
   presets,
   skipOption,
   steps,
+  unverified,
 } from "../gamer";
 
 // Montador de PC no estilo do "Monte seu PC" da KaBuM: etapas por categoria, só peças compatíveis
@@ -243,6 +245,7 @@ export default function PcBuilder() {
   const progress = Math.round((done / steps.length) * 100);
   const total = totalOf(pick);
   const sendHref = wa(message(pick));
+  const notes = useMemo(() => unverified(pick), [pick, catalogVersion]);
 
   const list = useMemo(() => {
     if (!step) return [];
@@ -436,6 +439,15 @@ export default function PcBuilder() {
                   );
                 })}
               </ul>
+              {notes.length > 0 && (
+                <div className="builder-assembly">
+                  <Warning size={28} weight="duotone" />
+                  <p>
+                    <strong>A Capucho confere estes pontos.</strong> Faltam dados das peças para o montador
+                    garantir sozinho: {notes.join(" ")}
+                  </p>
+                </div>
+              )}
               <div className="builder-assembly">
                 <Screwdriver size={28} weight="duotone" />
                 <p>

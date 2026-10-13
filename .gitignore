@@ -13,3 +13,12 @@ studio/.sanity/
 public/serviços feitos/
 public/hero pc gamer/
 public/area gamer/
+
+# Importação CIAPC: dados coletados e cache (reproduzíveis com os scripts de studio/import/ciapc)
+studio/import/ciapc/.cache/
+studio/import/ciapc/bruto*.json
+studio/import/ciapc/normalizado*.json
+studio/import/ciapc/plano-importacao.json
+studio/import/ciapc/coleta.log
+studio/import/ciapc/relatorio-teste.md
+studio/import/ciapc/imagens.json
