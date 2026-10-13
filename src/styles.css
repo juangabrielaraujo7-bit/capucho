@@ -3267,15 +3267,6 @@ blockquote {
   position: absolute;
   inset: 0;
 }
-/* Raios da hero gamer (HeroRaios.jsx): luz somada ao fundo, atrás do conteúdo */
-.hero-raios-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
 .hero-gamer-light .hero-gamer-band::after {
   content: "";
   position: absolute;

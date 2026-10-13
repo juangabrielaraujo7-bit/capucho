@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import GradientBand from "./GradientBand";
-import HeroRaios from "./HeroRaios";
+import TubesCursor from "./TubesCursor";
 import { HeroArcs } from "./HeroGamerFx";
 
 // Fundo da hero, adaptado de elegant-dark-pattern (DarkGradientBg) para a paleta clara do site:
@@ -7,6 +8,17 @@ import { HeroArcs } from "./HeroGamerFx";
 // "theme" acompanha o equipamento na tela: com o PC gamer, uma camada roxa escura cobre o fundo
 // claro (com transição) e aparecem arcos elétricos curtos (HeroGamerFx.jsx).
 export default function HeroBackground({ children, theme = "notebook" }) {
+  // Os tubos de luz do cursor (three.js, ~770 KB) só carregam quando o PC gamer aparece pela primeira vez e
+  // saem de cena logo depois que o fundo claro volta, para não rodar escondidos.
+  const [tubes, setTubes] = useState(false);
+  useEffect(() => {
+    if (theme === "gamer") {
+      setTubes(true);
+      return;
+    }
+    const timer = setTimeout(() => setTubes(false), 1400);
+    return () => clearTimeout(timer);
+  }, [theme]);
   return (
     <div className="hero-backdrop" data-theme={theme}>
       <div className="hero-backdrop-layers" aria-hidden="true">
@@ -16,12 +28,10 @@ export default function HeroBackground({ children, theme = "notebook" }) {
           <span className="hero-streak s3" />
           <span className="hero-streak s4" />
         </div>
-        {/* Mesmo fundo animado da hero da área gamer (GradientBand); só anima no tema gamer */}
+        {/* Mesmo fundo da hero da área gamer: shader de filamentos (GradientBand) e tubos de luz que seguem o cursor */}
         <div className="hero-gamer-light">
-          {/* Sem os filamentos da área gamer (intensidade 0): fica só a névoa roxa e o brilho da base */}
-          <GradientBand className="hero-gamer-band" paused={theme !== "gamer"} lines={[0.0025, 0]} />
-          {/* Raios roxos recortados, com o mesmo movimento ondulado do fundo (HeroRaios.jsx) */}
-          <HeroRaios active={theme === "gamer"} />
+          <GradientBand className="hero-gamer-band" paused={theme !== "gamer"} />
+          {tubes && <TubesCursor />}
         </div>
         <HeroArcs active={theme === "gamer"} />
       </div>
