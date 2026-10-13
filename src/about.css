@@ -49,6 +49,11 @@
 .about-social-node small{display:block;font-weight:400;font-size:.7rem;line-height:1.5;margin-top:3px}
 .about-social-node-main{background:var(--blue);color:#fff;border-color:var(--blue)}
 a.about-social-node:hover{box-shadow:0 4px 16px #102c6014}
+/* leve crescida ao passar o mouse, volta ao tamanho no clique */
+.about-intro-copy .button,a.about-social-node{transition:transform .3s,background-color .3s,box-shadow .3s}
+.about-intro-copy .button:hover,a.about-social-node:hover{transform:scale(1.05)}
+.about-intro-copy .button:active,a.about-social-node:active{transform:scale(1)}
+@media(prefers-reduced-motion:reduce){.about-intro-copy .button:hover,a.about-social-node:hover{transform:none}}
 .about-social-pending{color:var(--muted)}
 .about-page>.section{border-bottom:1px solid var(--line)}
 .about-page-opening{padding-top:40px;padding-bottom:0!important}
