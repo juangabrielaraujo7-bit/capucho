@@ -2,6 +2,7 @@
 .about-intro h2 span,.about-page-opening h1 span,.about-instagram-section h2 span{color:var(--blue)}
 .about-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .about-intro-copy h2{font-size:clamp(1.9rem,2.7vw,2.65rem);max-width:590px}
+.about-intro-copy>.button{margin-top:32px}
 /* mesmo destaque do "acompanhar você" da hero */
 .about-intro h2 .about-title-mark{padding:0 .12em;margin:0 -.02em;border-radius:4px;background:linear-gradient(90deg,#2045ed 0%,#4a7dff 100%);color:#fff;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 /* "5 anos": letras trocando de lugar em loop */
