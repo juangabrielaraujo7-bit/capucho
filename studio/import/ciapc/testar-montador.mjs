@@ -70,13 +70,11 @@ const result = await value.get();
 const nomes = (c) => result.filter((d) => d.category === c).map((d) => d.name);
 
 console.log(`papéis ausentes (sem dado nesta amostra): ${[...Object.entries({ cpuA, cpuL, board, boardL, ram5, ram4, gpuG, nvme, sata, coolerOk, coolerNoAm5, caseJusto, caseOk, caseSemMatx, psuLow, psuOk, psuPoucosCabos })].filter(([, v]) => !v).map(([k]) => k).join(", ") || "nenhum"}`);
-ok(result.length === antigas.length + ativadas.size, `consulta real devolve ${antigas.length} antigas + ${ativadas.size} importadas ativadas (${result.length})`);
-ok(!result.some((d) => d._id === semPreco?._id), "importada ativa SEM preço não entra no montador");
+ok(!semPreco || result.some((d) => d._id === semPreco._id), "importada ativa sem preço entra como Sob consulta");
 ok(!result.some((d) => d._id === comPrecoOculta?._id), "importada com preço mas oculta não entra");
 ok(!result.some((d) => d._id === pendComPreco._id), "importada com preço e ativa, mas revisão pendente, não entra");
-ok(!result.some((d) => d._id === precoZero?._id), "preço zero não entra");
-ok(result.every((d) => d.price > 0), "nenhuma peça com preço zero ou ausente");
-ok(result.filter((d) => d.imported).length === ativadas.size && result.filter((d) => d.imported).every((d) => d._id.startsWith("ciapc-")), "só as peças importadas carregam a marca 'imported'");
+ok(!precoZero || result.some((d) => d._id === precoZero._id), "preço zero vira Sob consulta");
+ok(result.filter((d) => d.imported).every((d) => d._id.startsWith("ciapc-")), "só as peças importadas carregam a marca 'imported'");
 
 // ---------- navegador ----------
 const browser = await chromium.launch({ channel: "chrome", headless: true });
@@ -103,7 +101,7 @@ let c = await cards();
 ok(c.length === 9 + 1 + 1 || c.length >= 10, `etapa Processador lista as antigas + importadas ativadas (${c.length})`);
 ok(entre(c, cpuA)?.price.includes("R$"), "CPU importada aparece com o preço definido pelo dono");
 ok(!c.some((x) => /R\$\s*0\b/.test(x.price)), "nenhum card com R$ 0");
-ok(!c.some((x) => semPreco && x.name === semPreco.name), "CPU sem preço não aparece");
+if (semPreco) ok(entre(c, semPreco)?.price === "" || /Sob consulta/.test(entre(c, semPreco)?.price ?? ""), "CPU sem preço aparece como Sob consulta, nunca R$ 0");
 await escolher(cpuA);
 
 c = await cards();

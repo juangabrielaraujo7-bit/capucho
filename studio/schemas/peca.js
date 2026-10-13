@@ -72,7 +72,7 @@ export const peca = defineType({
       name: "price",
       title: "Preço estimado (R$)",
       type: "number",
-      description: "Peças importadas do fornecedor chegam sem preço e ocultas: defina o preço e ligue “Mostrar no site”.",
+      description: "Sem preço, a peça aparece no montador como “Sob consulta” e não entra na soma.",
       validation: (rule) =>
         rule.custom((value, { document }) => {
           if (value == null) return document?.active === false ? true : "Defina o preço para mostrar a peça no site";

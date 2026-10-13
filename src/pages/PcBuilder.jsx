@@ -70,8 +70,11 @@ function sanitize(pick, keep) {
   return out;
 }
 
+// Peça importada ainda sem preço definido aparece como "Sob consulta" e não entra na soma.
+const priceLabel = (part) => (part?.price > 0 ? brl(part.price) : "Sob consulta");
+const hasUnpriced = (pick) => steps.some((s) => { const part = find(s.id, pick[s.id]); return part && !(part.price > 0); });
 const totalOf = (pick) =>
-  steps.reduce((sum, s) => sum + (find(s.id, pick[s.id])?.price ?? 0), 0);
+  steps.reduce((sum, s) => sum + (find(s.id, pick[s.id])?.price || 0), 0);
 
 function message(pick) {
   const lines = steps.map(
@@ -83,7 +86,7 @@ function message(pick) {
     "",
     ...lines,
     "",
-    total ? `Total estimado das peças: ${brl(total)}` : null,
+    total ? `Total estimado das peças: ${brl(total)}${hasUnpriced(pick) ? " (sem as peças sob consulta)" : ""}` : null,
     "Pode confirmar preços, disponibilidade e prazo?",
   ]
     .filter((l) => l !== null)
@@ -126,7 +129,7 @@ function PartCard({ part, selected, reason, onPick }) {
           <span className="part-foot">
             <span className="part-price">
               <small>estimado</small>
-              {brl(part.price)}
+              {priceLabel(part)}
             </span>
             <span className="part-action">
               {selected ? (
@@ -419,7 +422,7 @@ export default function PcBuilder() {
                         {describe(s.id, pick[s.id]) ?? "Não escolhido"}
                       </span>
                       <span className="builder-review-price">
-                        {part ? brl(part.price) : ""}
+                        {part ? priceLabel(part) : ""}
                       </span>
                       <span className="builder-review-actions">
                         <button type="button" className="text-link" onClick={() => go(i)}>
@@ -514,7 +517,7 @@ export default function PcBuilder() {
             ))}
           </ul>
           <div className="builder-total">
-            <span>Total estimado</span>
+            <span>{hasUnpriced(pick) ? "Total (sem peças sob consulta)" : "Total estimado"}</span>
             <strong>{brl(total)}</strong>
           </div>
           <a className="button button-primary" href={sendHref} target="_blank" rel="noreferrer">
@@ -539,7 +542,7 @@ export default function PcBuilder() {
           Voltar
         </button>
         <div className="builder-bar-total">
-          <span>Total estimado</span>
+          <span>{hasUnpriced(pick) ? "Total (sem peças sob consulta)" : "Total estimado"}</span>
           <strong>{brl(total)}</strong>
         </div>
         {current < REVIEW ? (
