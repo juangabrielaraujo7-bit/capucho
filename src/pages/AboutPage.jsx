@@ -28,8 +28,6 @@ export default function AboutPage() {
           <HenriqueVideo />
           <div className="about-person-copy">
             <h2>Henrique.<br />Quem faz acontecer.</h2>
-            <p>São 5 anos de Capucho, com dedicação ao que importa: entender o problema e cuidar do equipamento de quem confia no nosso trabalho.</p>
-            <p>Do notebook de trabalho ao PC gamer, o cuidado está nos detalhes de cada diagnóstico, reparo e montagem.</p>
             <dl className="about-principles">
               <div><dt>Diagnóstico</dt><dd>Investigar a causa antes de indicar o reparo.</dd></div>
               <div><dt>Conversa clara</dt><dd>Explicar o serviço e combinar o orçamento.</dd></div>
@@ -51,19 +49,19 @@ export default function AboutPage() {
       </section>
       <section id="projetos" className="section">
         <div className="container">
-          <div className="about-section-heading"><h2>Projetos gamer.<br />Montados aqui.</h2><p>Veja alguns dos computadores que passaram pela Capucho, nos registros reais de cada montagem.</p></div>
+          <div className="about-section-heading"><h2>Projetos gamer.<br />Montados aqui.</h2></div>
           <div className="about-project-grid">{gamerBuilds.slice(0, 2).map(item => <article key={item.file}><ProjectVideo {...item} /><h3>{item.title}</h3></article>)}</div>
           <Link className="text-link about-after-grid" to="/gamer">Conhecer a área gamer <ArrowUpRight size={20} /></Link>
         </div>
       </section>
       <section id="consertos" className="section">
         <div className="container">
-          <div className="about-section-heading"><h2>Na bancada,<br />o cuidado aparece.</h2><p>Troca de tela, limpeza e reparos: acompanhe o serviço por dentro.</p></div>
+          <div className="about-section-heading"><h2>Na bancada,<br />o cuidado aparece.</h2></div>
           <div className="about-repair-grid">{[workVideos[0], workVideos[3], workVideos[1]].map(item => <article key={item.file}><ProjectVideo {...item} light /><h3>{item.title}</h3><p>{item.text}</p><Link className="text-link" to={item.link}>Sobre este serviço <ArrowUpRight size={18} /></Link></article>)}</div>
         </div>
       </section>
       <section id="tiktok" className="section">
-        <div className="container about-tiktok-row"><TiktokLogo size={64} weight="duotone" /><div><h2>A Capucho também no TikTok.</h2><p>Mais espaço para acompanhar a rotina da assistência em vídeos curtos.</p></div>{aboutMedia.tiktok ? <a className="button button-outline" href={aboutMedia.tiktok} target="_blank" rel="noreferrer">Ver no TikTok <ArrowUpRight size={20} /></a> : <span className="about-pending-label">Perfil em breve</span>}</div>
+        <div className="container about-tiktok-row"><TiktokLogo size={64} weight="duotone" /><div><h2>A Capucho também no TikTok.</h2></div>{aboutMedia.tiktok ? <a className="button button-outline" href={aboutMedia.tiktok} target="_blank" rel="noreferrer">Ver no TikTok <ArrowUpRight size={20} /></a> : <span className="about-pending-label">Perfil em breve</span>}</div>
       </section>
       <section id="reputacao" className="section about-google-section">
         <div className="container about-google-grid">
