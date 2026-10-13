@@ -136,16 +136,9 @@ export default function AssemblyPage() {
               <ArrowLeft size={17} />
               Área gamer
             </Link>
-            <p className="asm-kicker">
-              Capucho Gamer <span aria-hidden="true">/</span> Montagem completa
-            </p>
             <h1>
               Seu próximo PC começa com as <em>escolhas certas.</em>
             </h1>
-            <p className="asm-lead">
-              Escolha suas peças ou conte com a Capucho para montar uma configuração para os seus
-              jogos e seu orçamento.
-            </p>
             <Actions />
             <p className="asm-perk">
               <span>Montagem grátis</span> comprando as peças com a Capucho.
@@ -221,11 +214,10 @@ export default function AssemblyPage() {
           <h2 id="asm-final-title">
             Vamos montar o seu <em>próximo PC?</em>
           </h2>
-          <p>
-            Comece pelas peças ou conte pra gente o que você quer jogar e quanto pretende investir.
-            Comprando as peças com a Capucho, a montagem é gratuita.
-          </p>
           <Actions />
+          <p className="asm-perk asm-perk-final">
+            <span>Comprando as peças com a Capucho, a mão de obra é gratuita.</span>
+          </p>
           <Link className="asm-back asm-back-end" to="/gamer">
             <ArrowLeft size={17} />
             Voltar para a Área gamer
