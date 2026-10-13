@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight, VideoCamera } from "@phosphor-icons/react";
 import { asset, business, maps } from "../config";
 import { aboutMedia, googleReputation } from "../about";
 import AnimatedText from "./AnimatedText";
+import LetterSwap from "./LetterSwap";
 import "../about.css";
 
 export function HenriqueVideo() {
@@ -95,7 +96,7 @@ export default function AboutIntro() {
         <div className="about-intro-grid">
           <div className="about-intro-copy">
             <p className="eyebrow">Prazer, somos a Capucho</p>
-            <h2>5 anos no mercado.<br /><span>A melhor assistência técnica da região.</span></h2>
+            <h2><LetterSwap text="5 anos" /> no mercado.<br /><span className="about-title-mark">A melhor assistência técnica da região.</span></h2>
             <p>Por trás da Capucho está o Henrique. Na bancada, nos projetos e no cuidado com cada computador.</p>
             <Link className="button button-primary" to="/sobre">Conheça a Capucho <ArrowRight size={20} /></Link>
           </div>
