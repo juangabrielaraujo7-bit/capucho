@@ -38,7 +38,7 @@ export function SocialBranches() {
         <a className="about-social-node about-social-node-main" href={business.instagram} target="_blank" rel="noreferrer">
           <img className="about-social-logo" src={asset("social-instagram.webp")} alt="" width="38" height="38" loading="lazy" /><span>Instagram<small>Acompanhe de perto</small></span><ArrowUpRight size={19} />
         </a>
-        {aboutMedia.tiktok ? <a className="about-social-node" href={aboutMedia.tiktok} target="_blank" rel="noreferrer"><img className="about-social-logo about-social-logo-wide" src={asset("social-tiktok.webp")} alt="TikTok" width="96" height="28" loading="lazy" /><ArrowUpRight size={18} /></a> :
+        {aboutMedia.tiktok ? <a className="about-social-node" href={aboutMedia.tiktok} target="_blank" rel="noreferrer"><span><img className="about-social-logo about-social-logo-wide" src={asset("social-tiktok.webp")} alt="TikTok" width="96" height="28" loading="lazy" /><small>Vídeos da bancada</small></span><ArrowUpRight size={18} /></a> :
           <div className="about-social-node about-social-pending"><span><img className="about-social-logo about-social-logo-wide" src={asset("social-tiktok.webp")} alt="TikTok" width="96" height="28" loading="lazy" /><small>Perfil em breve</small></span></div>}
         <a className="about-social-node" href={maps} target="_blank" rel="noreferrer"><img className="about-social-logo" src={asset("social-google.webp")} alt="" width="34" height="34" loading="lazy" /><span>Google<small>{googleReputation.rating} · {googleReputation.count} avaliações</small></span><ArrowUpRight size={18} /></a>
       </div>
