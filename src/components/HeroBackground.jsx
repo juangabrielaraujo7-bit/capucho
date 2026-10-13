@@ -1,3 +1,4 @@
+import GradientBand from "./GradientBand";
 import { HeroArcs } from "./HeroGamerFx";
 
 // Fundo da hero, adaptado de elegant-dark-pattern (DarkGradientBg) para a paleta clara do site:
@@ -14,7 +15,10 @@ export default function HeroBackground({ children, theme = "notebook" }) {
           <span className="hero-streak s3" />
           <span className="hero-streak s4" />
         </div>
-        <div className="hero-gamer-light" />
+        {/* Mesmo fundo animado da hero da área gamer (GradientBand); só anima no tema gamer */}
+        <div className="hero-gamer-light">
+          <GradientBand className="hero-gamer-band" paused={theme !== "gamer"} />
+        </div>
         <HeroArcs active={theme === "gamer"} />
       </div>
       {children}

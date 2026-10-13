@@ -258,9 +258,13 @@ export default function GradientBand({
   // Roxo-magenta das referências: fundo roxo profundo, névoa roxa, filamentos neon.
   colors = ["#1c0833", "#6a22a8", "#c64cff", "#ffe3ff"],
   className = "",
+  // paused: fica num quadro fixo (usado na hero da home, que só mostra o fundo no tema gamer)
+  paused = false,
   children,
 }) {
   const canvasRef = useRef(null);
+  const pausedRef = useRef(paused);
+  const syncRef = useRef(null);
   const containerRef = useRef(null);
   const colorKey = colors.join(",");
 
@@ -339,7 +343,7 @@ export default function GradientBand({
       cancelAnimationFrame(raf);
       raf = 0;
       last = null;
-      if (inView && !document.hidden && !reduce.matches) raf = requestAnimationFrame(loop);
+      if (inView && !document.hidden && !reduce.matches && !pausedRef.current) raf = requestAnimationFrame(loop);
       else draw(performance.now());
     };
 
@@ -369,6 +373,7 @@ export default function GradientBand({
       pointer.target = 0;
     };
 
+    syncRef.current = sync;
     const ro = new ResizeObserver(resize);
     ro.observe(container);
     const io = new IntersectionObserver(([entry]) => {
@@ -383,6 +388,7 @@ export default function GradientBand({
 
     return () => {
       cancelAnimationFrame(raf);
+      syncRef.current = null;
       ro.disconnect();
       io.disconnect();
       reduce.removeEventListener("change", sync);
@@ -393,6 +399,11 @@ export default function GradientBand({
       gl.deleteProgram(program);
     };
   }, [colorKey]);
+
+  useEffect(() => {
+    pausedRef.current = paused;
+    syncRef.current?.();
+  }, [paused]);
 
   return (
     <div ref={containerRef} className={`gradient-band ${className}`}>
