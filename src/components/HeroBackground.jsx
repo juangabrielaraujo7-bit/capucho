@@ -17,7 +17,8 @@ export default function HeroBackground({ children, theme = "notebook" }) {
         </div>
         {/* Mesmo fundo animado da hero da área gamer (GradientBand); só anima no tema gamer */}
         <div className="hero-gamer-light">
-          <GradientBand className="hero-gamer-band" paused={theme !== "gamer"} />
+          {/* Filamentos mais finos e mais transparentes que na área gamer: [espessura, intensidade] */}
+          <GradientBand className="hero-gamer-band" paused={theme !== "gamer"} lines={[0.0005, 0.42]} />
         </div>
         <HeroArcs active={theme === "gamer"} />
       </div>

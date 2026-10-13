@@ -25,6 +25,7 @@ uniform vec4 u_finish;     // hue, vignette, blur, grain
 uniform vec4 u_transform;  // seed, rotation, drift, OKLab toggle
 uniform vec4 u_space;      // offset.xy, pointer.xy
 uniform vec4 u_cursor;
+uniform vec2 u_lines;      // espessura (menor = mais fino), intensidade dos filamentos
 
 #define u_resolution u_scene.xy
 #define u_time u_scene.z
@@ -129,13 +130,13 @@ vec3 shade(vec2 uv, vec2 p, float t) {
     ) * (0.22 + u_intensity * 0.14);
     float filaments = abs(sin(q.x + q.y + fi * 0.72));
     // Denominador menor = filamentos mais finos (original: 0.08).
-    field += weight / (0.0025 + filaments);
+    field += weight / (u_lines.x + filaments);
     weight *= 0.62;
     q = q.yx * vec2(-1.08, 1.04);
   }
   // Ganho reduzido para compensar o pico mais alto dos filamentos finos.
   float glow = 1.0 - exp(-field * (0.018 + u_paramA * 0.04) * 0.185);
-  vec3 col = palette(clamp(glow, 0.0, 1.0));
+  vec3 col = palette(clamp(glow * u_lines.y, 0.0, 1.0));
   // Névoa roxa lenta ao fundo, como nuvens iluminadas.
   float haze = fbm(p * 0.8 + vec2(t * 0.04, -t * 0.03));
   col += mix(u_colors[1], u_colors[2], 0.35) * smoothstep(0.25, 0.8, haze) * 0.85;
@@ -260,6 +261,8 @@ export default function GradientBand({
   className = "",
   // paused: fica num quadro fixo (usado na hero da home, que só mostra o fundo no tema gamer)
   paused = false,
+  // lines: [espessura, intensidade] dos filamentos. Padrão = o da área gamer.
+  lines = [0.0025, 1],
   children,
 }) {
   const canvasRef = useRef(null);
@@ -267,6 +270,7 @@ export default function GradientBand({
   const syncRef = useRef(null);
   const containerRef = useRef(null);
   const colorKey = colors.join(",");
+  const linesKey = lines.join(",");
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -303,6 +307,8 @@ export default function GradientBand({
     gl.uniform4f(loc("u_surface"), P.detail, P.contrast, P.brightness, P.saturation);
     gl.uniform4f(loc("u_finish"), P.hue, P.vignette, P.blur, P.grain);
     gl.uniform4f(loc("u_transform"), P.seed, P.rotate, P.drift, 0);
+    const [lineWidth, lineStrength] = linesKey.split(",").map(Number);
+    gl.uniform2f(loc("u_lines"), lineWidth, lineStrength);
     const uScene = loc("u_scene");
     const uSpace = loc("u_space");
     const uCursor = loc("u_cursor");
@@ -398,7 +404,7 @@ export default function GradientBand({
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
     };
-  }, [colorKey]);
+  }, [colorKey, linesKey]);
 
   useEffect(() => {
     pausedRef.current = paused;
