@@ -1,45 +1,54 @@
 import { Link } from "react-router";
-import { ArrowLeft, ArrowRight, Check, Info, WhatsappLogo } from "@phosphor-icons/react";
+import { ArrowLeft, ArrowRight, Info, WhatsappLogo } from "@phosphor-icons/react";
 import FaqList from "../components/FaqList";
-import { wa } from "../config";
+import { asset, wa } from "../config";
 import "../assembly.css";
 
-// Página do serviço "Montagem completa" (card da área gamer), com a atmosfera gelada
+// Página do serviço "Montagem completa" (card da área gamer), com a atmosfera de gelo azul
 // das referências de God of War Ragnarök. Cores e tipografia ficam isoladas em assembly.css.
+// Cada seção explicativa tem um personagem grande ao lado e as explicações em cards de fala.
 
 const builderPath = "/gamer/monte-seu-pc";
 const helpLink = wa(
   "Olá! Quero ajuda para montar meu PC gamer. Gostaria de conversar sobre os jogos que pretendo jogar e meu orçamento.",
 );
 
+// Artes dos personagens: o usuário coloca os arquivos em public/assets/ e informa o nome aqui.
+// Com null, o espaço do personagem continua reservado, sem imagem.
+const characterArt = {
+  hero: null,
+  atreus: null,
+  kratos: null,
+};
+
 const goals = [
-  ["Seus jogos", "Os títulos que você quer rodar e como gosta de jogar."],
-  ["Seu monitor", "Resolução e taxa de atualização da tela que você já tem ou pretende ter."],
-  ["Outros usos", "Trabalho, estudo, edição ou transmissão ao vivo."],
-  ["Seu orçamento", "Quanto pretende investir no conjunto."],
+  ["Seus jogos", "Quais jogos você quer rodar? Vamos começar por eles."],
+  ["Seu monitor", "Qual monitor você usa ou pretende comprar? A resolução e a taxa de atualização influenciam a escolha das peças."],
+  ["Além dos jogos", "Vai trabalhar, estudar, editar ou fazer lives nesse PC? Isso também conta."],
+  ["Seu orçamento", "Quanto pretende investir? A Capucho ajuda a escolher as prioridades."],
 ];
 
 const parts = [
-  ["Processador", "Executa as tarefas e participa do desempenho dos jogos; sua escolha precisa combinar com a placa-mãe e com o uso."],
-  ["Placa de vídeo", "Tem papel importante nos gráficos; a escolha considera os jogos, a resolução e a qualidade desejada."],
-  ["Memória RAM", "Dá espaço de trabalho para o sistema, jogos e programas abertos. Capacidade e padrão precisam ser compatíveis com a plataforma."],
-  ["SSD", "Guarda sistema, jogos e arquivos e influencia os tempos de carregamento. O modelo precisa ser compatível com as conexões disponíveis."],
-  ["Fonte", "Deve atender à configuração com potência, conectores e qualidade adequados."],
-  ["Refrigeração e gabinete", "Precisam acomodar as peças e permitir uma circulação de ar adequada."],
+  ["Processador", "Escolha um processador para os seus jogos e tarefas. Ele precisa ser compatível com a placa-mãe."],
+  ["Placa de vídeo", "Considere os jogos, a resolução e a qualidade gráfica que você quer alcançar."],
+  ["Memória RAM", "É o espaço de trabalho dos jogos e programas. Capacidade e padrão precisam combinar com a configuração."],
+  ["SSD", "É onde ficam seus jogos e arquivos. Confira espaço, conexão e velocidade de carregamento."],
+  ["Fonte", "Não escolha só pelos watts. Qualidade, potência e conectores precisam atender ao conjunto."],
+  ["Refrigeração e gabinete", "As peças precisam caber e trabalhar bem refrigeradas. Espaço e circulação de ar importam."],
 ];
 
 const steps = [
-  ["Você escolhe o caminho.", "Selecione as peças no montador ou conte pra gente o que quer jogar e quanto pretende investir."],
-  ["A gente confere a configuração.", "Compatibilidade, disponibilidade, valor e prazo são alinhados pelo WhatsApp."],
-  ["Você aprova o orçamento.", "A montagem começa depois da aprovação."],
-  ["A Capucho monta e deixa pronto.", "O computador é montado, recebe o Windows licenciado e os programas e é testado antes da entrega."],
+  ["Escolha seu caminho", "Selecione as peças no montador ou peça ajuda à Capucho para definir a configuração."],
+  ["Confira o conjunto", "A Capucho confirma compatibilidade, disponibilidade, valor e prazo pelo WhatsApp."],
+  ["Aprove o orçamento", "Confira a proposta. A montagem só começa com a sua aprovação."],
+  ["Preparação e entrega", "A Capucho monta e testa o computador antes da entrega."],
 ];
 
 const care = [
-  "Compatibilidade conferida",
-  "Montagem das peças",
-  "Windows licenciado e programas instalados",
-  "Testes antes da entrega",
+  ["Conferência das peças", "A Capucho verifica a compatibilidade dos componentes."],
+  ["Pronto para usar", "O PC sai da loja com o Windows licenciado e os programas instalados."],
+  ["Já comprou suas peças?", "A Capucho também pode montar com elas, após verificar compatibilidade e condições."],
+  ["Montagem grátis", "Comprando as peças com a Capucho, a montagem não tem custo."],
 ];
 
 const faq = [
@@ -71,13 +80,49 @@ function Actions() {
   );
 }
 
-// Fala curta de um dos personagens: pergunta/resposta editorial da página, não citação do jogo.
-function Voice({ who, children }) {
+// Personagem grande ao lado das falas, com a base dissolvida na névoa.
+function Speaker({ who }) {
+  const art = characterArt[who.toLowerCase()];
   return (
-    <p className={`asm-voice asm-voice-${who === "Atreus" ? "atreus" : "kratos"}`}>
-      <span className="asm-voice-who">{who}</span>
-      <span className="asm-voice-line">{children}</span>
-    </p>
+    <div className={art ? "asm-speaker" : "asm-speaker is-empty"}>
+      {art && <img src={asset(art)} alt="" loading="lazy" decoding="async" />}
+      <p className="asm-nameplate">{who}</p>
+    </div>
+  );
+}
+
+// Seção explicativa: título, personagem de um lado e cards de fala do outro.
+// As falas são textos originais da página, não citações do jogo.
+function StageSection({ id, title, who, side, layout, children }) {
+  return (
+    <section className={`asm-section asm-stage asm-${id}`} aria-labelledby={`asm-${id}-title`}>
+      <div className="asm-container">
+        <h2 id={`asm-${id}-title`}>{title}</h2>
+        <div className={`asm-stage-grid is-${side}`}>
+          <Speaker who={who} />
+          <div className="asm-stage-body">
+            <ul className={`asm-says is-${layout} from-${side}`} data-who={who}>
+              {children}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Say({ who, title, number, children }) {
+  return (
+    <li className="asm-say">
+      {number && (
+        <span className="asm-say-number" aria-hidden="true">
+          {number}
+        </span>
+      )}
+      <span className="asm-say-who">{who}</span>
+      <h3>{title}</h3>
+      <p>“{children}”</p>
+    </li>
   );
 }
 
@@ -85,7 +130,7 @@ export default function AssemblyPage() {
   return (
     <div className="assembly-page">
       <section className="asm-hero">
-        <div className="asm-container asm-hero-grid">
+        <div className={characterArt.hero ? "asm-container asm-hero-grid" : "asm-container asm-hero-grid is-solo"}>
           <div className="asm-hero-copy">
             <Link className="asm-back" to="/gamer">
               <ArrowLeft size={17} />
@@ -106,119 +151,63 @@ export default function AssemblyPage() {
               <span>Montagem grátis</span> comprando as peças com a Capucho.
             </p>
           </div>
-          {/* Área reservada para a arte de Kratos e Atreus; por enquanto, só a atmosfera de gelo */}
-          <div className="asm-hero-art" aria-hidden="true">
-            <span className="asm-ice asm-ice-back" />
-            <span className="asm-ice asm-ice-mid" />
-            <span className="asm-ice asm-ice-front" />
-            <span className="asm-blade" />
-            <span className="asm-mist" />
-          </div>
+          {characterArt.hero && (
+            <div className="asm-hero-art">
+              <img
+                src={asset(characterArt.hero)}
+                alt="Kratos e Atreus"
+                fetchPriority="high"
+              />
+            </div>
+          )}
         </div>
       </section>
 
-      <section className="asm-section asm-goals" aria-labelledby="asm-goals-title">
-        <div className="asm-container asm-goals-grid">
-          <div className="asm-goals-copy">
-            <Voice who="Atreus">Por onde eu começo?</Voice>
-            <h2 id="asm-goals-title">Que jornada você quer encarar?</h2>
-            <p>
-              Antes de escolher as peças, a gente entende o que você espera do seu PC: os jogos que
-              quer rodar, o monitor que usa, se também vai trabalhar ou transmitir e quanto pretende
-              investir.
-            </p>
-            <p className="asm-strong">
-              Você não precisa conhecer cada componente. A Capucho ajuda a transformar essas
-              respostas em uma configuração.
-            </p>
-          </div>
-          <ul className="asm-goal-list">
-            {goals.map(([title, text], i) => (
-              <li key={title}>
-                <span className="asm-goal-index" aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <StageSection id="goals" title="Que jornada você quer encarar?" who="Atreus" side="left" layout="grid">
+        {goals.map(([title, text]) => (
+          <Say key={title} who="Atreus" title={title}>
+            {text}
+          </Say>
+        ))}
+      </StageSection>
 
-      <section className="asm-section asm-parts" aria-labelledby="asm-parts-title">
+      <StageSection id="parts" title={<>Força sozinha <em>não resolve.</em></>} who="Kratos" side="right" layout="grid">
+        {parts.map(([title, text]) => (
+          <Say key={title} who="Kratos" title={title}>
+            {text}
+          </Say>
+        ))}
+      </StageSection>
+
+      <section className="asm-section asm-stage asm-process" aria-labelledby="asm-process-title">
         <div className="asm-container">
-          <div className="asm-parts-head">
-            <h2 id="asm-parts-title">
-              Força sozinha <em>não resolve.</em>
-            </h2>
-            <p>
-              Um bom PC funciona como um conjunto. A escolha precisa considerar compatibilidade,
-              alimentação, refrigeração e o que você realmente pretende fazer com ele.
-            </p>
+          <h2 id="asm-process-title">Um plano claro antes de começar.</h2>
+          <div className="asm-stage-grid is-left">
+            <Speaker who="Kratos" />
+            <div className="asm-stage-body">
+              <ol className="asm-says is-list from-left">
+                {steps.map(([title, text], i) => (
+                  <Say key={title} who="Kratos" title={title} number={String(i + 1).padStart(2, "0")}>
+                    {text}
+                  </Say>
+                ))}
+              </ol>
+              <p className="asm-note">
+                <Info size={19} aria-hidden="true" />
+                Valores estimados. Preço final, disponibilidade e prazo são confirmados pelo WhatsApp.
+              </p>
+            </div>
           </div>
-          <dl className="asm-part-list">
-            {parts.map(([name, text]) => (
-              <div key={name}>
-                <dt>{name}</dt>
-                <dd>{text}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="asm-parts-close">
-            A Capucho ajuda a escolher onde faz sentido investir e o que precisa funcionar junto.
-          </p>
         </div>
       </section>
 
-      <section className="asm-section asm-process" aria-labelledby="asm-process-title">
-        <div className="asm-container">
-          <div className="asm-process-head">
-            <h2 id="asm-process-title">Um plano claro antes de começar.</h2>
-            <Voice who="Kratos">Primeiro, o plano. Depois, a montagem.</Voice>
-          </div>
-          <ol className="asm-steps">
-            {steps.map(([title, text], i) => (
-              <li key={title}>
-                <span className="asm-step-number" aria-hidden="true">
-                  {i + 1}
-                </span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </li>
-            ))}
-          </ol>
-          <p className="asm-note">
-            <Info size={20} aria-hidden="true" />
-            <span>
-              O total exibido no montador é estimado. O orçamento final, a disponibilidade das peças
-              e o prazo são confirmados pelo WhatsApp.
-            </span>
-          </p>
-        </div>
-      </section>
-
-      <section className="asm-section asm-care" aria-labelledby="asm-care-title">
-        <div className="asm-container asm-care-grid">
-          <h2 id="asm-care-title">A montagem termina quando o conjunto está pronto.</h2>
-          <div className="asm-care-body">
-            <p>
-              Da conferência das peças à montagem, à instalação do Windows e dos programas e aos testes, a
-              Capucho acompanha a configuração como um conjunto, e o PC sai da loja pronto para
-              usar. Se você já comprou os componentes, também podemos avaliar a compatibilidade e
-              as condições deles para realizar a montagem.
-            </p>
-            <ul className="asm-care-list">
-              {care.map((item) => (
-                <li key={item}>
-                  <Check size={18} weight="bold" aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+      <StageSection id="care" title="A montagem termina quando o conjunto está pronto." who="Atreus" side="right" layout="stagger">
+        {care.map(([title, text]) => (
+          <Say key={title} who="Atreus" title={title}>
+            {text}
+          </Say>
+        ))}
+      </StageSection>
 
       <section className="asm-section asm-faq" aria-labelledby="asm-faq-title">
         <div className="asm-container asm-faq-grid">
