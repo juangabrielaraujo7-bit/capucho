@@ -6,7 +6,7 @@ import { parts } from "./gamer";
 // Quando o cliente aprovar, basta trocar LIVE para true.
 // Se o Sanity não responder, usa a última lista que funcionou neste navegador e, sem ela,
 // a lista fixa: o montador nunca fica vazio.
-const LIVE = false;
+const LIVE = true;
 const projectId = "9in9aaz1";
 const dataset = "production";
 const CACHE_KEY = "capucho-catalogo";
