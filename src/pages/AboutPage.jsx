@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowLeft, ArrowUpRight, InstagramLogo, TiktokLogo } from "@phosphor-icons/react";
+import { ArrowLeft, ArrowUpRight, TiktokLogo } from "@phosphor-icons/react";
 import { HenriqueVideo } from "../components/AboutIntro";
 import Stars from "../components/Stars";
 import WhatsAppButton from "../components/WhatsAppButton";
@@ -41,7 +41,7 @@ export default function AboutPage() {
           <div className="about-instagram-opening">
             <div className="about-instagram-copy">
               <h2>Nos acompanhe <span>no instagram</span></h2>
-              <a className="button button-primary" href="https://www.instagram.com/capucho_informatica/" target="_blank" rel="noopener noreferrer"><InstagramLogo size={20} weight="bold" aria-hidden="true" /> Ver no Instagram</a>
+              <a className="about-instagram-link" href="https://www.instagram.com/capucho_informatica/" target="_blank" rel="noopener noreferrer"><img src={asset("social-instagram.webp")} alt="" width="38" height="38" /><span>Ver no Instagram</span><ArrowUpRight size={20} aria-hidden="true" /></a>
             </div>
             <img className="about-instagram-phone" src={asset("instagram-celular-capucho.webp")}
               srcSet={`${asset("instagram-celular-capucho-520.webp")} 520w, ${asset("instagram-celular-capucho.webp")} 856w`}
