@@ -13,6 +13,7 @@ studio/.sanity/
 public/serviços feitos/
 public/hero pc gamer/
 public/area gamer/
+public/sobre/
 
 # Importação CIAPC: dados coletados e cache (reproduzíveis com os scripts de studio/import/ciapc)
 studio/import/ciapc/.cache/

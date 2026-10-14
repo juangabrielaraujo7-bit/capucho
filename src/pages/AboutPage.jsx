@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowUpRight, InstagramLogo, TiktokLogo } from "@phosphor-ic
 import { HenriqueVideo } from "../components/AboutIntro";
 import Stars from "../components/Stars";
 import WhatsAppButton from "../components/WhatsAppButton";
-import { asset, business, maps } from "../config";
+import { asset, maps } from "../config";
 import { aboutMedia, googleReputation } from "../about";
 import { gamerBuilds } from "../gamer";
 import { reviews, workVideos } from "../content";
@@ -38,10 +38,16 @@ export default function AboutPage() {
       </section>
       <section id="instagram" className="section about-instagram-section">
         <div className="container">
-          <div className="about-instagram-heading"><InstagramLogo size={44} /><span>@capucho_informatica</span></div>
-          <h2>O próximo projeto.<br />O reparo de hoje.<br /><span>Tudo mais perto, no Instagram.</span></h2>
-          <p>Acompanhe os bastidores da Capucho e conheça de perto o trabalho do Henrique.</p>
-          <a className="button button-primary" href={business.instagram} target="_blank" rel="noreferrer">Seguir a Capucho no Instagram <ArrowUpRight size={20} /></a>
+          <div className="about-instagram-opening">
+            <div className="about-instagram-copy">
+              <h2>Nos acompanha<br /><span>no instagram</span></h2>
+              <a className="button button-primary" href="https://www.instagram.com/capucho_informatica/" target="_blank" rel="noopener noreferrer"><InstagramLogo size={20} weight="bold" aria-hidden="true" /> Ver no Instagram</a>
+            </div>
+            <img className="about-instagram-phone" src={asset("instagram-celular-capucho.webp")}
+              srcSet={`${asset("instagram-celular-capucho-520.webp")} 520w, ${asset("instagram-celular-capucho.webp")} 856w`}
+              sizes="(max-width: 700px) 72vw, 320px" width="856" height="1619" loading="lazy" decoding="async"
+              alt="Celular mostrando o perfil da Capucho Informática no Instagram" />
+          </div>
           <div className="about-instagram-gallery" aria-label="Registros do trabalho da Capucho">
             {[{ file: "pc-capucho-1", title: "PC gamer montado pela Capucho" }, { file: "reparo-placa", title: "Reparo de placa na bancada" }, { file: "limpeza", title: "Manutenção de notebook" }].map(item => <figure key={item.file}><img src={asset(`${item.file}.webp`)} alt={item.title} loading="lazy" width="540" height="960" /><figcaption>{item.title}</figcaption></figure>)}
           </div>
