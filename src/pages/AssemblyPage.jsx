@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ArrowLeft, ArrowRight, Info, WhatsappLogo } from "@phosphor-icons/react";
 import FaqList from "../components/FaqList";
+import KratosStrike from "../components/KratosStrike";
 import { asset, wa } from "../config";
 import "../assembly.css";
 
@@ -164,13 +165,14 @@ export default function AssemblyPage() {
         ))}
       </StageSection>
 
-      <StageSection id="parts" title={<>Força sozinha <em>não resolve.</em></>} who="Kratos" side="right" layout="grid">
-        {parts.map(([title, text]) => (
-          <Say key={title} who="Kratos" title={title}>
-            {text}
-          </Say>
-        ))}
-      </StageSection>
+      <section className="asm-section asm-stage asm-parts" aria-labelledby="asm-parts-title">
+        <div className="asm-container">
+          <h2 id="asm-parts-title">
+            Força sozinha <em>não resolve.</em>
+          </h2>
+          <KratosStrike cards={parts} />
+        </div>
+      </section>
 
       <section className="asm-section asm-stage asm-process" aria-labelledby="asm-process-title">
         <div className="asm-container">

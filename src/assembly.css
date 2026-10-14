@@ -671,3 +671,246 @@
     transition: none;
   }
 }
+
+/* ===== "Força sozinha não resolve.": Kratos em vídeo + cards de bordas queimadas =====
+   Gelo por dentro, brasa nas bordas. --heat (0–1) e --impact (0–1) vêm de KratosStrike.jsx,
+   calculados a partir do tempo do vídeo. Toda a decoração fica em camadas aria-hidden. */
+.asm-forge {
+  --char: #292325;
+  --burnt: #51302b;
+  --deep-red: #7f2028;
+  --ember: #c63c2d;
+  --hot: #f07835;
+  --spark: #ffd19a;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.asm-forge-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.asm-forge-card {
+  --heat: 0;
+  --impact: 0;
+  overflow: hidden;
+  isolation: isolate;
+  border-top: 0;
+  padding-bottom: 42px;
+  background: rgba(241, 248, 252, 0.96);
+  transform: translate(calc(var(--impact) * -4px), calc(var(--impact) * -1px));
+  box-shadow:
+    0 18px 34px -22px rgba(18, 59, 89, 0.65),
+    0 0 calc(var(--heat) * 16px) rgba(198, 60, 45, calc(var(--heat) * 0.3));
+}
+.asm-forge-card > :not([aria-hidden]) {
+  position: relative;
+  z-index: 2;
+}
+.asm-forge-card .asm-say-who {
+  color: var(--deep-red);
+}
+/* Anel queimado: só a faixa da borda aparece (a máscara recorta o miolo) */
+.asm-burn,
+.asm-burn-hot {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+.asm-burn {
+  padding: 4px;
+  background:
+    /* brasas discretas em repouso */
+    radial-gradient(circle at 18% 1px, var(--ember) 0 1.2px, transparent 2.6px),
+    radial-gradient(circle at 63% calc(100% - 2px), var(--ember) 0 1.2px, transparent 2.6px),
+    radial-gradient(circle at 2px 71%, var(--ember) 0 1px, transparent 2.4px),
+    radial-gradient(circle at calc(100% - 2px) 28%, var(--ember) 0 1.2px, transparent 2.6px),
+    /* fissuras em vermelho profundo */
+    repeating-linear-gradient(118deg, transparent 0 13px, var(--deep-red) 13px 14.5px, transparent 14.5px 31px),
+    repeating-linear-gradient(64deg, transparent 0 21px, rgba(127, 32, 40, 0.8) 21px 22px, transparent 22px 47px),
+    /* carvão e marrom queimado, irregulares */
+    repeating-linear-gradient(103deg, var(--char) 0 9px, #3a2826 9px 14px, var(--burnt) 14px 19px, #2f2523 19px 27px, #46302b 27px 33px);
+}
+/* Chamuscado para dentro, desigual, sem chegar no texto */
+.asm-forge-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(38% 14px at 22% 0, rgba(81, 48, 43, 0.32), transparent),
+    radial-gradient(30% 12px at 78% 100%, rgba(81, 48, 43, 0.3), transparent),
+    radial-gradient(12px 34% at 0 64%, rgba(81, 48, 43, 0.28), transparent),
+    radial-gradient(14px 40% at 100% 30%, rgba(81, 48, 43, 0.3), transparent);
+  box-shadow: inset 0 0 9px rgba(41, 35, 37, 0.22);
+}
+/* Camada quente: as mesmas fissuras e brasas acesas, conforme --heat */
+.asm-burn-hot {
+  padding: 5px;
+  opacity: var(--heat);
+  background:
+    radial-gradient(circle at 18% 1px, var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
+    radial-gradient(circle at 63% calc(100% - 2px), var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
+    radial-gradient(circle at 2px 71%, var(--spark) 0 1.2px, var(--hot) 2px, transparent 3.6px),
+    radial-gradient(circle at calc(100% - 2px) 28%, var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
+    radial-gradient(circle at 41% calc(100% - 1px), var(--hot) 0 1.2px, transparent 3px),
+    radial-gradient(circle at calc(100% - 1px) 82%, var(--hot) 0 1.2px, transparent 3px),
+    repeating-linear-gradient(118deg, transparent 0 12.5px, var(--hot) 12.5px 15px, transparent 15px 31px),
+    repeating-linear-gradient(64deg, transparent 0 20.5px, var(--ember) 20.5px 22.5px, transparent 22.5px 47px),
+    linear-gradient(90deg, rgba(198, 60, 45, 0.55), rgba(127, 32, 40, 0.4) 50%, rgba(198, 60, 45, 0.55));
+}
+/* Card atingido: a borda direita, onde a lâmina encosta, acende mais */
+.asm-forge-card.is-hit .asm-burn-hot {
+  background:
+    radial-gradient(10px 60px at 100% 66%, var(--spark), var(--hot) 35%, transparent 75%),
+    radial-gradient(circle at 18% 1px, var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
+    radial-gradient(circle at 63% calc(100% - 2px), var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
+    radial-gradient(circle at calc(100% - 2px) 28%, var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
+    repeating-linear-gradient(118deg, transparent 0 12.5px, var(--hot) 12.5px 15px, transparent 15px 31px),
+    repeating-linear-gradient(64deg, transparent 0 20.5px, var(--ember) 20.5px 22.5px, transparent 22.5px 47px),
+    linear-gradient(90deg, rgba(198, 60, 45, 0.5), rgba(198, 60, 45, 0.75) 70%, rgba(240, 120, 53, 0.9));
+}
+/* Runa: fragmento do símbolo enviado, cortado no canto inferior externo */
+.asm-rune {
+  position: absolute;
+  z-index: 1;
+  right: var(--rx, -40px);
+  bottom: var(--ry, -50px);
+  width: var(--rs, 118px);
+  aspect-ratio: 420 / 392;
+  pointer-events: none;
+  background: url("/assets/runa-omega.webp") center / contain no-repeat;
+  transform: rotate(var(--rr, 0deg));
+  mix-blend-mode: multiply;
+  opacity: calc(0.14 + var(--heat) * 0.2);
+}
+/* Fragmentos diferentes em cada card; só ~40 px aparecem, abaixo do texto */
+.asm-forge-card:nth-child(1) { --rx: -42px; --ry: -70px; --rr: -12deg; --rs: 116px; }
+.asm-forge-card:nth-child(2) { --rx: -30px; --ry: -78px; --rr: 8deg; --rs: 132px; }
+.asm-forge-card:nth-child(3) { --rx: -50px; --ry: -60px; --rr: 24deg; --rs: 104px; }
+.asm-forge-card:nth-child(4) { --rx: -30px; --ry: -76px; --rr: -28deg; --rs: 124px; }
+.asm-forge-card:nth-child(5) { --rx: -54px; --ry: -64px; --rr: 40deg; --rs: 110px; }
+.asm-forge-card:nth-child(6) { --rx: -36px; --ry: -72px; --rr: -4deg; --rs: 120px; }
+.asm-forge-card.is-hit .asm-rune {
+  mix-blend-mode: normal;
+  opacity: calc(0.22 + var(--heat) * 0.45);
+  filter: brightness(calc(1 + var(--heat) * 0.45)) drop-shadow(0 0 calc(var(--heat) * 5px) rgba(240, 120, 53, 0.65));
+}
+
+/* Kratos: vídeo com fundo transparente, sem caixa */
+.asm-kratos {
+  order: -1;
+  position: relative;
+  width: min(100%, 820px);
+  margin: 0 auto 12px;
+  aspect-ratio: 1200 / 720;
+  pointer-events: none;
+}
+.asm-kratos :is(video, img) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.asm-sparks {
+  position: absolute;
+  left: var(--contact-x, 0);
+  top: var(--contact-y, 0);
+  z-index: 4;
+  pointer-events: none;
+  display: none;
+}
+.asm-sparks span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--spark) 0 35%, var(--hot) 60%, transparent 72%);
+  opacity: 0;
+}
+.asm-kratos-toggle {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 16px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(20, 47, 67, 0.28);
+  background: rgba(241, 248, 252, 0.85);
+  color: var(--assembly-ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.asm-kratos-toggle:hover {
+  border-color: var(--assembly-ink);
+}
+/* Sem vídeo (movimento reduzido ou navegador sem vídeo com alfa): bordas mornas e paradas */
+.asm-forge.is-static .asm-forge-card {
+  --heat: 0.3;
+}
+.asm-forge.is-static .asm-forge-card.is-hit {
+  --heat: 0.55;
+}
+
+/* Desktop largo: a lâmina alcança a borda do card. O JS refina posição e escala. */
+@media (min-width: 1180px) {
+  .asm-forge {
+    display: block;
+    min-height: 640px;
+  }
+  .asm-forge-cards {
+    width: 54%;
+  }
+  .asm-kratos {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 0;
+    width: 62%;
+    margin: 0;
+  }
+  .asm-forge.is-contact .asm-sparks {
+    display: block;
+  }
+  .asm-kratos-toggle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+  }
+}
+@media (max-width: 767px) {
+  .asm-forge-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .asm-kratos {
+    margin-bottom: 4px;
+  }
+  .asm-kratos-toggle {
+    order: -1;
+    margin: 0 0 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .asm-forge-card {
+    transform: none;
+  }
+}
