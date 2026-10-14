@@ -40,7 +40,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-instagram-opening">
             <div className="about-instagram-copy">
-              <h2>Nos acompanha<br /><span>no instagram</span></h2>
+              <h2>Nos acompanhe <span>no instagram</span></h2>
               <a className="button button-primary" href="https://www.instagram.com/capucho_informatica/" target="_blank" rel="noopener noreferrer"><InstagramLogo size={20} weight="bold" aria-hidden="true" /> Ver no Instagram</a>
             </div>
             <img className="about-instagram-phone" src={asset("instagram-celular-capucho.webp")}
