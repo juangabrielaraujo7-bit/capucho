@@ -45,7 +45,7 @@ export default function AboutPage() {
             </div>
             <img className="about-instagram-phone" src={asset("instagram-celular-capucho.webp")}
               srcSet={`${asset("instagram-celular-capucho-520.webp")} 520w, ${asset("instagram-celular-capucho.webp")} 856w`}
-              sizes="(max-width: 700px) 72vw, 320px" width="856" height="1619" loading="lazy" decoding="async"
+              sizes="(max-width: 700px) 56vw, 220px" width="856" height="1619" loading="lazy" decoding="async"
               alt="Celular mostrando o perfil da Capucho Informática no Instagram" />
           </div>
           <div className="about-instagram-gallery" aria-label="Registros do trabalho da Capucho">
