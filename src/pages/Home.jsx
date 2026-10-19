@@ -187,8 +187,8 @@ export default function Home() {
               <img
                 src={asset("fachada.webp")}
                 alt="Fachada da Capucho Informática, com a entrada da loja"
-                width="1297"
-                height="1212"
+                width="511"
+                height="537"
                 loading="lazy"
               />
             </figure>
