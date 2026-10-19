@@ -2605,26 +2605,32 @@ blockquote {
   border-radius: 10px;
   background: radial-gradient(60% 60% at 50% 55%, rgba(168, 85, 247, 0.18), transparent 70%);
 }
-.part-image img {
+.part-product-image {
+  display: block;
   width: auto;
   max-width: 88%;
   max-height: 128px;
   object-fit: contain;
+  opacity: 0;
   filter: drop-shadow(0 14px 14px rgba(0, 0, 0, 0.55));
   animation: equipment-float 3.6s ease-in-out infinite;
 }
-.part-grid li:nth-child(3n + 2) .part-image img {
+.part-product-image[data-ready="true"] {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+.part-grid li:nth-child(3n + 2) .part-product-image {
   animation-delay: -1.2s;
 }
-.part-grid li:nth-child(3n) .part-image img {
+.part-grid li:nth-child(3n) .part-product-image {
   animation-delay: -2.4s;
 }
-.part-card:disabled .part-image img {
+.part-card:disabled .part-product-image {
   animation: none;
   filter: grayscale(0.6) drop-shadow(0 14px 14px rgba(0, 0, 0, 0.55));
 }
 @media (prefers-reduced-motion: reduce) {
-  .part-image img {
+  .part-product-image {
     animation: none;
   }
 }
@@ -3484,3 +3490,4 @@ blockquote {
   .electric-gamer-link, .electric-gamer-link::before { transition: none; }
   .electric-gamer-arcs, .electric-gamer-link::after { display: none; }
 }
+

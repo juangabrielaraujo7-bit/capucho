@@ -96,7 +96,155 @@ function message(pick) {
 // Foto provisória usada em todas as peças até a Capucho enviar as fotos reais (campo "image" em gamer.js).
 const PLACEHOLDER_IMAGE = "peca-modelo.webp";
 
+const CUTOUT_MAX_SIZE = 360;
+
+function colorDistance(data, index, background) {
+  const red = data[index] - background[0];
+  const green = data[index + 1] - background[1];
+  const blue = data[index + 2] - background[2];
+  return Math.sqrt(red * red + green * green + blue * blue);
+}
+
+function edgeBackground(data, width, height) {
+  const buckets = new Map();
+  const samples = [];
+  const step = Math.max(1, Math.floor(Math.min(width, height) / 72));
+
+  const collect = (x, y) => {
+    const index = (y * width + x) * 4;
+    if (data[index + 3] < 16) return;
+    const key = `${data[index] >> 4}-${data[index + 1] >> 4}-${data[index + 2] >> 4}`;
+    const bucket = buckets.get(key) ?? { count: 0, red: 0, green: 0, blue: 0 };
+    bucket.count += 1;
+    bucket.red += data[index];
+    bucket.green += data[index + 1];
+    bucket.blue += data[index + 2];
+    buckets.set(key, bucket);
+    samples.push(key);
+  };
+
+  for (let x = 0; x < width; x += step) {
+    collect(x, 0);
+    collect(x, height - 1);
+  }
+  for (let y = step; y < height - 1; y += step) {
+    collect(0, y);
+    collect(width - 1, y);
+  }
+
+  const dominant = [...buckets.values()].sort((a, b) => b.count - a.count)[0];
+  if (!dominant || dominant.count / samples.length < 0.28) return null;
+  return [
+    dominant.red / dominant.count,
+    dominant.green / dominant.count,
+    dominant.blue / dominant.count,
+  ];
+}
+
+function removeEdgeBackground(context, width, height) {
+  const imageData = context.getImageData(0, 0, width, height);
+  const { data } = imageData;
+  const background = edgeBackground(data, width, height);
+  if (!background) return;
+
+  const neutral = Math.max(...background) - Math.min(...background) < 26;
+  const threshold = neutral ? 54 : 40;
+  const featherStart = threshold * 0.35;
+  const pixelCount = width * height;
+  const visited = new Uint8Array(pixelCount);
+  const queue = new Int32Array(pixelCount);
+  let start = 0;
+  let end = 0;
+
+  const enqueue = (pixel) => {
+    if (visited[pixel]) return;
+    const index = pixel * 4;
+    if (data[index + 3] === 0 || colorDistance(data, index, background) <= threshold) {
+      visited[pixel] = 1;
+      queue[end] = pixel;
+      end += 1;
+    }
+  };
+
+  for (let x = 0; x < width; x += 1) {
+    enqueue(x);
+    enqueue((height - 1) * width + x);
+  }
+  for (let y = 1; y < height - 1; y += 1) {
+    enqueue(y * width);
+    enqueue(y * width + width - 1);
+  }
+
+  while (start < end) {
+    const pixel = queue[start];
+    start += 1;
+    const x = pixel % width;
+    const y = Math.floor(pixel / width);
+    const index = pixel * 4;
+    const distance = colorDistance(data, index, background);
+    const opacity = distance <= featherStart
+      ? 0
+      : Math.round(255 * (distance - featherStart) / (threshold - featherStart));
+    data[index + 3] = Math.min(data[index + 3], opacity);
+
+    if (x > 0) enqueue(pixel - 1);
+    if (x + 1 < width) enqueue(pixel + 1);
+    if (y > 0) enqueue(pixel - width);
+    if (y + 1 < height) enqueue(pixel + width);
+  }
+
+  context.putImageData(imageData, 0, 0);
+}
+
+function ProductCutout({ src, alt }) {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return undefined;
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    if (!context) return undefined;
+
+    let cancelled = false;
+    const image = new Image();
+    image.decoding = "async";
+    image.onload = () => {
+      if (cancelled) return;
+      const scale = Math.min(1, CUTOUT_MAX_SIZE / Math.max(image.naturalWidth, image.naturalHeight));
+      const width = Math.max(1, Math.round(image.naturalWidth * scale));
+      const height = Math.max(1, Math.round(image.naturalHeight * scale));
+      canvas.width = width;
+      canvas.height = height;
+      context.clearRect(0, 0, width, height);
+      context.drawImage(image, 0, 0, width, height);
+      removeEdgeBackground(context, width, height);
+      canvas.dataset.ready = "true";
+    };
+    image.src = src;
+
+    return () => {
+      cancelled = true;
+      image.onload = null;
+    };
+  }, [src]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="part-product-image"
+      role="img"
+      aria-label={alt}
+      width="360"
+      height="300"
+    />
+  );
+}
+
 function PartCard({ part, selected, reason, onPick }) {
+  const imageSource = part.image?.startsWith("http")
+    ? part.image
+    : asset(part.image ?? PLACEHOLDER_IMAGE);
+
   return (
     <li>
       <button
@@ -107,13 +255,7 @@ function PartCard({ part, selected, reason, onPick }) {
         onClick={onPick}
       >
         <span className="part-image">
-          <img
-            src={part.image?.startsWith("http") ? part.image : asset(part.image ?? PLACEHOLDER_IMAGE)}
-            alt=""
-            width="480"
-            height="394"
-            loading="lazy"
-          />
+          <ProductCutout src={imageSource} alt={part.name} />
         </span>
         <span className="part-tags">
           {part.brand && <span className="part-brand">{part.brand}</span>}
@@ -583,3 +725,4 @@ export default function PcBuilder() {
     </section>
   );
 }
+
