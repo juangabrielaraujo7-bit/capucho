@@ -28,7 +28,6 @@ export function HenriqueVideo({
           <span>Espaço para o vídeo dele trabalhando na Capucho.</span>
         </div>
       )}
-      <div className="about-film-caption"><span>Por trás de cada reparo</span><span>Dedicação em cada detalhe</span></div>
     </div>
   );
 }
