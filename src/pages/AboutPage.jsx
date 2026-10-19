@@ -23,7 +23,6 @@ export default function AboutPage() {
             <h1 id="henrique-title">Henrique.<br /><span>À frente da Capucho.</span></h1>
             <p>Há 6 anos, Henrique toca o dia a dia da Capucho Informática. Dono da loja e profissional com 13 anos de experiência, ele está presente no atendimento, nos reparos e na montagem de computadores.</p>
             <p>A Capucho reúne essa experiência com um jeito próximo de atender: ouvir quem chega, entender o que o computador precisa e cuidar de cada serviço com atenção.</p>
-            <p className="about-person-signature">6 anos de Capucho. <span>13 anos de experiência.</span></p>
           </div>
         </div>
       </section>
@@ -52,9 +51,12 @@ export default function AboutPage() {
         <div className="container about-tiktok-row"><TiktokLogo size={64} weight="duotone" /><div><h2>A Capucho também no TikTok.</h2></div>{aboutMedia.tiktok ? <a className="button button-outline" href={aboutMedia.tiktok} target="_blank" rel="noreferrer">Ver no TikTok <ArrowUpRight size={20} /></a> : <span className="about-pending-label">Perfil em breve</span>}</div>
       </section>
       <section id="reputacao" className="section about-google-section" aria-label="Avaliações no Google">
-        <div className="container about-google-grid">
-          <div><img className="about-google-logo" src={asset("google-reviews.webp")} width="400" height="164" loading="lazy" alt="Google Reviews" /><div className="about-google-rating"><strong>{googleReputation.rating}</strong><div><Stars /><span>{googleReputation.count} avaliações no Google</span></div></div><a className="text-link" href="https://g.page/r/CUYdeUogeg_yEAE/review" target="_blank" rel="noreferrer">Avaliar a Capucho no Google <ArrowUpRight size={20} /></a></div>
-          <ReviewsMonitor reviews={reviews} />
+        <div className="container">
+          <h2 className="about-google-title">A única na região com nota 5,0 <span>com mais de 360 avaliações</span></h2>
+          <div className="about-google-grid">
+            <div><img className="about-google-logo" src={asset("google-reviews.webp")} width="400" height="164" loading="lazy" alt="Google Reviews" /><div className="about-google-rating"><strong>{googleReputation.rating}</strong><div><Stars /><span>{googleReputation.count} avaliações no Google</span></div></div><a className="text-link" href="https://g.page/r/CUYdeUogeg_yEAE/review" target="_blank" rel="noreferrer">Avaliar a Capucho no Google <ArrowUpRight size={20} /></a></div>
+            <ReviewsMonitor reviews={reviews} />
+          </div>
         </div>
       </section>
       <section className="section">
