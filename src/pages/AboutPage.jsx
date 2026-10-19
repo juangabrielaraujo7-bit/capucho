@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { ArrowLeft, ArrowUpRight, TiktokLogo } from "@phosphor-icons/react";
 import { HenriqueVideo } from "../components/AboutIntro";
 import Stars from "../components/Stars";
+import ReviewsMonitor from "../components/ReviewsMonitor";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset, maps } from "../config";
 import { aboutMedia, googleReputation } from "../about";
@@ -69,10 +70,10 @@ export default function AboutPage() {
       <section id="tiktok" className="section">
         <div className="container about-tiktok-row"><TiktokLogo size={64} weight="duotone" /><div><h2>A Capucho também no TikTok.</h2></div>{aboutMedia.tiktok ? <a className="button button-outline" href={aboutMedia.tiktok} target="_blank" rel="noreferrer">Ver no TikTok <ArrowUpRight size={20} /></a> : <span className="about-pending-label">Perfil em breve</span>}</div>
       </section>
-      <section id="reputacao" className="section about-google-section">
+      <section id="reputacao" className="section about-google-section" aria-label="Avaliações no Google">
         <div className="container about-google-grid">
-          <div><img className="about-google-logo" src={asset("google-reviews.webp")} width="400" height="164" loading="lazy" alt="Google Reviews" /><h2>A confiança de quem<br />já passou por aqui.</h2><div className="about-google-rating"><strong>{googleReputation.rating}</strong><div><Stars /><span>{googleReputation.count} avaliações no Google</span></div></div><a className="text-link" href={maps} target="_blank" rel="noreferrer">Conferir as avaliações no Google <ArrowUpRight size={20} /></a></div>
-          <div className="about-quotes">{[reviews[3], reviews[5]].filter(Boolean).map(review => <figure key={review.name}><Stars /><blockquote>{review.text}</blockquote><figcaption>{review.name}<span>Avaliação no Google</span></figcaption></figure>)}</div>
+          <div><img className="about-google-logo" src={asset("google-reviews.webp")} width="400" height="164" loading="lazy" alt="Google Reviews" /><div className="about-google-rating"><strong>{googleReputation.rating}</strong><div><Stars /><span>{googleReputation.count} avaliações no Google</span></div></div><a className="text-link" href={maps} target="_blank" rel="noreferrer">Conferir as avaliações no Google <ArrowUpRight size={20} /></a></div>
+          <ReviewsMonitor reviews={reviews} />
         </div>
       </section>
       <section className="section">
