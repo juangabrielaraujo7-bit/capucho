@@ -2,7 +2,7 @@
 // área gamer e aparecem arcos elétricos curtos. As cores ficam em styles.css ("Tema gamer da hero");
 // aqui ficam frequência, tamanho e intensidade dos raios. Para desligar o teste, HERO_GAMER_THEME = false.
 
-export const HERO_GAMER_THEME = true;
+export const HERO_GAMER_THEME = false;
 
 export const FX = {
   // Raios no fundo, atrás do gabinete e nas bordas (nunca sobre o título e a descrição)
