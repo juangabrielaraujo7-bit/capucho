@@ -159,3 +159,34 @@ a.about-social-node:hover{box-shadow:0 4px 16px #102c6014}
 }
 @media(max-width:700px){.about-instagram-content{max-width:230px;margin-top:48px}.about-instagram-gallery{grid-template-columns:1fr;margin:0;gap:28px}.about-instagram-gallery figure:first-child{grid-column:auto}}
 @media(max-width:700px){.reviews-monitor{width:100%;max-width:340px}}
+
+/* Feature carousel: vídeo central e prévias laterais em perspectiva. */
+.about-instagram-content{max-width:720px}
+.about-instagram-content-title{text-align:center;margin-bottom:30px}
+.feature-carousel.about-instagram-gallery{display:block;position:relative;margin:0;overflow:hidden;padding:8px 0 0}
+.feature-carousel-stage{position:relative;height:450px;perspective:1000px}
+.feature-carousel-slide{position:absolute;top:0;left:50%;width:224px;transform:translateX(calc(-50% + var(--position) * 65%)) scale(.85) rotateY(calc(var(--position) * -10deg));z-index:1;opacity:.45;filter:blur(3px);transition:transform 500ms cubic-bezier(.16,1,.3,1),opacity 500ms ease,filter 500ms ease}
+.feature-carousel-slide[data-active="true"]{transform:translateX(-50%) scale(1) rotateY(0deg);z-index:3;opacity:1;filter:none}
+.feature-carousel-media{min-width:0}
+.feature-carousel-slide .instagram-reel{box-shadow:0 10px 24px #122d5c1a}
+.feature-carousel-slide figcaption{text-align:center;min-height:42px;line-height:1.5}
+.feature-carousel-slide[data-active="false"] figcaption{visibility:hidden}
+.feature-carousel-select{position:absolute;inset:0 0 48px;z-index:4;border:0;background:transparent;cursor:pointer;border-radius:14px}
+.feature-carousel-arrow{position:absolute;top:175px;z-index:5;display:grid;place-items:center;width:42px;height:42px;border:1px solid #c8d2e6;border-radius:50%;background:#fff;color:var(--navy);box-shadow:0 4px 14px #122d5c14;cursor:pointer;transition:background .2s,color .2s}
+.feature-carousel-arrow:hover{background:var(--blue);color:#fff}
+.feature-carousel-prev{left:12px}.feature-carousel-next{right:12px}
+.feature-carousel-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:8px;min-height:36px}
+.feature-carousel-dots{display:flex;align-items:center;gap:2px}
+.feature-carousel-dots button{position:relative;display:grid;place-items:center;width:28px;height:32px;border:0;padding:0;background:transparent;cursor:pointer}
+.feature-carousel-dots button::after{content:"";width:7px;height:7px;background:#a3b3d0;border-radius:50%;transition:background .2s,transform .2s}
+.feature-carousel-dots button[aria-current="true"]::after{background:var(--blue);transform:scale(1.3)}
+.feature-carousel-pause{display:grid;place-items:center;width:32px;height:32px;background:#fff;border:1px solid #c8d2e6;color:var(--navy);border-radius:50%;cursor:pointer}
+@media(max-width:700px){
+ .about-instagram-content{max-width:100%;margin-top:48px}
+ .feature-carousel-stage{height:430px}
+ .feature-carousel-slide{width:210px}
+ .feature-carousel-arrow{top:165px;width:38px;height:38px}
+ .feature-carousel-prev{left:0}.feature-carousel-next{right:0}
+ .feature-carousel-slide figcaption{font-size:.85rem}
+}
+@media(prefers-reduced-motion:reduce){.feature-carousel-slide,.feature-carousel-dots button::after{transition:none}}

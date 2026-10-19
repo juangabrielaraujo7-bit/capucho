@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowUpRight, TiktokLogo } from "@phosphor-icons/react";
 import { HenriqueVideo } from "../components/AboutIntro";
 import Stars from "../components/Stars";
 import ReviewsMonitor from "../components/ReviewsMonitor";
-import InstagramReel from "../components/InstagramReel";
+import FeatureCarousel from "../components/ui/FeatureCarousel";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset } from "../config";
 import { aboutMedia, googleReputation } from "../about";
@@ -46,9 +46,7 @@ export default function AboutPage() {
           </div>
           <div className="about-instagram-content">
             <h3 className="about-instagram-content-title"><span>Nossos conteúdos</span></h3>
-            <div className="about-instagram-gallery" aria-label="Registros do trabalho da Capucho">
-            {[{ file: "instagram-antes-depois", title: "Antes e depois de uma manutenção" }, { file: "instagram-upgrade-domicilio", title: "Manutenção e upgrade em domicílio" }, { file: "instagram-pc-gamer", title: "PC gamer montado pela Capucho" }].map(item => <InstagramReel key={item.file} {...item} />)}
-            </div>
+            <FeatureCarousel items={[{ file: "instagram-antes-depois", title: "Antes e depois de uma manutenção" }, { file: "instagram-upgrade-domicilio", title: "Manutenção e upgrade em domicílio" }, { file: "instagram-pc-gamer", title: "PC gamer montado pela Capucho" }]} />
           </div>
         </div>
       </section>
