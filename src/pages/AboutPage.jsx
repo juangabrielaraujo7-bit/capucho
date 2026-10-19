@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import { ArrowLeft, ArrowUpRight, TiktokLogo } from "@phosphor-icons/react";
-import { HenriqueVideo } from "../components/AboutIntro";
 import Stars from "../components/Stars";
 import ReviewsMonitor from "../components/ReviewsMonitor";
 import FeatureCarousel from "../components/ui/FeatureCarousel";
@@ -15,20 +14,16 @@ export default function AboutPage() {
       <section className="section about-page-opening">
         <div className="container">
           <Link className="text-link about-back" to="/#sobre"><ArrowLeft size={18} /> Voltar para a home</Link>
-          <p className="eyebrow">Sobre a Capucho</p>
-          <h1>6 anos no mercado.<br /><span>A melhor assistência técnica da região.</span></h1>
         </div>
       </section>
-      <section id="henrique" className="section">
+      <section id="henrique" className="section about-person-section" aria-labelledby="henrique-title">
         <div className="container about-person-grid">
-          <HenriqueVideo />
+          <img className="about-person-photo" src={asset("henrique-capucho.webp")} alt="Henrique em diferentes momentos do dia a dia na Capucho Informática" width="900" height="1600" decoding="async" fetchPriority="high" />
           <div className="about-person-copy">
-            <h2>Henrique.<br />Quem faz acontecer.</h2>
-            <dl className="about-principles">
-              <div><dt>Diagnóstico</dt><dd>Investigar a causa antes de indicar o reparo.</dd></div>
-              <div><dt>Conversa clara</dt><dd>Explicar o serviço e combinar o orçamento.</dd></div>
-              <div><dt>Dedicação</dt><dd>Tratar cada computador com atenção.</dd></div>
-            </dl>
+            <h1 id="henrique-title">Henrique.<br /><span>À frente da Capucho.</span></h1>
+            <p>Há 6 anos, Henrique toca o dia a dia da Capucho Informática. Dono da loja e profissional com 13 anos de experiência, ele está presente no atendimento, nos reparos e na montagem de computadores.</p>
+            <p>A Capucho reúne essa experiência com um jeito próximo de atender: ouvir quem chega, entender o que o computador precisa e cuidar de cada serviço com atenção.</p>
+            <p className="about-person-signature">6 anos de Capucho. <span>13 anos de experiência.</span></p>
           </div>
         </div>
       </section>
