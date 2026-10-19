@@ -1287,45 +1287,54 @@ blockquote {
   margin-top: 10px;
   font-size: 0.9375rem;
 }
+.testimonials-motion { position: relative; min-width: 0; }
 .testimonials-window {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  max-height: 680px;
+  height: 680px;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+  perspective: 1100px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 88%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 88%, transparent);
+}
+.testimonials-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  margin: 0 20px;
+  transform: translateY(-60px) rotateX(8deg) rotateY(-9deg) rotateZ(6deg);
+  transform-origin: center 340px;
 }
 .testimonials-column {
   flex: 1;
   min-width: 0;
   max-width: 380px;
 }
-.testimonials-narrow {
-  display: none;
-}
 .testimonials-track {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding-bottom: 24px;
+  gap: 22px;
   animation: testimonials-scroll linear infinite;
 }
+.testimonials-group { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22px; }
+.testimonials-mobile { display: none; }
+.testimonials-column[data-reverse="true"] .testimonials-track { animation-direction: reverse; }
 @keyframes testimonials-scroll {
   to {
-    transform: translateY(-50%);
+    transform: translateY(calc(-50% - 11px));
   }
 }
-.testimonials-window:hover .testimonials-track,
-.testimonials-window:focus-within .testimonials-track {
+.testimonials-motion:hover .testimonials-track,
+.testimonials-motion:focus-within .testimonials-track,
+.testimonials-motion[data-running="false"] .testimonials-track {
   animation-play-state: paused;
 }
+.testimonial-card { padding: 22px; border-radius: 16px; }
 .testimonial-card blockquote {
-  margin-bottom: 22px;
+  margin: 18px 0 24px;
+  font-size: 0.9rem;
+  line-height: 1.65;
 }
+.testimonials-pause { display: inline-flex; align-items: center; gap: 6px; float: right; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; background: #fff; color: var(--navy); font: inherit; font-size: 0.75rem; cursor: pointer; }
+.testimonials-pause:hover { border-color: var(--blue); color: var(--blue); }
 @media (max-width: 1023px) {
   .testimonials {
     grid-template-columns: 1fr;
@@ -1341,25 +1350,33 @@ blockquote {
     margin-bottom: 28px;
     line-height: 1.5;
   }
-  .testimonials-wide {
-    display: none;
-  }
-  .testimonials-narrow {
-    display: block;
-    max-width: 440px;
-  }
+  .testimonials-motion { width: 100%; max-width: 720px; margin: 0 auto; }
+}
+@media (max-width: 600px) {
+  .testimonials-window { height: 580px; perspective: 1400px; }
+  .testimonials-stage { justify-content: center; gap: 12px; margin: 0 12px; transform: translateY(-35px) rotateX(5deg) rotateY(-5deg) rotateZ(3deg); transform-origin: center 290px; }
+  .testimonials-desktop { display: none; }
+  .testimonials-mobile { display: block; }
+  .testimonial-card { padding: 22px; border-radius: 12px; }
+  .testimonial-card blockquote { font-size: 1rem; margin: 14px 0 20px; line-height: 1.6; overflow-wrap: anywhere; }
+  .testimonial-card .stars { gap: 1px; }
+  .testimonial-card .stars svg { width: 14px; height: 14px; }
+  .testimonial-card .initials { display: none; }
+  .testimonial-card .review-author strong { font-size: 0.75rem; overflow-wrap: anywhere; }
+  .testimonial-card .review-author div > span { font-size: 0.6875rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .testimonials-window {
-    max-height: none;
+    height: auto;
+    overflow: visible;
     -webkit-mask-image: none;
     mask-image: none;
-    flex-wrap: wrap;
   }
+  .testimonials-stage { transform: none; margin: 0; }
   .testimonials-track {
     animation: none;
   }
-  .testimonial-card[aria-hidden] {
+  .testimonials-copy, .testimonials-pause {
     display: none;
   }
 }
