@@ -1,4 +1,4 @@
-// Letras que trocam de lugar em loop: cada uma desce e a cópia de cima ocupa o lugar, numa ordem embaralhada.
+// Frases alternadas com letras que entram e saem em uma ordem embaralhada.
 // A ordem é fixa (não aleatória) para o HTML pré-renderizado bater com o do navegador.
 function shuffledOrder(length) {
   const order = Array.from({ length }, (_, i) => i);
@@ -11,18 +11,24 @@ function shuffledOrder(length) {
   return order;
 }
 
-export default function LetterSwap({ text, stagger = 0.05, cycle = 3, className = "" }) {
-  const letters = [...text];
-  const order = shuffledOrder(letters.length);
+export default function LetterSwap({ phrases, stagger = 0.025, cycle = 6, className = "" }) {
   return (
-    <span className={`letter-swap ${className}`} aria-label={text} style={{ "--swap-cycle": `${cycle}s` }}>
-      {letters.map((char, i) => (
-        <span className="letter-swap-cell" aria-hidden="true" key={i}>
-          <span className="letter-swap-inner" style={{ animationDelay: `${order.indexOf(i) * stagger}s` }}>
-            {char}<span className="letter-swap-copy">{char}</span>
+    <span className={`letter-swap ${className}`} aria-label={phrases.join(" ")} style={{ "--swap-cycle": `${cycle}s` }}>
+      {phrases.map((phrase, phraseIndex) => {
+        const letters = [...phrase];
+        const order = shuffledOrder(letters.length);
+        return (
+          <span className="letter-swap-phrase" aria-hidden="true" key={phrase}>
+            {letters.map((char, i) => (
+              <span className="letter-swap-cell" key={i}>
+                <span className="letter-swap-inner" style={{ animationDelay: `${order.indexOf(i) * stagger - phraseIndex * cycle / phrases.length}s` }}>
+                  {char}
+                </span>
+              </span>
+            ))}
           </span>
-        </span>
-      ))}
+        );
+      })}
     </span>
   );
 }

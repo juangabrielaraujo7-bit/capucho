@@ -21,7 +21,7 @@ export default function AboutPage() {
         <div className="container">
           <Link className="text-link about-back" to="/#sobre"><ArrowLeft size={18} /> Voltar para a home</Link>
           <p className="eyebrow">Sobre a Capucho</p>
-          <h1>5 anos no mercado.<br /><span>A melhor assistência técnica da região.</span></h1>
+          <h1>6 anos no mercado.<br /><span>A melhor assistência técnica da região.</span></h1>
         </div>
       </section>
       <section id="henrique" className="section">

@@ -41,7 +41,7 @@ export function getSeo(pathname) {
   const path = pathname.replace(/\/$/, "") || "/";
   if (path === "/sobre") return {
     path,
-    title: "Sobre a Capucho | 5 anos cuidando do seu computador",
+    title: "Sobre a Capucho | 6 anos cuidando do seu computador",
     description: "Conheça Henrique, os projetos gamer, os consertos e a rotina da Capucho Informática. Acompanhe no Instagram e confira nossa reputação no Google.",
   };
   if (path === "/")
