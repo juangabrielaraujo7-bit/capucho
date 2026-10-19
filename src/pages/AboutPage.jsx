@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight, TiktokLogo } from "@phosphor-icons/react";
 import { HenriqueVideo } from "../components/AboutIntro";
 import Stars from "../components/Stars";
 import ReviewsMonitor from "../components/ReviewsMonitor";
+import InstagramReel from "../components/InstagramReel";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset } from "../config";
 import { aboutMedia, googleReputation } from "../about";
@@ -50,7 +51,7 @@ export default function AboutPage() {
               alt="Celular mostrando o perfil da Capucho Informática no Instagram" />
           </div>
           <div className="about-instagram-gallery" aria-label="Registros do trabalho da Capucho">
-            {[{ file: "pc-capucho-1", title: "PC gamer montado pela Capucho" }, { file: "reparo-placa", title: "Reparo de placa na bancada" }, { file: "limpeza", title: "Manutenção de notebook" }].map(item => <figure key={item.file}><img src={asset(`${item.file}.webp`)} alt={item.title} loading="lazy" width="540" height="960" /><figcaption>{item.title}</figcaption></figure>)}
+            {[{ file: "instagram-antes-depois", title: "Antes e depois de uma manutenção" }, { file: "instagram-upgrade-domicilio", title: "Manutenção e upgrade em domicílio" }, { file: "instagram-pc-gamer", title: "PC gamer montado pela Capucho" }].map(item => <InstagramReel key={item.file} {...item} />)}
           </div>
         </div>
       </section>
