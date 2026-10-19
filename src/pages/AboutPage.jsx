@@ -44,8 +44,11 @@ export default function AboutPage() {
               sizes="(max-width: 700px) 56vw, 220px" width="856" height="1619" loading="lazy" decoding="async"
               alt="Celular mostrando o perfil da Capucho Informática no Instagram" />
           </div>
-          <div className="about-instagram-gallery" aria-label="Registros do trabalho da Capucho">
+          <div className="about-instagram-content">
+            <h3 className="about-instagram-content-title"><span>Nossos conteúdos</span></h3>
+            <div className="about-instagram-gallery" aria-label="Registros do trabalho da Capucho">
             {[{ file: "instagram-antes-depois", title: "Antes e depois de uma manutenção" }, { file: "instagram-upgrade-domicilio", title: "Manutenção e upgrade em domicílio" }, { file: "instagram-pc-gamer", title: "PC gamer montado pela Capucho" }].map(item => <InstagramReel key={item.file} {...item} />)}
+            </div>
           </div>
         </div>
       </section>
