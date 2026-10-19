@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -14,7 +13,6 @@ import GradientBand from "../components/GradientBand";
 import TubesCursor from "../components/TubesCursor";
 import HeroBackground from "../components/HeroBackground";
 import { GamerLink } from "../components/HeroGamerFx";
-import { HERO_GAMER_THEME } from "../heroGamerFx";
 import HeroVideo from "../components/HeroVideo";
 import ServicesCarousel from "../components/ServicesCarousel";
 import WorkShowcase from "../components/WorkShowcase";
@@ -23,20 +21,10 @@ import WhatsAppButton from "../components/WhatsAppButton";
 import { asset, business, mapEmbed, maps } from "../config";
 import { faqs, reviews, services, workVideos } from "../content";
 
-export default function Home() {
-  // Equipamento na tela da hero ("notebook" ou "gamer"), vindo da troca dos vídeos (HeroVideo).
-  // Muda as cores da hero e acende o link "Área gamer" do cabeçalho (via atributo no <html>).
-  const [heroTheme, setHeroTheme] = useState("notebook");
-  useEffect(() => {
-    const root = document.documentElement;
-    if (heroTheme === "gamer") root.dataset.heroTheme = "gamer";
-    else delete root.dataset.heroTheme;
-    return () => delete root.dataset.heroTheme;
-  }, [heroTheme]);
-
+export default function Home({ gamerActive = false, onEquipmentChange }) {
   return (
     <>
-      <HeroBackground theme={heroTheme}>
+      <HeroBackground>
         <section className="hero container">
           <div className="hero-copy">
             <h1>
@@ -54,10 +42,10 @@ export default function Home() {
                 Ver serviços
                 <ArrowRight size={20} />
               </a>
-              <GamerLink active={heroTheme === "gamer"} />
+              <GamerLink active={gamerActive} />
             </div>
           </div>
-          <HeroVideo onThemeChange={HERO_GAMER_THEME ? setHeroTheme : undefined} />
+          <HeroVideo onThemeChange={onEquipmentChange} />
         </section>
       </HeroBackground>
       <section id="servicos" className="section section-tint">

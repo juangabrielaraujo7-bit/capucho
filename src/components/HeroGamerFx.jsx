@@ -112,10 +112,11 @@ export function HeroArcs({ active }) {
 
 // Acesso "Área gamer" da hero: contorno que acende no tema gamer, pulso na entrada do PC e
 // arcos curtos de tempos em tempos. O texto é o mesmo e o espaço ocupado não muda.
-export function GamerLink({ active }) {
+export function GamerLink({ active, variant = "hero", onClick }) {
   const linkRef = useRef(null);
   const svgRef = useRef(null);
   const running = useRunning(linkRef, active);
+  const compact = variant === "nav";
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -127,39 +128,42 @@ export function GamerLink({ active }) {
       const { width, height } = svg.getBoundingClientRect();
       if (!width) return;
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-      flash(svg, contourArc(width, height, 8), { width: 1.3, life: FX.link.life });
+      flash(svg, contourArc(width, height, 8), {
+        width: compact ? 1 : 1.35,
+        life: 580,
+        colors: { core: "#9333ea", stroke: "#c084fc" },
+        smooth: true,
+      });
     };
     // Pulso de entrada
-    link.animate(
+    const pulse = link.animate(
       [
-        { boxShadow: "0 0 0 0 rgba(168, 85, 247, 0)", borderColor: "rgba(216, 180, 254, 0.6)" },
-        {
-          boxShadow: "0 0 22px 4px rgba(168, 85, 247, 0.75), inset 0 0 12px rgba(192, 132, 252, 0.45)",
-          borderColor: "rgba(245, 236, 255, 1)",
-          offset: 0.25,
-        },
-        { boxShadow: "0 0 14px 0 rgba(168, 85, 247, 0.4)", borderColor: "rgba(216, 180, 254, 0.75)" },
+        { opacity: 0 },
+        { opacity: compact ? 0.65 : 1, offset: 0.32 },
+        { opacity: 0 },
       ],
-      { duration: 900, easing: "ease-out", pseudoElement: "::before" },
+      { duration: 850, easing: "ease-out", pseudoElement: "::after" },
     );
-    for (let i = 0; i < FX.link.pulseArcs; i++) timers.push(setTimeout(arc, i * 110));
+    for (let i = 0; i < (compact ? 1 : 2); i++) timers.push(setTimeout(arc, (compact ? 180 : 80) + i * 180));
     const next = () => {
       arc();
-      timer = setTimeout(next, between(FX.link.every));
+      timer = setTimeout(next, between(compact ? [2600, 3800] : [1700, 2700]));
     };
-    timer = setTimeout(next, 900 + between(FX.link.every));
+    timer = setTimeout(next, compact ? 2500 : 1800);
     return () => {
       clearTimeout(timer);
       timers.forEach(clearTimeout);
-      for (const a of link.getAnimations({ subtree: true })) a.cancel();
+      pulse.cancel();
+      for (const a of svg.getAnimations({ subtree: true })) a.cancel();
+      svg.replaceChildren();
     };
-  }, [running]);
+  }, [running, compact]);
 
   return (
-    <Link className="gamer-link" to="/gamer" ref={linkRef}>
-      <svg ref={svgRef} className="gamer-link-arcs" aria-hidden="true" focusable="false" />
+    <Link className={`${compact ? "nav-gamer" : "gamer-link"} electric-gamer-link`} data-energized={active ? "true" : "false"} to="/gamer" ref={linkRef} onClick={onClick}>
+      <svg ref={svgRef} className="electric-gamer-arcs" aria-hidden="true" focusable="false" />
       Área gamer
-      <ArrowUpRight size={18} />
+      {!compact && <ArrowUpRight size={18} />}
     </Link>
   );
 }

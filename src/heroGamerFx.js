@@ -93,7 +93,7 @@ export function contourArc(w, h, r) {
 }
 
 // Desenha um raio num <svg> e o faz piscar e sumir (Web Animations: não deixa animação CSS presa).
-export function flash(svg, { main, branches }, { width = 1.4, life = 480, reduce = 1 } = {}) {
+export function flash(svg, { main, branches }, { width = 1.4, life = 480, reduce = 1, colors = FX.colors, smooth = false } = {}) {
   const ns = "http://www.w3.org/2000/svg";
   const g = document.createElementNS(ns, "g");
   const add = (d, w, color, opacity) => {
@@ -107,12 +107,14 @@ export function flash(svg, { main, branches }, { width = 1.4, life = 480, reduce
     p.setAttribute("opacity", opacity);
     g.appendChild(p);
   };
-  for (const d of branches) add(d, width * 0.55, FX.colors.stroke, 0.75 * reduce);
-  add(main, width * 2.6, FX.colors.stroke, 0.35 * reduce);
-  add(main, width, FX.colors.core, 1 * reduce);
+  for (const d of branches) add(d, width * 0.55, colors.stroke, 0.75 * reduce);
+  add(main, width * 2.6, colors.stroke, 0.35 * reduce);
+  add(main, width, colors.core, 1 * reduce);
   svg.appendChild(g);
   const anim = g.animate(
-    [{ opacity: 0 }, { opacity: 1, offset: 0.08 }, { opacity: 0.35, offset: 0.22 }, { opacity: 0.95, offset: 0.34 }, { opacity: 0.6, offset: 0.6 }, { opacity: 0 }],
+    smooth
+      ? [{ opacity: 0 }, { opacity: 1, offset: 0.16 }, { opacity: 0.8, offset: 0.48 }, { opacity: 0 }]
+      : [{ opacity: 0 }, { opacity: 1, offset: 0.08 }, { opacity: 0.35, offset: 0.22 }, { opacity: 0.95, offset: 0.34 }, { opacity: 0.6, offset: 0.6 }, { opacity: 0 }],
     { duration: life, easing: "ease-out" },
   );
   const done = () => g.remove();

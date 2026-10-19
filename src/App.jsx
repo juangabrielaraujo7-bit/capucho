@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import { IconContext, WhatsappLogo } from "@phosphor-icons/react";
 import "@fontsource-variable/sora";
@@ -32,6 +33,8 @@ function ServiceRoute() {
 export default function App() {
   // No montador, a barra fixa de baixo já tem o envio pelo WhatsApp.
   const { pathname } = useLocation();
+  const [heroEquipment, setHeroEquipment] = useState("notebook");
+  const gamerAccent = pathname === "/" && heroEquipment === "gamer";
   const builder = pathname.startsWith("/gamer/monte-seu-pc");
   // Área gamer (/gamer e subpáginas) usa o tema escuro roxo, separado das cores do site principal.
   const gamer = /^\/gamer(\/|$)/.test(pathname);
@@ -44,10 +47,10 @@ export default function App() {
         <a className="skip-link" href="#conteudo">
           Pular para o conteúdo
         </a>
-        <Header />
+        <Header gamerActive={gamerAccent} />
         <main id="conteudo">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home gamerActive={gamerAccent} onEquipmentChange={setHeroEquipment} />} />
             <Route path="/sobre" element={<AboutPage />} />
             <Route path="/servicos/:slug" element={<ServiceRoute />} />
             <Route path="/gamer" element={<GamerPage />} />

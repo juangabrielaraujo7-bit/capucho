@@ -26,7 +26,7 @@ export default function HeroVideo({ onThemeChange }) {
   const notebook = useRef(null);
   const gamer = useRef(null);
   const canvasRef = useRef(null);
-  // O tema da hero segue o equipamento: muda junto com o início da poeira.
+  // Os acessos gamer acompanham o equipamento que começa a aparecer na poeira.
   const themeRef = useRef(onThemeChange);
   themeRef.current = onThemeChange;
   const [failed, setFailed] = useState(false);
@@ -93,8 +93,7 @@ export default function HeroVideo({ onThemeChange }) {
     }
 
     let current = "notebook";
-    // Safari/iOS usa o vídeo sobre branco com multiply, que some sobre fundo escuro: lá o tema não muda.
-    const setTheme = (name) => alpha && themeRef.current?.(name);
+    const setTheme = (name) => themeRef.current?.(name);
     setTheme("notebook");
     let pending = null;
     let pendingRevealed = () => false;
@@ -181,7 +180,6 @@ export default function HeroVideo({ onThemeChange }) {
       // O quadro montado vira poeira; no meio da dissolução o próximo equipamento começa a aparecer.
       setGlow(next === "gamer" ? "purple" : "blue");
       setDust(current);
-      setTheme(next);
       cancelDust = dustSwap({
         canvas: canvasRef.current,
         from: out,
@@ -194,6 +192,7 @@ export default function HeroVideo({ onThemeChange }) {
         dropWhite: !alpha,
         onReveal: () => {
           revealed = true;
+          setTheme(next);
           setShow(next);
           play(inc);
         },

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { List, X } from "@phosphor-icons/react";
 import WhatsAppButton from "./WhatsAppButton";
+import { GamerLink } from "./HeroGamerFx";
 import { asset } from "../config";
 
 const links = [
@@ -12,7 +13,7 @@ const links = [
   ["Contato", "contato"],
 ];
 
-export default function Header() {
+export default function Header({ gamerActive = false }) {
   const [open, setOpen] = useState(false);
   return (
     <header className="site-header">
@@ -46,7 +47,9 @@ export default function Header() {
           className={open ? "main-nav is-open" : "main-nav"}
           aria-label="Navegação principal"
         >
-          {links.map(([label, id]) => (
+          {links.map(([label, id]) => id === "gamer" ? (
+            <GamerLink key={id} active={gamerActive} variant="nav" onClick={() => setOpen(false)} />
+          ) : (
             <Link
               key={id}
               className={id === "gamer" ? "nav-gamer" : undefined}
