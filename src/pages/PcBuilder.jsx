@@ -179,38 +179,47 @@ export default function PcBuilder() {
   const [brand, setBrand] = useState("");
   const [query, setQuery] = useState("");
   const [catalogVersion, setCatalogVersion] = useState(0);
+  const [catalogStatus, setCatalogStatus] = useState("loading");
+  const [catalogAttempt, setCatalogAttempt] = useState(0);
   const mainRef = useRef(null);
+  const savedPickRef = useRef(null);
 
   // Catálogo do painel Sanity (src/catalog.js). Ao chegar, refaz a lista e tira da montagem
   // salva o que não existe mais ou deixou de combinar.
   useEffect(() => {
     let alive = true;
-    loadCatalog().then((changed) => {
-      if (!alive || !changed) return;
+    setCatalogStatus("loading");
+    loadCatalog().then((status) => {
+      if (!alive) return;
+      setCatalogStatus(status);
       setCatalogVersion((v) => v + 1);
-      setPick((prev) => sanitize(prev));
+      const saved = savedPickRef.current;
+      savedPickRef.current = null;
+      setPick((prev) => sanitize(saved ?? prev));
     });
     return () => {
       alive = false;
     };
-  }, []);
+  }, [catalogAttempt]);
 
   // Guarda a montagem só neste navegador, para quem voltar depois.
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
-      if (saved?.pick) setPick(sanitize(saved.pick));
+      // A validação espera o catálogo chegar para não apagar escolhas válidas durante o carregamento.
+      if (saved?.pick && typeof saved.pick === "object" && !Array.isArray(saved.pick)) savedPickRef.current = saved.pick;
     } catch {
       /* sem armazenamento: começa do zero */
     }
   }, []);
   useEffect(() => {
+    if (catalogStatus === "loading" || catalogStatus === "unavailable") return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ pick }));
     } catch {
       /* ignora */
     }
-  }, [pick]);
+  }, [pick, catalogStatus]);
 
   function go(index) {
     setCurrent(index);
@@ -263,6 +272,11 @@ export default function PcBuilder() {
     ? [...new Set(parts[step.id].map((p) => p.brand).filter(Boolean))]
     : [];
   const skip = step && skipOption(step.id, pick);
+  // Só oferece configurações cujas peças continuam disponíveis e compatíveis no catálogo atual.
+  const availablePresets = catalogStatus === "loading" ? [] : presets.filter((preset) => {
+    const valid = sanitize(preset.picks);
+    return steps.every(({ id }) => valid[id] && valid[id] === preset.picks[id]);
+  });
 
   return (
     <section className="builder container">
@@ -282,20 +296,29 @@ export default function PcBuilder() {
         </p>
       </div>
 
-      <div className="builder-presets">
+      <div role="status" aria-live="polite">
+        {catalogStatus === "loading" && <p className="small-note">Carregando catálogo e preços…</p>}
+        {catalogStatus === "cached" && <p className="small-note">Não foi possível atualizar o catálogo. Exibimos a última lista salva neste navegador; confirme preços e disponibilidade com a Capucho.</p>}
+        {catalogStatus === "unavailable" && <p className="small-note">Não foi possível carregar o catálogo. Você pode pedir indicação de peças e um orçamento à Capucho.</p>}
+      </div>
+      {["cached", "unavailable"].includes(catalogStatus) && (
+        <button type="button" className="text-link" onClick={() => setCatalogAttempt((v) => v + 1)}>Tentar atualizar catálogo</button>
+      )}
+
+      {availablePresets.length > 0 && <div className="builder-presets">
         <h2 className="eyebrow">Comece por uma configuração pronta</h2>
         <ul>
-          {presets.map((preset) => (
+          {availablePresets.map((preset) => (
             <li key={preset.id}>
               <button type="button" onClick={() => loadPreset(preset)}>
                 <strong>{preset.name}</strong>
                 <span>{preset.tagline}</span>
-                <em>a partir de {brl(totalOf(preset.picks))}</em>
+                <em>{hasUnpriced(preset.picks) ? "Preço sob consulta" : `a partir de ${brl(totalOf(preset.picks))}`}</em>
               </button>
             </li>
           ))}
         </ul>
-      </div>
+      </div>}
 
       <nav className="builder-steps" aria-label="Etapas da montagem">
         <ol>
@@ -390,7 +413,7 @@ export default function PcBuilder() {
                   />
                 ))}
                 {list.length === 0 && (
-                  <li className="part-empty">Nenhuma peça encontrada com esse filtro.</li>
+                  <li className="part-empty">{catalogStatus === "loading" ? "Carregando peças…" : parts[step.id].length === 0 ? "Nenhuma peça disponível nesta etapa. Escolha “Quero indicação” para receber uma sugestão da Capucho." : "Nenhuma peça encontrada com esse filtro."}</li>
                 )}
                 <OptionCard
                   selected={pick[step.id] === OWN}

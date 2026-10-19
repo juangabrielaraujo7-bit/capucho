@@ -17,6 +17,15 @@ const ok = (cond, msg) => {
   if (!cond) falhas++;
 };
 
+// A mesma regra usada pelo painel permite Sob consulta, mas rejeita preço inválido.
+let validatePrice;
+peca.fields.find((field) => field.name === "price").validation({
+  custom: (validate) => { validatePrice = validate; },
+});
+ok(validatePrice(undefined) === true && validatePrice(null) === true, "painel permite publicar peça sem preço (Sob consulta)");
+ok(validatePrice(987.65) === true, "painel aceita preço positivo com centavos");
+ok([0, -1, NaN, Infinity].every((value) => validatePrice(value) !== true), "painel rejeita preço zero, negativo ou não finito");
+
 // painel simulado
 const db = new Map(antigas.map((d) => [d._id, structuredClone(d)]));
 const aplicar = (mutacoes) => {

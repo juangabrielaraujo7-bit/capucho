@@ -243,4 +243,4 @@ export function describe(step, id) {
 }
 
 export const brl = (value) =>
-  value.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+  value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });

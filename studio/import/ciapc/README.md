@@ -23,8 +23,8 @@ node import/ciapc/testar-montador.mjs                      # painel simulado -> 
 ## Regras da importação
 
 - **Peça nova**: `createIfNotExists` com `_id = ciapc-<SKU do fornecedor>`, `active: false`, **sem preço** e sem estoque.
-  O dono preenche o preço e liga "Mostrar no site". Preço ausente nunca vira R$ 0: o montador só lê peças com
-  `price > 0`.
+  O dono liga "Mostrar no site" e pode preencher o preço ou deixá-lo vazio para exibir “Sob consulta”.
+  Peças sem preço não entram na soma; uma configuração pronta com elas exibe “Preço sob consulta”.
 - **Revisão técnica** (`revisao`): `pendente` quando falta algum dado essencial para conferir a compatibilidade
   (ex.: placa de vídeo sem comprimento). Peça pendente não aparece no montador, mesmo com preço e ativa. Depois de
   completar os campos no painel, o dono muda para "Revisada".
@@ -49,7 +49,8 @@ open box, computadores completos, periféricos e plataformas antigas (LGA115x/DD
 
 - O Studio só mostra os campos novos (`revisao`, `fornecedor`, comprimento da placa etc.) depois de publicar o schema:
   `cd studio && npx sanity deploy`. A importação funciona sem isso, mas o dono não verá os campos até o deploy.
-- O site público continua usando a lista fixa enquanto `LIVE = false` em `src/catalog.js`; o catálogo do painel só
-  aparece com `?painel` na URL do montador.
+- O site público lê o Sanity diretamente ao abrir o montador, sem precisar de `?painel` nem de novo deploy para
+  mudanças de conteúdo. Categorias vazias continuam vazias. Em falhas de rede, usa a última resposta salva
+  neste navegador com aviso; sem cache, oferece indicação pelo WhatsApp sem preços de exemplo.
 - Nunca rode `import/gerar-catalogo.mjs` com `--replace` depois da importação: ele recria o painel do zero e apaga peças
   importadas e preços do dono.

@@ -48,6 +48,33 @@ O `vercel.json` usa `cleanUrls`, então `/servicos/conserto` serve `servicos/con
 
 ## Organização
 
+### Preços e catálogo no Sanity
+
+O painel fica em https://capucho.sanity.studio (projeto `9in9aaz1`, dataset `production`). O cliente precisa
+de acesso de edição ao projeto, concedido por um administrador no Sanity Manage.
+
+1. Entre no painel e escolha a categoria e a peça.
+2. Edite **Preço estimado (R$)**, usando o valor de venda. Deixe vazio para mostrar **Sob consulta**.
+3. Ajuste **Em estoque** e **Mostrar no site**. Peças com revisão técnica pendente só aparecem depois
+   de completar os dados e marcar **Revisada**.
+4. Clique em **Publish/Publicar**. Recarregue `/gamer/monte-seu-pc` para buscar os preços publicados;
+   a CDN do Sanity pode levar um intervalo para refletir a alteração.
+
+Não é preciso publicar o site novamente a cada alteração de preço. Mudanças na estrutura do painel
+(arquivos em `studio/`) precisam de uma publicação separada: dentro de `studio/`, execute `npm run build`
+e `npm run deploy`, autenticado na conta autorizada. O site é publicado separadamente pela integração de hospedagem.
+
+O Sanity controla as peças do montador, não os textos e páginas de serviços. Uma categoria sem peças
+visíveis permanece vazia. A lista estimada de `src/gamer.js` é apenas a base da importação inicial;
+não aparece como substituta no site. Se o Sanity falhar, o montador informa quando usa o cache deste navegador;
+sem cache, permite pedir indicação sem mostrar preços de exemplo. Configurações prontas incompletas ou
+incompatíveis são ocultadas; com peças sem preço, mostram **Preço sob consulta**.
+
+Validação local do fluxo de preços (com o site em `http://127.0.0.1:4173`): `node scripts/check-catalog.mjs`.
+Use `PREVIEW_URL` para outro endereço. O teste simula respostas do Sanity e não altera o painel real.
+
+### Arquivos
+
 - `src/main.jsx`: entrada do navegador (React Router + hidratação).
 - `src/entry-server.jsx`: entrada usada no pré-render.
 - `src/App.jsx`: layout e rotas.

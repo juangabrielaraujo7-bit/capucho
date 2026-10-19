@@ -74,9 +74,9 @@ export const peca = defineType({
       type: "number",
       description: "Sem preço, a peça aparece no montador como “Sob consulta” e não entra na soma.",
       validation: (rule) =>
-        rule.custom((value, { document }) => {
-          if (value == null) return document?.active === false ? true : "Defina o preço para mostrar a peça no site";
-          return value > 0 ? true : "O preço precisa ser maior que zero";
+        rule.custom((value) => {
+          if (value == null) return true;
+          return Number.isFinite(value) && value > 0 ? true : "Informe um preço maior que zero ou deixe vazio para Sob consulta";
         }),
     }),
     defineField({
