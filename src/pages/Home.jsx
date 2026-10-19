@@ -33,8 +33,7 @@ export default function Home({ gamerActive = false, onEquipmentChange }) {
               <br /> <span className="hero-title-mark">acompanhar você</span>
             </h1>
             <p className="hero-description">
-              Do conserto ao upgrade, a Capucho cuida do seu computador com explicação clara e sem
-              complicação.
+              Do conserto ao upgrade, a Capucho cuida do seu computador.
             </p>
             <div className="hero-actions">
               <WhatsAppButton />

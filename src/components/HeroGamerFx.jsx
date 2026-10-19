@@ -129,9 +129,9 @@ export function GamerLink({ active, variant = "hero", onClick }) {
       if (!width) return;
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
       flash(svg, contourArc(width, height, 8), {
-        width: compact ? 1 : 1.35,
-        life: 580,
-        colors: { core: "#9333ea", stroke: "#c084fc" },
+        width: compact ? 1.6 : 2,
+        life: 850,
+        colors: { core: "#faf5ff", stroke: "#c084fc" },
         smooth: true,
       });
     };
@@ -139,17 +139,17 @@ export function GamerLink({ active, variant = "hero", onClick }) {
     const pulse = link.animate(
       [
         { opacity: 0 },
-        { opacity: compact ? 0.65 : 1, offset: 0.32 },
+        { opacity: 1, offset: 0.32 },
         { opacity: 0 },
       ],
       { duration: 850, easing: "ease-out", pseudoElement: "::after" },
     );
-    for (let i = 0; i < (compact ? 1 : 2); i++) timers.push(setTimeout(arc, (compact ? 180 : 80) + i * 180));
+    for (let i = 0; i < 3; i++) timers.push(setTimeout(arc, (compact ? 180 : 80) + i * 200));
     const next = () => {
       arc();
-      timer = setTimeout(next, between(compact ? [2600, 3800] : [1700, 2700]));
+      timer = setTimeout(next, between(compact ? [1100, 1700] : [850, 1400]));
     };
-    timer = setTimeout(next, compact ? 2500 : 1800);
+    timer = setTimeout(next, compact ? 1200 : 900);
     return () => {
       clearTimeout(timer);
       timers.forEach(clearTimeout);
