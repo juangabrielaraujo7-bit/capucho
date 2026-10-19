@@ -7,13 +7,7 @@ import InstagramReel from "../components/InstagramReel";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset } from "../config";
 import { aboutMedia, googleReputation } from "../about";
-import { gamerBuilds } from "../gamer";
-import { reviews, workVideos } from "../content";
-
-function ProjectVideo({ file, title, light = false }) {
-  return <video className="about-project-video" controls playsInline preload="none"
-    src={asset(`${file}${light ? "-leve" : ""}.mp4`)} poster={asset(`${file}.webp`)} aria-label={title} />;
-}
+import { reviews } from "../content";
 
 export default function AboutPage() {
   return (
@@ -53,19 +47,6 @@ export default function AboutPage() {
           <div className="about-instagram-gallery" aria-label="Registros do trabalho da Capucho">
             {[{ file: "instagram-antes-depois", title: "Antes e depois de uma manutenção" }, { file: "instagram-upgrade-domicilio", title: "Manutenção e upgrade em domicílio" }, { file: "instagram-pc-gamer", title: "PC gamer montado pela Capucho" }].map(item => <InstagramReel key={item.file} {...item} />)}
           </div>
-        </div>
-      </section>
-      <section id="projetos" className="section">
-        <div className="container">
-          <div className="about-section-heading"><h2>Projetos gamer.<br />Montados aqui.</h2></div>
-          <div className="about-project-grid">{gamerBuilds.slice(0, 2).map(item => <article key={item.file}><ProjectVideo {...item} /><h3>{item.title}</h3></article>)}</div>
-          <Link className="text-link about-after-grid" to="/gamer">Conhecer a área gamer <ArrowUpRight size={20} /></Link>
-        </div>
-      </section>
-      <section id="consertos" className="section">
-        <div className="container">
-          <div className="about-section-heading"><h2>Na bancada,<br />o cuidado aparece.</h2></div>
-          <div className="about-repair-grid">{[workVideos[0], workVideos[3], workVideos[1]].map(item => <article key={item.file}><ProjectVideo {...item} light /><h3>{item.title}</h3><p>{item.text}</p><Link className="text-link" to={item.link}>Sobre este serviço <ArrowUpRight size={18} /></Link></article>)}</div>
         </div>
       </section>
       <section id="tiktok" className="section">
