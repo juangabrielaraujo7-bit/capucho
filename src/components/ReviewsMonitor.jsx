@@ -1,9 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { CaretLeft, CaretRight, Pause, Play } from "@phosphor-icons/react";
-import { asset } from "../config";
+import { ArrowUpRight, CaretLeft, CaretRight, Pause, Play } from "@phosphor-icons/react";
+import { asset, maps } from "../config";
 import Stars from "./Stars";
 
 export default function ReviewsMonitor({ reviews }) {
+  const slides = [
+    { type: "profile", id: "profile" },
+    ...reviews.slice(0, 4).map(review => ({ type: "review", id: review.name, review })),
+    { type: "link", id: "google-link" },
+  ];
+  const total = slides.length;
   const root = useRef(null);
   const [index, setIndex] = useState(0);
   const [resetting, setResetting] = useState(false);
@@ -12,7 +18,7 @@ export default function ReviewsMonitor({ reviews }) {
   const [visible, setVisible] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [pageOpen, setPageOpen] = useState(true);
-  const active = index % reviews.length;
+  const active = index % total;
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.25 });
@@ -32,10 +38,10 @@ export default function ReviewsMonitor({ reviews }) {
   }, []);
 
   useEffect(() => {
-    if (paused || interacting || !visible || !pageOpen || reduceMotion || resetting || reviews.length < 2) return;
+    if (paused || interacting || !visible || !pageOpen || reduceMotion || resetting) return;
     const timer = setTimeout(() => setIndex(i => i + 1), 2000);
     return () => clearTimeout(timer);
-  }, [index, paused, interacting, visible, pageOpen, reduceMotion, resetting, reviews.length]);
+  }, [index, paused, interacting, visible, pageOpen, reduceMotion, resetting]);
 
   useEffect(() => {
     if (!resetting) return;
@@ -47,14 +53,14 @@ export default function ReviewsMonitor({ reviews }) {
   }, [resetting]);
 
   const finishSlide = () => {
-    if (index === reviews.length) {
+    if (index === total) {
       setResetting(true);
       setIndex(0);
     }
   };
   const navigate = direction => {
     setResetting(false);
-    setIndex((active + direction + reviews.length) % reviews.length);
+    setIndex((active + direction + total) % total);
   };
 
   return (
@@ -66,15 +72,27 @@ export default function ReviewsMonitor({ reviews }) {
         <img className="reviews-monitor-image" src={asset("google-monitor.webp")} width="1254" height="1254"
           alt="" loading="lazy" decoding="async" />
         <div className="reviews-monitor-screen">
-          <div className="reviews-monitor-heading"><strong>Capucho Informática</strong><span>Avaliações no Google</span></div>
           <div className="reviews-monitor-window">
             <div className={`reviews-monitor-track${resetting ? " is-resetting" : ""}`}
               style={{ transform: `translateX(-${index * 100}%)` }} onTransitionEnd={finishSlide}>
-              {[...reviews, reviews[0]].map((review, i) => (
-                <figure className="reviews-monitor-slide" key={`${review.name}-${i}`} aria-hidden={i !== index}>
+              {[...slides, slides[0]].map((slide, i) => (
+                <figure className={`reviews-monitor-slide is-${slide.type}`} key={`${slide.id}-${i}`} aria-hidden={i !== index} inert={i !== index}>
+                  {slide.type === "profile" ? (
+                    <a className="reviews-monitor-profile" href={maps} target="_blank" rel="noreferrer" aria-label="Ver o perfil da Capucho Informática no Google">
+                      <img src={asset("google-monitor.webp")} width="1254" height="1254" alt="Perfil da Capucho Informática no Google Maps" />
+                    </a>
+                  ) : slide.type === "link" ? (
+                    <div className="reviews-monitor-cta">
+                      <img src={asset("google-reviews.webp")} width="400" height="164" alt="Google Reviews" />
+                      <strong>Conheça a Capucho no Google</strong>
+                      <a href={maps} target="_blank" rel="noreferrer">Ver o perfil no Google <ArrowUpRight size={18} /></a>
+                    </div>
+                  ) : (<>
+                  <div className="reviews-monitor-heading"><strong>Capucho Informática</strong><span>Avaliações no Google</span></div>
                   <Stars />
-                  <blockquote>“{review.text}”</blockquote>
-                  <figcaption><span className="reviews-monitor-avatar">{review.initials}</span><div><strong>{review.name}</strong><span>Avaliação no Google</span></div></figcaption>
+                  <blockquote>“{slide.review.text}”</blockquote>
+                  <figcaption><span className="reviews-monitor-avatar">{slide.review.initials}</span><div><strong>{slide.review.name}</strong><span>Avaliação no Google</span></div></figcaption>
+                  </>)}
                 </figure>
               ))}
             </div>
@@ -83,7 +101,7 @@ export default function ReviewsMonitor({ reviews }) {
       </div>
       <div className="reviews-monitor-controls">
         <button type="button" aria-label="Avaliação anterior" onClick={() => navigate(-1)}><CaretLeft size={18} /></button>
-        <span className="reviews-monitor-count" aria-live={paused || interacting || reduceMotion ? "polite" : "off"}>{active + 1} / {reviews.length}</span>
+        <span className="reviews-monitor-count" aria-live={paused || interacting || reduceMotion ? "polite" : "off"}>{active + 1} / {total}</span>
         <button type="button" aria-label="Próxima avaliação" onClick={() => navigate(1)}><CaretRight size={18} /></button>
         {!reduceMotion && <button type="button" aria-label={paused ? "Reproduzir avaliações" : "Pausar avaliações"} aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? <Play size={16} /> : <Pause size={16} />}</button>}
       </div>

@@ -4,7 +4,7 @@ import { HenriqueVideo } from "../components/AboutIntro";
 import Stars from "../components/Stars";
 import ReviewsMonitor from "../components/ReviewsMonitor";
 import WhatsAppButton from "../components/WhatsAppButton";
-import { asset, maps } from "../config";
+import { asset } from "../config";
 import { aboutMedia, googleReputation } from "../about";
 import { gamerBuilds } from "../gamer";
 import { reviews, workVideos } from "../content";
@@ -72,7 +72,7 @@ export default function AboutPage() {
       </section>
       <section id="reputacao" className="section about-google-section" aria-label="Avaliações no Google">
         <div className="container about-google-grid">
-          <div><img className="about-google-logo" src={asset("google-reviews.webp")} width="400" height="164" loading="lazy" alt="Google Reviews" /><div className="about-google-rating"><strong>{googleReputation.rating}</strong><div><Stars /><span>{googleReputation.count} avaliações no Google</span></div></div><a className="text-link" href={maps} target="_blank" rel="noreferrer">Conferir as avaliações no Google <ArrowUpRight size={20} /></a></div>
+          <div><img className="about-google-logo" src={asset("google-reviews.webp")} width="400" height="164" loading="lazy" alt="Google Reviews" /><div className="about-google-rating"><strong>{googleReputation.rating}</strong><div><Stars /><span>{googleReputation.count} avaliações no Google</span></div></div><a className="text-link" href="https://g.page/r/CUYdeUogeg_yEAE/review" target="_blank" rel="noreferrer">Avaliar a Capucho no Google <ArrowUpRight size={20} /></a></div>
           <ReviewsMonitor reviews={reviews} />
         </div>
       </section>
