@@ -40,7 +40,10 @@ export default function AboutPage() {
               alt="Celular mostrando o perfil da Capucho Informática no Instagram" />
           </div>
           <div className="about-instagram-content">
-            <h3 className="about-instagram-content-title"><span>Nossos conteúdos</span></h3>
+            <div className="about-instagram-content-heading">
+              <h3 className="about-instagram-content-title">Nossos <span>conteúdos</span></h3>
+              <p>Acompanhe os bastidores de todo o processo</p>
+            </div>
             <FeatureCarousel items={[{ file: "instagram-antes-depois", title: "Antes e depois de uma manutenção" }, { file: "instagram-upgrade-domicilio", title: "Manutenção e upgrade em domicílio" }, { file: "instagram-pc-gamer", title: "PC gamer montado pela Capucho" }]} />
           </div>
         </div>
