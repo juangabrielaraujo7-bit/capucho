@@ -36,7 +36,7 @@ export default function TestimonialsColumns({ reviews, children }) {
         <div ref={windowRef} className="testimonials-window" role="region" aria-label="Depoimentos de clientes" tabIndex={0}>
           <div className="testimonials-stage">
             {columns.map((column, i) => (
-              <Marquee key={i} className="testimonials-desktop" reverse={i === 1} duration={i === 0 ? 42 : 48}>
+              <Marquee key={i} className="testimonials-desktop" duration={i === 0 ? 42 : 48}>
                 {column.map(review => <ReviewCard key={review.name} review={review} />)}
               </Marquee>
             ))}
