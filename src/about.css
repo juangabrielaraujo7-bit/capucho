@@ -121,8 +121,8 @@ a.about-social-node:hover{box-shadow:0 4px 16px #102c6014}
 .about-tiktok-row p{margin:12px 0 0}
 .about-pending-label{font-size:.9rem;color:var(--muted);white-space:nowrap}
 .about-google-section{background:#f7f8fb}
-.about-google-title{max-width:760px;margin:0 auto 44px;color:var(--navy);font-size:clamp(1.65rem,2.6vw,2.5rem);line-height:1.2;letter-spacing:-.035em;text-align:center;text-wrap:balance}
-.about-google-title span{color:var(--blue)}
+.about-google-title{max-width:650px;margin:0 auto 40px;color:var(--navy);font-size:clamp(1.4rem,2.1vw,2rem);line-height:1.4;letter-spacing:-.03em;text-align:center;text-wrap:balance}
+.about-google-title span{padding:.04em .2em;border-radius:4px;background:linear-gradient(90deg,#2441ed 0%,#4979ff 100%);color:#fff;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .about-google-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
 .about-google-logo{width:180px;height:auto;margin-bottom:28px}
 .about-google-rating{display:flex;align-items:center;gap:24px;margin:24px 0}
@@ -170,7 +170,7 @@ a.about-social-node:hover{box-shadow:0 4px 16px #102c6014}
  .about-intro-grid,.about-person-grid,.about-google-grid{grid-template-columns:1fr;gap:32px}.about-intro-copy h2{font-size:2rem}.about-film-caption{padding:14px;font-size:.7rem}.about-intro-social{margin-top:32px}.about-branch-space{padding-bottom:0;margin-bottom:16px}.about-intro-social .about-branch-title{font-size:1.8rem}.about-social-nodes{grid-template-columns:1fr 1fr}.about-social-node-main{grid-column:1/-1}.about-social-node{padding:14px 12px}.about-social-node small{font-size:.72rem}.about-person-copy{order:-1}.about-page-opening h1{font-size:2.15rem}.about-lead{font-size:1rem}.about-page-nav{gap:18px 24px;font-size:.85rem}.about-principles>div{grid-template-columns:110px 1fr}.about-instagram-section{padding-top:40px}.about-instagram-opening{flex-direction:column;align-items:stretch;gap:36px}.about-instagram-copy{margin-top:0}.about-instagram-section h2{font-size:min(calc((100vw - 32px) / 16.2),2rem)}.about-instagram-phone{align-self:center;width:min(56vw,220px)}.about-instagram-gallery{margin-top:48px}.about-instagram-gallery{gap:12px;grid-template-columns:1fr 1fr}.about-instagram-gallery figure:first-child{grid-column:1/-1}.about-instagram-gallery figcaption{font-size:.75rem}.about-project-grid,.about-repair-grid{grid-template-columns:1fr;gap:32px}.about-repair-grid .about-project-video{aspect-ratio:4/3}.about-tiktok-row{gap:20px}.about-tiktok-row>div{flex-basis:calc(100% - 84px)}.about-tiktok-row h2{font-size:1.4rem}.about-tiktok-row p{font-size:.9rem}.about-close{align-items:flex-start;flex-direction:column}.about-google-rating{gap:18px}
 }
 @media(max-width:700px){.about-instagram-content{max-width:230px;margin-top:48px}.about-instagram-gallery{grid-template-columns:1fr;margin:0;gap:28px}.about-instagram-gallery figure:first-child{grid-column:auto}}
-@media(max-width:700px){.about-google-title{margin-bottom:32px;font-size:clamp(1.5rem,6.5vw,1.9rem)}.reviews-monitor{width:90%;max-width:300px}}
+@media(max-width:700px){.about-google-title{margin-bottom:28px;font-size:clamp(1.25rem,5.5vw,1.6rem)}.reviews-monitor{width:90%;max-width:300px}}
 
 /* Feature carousel: vídeo central e prévias laterais em perspectiva. */
 .about-instagram-content{max-width:720px}
