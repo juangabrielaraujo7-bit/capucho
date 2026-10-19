@@ -725,4 +725,3 @@ export default function PcBuilder() {
     </section>
   );
 }
-
