@@ -7,15 +7,19 @@ import AnimatedText from "./AnimatedText";
 import LetterSwap from "./LetterSwap";
 import "../about.css";
 
-export function HenriqueVideo() {
+export function HenriqueVideo({
+  src = aboutMedia.henriqueVideo,
+  poster = aboutMedia.henriquePoster,
+  label = "Henrique trabalhando na Capucho",
+}) {
   return (
     <div className="about-film">
-      {aboutMedia.henriqueVideo ? (
+      {src ? (
         // Vídeo vertical: fica inteiro no centro do quadro 16:10, sobre a própria capa desfocada.
         <div className="about-film-stage">
-          {aboutMedia.henriquePoster && <img className="about-film-backdrop" src={aboutMedia.henriquePoster} alt="" aria-hidden="true" />}
-          <video controls playsInline preload="none" src={aboutMedia.henriqueVideo}
-            poster={aboutMedia.henriquePoster || undefined} aria-label="Henrique trabalhando na Capucho" />
+          {poster && <img className="about-film-backdrop" src={poster} alt="" aria-hidden="true" />}
+          <video controls playsInline preload="none" src={src}
+            poster={poster || undefined} aria-label={label} />
         </div>
       ) : (
         <div className="about-film-placeholder">
@@ -99,7 +103,8 @@ export default function AboutIntro() {
             <h2><LetterSwap text="5 anos" /> no mercado.<br /><span className="about-title-mark">A melhor assistência técnica</span> da região.</h2>
             <Link className="button button-primary" to="/sobre">Conheça a Capucho <ArrowRight size={20} /></Link>
           </div>
-          <HenriqueVideo />
+          <HenriqueVideo src={aboutMedia.introductionVideo} poster={aboutMedia.introductionPoster}
+            label="Apresentação da Capucho Informática" />
         </div>
         <div className="about-intro-social">
           <div><h3>Nosso trabalho, de perto.</h3><p>Veja os bastidores, os consertos e os projetos que passam por aqui.</p></div>
