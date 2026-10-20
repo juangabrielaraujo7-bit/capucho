@@ -877,3 +877,43 @@
     font-size: 0.875rem;
   }
 }
+
+/* Atreus aparece somente na seção de planejamento; as outras artes são independentes. */
+.asm-goals .asm-stage-grid {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.55fr);
+  align-items: center;
+  gap: clamp(24px, 3vw, 40px);
+}
+.asm-goals-character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: end;
+  min-width: 0;
+  width: 100%;
+  max-width: 340px;
+}
+.asm-goals-character img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+}
+.assembly-page .asm-goals-character .asm-nameplate {
+  margin: 16px 0 0;
+}
+@media (max-width: 767px) {
+  .asm-goals .asm-stage-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .asm-goals-character {
+    justify-self: center;
+    width: clamp(140px, 36vw, 180px);
+  }
+  .assembly-page .asm-goals-character .asm-nameplate {
+    margin-top: 12px;
+    font-size: 0.875rem;
+  }
+}

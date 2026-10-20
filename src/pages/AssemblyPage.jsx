@@ -94,13 +94,13 @@ function Speaker({ who }) {
 
 // Seção explicativa: título, personagem de um lado e cards de fala do outro.
 // As falas são textos originais da página, não citações do jogo.
-function StageSection({ id, title, who, side, layout, children }) {
+function StageSection({ id, title, who, side, layout, character, children }) {
   return (
     <section className={`asm-section asm-stage asm-${id}`} aria-labelledby={`asm-${id}-title`}>
       <div className="asm-container">
         <h2 id={`asm-${id}-title`}>{title}</h2>
         <div className={`asm-stage-grid is-${side}`}>
-          <Speaker who={who} />
+          {character ?? <Speaker who={who} />}
           <div className="asm-stage-body">
             <ul className={`asm-says is-${layout} from-${side}`} data-who={who}>
               {children}
@@ -157,7 +157,24 @@ export default function AssemblyPage() {
         </div>
       </section>
 
-      <StageSection id="goals" title="Que jornada você quer encarar?" who="Atreus" side="left" layout="grid">
+      <StageSection
+        id="goals" title="Que jornada você quer encarar?" who="Atreus" side="left" layout="grid"
+        character={
+          <div className="asm-goals-character">
+            <img
+              src={asset("atreus-jornada.webp")}
+              srcSet={`${asset("atreus-jornada-360.webp")} 360w, ${asset("atreus-jornada-600.webp")} 600w, ${asset("atreus-jornada.webp")} 1024w`}
+              sizes="(max-width: 767px) 180px, (max-width: 1023px) 30vw, 340px"
+              width="1024"
+              height="1536"
+              alt="Atreus olhando e gesticulando para os cards de planejamento à direita"
+              loading="lazy"
+              decoding="async"
+            />
+            <p className="asm-nameplate">Atreus</p>
+          </div>
+        }
+      >
         {goals.map(([title, text]) => (
           <Say key={title} who="Atreus" title={title}>
             {text}
