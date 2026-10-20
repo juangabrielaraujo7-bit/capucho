@@ -48,7 +48,7 @@ export default function AboutPage() {
         </div>
       </section>
       <section id="tiktok" className="section about-tiktok-section" aria-labelledby="tiktok-title">
-        <div className="container">
+        <div className="container about-tiktok-layout">
           <div className="about-tiktok-heading">
             <h2 id="tiktok-title">A Capucho também no <span className="about-tiktok-brand"><span className="about-tiktok-word"><img src={asset("tiktok-brand.png")} alt="TikTok" width="494" height="146" loading="lazy" draggable="false" /></span><span className="about-tiktok-mark" aria-hidden="true"><img src={asset("tiktok-brand.png")} alt="" width="494" height="146" loading="lazy" draggable="false" /></span></span></h2>
             <a className="button button-outline" href={aboutMedia.tiktok} target="_blank" rel="noopener noreferrer">Ver no TikTok <ArrowUpRight size={20} /></a>
