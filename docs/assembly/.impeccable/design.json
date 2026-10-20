@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T17:49:40.891Z",
+  "title": "Design System: Capucho — Montagem Ragnarök",
+  "extensions": {
+    "colorMeta": {
+      "blood": {
+        "role": "primary",
+        "displayName": "Sangue",
+        "tonalRamp": [
+          "oklch(15% 0.17 23)",
+          "oklch(27% 0.17 23)",
+          "oklch(39% 0.17 23)",
+          "oklch(51% 0.17 23)",
+          "oklch(63% 0.17 23)",
+          "oklch(75% 0.17 23)",
+          "oklch(87% 0.17 23)",
+          "oklch(95% 0.17 23)"
+        ]
+      },
+      "blood-hover": {
+        "role": "primary",
+        "displayName": "Sangue profundo",
+        "tonalRamp": [
+          "oklch(15% 0.14 23)",
+          "oklch(27% 0.14 23)",
+          "oklch(39% 0.14 23)",
+          "oklch(51% 0.14 23)",
+          "oklch(63% 0.14 23)",
+          "oklch(75% 0.14 23)",
+          "oklch(87% 0.14 23)",
+          "oklch(95% 0.14 23)"
+        ]
+      },
+      "blood-light": {
+        "role": "primary",
+        "displayName": "Sangue claro",
+        "tonalRamp": [
+          "oklch(15% 0.14 15)",
+          "oklch(27% 0.14 15)",
+          "oklch(39% 0.14 15)",
+          "oklch(51% 0.14 15)",
+          "oklch(63% 0.14 15)",
+          "oklch(75% 0.14 15)",
+          "oklch(87% 0.14 15)",
+          "oklch(95% 0.14 15)"
+        ]
+      },
+      "slate": {
+        "role": "neutral",
+        "displayName": "Ardósia",
+        "tonalRamp": [
+          "oklch(15% 0.04 247)",
+          "oklch(27% 0.04 247)",
+          "oklch(39% 0.04 247)",
+          "oklch(51% 0.04 247)",
+          "oklch(63% 0.04 247)",
+          "oklch(75% 0.04 247)",
+          "oklch(87% 0.04 247)",
+          "oklch(95% 0.04 247)"
+        ]
+      },
+      "ice": {
+        "role": "neutral",
+        "displayName": "Gelo",
+        "tonalRamp": [
+          "oklch(15% 0.02 252)",
+          "oklch(27% 0.02 252)",
+          "oklch(39% 0.02 252)",
+          "oklch(51% 0.02 252)",
+          "oklch(63% 0.02 252)",
+          "oklch(75% 0.02 252)",
+          "oklch(87% 0.02 252)",
+          "oklch(95% 0.02 252)"
+        ]
+      },
+      "snow": {
+        "role": "neutral",
+        "displayName": "Marfim frio",
+        "tonalRamp": [
+          "oklch(15% 0.012 255)",
+          "oklch(27% 0.012 255)",
+          "oklch(39% 0.012 255)",
+          "oklch(51% 0.012 255)",
+          "oklch(63% 0.012 255)",
+          "oklch(75% 0.012 255)",
+          "oklch(87% 0.012 255)",
+          "oklch(95% 0.012 255)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "tonalRamp": [
+          "oklch(15% 0.045 243)",
+          "oklch(27% 0.045 243)",
+          "oklch(39% 0.045 243)",
+          "oklch(51% 0.045 243)",
+          "oklch(63% 0.045 243)",
+          "oklch(75% 0.045 243)",
+          "oklch(87% 0.045 243)",
+          "oklch(95% 0.045 243)"
+        ]
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Tinta suave",
+        "tonalRamp": [
+          "oklch(15% 0.04 248)",
+          "oklch(27% 0.04 248)",
+          "oklch(39% 0.04 248)",
+          "oklch(51% 0.04 248)",
+          "oklch(63% 0.04 248)",
+          "oklch(75% 0.04 248)",
+          "oklch(87% 0.04 248)",
+          "oklch(95% 0.04 248)"
+        ]
+      },
+      "light-body": {
+        "role": "neutral",
+        "displayName": "Corpo claro",
+        "tonalRamp": [
+          "oklch(15% 0.018 248)",
+          "oklch(27% 0.018 248)",
+          "oklch(39% 0.018 248)",
+          "oklch(51% 0.018 248)",
+          "oklch(63% 0.018 248)",
+          "oklch(75% 0.018 248)",
+          "oklch(87% 0.018 248)",
+          "oklch(95% 0.018 248)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Branco",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(27% 0 0)",
+          "oklch(39% 0 0)",
+          "oklch(51% 0 0)",
+          "oklch(63% 0 0)",
+          "oklch(75% 0 0)",
+          "oklch(87% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Título principal",
+        "purpose": "Hero Cinzel 650; escalas responsivas em DESIGN.md."
+      },
+      "headline": {
+        "displayName": "Título de seção",
+        "purpose": "Cinzel 650 com variações contextuais."
+      },
+      "title": {
+        "displayName": "Título de cartão",
+        "purpose": "DM Sans 700; etapas são variante Cinzel."
+      },
+      "body": {
+        "displayName": "Leitura",
+        "purpose": "Corpo dos componentes e etapas em 14 px."
+      },
+      "label": {
+        "displayName": "Ação",
+        "purpose": "Texto dos botões."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "action-colors",
+        "value": "background-color .18s ease, border-color .18s ease",
+        "purpose": "Hover dos botões; removido com prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-desktop-max",
+        "value": "1050px"
+      },
+      {
+        "name": "stacked-hero-max",
+        "value": "900px"
+      },
+      {
+        "name": "mobile-menu-max",
+        "value": "700px"
+      },
+      {
+        "name": "single-column-cards-max",
+        "value": "480px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Ação principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Escolha de peças no montador.",
+      "html": "<button class=\"ds-primary\">Escolher minhas peças</button>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:14px 20px;border-radius:4px;font:650 .9375rem/1.3 \"DM Sans Variable\",sans-serif;transition:background-color .18s ease,border-color .18s ease;background:#a71925;color:#fff;border:1px solid #bf4351}.ds-primary:hover{background:#86131e;border-color:#86131e}.ds-primary:focus-visible,.ds-ghost:focus-visible,.ds-nav a:focus-visible{outline:3px solid #f5d2d6;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Ação secundária",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Conversa para definir a montagem.",
+      "html": "<button class=\"ds-ghost\">Quero ajuda para montar</button>",
+      "css": ".ds-ghost{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:14px 20px;border-radius:4px;font:650 .9375rem/1.3 \"DM Sans Variable\",sans-serif;transition:background-color .18s ease,border-color .18s ease;background:#25394b33;color:#e8edf4;border:1px solid #ccd9e794}.ds-ghost:hover{background:#25394b99;border-color:#e8edf4}.ds-primary:focus-visible,.ds-ghost:focus-visible,.ds-nav a:focus-visible{outline:3px solid #f5d2d6;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-ghost{transition:none}}"
+    },
+    {
+      "name": "Cartão de objetivo",
+      "kind": "card",
+      "refersTo": "goal-card",
+      "description": "Prioridade da configuração sobre a superfície clara.",
+      "html": "<article class=\"ds-goal\"><h3>Seu orçamento</h3><p>Definimos as prioridades para o seu investimento.</p></article>",
+      "css": ".ds-goal{border:1px solid #728ba44a;border-top-color:#a719254d;border-radius:5px;padding:23px;background:#f1f5fa80;color:#183449;font-family:\"DM Sans Variable\",sans-serif}.ds-goal h3{font-size:1.0625rem;font-weight:700;letter-spacing:-.02em;line-height:1.3;margin:0}.ds-goal p{font-size:.9375rem;line-height:1.55;margin:8px 0 0;color:#3c5265}"
+    },
+    {
+      "name": "Navegação",
+      "kind": "nav",
+      "description": "Links desktop; o menu móvel está registrado em DESIGN.md.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navegação da montagem de PC\"><a href=\"/gamer\">Área gamer</a><a href=\"#montagem\">A montagem</a><a href=\"#como-funciona\">Como funciona</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:center;gap:36px;font:.9375rem \"DM Sans Variable\",sans-serif;color:#e8edf4}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:6px;color:inherit;text-decoration:none}.ds-nav a:hover{text-decoration:underline}.ds-primary:focus-visible,.ds-ghost:focus-visible,.ds-nav a:focus-visible{outline:3px solid #f5d2d6;outline-offset:5px}"
+    },
+    {
+      "name": "Pergunta frequente",
+      "kind": "custom",
+      "description": "Detalhe nativo expansível; o componente real coordena abertura exclusiva.",
+      "html": "<details class=\"ds-faq\" name=\"ds-faq\"><summary>Qual é o prazo para a montagem?<svg width=\"21\" height=\"21\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 12h16M12 4v16\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg></summary><p>O prazo é informado junto com o orçamento, considerando a configuração e a disponibilidade das peças.</p></details>",
+      "css": ".ds-faq{border-bottom:1px solid #59738a38;font-family:\"DM Sans Variable\",sans-serif}.ds-faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:62px;padding-block:18px;font-size:.9375rem;line-height:1.45;color:#183449;cursor:pointer;list-style:none}.ds-faq summary:hover{color:#a71925}.ds-faq summary:focus-visible{outline:3px solid #a71925;outline-offset:5px}.ds-faq p{font-size:.9375rem;line-height:1.55;margin:0;padding-bottom:20px;color:#3c5265}"
+    },
+    {
+      "name": "Ornamento linear",
+      "kind": "custom",
+      "description": "Separador vetorial fino sobre cena escura.",
+      "html": "<span class=\"ds-ornament\" aria-hidden=\"true\"><svg viewBox=\"0 0 240 14\" fill=\"none\"><path d=\"M0 7h14m8 0h218M18 1v12M12 7l6-5 6 5-6 5z\" stroke=\"currentColor\" stroke-width=\"1\"/></svg></span>",
+      "css": ".ds-ornament{display:block;width:240px;max-width:60%;margin-block:15px 25px;color:#df7580}.ds-ornament svg{display:block;width:100%;height:14px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Ragnarök",
+    "overview": "Mundo visual aprovado para a rota existente `/gamer/montagem-completa`, em modo Persuade. Ardósia fria, gelo e marfim recebem recortes naturais de Kratos e Atreus; a composição usa fundos desfocados, névoa localizada e brasas estáticas. Títulos cerimoniais convivem com leitura direta e ações práticas.\n\nEste documento descreve exclusivamente `.theme-assembly`, conforme `src/assembly.css` e `src/pages/AssemblyPage.jsx`. Não estabelece regras para o restante do site. A composição e a estratégia da superfície permanecem em `../assembly-direction.md`; as origens e dimensões dos assets estão em `../assembly-assets.json` (14 WebP novos e sete compartilhados). Documentação extraída do código. O parecer visual independente inicial aprovou as demais composições e pediu uma única correção localizada nas brasas. A correção foi aplicada e verificada no parecer final independente: disposition `ship`. A revisão reabriu goals-390, process-390 e parts-1440, confirmou brasas proporcionais e periféricas, com cartões, FAQ e centro limpos. Revisão encerrada, sem correções pendentes.",
+    "keyCharacteristics": [
+      "Alternância entre superfícies frias claras e escuras.",
+      "Títulos Cinzel e leitura DM Sans.",
+      "Vermelho sangue nas ações e ênfase clara sobre fundo escuro.",
+      "Personagens naturais e atmosfera estática localizada."
+    ],
+    "rules": [
+      {
+        "name": "The Contextual Accent Rule",
+        "body": "Use sangue para ações; a ênfase de títulos escuros usa sangue claro, conforme a implementação.",
+        "section": "colors"
+      },
+      {
+        "name": "The Local Atmosphere Rule",
+        "body": "Névoa e brasas permanecem decorativas, sem capturar interação, e não substituem o contraste do texto. Brasas mantêm a proporção, ficam ancoradas na base e restritas às bordas pela máscara lateral.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** manter este sistema isolado na montagem completa.",
+      "**Do** usar o logo original com a variante monocromática clara em CSS.",
+      "**Do** preservar proporção e orientação naturais dos personagens, com Atreus adolescente sem barba.",
+      "**Do** manter os seis componentes compartilhados e as seis condições do FAQ.",
+      "**Do** preservar foco visível e a preferência por movimento reduzido."
+    ],
+    "donts": [
+      "**Don't** propagar estes tokens para as outras páginas.",
+      "**Don't** espelhar personagens, adulterar rostos ou animar os recortes.",
+      "**Don't** apresentar componentes ilustrativos como oferta de modelos específicos.",
+      "**Don't** reintroduzir estiramento ou presença central das brasas após a correção verificada."
+    ]
+  }
+}

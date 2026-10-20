@@ -13,7 +13,7 @@ import ServicePage from "./pages/ServicePage";
 import ServiceHubPage from "./pages/ServiceHubPage";
 import GamerPage from "./pages/GamerPage";
 import PcBuilder from "./pages/PcBuilder";
-import AssemblyPage from "./pages/AssemblyPage";
+import AssemblyPage, { AssemblyHeader, AssemblyFooter } from "./pages/AssemblyPage";
 import UpgradePage, { UpgradeHeader, UpgradeFooter } from "./pages/UpgradePage";
 import CleaningPage, { CleaningHeader, CleaningFooter } from "./pages/CleaningPage";
 import FormattingPage, { FormattingHeader, FormattingFooter } from "./pages/FormattingPage";
@@ -53,7 +53,7 @@ export default function App() {
         <a className="skip-link" href="#conteudo">
           Pular para o conteúdo
         </a>
-        {formatting ? <FormattingHeader /> : cleaning ? <CleaningHeader /> : upgrade ? <UpgradeHeader /> : <Header gamerActive={gamerAccent} />}
+        {assembly ? <AssemblyHeader /> : formatting ? <FormattingHeader /> : cleaning ? <CleaningHeader /> : upgrade ? <UpgradeHeader /> : <Header gamerActive={gamerAccent} />}
         <main id="conteudo">
           <Routes>
             <Route path="/" element={<Home gamerActive={gamerAccent} onEquipmentChange={setHeroEquipment} />} />
@@ -68,8 +68,8 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        {formatting ? <FormattingFooter /> : cleaning ? <CleaningFooter /> : upgrade ? <UpgradeFooter /> : <Footer />}
-        {!builder && !upgrade && !cleaning && !formatting && (
+        {assembly ? <AssemblyFooter /> : formatting ? <FormattingFooter /> : cleaning ? <CleaningFooter /> : upgrade ? <UpgradeFooter /> : <Footer />}
+        {!builder && !assembly && !upgrade && !cleaning && !formatting && (
           <a
             className="floating-whatsapp"
             href={wa()}

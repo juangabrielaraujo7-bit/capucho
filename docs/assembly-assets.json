@@ -1,0 +1,162 @@
+[
+  {
+    "file": "dupla-hero-800.webp",
+    "width": 800,
+    "height": 667,
+    "bytes": 185720,
+    "source": "public/area gamer/pagina montagem dos pc kratos/ce7e6ff8-3c2c-4b5a-aa4b-fba7c900af05.png"
+  },
+  {
+    "file": "dupla-hero-480.webp",
+    "width": 480,
+    "height": 400,
+    "bytes": 72440,
+    "source": "public/area gamer/pagina montagem dos pc kratos/ce7e6ff8-3c2c-4b5a-aa4b-fba7c900af05.png"
+  },
+  {
+    "file": "atreus-objetivos-640.webp",
+    "width": 640,
+    "height": 960,
+    "bytes": 161170,
+    "source": "public/area gamer/pagina montagem dos pc kratos/8e13aa05-cde3-4eae-b598-121bab8280ed.png"
+  },
+  {
+    "file": "atreus-objetivos-360.webp",
+    "width": 360,
+    "height": 540,
+    "bytes": 57020,
+    "source": "public/area gamer/pagina montagem dos pc kratos/8e13aa05-cde3-4eae-b598-121bab8280ed.png"
+  },
+  {
+    "file": "kratos-componentes-640.webp",
+    "width": 640,
+    "height": 960,
+    "bytes": 228184,
+    "source": "public/area gamer/pagina montagem dos pc kratos/5160fa92-2df7-497b-bdc5-8d2c40c60217.png"
+  },
+  {
+    "file": "kratos-componentes-360.webp",
+    "width": 360,
+    "height": 540,
+    "bytes": 78164,
+    "source": "public/area gamer/pagina montagem dos pc kratos/5160fa92-2df7-497b-bdc5-8d2c40c60217.png"
+  },
+  {
+    "file": "kratos-etapas-640.webp",
+    "width": 640,
+    "height": 960,
+    "bytes": 225730,
+    "source": "public/area gamer/pagina montagem dos pc kratos/a767cc6f-b309-4719-a8a8-d093df369dbd.png"
+  },
+  {
+    "file": "kratos-etapas-360.webp",
+    "width": 360,
+    "height": 540,
+    "bytes": 76178,
+    "source": "public/area gamer/pagina montagem dos pc kratos/a767cc6f-b309-4719-a8a8-d093df369dbd.png"
+  },
+  {
+    "file": "fundo-escuro-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 19564,
+    "source": "public/area gamer/pagina montagem dos pc kratos/2aaf5f07-2ce5-475f-8fe7-7ab4861a189d.png"
+  },
+  {
+    "file": "fundo-escuro-900.webp",
+    "width": 900,
+    "height": 507,
+    "bytes": 9238,
+    "source": "public/area gamer/pagina montagem dos pc kratos/2aaf5f07-2ce5-475f-8fe7-7ab4861a189d.png"
+  },
+  {
+    "file": "fundo-claro-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 14660,
+    "source": "public/area gamer/pagina montagem dos pc kratos/51b3f0ca-0fa7-4c3f-b721-73a3691381e6.png"
+  },
+  {
+    "file": "fundo-claro-900.webp",
+    "width": 900,
+    "height": 507,
+    "bytes": 6456,
+    "source": "public/area gamer/pagina montagem dos pc kratos/51b3f0ca-0fa7-4c3f-b721-73a3691381e6.png"
+  },
+  {
+    "file": "brasas-1400.webp",
+    "width": 1400,
+    "height": 788,
+    "bytes": 102054,
+    "source": "public/area gamer/pagina montagem dos pc kratos/6847e92d-f2fb-481d-83a9-8422fbbeefc2.png"
+  },
+  {
+    "file": "brasas-800.webp",
+    "width": 800,
+    "height": 450,
+    "bytes": 34682,
+    "source": "public/area gamer/pagina montagem dos pc kratos/6847e92d-f2fb-481d-83a9-8422fbbeefc2.png"
+  },
+  {
+    "file": "../upgrade/memoria-480.webp",
+    "width": 480,
+    "height": 454,
+    "bytes": 32598,
+    "source": "public/area gamer/pagina resident evil/0cd4c1b3-6153-4637-878d-8527e63bbcf9.png",
+    "transparentPaddingTrimmed": true,
+    "shared": true
+  },
+  {
+    "file": "../upgrade/placa-video-480.webp",
+    "width": 480,
+    "height": 465,
+    "bytes": 40632,
+    "source": "public/area gamer/pagina resident evil/31bb9bdf-50c7-4b85-afa4-92ad247d723d.png",
+    "transparentPaddingTrimmed": true,
+    "shared": true
+  },
+  {
+    "file": "../upgrade/fonte-480.webp",
+    "width": 480,
+    "height": 464,
+    "bytes": 46188,
+    "source": "public/area gamer/pagina resident evil/6011133a-9dcf-495f-a85e-33285793eac4.png",
+    "transparentPaddingTrimmed": true,
+    "shared": true
+  },
+  {
+    "file": "../upgrade/processador-480.webp",
+    "width": 480,
+    "height": 484,
+    "bytes": 36582,
+    "source": "public/area gamer/pagina resident evil/8a32cf5a-21e7-4919-b26b-70ec7b9a1f57.png",
+    "transparentPaddingTrimmed": true,
+    "shared": true
+  },
+  {
+    "file": "../upgrade/refrigeracao-480.webp",
+    "width": 480,
+    "height": 485,
+    "bytes": 56684,
+    "source": "public/area gamer/pagina resident evil/a518d969-6d5d-421f-bdd7-05ec92b3c198.png",
+    "transparentPaddingTrimmed": true,
+    "shared": true
+  },
+  {
+    "file": "../upgrade/ssd-480.webp",
+    "width": 480,
+    "height": 410,
+    "bytes": 29494,
+    "source": "public/area gamer/pagina resident evil/abf7ea87-781c-49c3-ba49-9d4cecc12d14.png",
+    "transparentPaddingTrimmed": true,
+    "shared": true
+  },
+  {
+    "file": "../upgrade/nevoa-1600.webp",
+    "width": 1600,
+    "height": 640,
+    "bytes": 236880,
+    "source": "public/area gamer/pagina resident evil/10a599c1-2b5e-4411-bd41-9dd254bbcdc8.png",
+    "shared": true
+  }
+]

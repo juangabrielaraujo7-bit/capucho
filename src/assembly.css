@@ -1,986 +1,211 @@
-/* ===== Página "Montagem completa" (/gamer/montagem-completa) =====
-   Gelo azul de Ragnarök: azul profundo nas extremidades dissolvendo em azul glacial e num
-   centro claro azulado; vermelho só em CTAs e destaques. Seções explicativas com personagem
-   grande ao lado e cards de fala. Tudo escopado em .theme-assembly / .assembly-page. */
-.theme-assembly,
-.assembly-page {
-  --assembly-deep: #123b59;
-  --assembly-glacier: #287da8;
-  --assembly-mist: #87c9e5;
-  --assembly-ice: #d9eef7;
-  --assembly-snow: #f1f8fc;
-  --assembly-red: #ad2937;
-  --assembly-red-deep: #7c1d29;
-  --assembly-ink: #142f43;
-  --assembly-muted: #2c4a60;
-}
-
-/* --- Variante local do cabeçalho, rodapé e botão flutuante --- */
+/* Ragnarök: cinco cenas da referência aprovada, isoladas nesta página. */
 .theme-assembly {
-  --navy: var(--assembly-ink);
-  --muted: var(--assembly-muted);
-  --blue: var(--assembly-red);
-  --border: rgba(18, 59, 89, 0.2);
-  --line: rgba(18, 59, 89, 0.16);
-  background: var(--assembly-ice);
-  color: var(--assembly-ink);
-}
-.theme-assembly .site-header {
-  background: rgba(241, 248, 252, 0.88);
-  backdrop-filter: blur(12px);
-  border-bottom-color: rgba(40, 125, 168, 0.22);
-}
-.theme-assembly :is(a, button, summary):focus-visible {
-  outline-color: var(--assembly-red);
-}
-.theme-assembly .main-nav a.nav-gamer {
-  color: var(--assembly-red);
-  text-decoration-color: rgba(173, 41, 55, 0.55);
-}
-.theme-assembly .button-primary {
-  background: var(--assembly-red);
-}
-.theme-assembly .button-primary:hover {
-  background: var(--assembly-red-deep);
-}
-/* Rodapé no azul profundo, continuando o gelo da página */
-.theme-assembly .footer {
-  background: linear-gradient(180deg, #1d5f86 0%, var(--assembly-deep) 55%);
-  color: var(--assembly-snow);
-}
-.theme-assembly .footer p,
-.theme-assembly .footer-grid > div > a:not(.footer-brand),
-.theme-assembly .footer-bottom {
-  color: #dcedf6;
-}
-.theme-assembly .footer-bottom {
-  border-top-color: rgba(241, 248, 252, 0.16);
-}
-.theme-assembly .floating-whatsapp {
-  background: var(--assembly-red);
-  border-color: var(--assembly-snow);
-}
-@media (max-width: 1023px) {
-  .theme-assembly .main-nav {
-    background: var(--assembly-snow);
-  }
-}
-
-/* --- Ambiente contínuo: manchas de azul profundo alternando de lado ao longo da rolagem,
-   azul glacial e névoa clara no meio. Assimétrico de propósito, para não virar moldura. --- */
-.assembly-page {
+  --asm-dark: #25394b;
+  --asm-ice: #d4dee9;
+  --asm-snow: #e8edf4;
+  --asm-ink: #183449;
+  --asm-red: #a71925;
+  --asm-red-hover: #86131e;
+  --asm-red-light: #f18189;
+  --navy: var(--asm-ink);
+  --muted: #3c5265;
+  --blue: var(--asm-red);
   position: relative;
-  isolation: isolate;
-  color: var(--assembly-ink);
-  background:
-    radial-gradient(48% 9% at 0% 4%, rgba(18, 59, 89, 0.78), rgba(40, 125, 168, 0.39) 50%, transparent 100%),
-    radial-gradient(40% 7% at 100% 12%, rgba(18, 59, 89, 0.55), rgba(40, 125, 168, 0.28) 50%, transparent 100%),
-    radial-gradient(46% 9% at 100% 30%, rgba(18, 59, 89, 0.72), rgba(40, 125, 168, 0.36) 50%, transparent 100%),
-    radial-gradient(38% 8% at 0% 40%, rgba(18, 59, 89, 0.6), rgba(40, 125, 168, 0.30) 50%, transparent 100%),
-    radial-gradient(48% 9% at 0% 58%, rgba(18, 59, 89, 0.72), rgba(40, 125, 168, 0.36) 50%, transparent 100%),
-    radial-gradient(44% 9% at 100% 72%, rgba(18, 59, 89, 0.7), rgba(40, 125, 168, 0.35) 50%, transparent 100%),
-    radial-gradient(46% 9% at 0% 90%, rgba(18, 59, 89, 0.66), rgba(40, 125, 168, 0.33) 50%, transparent 100%),
-    linear-gradient(
-      100deg,
-      rgba(40, 125, 168, 0.62) 0%,
-      rgba(40, 125, 168, 0.3) 14%,
-      rgba(135, 201, 229, 0.3) 30%,
-      rgba(217, 238, 247, 0) 46%,
-      rgba(217, 238, 247, 0) 58%,
-      rgba(135, 201, 229, 0.34) 76%,
-      rgba(40, 125, 168, 0.66) 100%
-    ),
-    linear-gradient(180deg, #e3f3fa 0%, var(--assembly-ice) 30%, #cfe8f4 62%, var(--assembly-ice) 100%);
-}
-/* Névoa clara e luz no centro (estática) */
-.assembly-page::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(42% 6% at 58% 3%, rgba(241, 248, 252, 0.9), transparent 100%),
-    radial-gradient(60% 5% at 44% 22%, rgba(241, 248, 252, 0.5), transparent 100%),
-    radial-gradient(56% 6% at 60% 49%, rgba(241, 248, 252, 0.5), transparent 100%),
-    radial-gradient(60% 5% at 40% 76%, rgba(241, 248, 252, 0.5), transparent 100%),
-    radial-gradient(36% 6% at 52% 95%, rgba(135, 201, 229, 0.45), transparent 100%);
-}
-.assembly-page > section::after {
-  background: rgba(40, 125, 168, 0.18);
-}
-.asm-container {
-  width: min(1200px, calc(100% - var(--gutter)));
-  margin-inline: auto;
-}
-.assembly-page h1,
-.assembly-page h2,
-.assembly-page h3 {
-  color: var(--assembly-ink);
-  font-family: "Sora Variable", sans-serif;
-}
-.assembly-page p {
-  color: var(--assembly-muted);
-}
-.assembly-page em {
-  font-style: normal;
-  color: var(--assembly-red);
-}
-.asm-section {
-  padding-block: clamp(64px, 8vw, 112px);
-}
-.asm-section h2 {
-  font-size: clamp(2rem, 3.2vw, 2.9rem);
-  font-weight: 700;
-  line-height: 1.14;
-  letter-spacing: -0.04em;
-  text-wrap: balance;
-}
-
-/* --- Botões --- */
-.asm-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-.asm-button {
-  min-height: 52px;
-  padding: 14px 22px;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-family: "DM Sans Variable", sans-serif;
-  font-weight: 650;
-  font-size: 1rem;
-  line-height: 1.3;
-  border: 1.5px solid transparent;
-  transition:
-    background-color 0.18s ease,
-    border-color 0.18s ease,
-    color 0.18s ease;
-}
-.asm-button-primary {
-  background: var(--assembly-red);
-  color: var(--assembly-snow);
-  box-shadow: 0 10px 24px -14px rgba(124, 29, 41, 0.8);
-}
-.asm-button-primary:hover {
-  background: var(--assembly-red-deep);
-}
-.asm-button-primary svg {
-  transition: transform 0.18s ease;
-}
-.asm-button-primary:hover svg {
-  transform: translateX(3px);
-}
-.asm-button-ghost {
-  background: rgba(241, 248, 252, 0.78);
-  border-color: var(--assembly-red);
-  color: var(--assembly-red);
-}
-.asm-button-ghost:hover {
-  border-color: var(--assembly-red-deep);
-  background: var(--assembly-snow);
-  color: var(--assembly-red-deep);
-}
-.assembly-page :is(a, button, summary):focus-visible {
-  outline: 3px solid var(--assembly-red);
-  outline-offset: 4px;
-}
-
-/* --- Hero --- */
-.asm-hero {
-  padding-block: clamp(36px, 5vw, 64px) 0;
-  border-bottom: 1px solid rgba(40, 125, 168, 0.28);
-}
-.asm-hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  align-items: stretch;
-  gap: clamp(24px, 4vw, 56px);
-}
-.asm-hero-copy {
-  align-self: center;
-  padding-bottom: clamp(32px, 4vw, 56px);
-}
-.asm-hero-grid.is-solo {
-  grid-template-columns: minmax(0, 46rem);
-}
-.asm-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  margin-bottom: 18px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--assembly-ink);
-}
-.asm-back:hover {
-  color: var(--assembly-red);
-}
-.asm-hero h1 {
-  font-size: clamp(2.15rem, 1.2rem + 3.6vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.04;
-  letter-spacing: -0.045em;
-  max-width: 12.5ch;
-  text-wrap: balance;
-}
-.asm-hero h1 em {
-  white-space: nowrap;
-}
-.asm-hero h1 {
-  margin-top: 0;
-}
-.asm-hero .asm-actions {
-  margin-top: 30px;
-}
-.assembly-page .asm-perk {
-  margin: 22px 0 0;
-  font-size: 0.9375rem;
-  color: var(--assembly-ink);
-}
-.asm-perk span {
-  font-weight: 700;
-  color: var(--assembly-red);
-}
-.asm-perk::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin: 0 12px 1px 2px;
-  background: var(--assembly-red);
-  transform: rotate(45deg);
-}
-/* Frase de encerramento: só o destaque vermelho, sem parágrafo longo acima */
-.assembly-page .asm-perk-final {
-  margin-top: 18px;
-  font-size: 1rem;
-}
-.asm-perk-final span {
-  font-weight: 700;
-  color: var(--assembly-red);
-}
-.asm-perk-final::before {
-  display: none;
-}
-.asm-hero-art {
-  display: flex;
-  align-items: flex-end;
-  align-self: end;
-  min-width: 0;
-}
-.asm-hero-art img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1312 / 1199;
-  object-fit: contain;
-}
-
-/* --- Seções explicativas: personagem (≈38%) + cards de fala (≈62%) --- */
-.asm-stage h2 {
-  max-width: 22ch;
-  margin-bottom: clamp(28px, 4vw, 48px);
-}
-.asm-stage-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 38fr) minmax(0, 62fr);
-  gap: clamp(20px, 3vw, 44px);
-  align-items: stretch;
-}
-.asm-stage-grid.is-right {
-  grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
-}
-.asm-stage-grid.is-right .asm-speaker {
-  order: 2;
-}
-/* Espaço do personagem: recorte sem moldura, com a base dissolvida na névoa */
-.asm-speaker {
-  position: relative;
-  min-height: 460px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  isolation: isolate;
-}
-.asm-speaker::before {
-  /* Luz glacial atrás do personagem */
-  content: "";
-  position: absolute;
-  inset: -6% -10% 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(34% 58% at 50% 60%, rgba(241, 248, 252, 0.7), rgba(241, 248, 252, 0.25) 55%, transparent 100%);
-}
-.asm-speaker::after {
-  /* Névoa no chão */
-  content: "";
-  position: absolute;
-  left: -12%;
-  right: -12%;
-  bottom: -14%;
-  height: 34%;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(241, 248, 252, 0.9), rgba(217, 238, 247, 0.4) 50%, transparent 100%);
-}
-.asm-speaker img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center bottom;
-}
-.assembly-page .asm-nameplate {
-  position: relative;
-  z-index: 2;
-  margin: 0 0 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  font-family: "Sora Variable", sans-serif;
-  font-size: 1.125rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--assembly-ink);
-}
-.asm-nameplate::after {
-  content: "";
-  width: 36px;
-  height: 3px;
-  background: var(--assembly-red);
-}
-
-/* Cards de fala */
-.asm-says {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 18px;
-}
-.asm-says.is-grid,
-.asm-says.is-stagger {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.asm-says.is-stagger > :nth-child(even) {
-  transform: translateY(36px);
-}
-.asm-says.is-stagger {
-  padding-bottom: 36px;
-}
-.asm-say {
-  position: relative;
-  padding: 22px 24px 24px;
-  border-radius: 8px;
-  background: rgba(241, 248, 252, 0.94);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.8) inset,
-    0 18px 34px -22px rgba(18, 59, 89, 0.65);
-  border-top: 3px solid var(--assembly-glacier);
-}
-.asm-says[data-who="Kratos"] .asm-say,
-.asm-process .asm-say {
-  border-top-color: var(--assembly-red);
-}
-/* Ponta angular da caixa de fala, apontando para o personagem */
-.asm-say::before {
-  content: "";
-  position: absolute;
-  top: 30px;
-  width: 14px;
-  height: 22px;
-  background: rgba(241, 248, 252, 0.94);
-  display: none;
-}
-.from-left.is-grid > :nth-child(odd)::before,
-.from-left.is-list > *::before {
-  display: block;
-  left: -13px;
-  clip-path: polygon(100% 0, 0 50%, 100% 100%);
-}
-.from-right.is-grid > :nth-child(even)::before,
-.from-right.is-stagger > :nth-child(even)::before {
-  display: block;
-  right: -13px;
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-}
-.asm-say-who {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--assembly-glacier);
-}
-.asm-says[data-who="Kratos"] .asm-say-who,
-.asm-process .asm-say-who {
-  color: var(--assembly-red);
-}
-.asm-say h3 {
-  font-size: 1.125rem;
-  font-weight: 650;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-}
-.asm-say p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--assembly-ink);
-}
-/* Lista de etapas: número em destaque à esquerda do card */
-.asm-says.is-list .asm-say {
-  display: grid;
-  grid-template-columns: 2.6rem 1fr;
-  column-gap: 16px;
-}
-.asm-says.is-list .asm-say > :not(.asm-say-number) {
-  grid-column: 2;
-}
-.asm-say-number {
-  grid-row: 1 / span 3;
-  grid-column: 1;
-  font-family: "Sora Variable", sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--assembly-red);
-}
-
-.asm-note {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin: 22px 0 0;
-  padding: 12px 16px;
-  border-radius: 8px;
-  background: rgba(241, 248, 252, 0.7);
-  border: 1px solid rgba(40, 125, 168, 0.3);
-  font-size: 0.9375rem;
-  line-height: 1.5;
-}
-.assembly-page .asm-note {
-  color: var(--assembly-ink);
-}
-.asm-note svg {
-  color: var(--assembly-glacier);
-}
-
-/* --- FAQ --- */
-.asm-faq-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: clamp(28px, 6vw, 96px);
-  align-items: start;
-}
-.asm-faq h2 {
-  max-width: 13ch;
-}
-.assembly-page .faq-list {
-  padding: 4px 28px;
-  border-radius: 8px;
-  background: rgba(241, 248, 252, 0.82);
-  box-shadow: 0 18px 34px -24px rgba(18, 59, 89, 0.6);
-}
-.assembly-page .faq-list details {
-  border-bottom-color: rgba(40, 125, 168, 0.22);
-}
-.assembly-page .faq-list details:last-child {
-  border-bottom: 0;
-}
-.assembly-page .faq-list summary {
-  min-height: 44px;
-  font-size: 1.0625rem;
-  color: var(--assembly-ink);
-}
-.assembly-page .faq-list summary svg {
-  color: var(--assembly-red);
-  transition: transform 0.2s ease;
-}
-.assembly-page .faq-list summary:hover {
-  color: var(--assembly-red);
-}
-.assembly-page .faq-list details p {
-  font-size: 1rem;
-  max-width: 40rem;
-  color: var(--assembly-ink);
-}
-
-/* --- Encerramento --- */
-.asm-final {
-  text-align: center;
-  background: radial-gradient(50% 70% at 50% 50%, rgba(241, 248, 252, 0.75), transparent 80%);
-}
-.asm-final-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.asm-final h2 {
-  font-size: clamp(2.1rem, 3.8vw, 3.5rem);
-  max-width: 16ch;
-}
-.assembly-page .asm-final p {
-  max-width: 36rem;
-  margin: 22px 0 34px;
-  font-size: 1.125rem;
-  color: var(--assembly-ink);
-}
-.asm-final .asm-actions {
-  justify-content: center;
-}
-.asm-back-end {
-  margin: 28px 0 0;
-}
-
-/* --- Tablet: cards em uma coluna ao lado do personagem --- */
-@media (max-width: 1023px) {
-  .asm-hero-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-  .asm-hero-copy {
-    padding-bottom: 0;
-  }
-  .asm-hero-art {
-    width: min(100%, 620px);
-    justify-self: center;
-  }
-  .asm-stage-grid,
-  .asm-stage-grid.is-right {
-    grid-template-columns: minmax(0, 34fr) minmax(0, 66fr);
-  }
-  .asm-stage-grid.is-right {
-    grid-template-columns: minmax(0, 66fr) minmax(0, 34fr);
-  }
-  .asm-says.is-grid,
-  .asm-says.is-stagger {
-    grid-template-columns: 1fr;
-  }
-  .asm-says.is-stagger > :nth-child(even) {
-    transform: none;
-  }
-  .asm-says.is-stagger {
-    padding-bottom: 0;
-  }
-  .from-left.is-grid > *::before {
-    display: block;
-    left: -13px;
-    right: auto;
-    clip-path: polygon(100% 0, 0 50%, 100% 100%);
-  }
-  .from-right.is-grid > *::before,
-  .from-right.is-stagger > *::before {
-    display: block;
-    right: -13px;
-    left: auto;
-    clip-path: polygon(0 0, 100% 50%, 0 100%);
-  }
-  .asm-speaker {
-    min-height: 360px;
-    align-self: start;
-    position: sticky;
-    top: 100px;
-  }
-  .asm-faq-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* --- Celular: uma coluna, personagem logo acima das falas, azul mais suave nas bordas --- */
-@media (max-width: 767px) {
-  .assembly-page {
-    background:
-      radial-gradient(70% 6% at 0% 4%, rgba(18, 59, 89, 0.45), rgba(40, 125, 168, 0.23) 50%, transparent 100%),
-      radial-gradient(70% 6% at 100% 30%, rgba(18, 59, 89, 0.4), rgba(40, 125, 168, 0.20) 50%, transparent 100%),
-      radial-gradient(70% 6% at 0% 58%, rgba(18, 59, 89, 0.4), rgba(40, 125, 168, 0.20) 50%, transparent 100%),
-      radial-gradient(70% 6% at 100% 82%, rgba(18, 59, 89, 0.4), rgba(40, 125, 168, 0.20) 50%, transparent 100%),
-      linear-gradient(100deg, rgba(40, 125, 168, 0.4) 0%, rgba(135, 201, 229, 0.25) 18%, rgba(217, 238, 247, 0) 40%, rgba(217, 238, 247, 0) 62%, rgba(135, 201, 229, 0.25) 84%, rgba(40, 125, 168, 0.42) 100%),
-      linear-gradient(180deg, #e3f3fa 0%, var(--assembly-ice) 30%, #cfe8f4 62%, var(--assembly-ice) 100%);
-  }
-  .asm-container {
-    width: calc(100% - 32px);
-  }
-  .asm-hero {
-    padding-top: 20px;
-  }
-  .asm-hero-grid {
-    gap: 20px;
-  }
-  .asm-hero-art {
-    max-width: 420px;
-  }
-  .asm-back {
-    margin-bottom: 8px;
-  }
-  .asm-hero h1 {
-    font-size: clamp(2.125rem, 9vw, 2.75rem);
-  }
-  .asm-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .asm-final .asm-actions {
-    width: 100%;
-  }
-  .asm-stage-grid,
-  .asm-stage-grid.is-right {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  .asm-stage-grid.is-right .asm-speaker {
-    order: 0;
-  }
-  /* Personagem compacto acima dos cards; sem arte, só o nome sobre a luz glacial */
-  .asm-speaker {
-    position: relative;
-    top: auto;
-    min-height: 260px;
-  }
-  .asm-speaker.is-empty {
-    min-height: 120px;
-  }
-  .asm-speaker.is-empty .asm-nameplate {
-    margin-bottom: 26px;
-  }
-  .asm-say::before,
-  .from-left.is-grid > *::before,
-  .from-left.is-list > *::before,
-  .from-right.is-grid > *::before,
-  .from-right.is-stagger > *::before {
-    display: none;
-  }
-  /* A primeira fala aponta para cima, para o personagem */
-  .asm-says > :first-child::before {
-    display: block;
-    top: -13px;
-    left: 50%;
-    right: auto;
-    width: 24px;
-    height: 14px;
-    translate: -50% 0;
-    clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  }
-  .asm-says {
-    gap: 12px;
-  }
-  .asm-say {
-    padding: 18px 18px 20px;
-  }
-  .asm-says.is-list .asm-say-number {
-    font-size: 1.6rem;
-  }
-  .assembly-page .faq-list {
-    padding: 0 18px;
-  }
-  .asm-final h2 {
-    font-size: clamp(2rem, 8.5vw, 2.5rem);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .asm-button,
-  .asm-button svg,
-  .assembly-page .faq-list summary svg {
-    transition: none;
-  }
-}
-
-/* ===== "Força sozinha não resolve.": cards à esquerda e Kratos estático à direita =====
-   O acabamento queimado dos cards é estático; a arte mantém o recorte original. */
-.asm-forge {
-  --char: #292325;
-  --burnt: #51302b;
-  --deep-red: #7f2028;
-  --ember: #c63c2d;
-  --hot: #f07835;
-  --spark: #ffd19a;
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(20px, 2vw, 28px);
-}
-.asm-forge-cards {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-}
-.asm-forge-card {
-  overflow: hidden;
-  isolation: isolate;
-  border-top: 0;
-  padding-bottom: 42px;
-  background: rgba(241, 248, 252, 0.96);
-  box-shadow: 0 18px 34px -22px rgba(18, 59, 89, 0.65);
-}
-.asm-forge-card > :not([aria-hidden]) {
-  position: relative;
-  z-index: 2;
-}
-.asm-forge-card .asm-say-who {
-  color: var(--deep-red);
-}
-/* Anel queimado: só a faixa da borda aparece (a máscara recorta o miolo) */
-.asm-burn,
-.asm-burn-hot {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  border-radius: inherit;
-  pointer-events: none;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box exclude,
-    linear-gradient(#000 0 0);
-}
-.asm-burn {
-  padding: 4px;
-  background:
-    /* brasas discretas em repouso */
-    radial-gradient(circle at 18% 1px, var(--ember) 0 1.2px, transparent 2.6px),
-    radial-gradient(circle at 63% calc(100% - 2px), var(--ember) 0 1.2px, transparent 2.6px),
-    radial-gradient(circle at 2px 71%, var(--ember) 0 1px, transparent 2.4px),
-    radial-gradient(circle at calc(100% - 2px) 28%, var(--ember) 0 1.2px, transparent 2.6px),
-    /* fissuras em vermelho profundo */
-    repeating-linear-gradient(118deg, transparent 0 13px, var(--deep-red) 13px 14.5px, transparent 14.5px 31px),
-    repeating-linear-gradient(64deg, transparent 0 21px, rgba(127, 32, 40, 0.8) 21px 22px, transparent 22px 47px),
-    /* carvão e marrom queimado, irregulares */
-    repeating-linear-gradient(103deg, var(--char) 0 9px, #3a2826 9px 14px, var(--burnt) 14px 19px, #2f2523 19px 27px, #46302b 27px 33px);
-}
-/* Chamuscado para dentro, desigual, sem chegar no texto */
-.asm-forge-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  background:
-    radial-gradient(38% 14px at 22% 0, rgba(81, 48, 43, 0.32), transparent),
-    radial-gradient(30% 12px at 78% 100%, rgba(81, 48, 43, 0.3), transparent),
-    radial-gradient(12px 34% at 0 64%, rgba(81, 48, 43, 0.28), transparent),
-    radial-gradient(14px 40% at 100% 30%, rgba(81, 48, 43, 0.3), transparent);
-  box-shadow: inset 0 0 9px rgba(41, 35, 37, 0.22);
-}
-/* Fissuras e brasas discretas, sem animação. */
-.asm-burn-hot {
-  padding: 5px;
-  opacity: 0.3;
-  background:
-    radial-gradient(circle at 18% 1px, var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
-    radial-gradient(circle at 63% calc(100% - 2px), var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
-    radial-gradient(circle at 2px 71%, var(--spark) 0 1.2px, var(--hot) 2px, transparent 3.6px),
-    radial-gradient(circle at calc(100% - 2px) 28%, var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
-    radial-gradient(circle at 41% calc(100% - 1px), var(--hot) 0 1.2px, transparent 3px),
-    radial-gradient(circle at calc(100% - 1px) 82%, var(--hot) 0 1.2px, transparent 3px),
-    repeating-linear-gradient(118deg, transparent 0 12.5px, var(--hot) 12.5px 15px, transparent 15px 31px),
-    repeating-linear-gradient(64deg, transparent 0 20.5px, var(--ember) 20.5px 22.5px, transparent 22.5px 47px),
-    linear-gradient(90deg, rgba(198, 60, 45, 0.55), rgba(127, 32, 40, 0.4) 50%, rgba(198, 60, 45, 0.55));
-}
-/* Preserva o destaque visual do card de placa de vídeo. */
-.asm-forge-card:nth-child(2) .asm-burn-hot {
-  opacity: 0.55;
-  background:
-    radial-gradient(10px 60px at 100% 66%, var(--spark), var(--hot) 35%, transparent 75%),
-    radial-gradient(circle at 18% 1px, var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
-    radial-gradient(circle at 63% calc(100% - 2px), var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
-    radial-gradient(circle at calc(100% - 2px) 28%, var(--spark) 0 1.4px, var(--hot) 2.2px, transparent 4px),
-    repeating-linear-gradient(118deg, transparent 0 12.5px, var(--hot) 12.5px 15px, transparent 15px 31px),
-    repeating-linear-gradient(64deg, transparent 0 20.5px, var(--ember) 20.5px 22.5px, transparent 22.5px 47px),
-    linear-gradient(90deg, rgba(198, 60, 45, 0.5), rgba(198, 60, 45, 0.75) 70%, rgba(240, 120, 53, 0.9));
-}
-/* Runa: fragmento do símbolo enviado, cortado no canto inferior externo */
-.asm-rune {
-  position: absolute;
-  z-index: 1;
-  right: var(--rx, -40px);
-  bottom: var(--ry, -50px);
-  width: var(--rs, 118px);
-  aspect-ratio: 420 / 392;
-  pointer-events: none;
-  background: url("/assets/runa-omega.webp") center / contain no-repeat;
-  transform: rotate(var(--rr, 0deg));
-  mix-blend-mode: multiply;
-  opacity: 0.2;
-}
-/* Fragmentos diferentes em cada card; só ~40 px aparecem, abaixo do texto */
-.asm-forge-card:nth-child(1) { --rx: -42px; --ry: -70px; --rr: -12deg; --rs: 116px; }
-.asm-forge-card:nth-child(2) { --rx: -30px; --ry: -78px; --rr: 8deg; --rs: 132px; }
-.asm-forge-card:nth-child(3) { --rx: -50px; --ry: -60px; --rr: 24deg; --rs: 104px; }
-.asm-forge-card:nth-child(4) { --rx: -30px; --ry: -76px; --rr: -28deg; --rs: 124px; }
-.asm-forge-card:nth-child(5) { --rx: -54px; --ry: -64px; --rr: 40deg; --rs: 110px; }
-.asm-forge-card:nth-child(6) { --rx: -36px; --ry: -72px; --rr: -4deg; --rs: 120px; }
-.asm-forge-card:nth-child(2) .asm-rune {
-  mix-blend-mode: normal;
-  opacity: 0.38;
-}
-
-/* Arte inteira, sem espelhamento, máscara, recorte ou posicionamento sobre os cards. */
-.asm-kratos {
-  display: block;
-  width: 100%;
-  max-width: 440px;
-  height: auto;
-  aspect-ratio: 989 / 1591;
-  justify-self: end;
-  object-fit: contain;
-  pointer-events: none;
-}
-
-@media (max-width: 1023px) {
-  .asm-forge {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .asm-kratos {
-    order: -1;
-    justify-self: center;
-    width: 220px;
-  }
-}
-@media (max-width: 767px) {
-  .asm-forge-cards {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .asm-kratos {
-    width: clamp(130px, 35vw, 170px);
-  }
-}
-
-/* Arte exclusiva da seção de etapas: inteira à esquerda, sem névoa sobre o recorte. */
-.asm-process .asm-stage-grid {
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.5fr);
-  align-items: center;
-  gap: clamp(24px, 3vw, 40px);
-}
-.asm-process-character {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.asm-process-character img {
-  display: block;
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  aspect-ratio: 989 / 1591;
-  object-fit: contain;
-}
-.assembly-page .asm-process-character .asm-nameplate {
-  margin: 16px 0 0;
-}
-@media (max-width: 767px) {
-  .asm-process .asm-stage-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .asm-process-character img {
-    width: clamp(130px, 35vw, 170px);
-  }
-  .assembly-page .asm-process-character .asm-nameplate {
-    margin-top: 12px;
-    font-size: 0.875rem;
-  }
-}
-
-/* Atreus aparece somente na seção de planejamento; as outras artes são independentes. */
-.asm-goals .asm-stage-grid {
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.55fr);
-  align-items: center;
-  gap: clamp(24px, 3vw, 40px);
-}
-.asm-goals-character {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-self: end;
-  min-width: 0;
-  width: 100%;
-  max-width: 340px;
-}
-.asm-goals-character img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 2 / 3;
-  object-fit: contain;
-}
-.assembly-page .asm-goals-character .asm-nameplate {
-  margin: 16px 0 0;
-}
-@media (max-width: 767px) {
-  .asm-goals .asm-stage-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .asm-goals-character {
-    justify-self: center;
-    width: clamp(140px, 36vw, 180px);
-  }
-  .assembly-page .asm-goals-character .asm-nameplate {
-    margin-top: 12px;
-    font-size: 0.875rem;
-  }
-}
-
-/* A arte de encerramento permanece à direita dos cards, na orientação recebida. */
-.asm-care .asm-stage-grid.is-right {
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.85fr);
-  align-items: center;
-  gap: clamp(24px, 3vw, 40px);
-}
-.asm-care-character {
-  order: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-self: start;
-  min-width: 0;
-  width: 100%;
-  max-width: 340px;
-}
-.asm-care-character img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 2 / 3;
-  object-fit: contain;
-}
-.assembly-page .asm-care-character .asm-nameplate {
-  margin: 16px 0 0;
-}
-@media (max-width: 767px) {
-  .asm-care .asm-stage-grid.is-right {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .asm-care-character {
-    order: -1;
-    justify-self: center;
-    width: clamp(140px, 36vw, 180px);
-  }
-  .assembly-page .asm-care-character .asm-nameplate {
-    margin-top: 12px;
-    font-size: 0.875rem;
-  }
-}
+  background: var(--asm-dark);
+  color: var(--asm-snow);
+  color-scheme: dark;
+}
+.theme-assembly ::selection { background: #a71925; color: #fff; }
+.theme-assembly :is(a,button,summary):focus-visible { outline: 3px solid #a71925; outline-offset: 5px; }
+.theme-assembly .asm-dark :is(a,button):focus-visible, .theme-assembly :is(.asm-header,.asm-footer) :is(a,button):focus-visible { outline-color: #f5d2d6; }
+.theme-assembly .skip-link { color: #183449; background: #e8edf4; }
+.theme-assembly main { overflow-x: clip; }
+.theme-assembly main > *::after { display: none; }
+.asm-container { width: min(1160px, calc(100% - 80px)); margin-inline: auto; }
+.asm-header { position: absolute; inset: 0 0 auto; z-index: 40; background: #21344829; }
+.asm-header-inner { min-height: 90px; display: flex; align-items: center; gap: 32px; }
+.asm-brand { display: inline-flex; flex: none; align-items: center; }
+.asm-brand img { width: 180px; height: auto; filter: brightness(0) invert(1); }
+.asm-nav { display: flex; align-items: center; justify-content: center; gap: 36px; margin-inline: auto; font-size: .9375rem; }
+.asm-nav a { min-height: 44px; display: inline-flex; align-items: center; text-underline-offset: 6px; }
+.asm-nav a:hover { text-decoration: underline; }
+.asm-header-contact { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 12px 17px; border: 1px solid #a71925; border-radius: 4px; background: #a71925; color: #fff; font-size: .875rem; font-weight: 650; }
+.asm-header-contact:hover { background: #86131e; border-color: #86131e; }
+.asm-menu-toggle { display: none; }
+.assembly-page { overflow: clip; }
+.asm-section { position: relative; isolation: isolate; background-size: cover; background-position: center; padding-block: 64px 50px; }
+.asm-section > .asm-container { position: relative; z-index: 2; }
+.asm-dark { color: #e8edf4; background-color: #25394b; background-image: linear-gradient(90deg, #1d3148a3, #25394b4a), url("/assets/assembly/fundo-escuro-1672.webp"); }
+.asm-light { color: #183449; color-scheme: light; background-color: #d4dee9; background-image: linear-gradient(90deg, #d4dee963, #d4dee938), url("/assets/assembly/fundo-claro-1672.webp"); }
+.asm-atmosphere { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+.asm-embers { position: absolute; inset: 0; background: url("/assets/assembly/brasas-1400.webp") center bottom / 100% auto no-repeat; opacity: .2; mask-image: linear-gradient(90deg, #000, transparent 6% 94%, #000); }
+.asm-ground-fog { position: absolute; inset: auto -5% -22px; height: 140px; background: url("/assets/upgrade/nevoa-1600.webp") center bottom / 100% auto no-repeat; opacity: .13; mask-image: linear-gradient(90deg, transparent, #000 20% 80%, transparent), linear-gradient(transparent, #000 60%, transparent); mask-composite: intersect; }
+.asm-light .asm-embers { opacity: .15; }
+.assembly-page :is(h1,h2) { font-family: "Cinzel Variable", Georgia, serif; font-weight: 650; text-transform: uppercase; letter-spacing: -.025em; line-height: 1.17; text-wrap: balance; margin: 0; }
+.assembly-page h1 { font-size: clamp(2.2rem, 3.7vw, 3.35rem); }
+.assembly-page h2 { font-size: clamp(1.9rem, 3vw, 2.65rem); }
+.assembly-page :is(h1,h2) em { font-style: normal; color: #f18189; }
+.assembly-page h3 { font-family: "DM Sans Variable", sans-serif; font-size: 1.0625rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.3; margin: 0; }
+.assembly-page p { margin: 0; line-height: 1.55; }
+.asm-dark p { color: #dce6f0; }
+.asm-light p { color: #3c5265; }
+.asm-ornament { display: block; width: 240px; max-width: 60%; margin-block: 15px 25px; color: #a71925; }
+.asm-dark .asm-ornament { color: #df7580; }
+.asm-ornament svg { display: block; width: 100%; height: 14px; }
+.asm-hero { padding-block: 108px 0; background-position: center 45%; }
+.asm-hero-grid { display: grid; grid-template-columns: minmax(0,1.45fr) minmax(0,1fr); gap: 32px; min-height: 520px; align-items: center; }
+.asm-hero-copy { padding-block: 30px 65px; }
+.asm-breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: .75rem; margin-bottom: 27px; color: #e2e9f2; }
+.asm-breadcrumb a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.asm-hero h1 > :is(span,em), .asm-process h2 > span, .asm-final h2 > span { display: block; }
+.asm-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.asm-button { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 14px 20px; gap: 12px; border: 1px solid transparent; border-radius: 4px; font-size: .9375rem; line-height: 1.3; font-weight: 650; transition: background-color .18s ease, border-color .18s ease; }
+.asm-button-primary { color: #fff; background: #a71925; border-color: #bf4351; }
+.asm-button-primary:hover { background: #86131e; border-color: #86131e; }
+.asm-button-ghost { background: #25394b33; border-color: #ccd9e794; color: #e8edf4; }
+.asm-button-ghost:hover { background: #25394b99; border-color: #e8edf4; }
+.assembly-page .asm-perk { display: flex; align-items: center; gap: 9px; margin-top: 22px; font-size: .875rem; color: #e0e8f1; }
+.asm-character { position: relative; align-self: end; justify-self: center; width: 320px; max-width: 100%; }
+.asm-character > img { display: block; width: 100%; height: auto; filter: saturate(.86) contrast(.98); mask-image: linear-gradient(#000 0 88%, #000c 94%, transparent); }
+.asm-character-fog { position: absolute; inset: auto -25% -2%; height: 24%; pointer-events: none; background: url("/assets/upgrade/nevoa-1600.webp") center / 100% 100% no-repeat; opacity: .2; mask-image: linear-gradient(90deg, transparent, #000 24% 76%, transparent), linear-gradient(transparent, #000 58%, transparent); mask-composite: intersect; }
+.asm-character--hero { width: 100%; }
+.asm-goals-grid { display: grid; grid-template-columns: minmax(0,.75fr) minmax(0,1.65fr); grid-template-rows: auto 1fr; gap: 0 44px; align-items: start; }
+.asm-goals-heading { grid-column: 2; grid-row: 1; }
+.asm-goals-heading h2 { font-size: clamp(1.7rem, 2.6vw, 2.35rem); }
+.asm-character--goals { grid-column: 1; grid-row: 1 / 3; width: 320px; }
+.asm-goal-cards { grid-column: 2; grid-row: 2; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+.asm-goal-cards li { border: 1px solid #728ba44a; border-top-color: #a719254d; border-radius: 5px; padding: 23px; background: #f1f5fa80; }
+.asm-goal-cards svg { color: #365e7b; margin-bottom: 15px; }
+.asm-goal-cards p { font-size: .9375rem; margin-top: 8px; }
+.asm-parts { background-position: center 65%; }
+.asm-parts-grid { display: grid; grid-template-columns: minmax(0,2.2fr) minmax(0,1fr); gap: 34px; align-items: end; }
+.asm-part-cards { list-style: none; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 15px; margin: 0; padding: 0; }
+.asm-forge-card { display: grid; grid-template-columns: 86px minmax(0,1fr); gap: 15px; align-items: center; min-height: 162px; padding: 18px 16px; border: 1px solid #95acc142; border-top-color: #d1636e99; border-radius: 5px; background: #203448b3; }
+.asm-part-image { width: 86px; height: 96px; display: flex; align-items: center; justify-content: center; }
+.asm-part-image img { width: 100%; height: 100%; object-fit: contain; }
+.asm-forge-card h3 { font-size: 1rem; }
+.asm-forge-card p { font-size: .875rem; margin-top: 7px; }
+.assembly-page .asm-illustrative { font-size: .75rem; margin-top: 12px; color: #d1deeb; }
+.asm-character--parts { width: 100%; }
+.asm-process-grid { display: grid; grid-template-columns: minmax(0,.82fr) minmax(0,1.4fr); grid-template-rows: auto 1fr; gap: 0 55px; align-items: start; }
+.asm-process-heading { grid-column: 2; grid-row: 1; }
+.asm-process-heading h2 { font-size: clamp(1.8rem, 2.9vw, 2.6rem); }
+.asm-character--process { grid-column: 1; grid-row: 1 / 3; width: 340px; }
+.asm-process-copy { grid-column: 2; grid-row: 2; }
+.asm-steps { list-style: none; padding: 0; margin: 0; }
+.asm-steps li { display: flex; align-items: center; gap: 22px; padding-block: 18px; border-bottom: 1px solid #59738a38; }
+.asm-step-number { min-width: 46px; align-self: start; color: #a71925; font: 600 34px/1.2 "Cinzel Variable", Georgia, serif; font-variant-numeric: tabular-nums; }
+.asm-steps h3 { font-family: "Cinzel Variable", Georgia, serif; font-size: 1.0625rem; font-weight: 700; }
+.asm-steps p { font-size: .875rem; margin-top: 7px; }
+.assembly-page .asm-note { display: flex; align-items: flex-start; gap: 8px; font-size: .8125rem; margin-top: 19px; color: #3c5265; }
+.asm-faq { position: relative; z-index: 2; border-top: 1px solid #59738a38; padding-top: 30px; margin-top: 38px; }
+.asm-faq > h3 { font-family: "Cinzel Variable", Georgia, serif; font-size: 1.25rem; margin-bottom: 15px; }
+.asm-faq .faq-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 32px; align-items: start; }
+.asm-faq .faq-list details { border-color: #59738a38; }
+.asm-faq .faq-list summary { min-height: 62px; padding-block: 18px; font-family: "DM Sans Variable", sans-serif; font-size: .9375rem; color: #183449; line-height: 1.45; }
+.asm-faq .faq-list summary:hover { color: #a71925; }
+.asm-faq .faq-list details p { font-size: .9375rem; margin: 0; padding-bottom: 20px; color: #3c5265; }
+.asm-final { text-align: center; padding-block: 75px 70px; background-position: center 85%; }
+.asm-final h2 { font-size: clamp(2rem, 3.5vw, 3rem); }
+.asm-final .asm-ornament { margin-inline: auto; }
+.asm-final .asm-actions, .asm-final .asm-perk { justify-content: center; }
+.asm-footer { position: relative; background: #25394b; color: #e0e8f1; padding-block: 28px; font-size: .8125rem; text-align: center; }
+.asm-footer > .asm-container { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.asm-footer .asm-brand img { width: 165px; }
+.asm-footer p { color: #e0e8f1; margin: 0; }
+.asm-footer-details { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px 24px; }
+.asm-footer-details a { display: inline-flex; align-items: center; gap: 5px; text-underline-offset: 5px; }
+.asm-footer-details a:hover { text-decoration: underline; }
+@media (max-width: 1050px) {
+  .asm-container { width: calc(100% - 56px); }
+  .asm-header-inner { gap: 24px; }
+  .asm-brand img { width: 155px; }
+  .asm-nav { gap: 24px; }
+  .asm-hero-grid { gap: 25px; }
+  .asm-hero h1 { font-size: clamp(2rem,3.7vw,3rem); }
+  .asm-actions { gap: 10px; }
+  .asm-button { padding-inline: 16px; font-size: .875rem; }
+  .asm-goals-grid, .asm-process-grid { column-gap: 28px; }
+  .asm-parts-grid { gap: 24px; }
+  .asm-forge-card { grid-template-columns: 70px minmax(0,1fr); gap: 12px; padding-inline: 13px; }
+  .asm-part-image { width: 70px; height: 85px; }
+}
+@media (max-width: 900px) {
+  .asm-hero-grid { display: flex; flex-direction: column; gap: 0; min-height: 0; }
+  .asm-hero-copy { width: 100%; padding-block: 24px 0; }
+  .asm-character--hero { width: 360px; align-self: center; margin-top: 25px; }
+  .asm-parts-grid { display: flex; flex-direction: column-reverse; gap: 0; }
+  .asm-character--parts { width: 180px; align-self: center; margin-bottom: 0; }
+  .asm-parts-content { width: 100%; }
+  .asm-part-cards { position: relative; z-index: 2; }
+  .asm-forge-card { grid-template-columns: 80px minmax(0,1fr); }
+  .asm-part-image { width: 80px; }
+  .asm-header-inner { gap: 18px; }
+  .asm-nav { gap: 18px; font-size: .875rem; }
+  .asm-header-contact { padding-inline: 12px; }
+  .asm-header-contact > span { display: none; }
+}
+@media (max-width: 700px) {
+  .asm-container { width: calc(100% - 40px); }
+  .asm-section { padding-block: 42px 36px; }
+  .asm-header-inner { min-height: 76px; gap: 16px; }
+  .asm-brand img { width: 145px; }
+  .asm-menu-toggle { display: grid; place-items: center; margin-left: auto; width: 44px; height: 44px; padding: 0; border: 0; color: #e8edf4; background: transparent; }
+  .asm-header-contact { padding: 0; width: 44px; min-height: 44px; }
+  .asm-nav { display: none; position: absolute; top: 76px; left: -20px; right: -20px; padding: 18px 20px; margin: 0; background: #25394b; border-bottom: 1px solid #8aa1b7; }
+  .asm-nav.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+  .asm-nav a { min-height: 44px; }
+  .asm-hero { padding-block: 96px 0; }
+  .asm-hero-copy { padding-top: 18px; }
+  .asm-breadcrumb { font-size: .6875rem; margin-bottom: 22px; gap: 8px; }
+  .asm-hero h1 { font-size: clamp(1.55rem,7.4vw,2.5rem); }
+  .asm-character--hero { width: 280px; margin-top: 18px; }
+  .asm-ornament { width: 190px; margin-block: 12px 20px; }
+  .asm-actions { gap: 10px; }
+  .asm-button { min-height: 48px; }
+  .assembly-page .asm-perk { align-items: flex-start; font-size: .8125rem; margin-top: 20px; }
+  .asm-perk svg { margin-top: 1px; }
+  .asm-goals-grid, .asm-process-grid { display: flex; flex-direction: column; gap: 0; }
+  .asm-goals-heading, .asm-process-heading { width: 100%; }
+  .asm-goals-heading h2, .asm-process-heading h2 { font-size: clamp(1.55rem,6.4vw,2rem); }
+  .asm-character--goals, .asm-character--process { width: 175px; align-self: center; margin-top: -5px; }
+  .asm-goal-cards { width: 100%; gap: 12px; margin-top: -5px; position: relative; z-index: 2; }
+  .asm-goal-cards li { padding: 18px; }
+  .asm-goal-cards h3 { font-size: 1rem; }
+  .asm-goal-cards p { font-size: .875rem; }
+  .asm-goal-cards svg { width: 26px; height: 26px; margin-bottom: 12px; }
+  .assembly-page h2 { font-size: clamp(1.6rem,6.5vw,2.05rem); }
+  .asm-character--parts { width: 175px; }
+  .asm-part-cards { gap: 12px; }
+  .asm-forge-card { display: flex; align-items: flex-start; flex-direction: column; padding: 17px; min-height: 0; gap: 12px; }
+  .asm-part-image { width: 75px; height: 72px; align-self: center; }
+  .asm-forge-card h3 { font-size: .9375rem; }
+  .asm-forge-card p { font-size: .875rem; }
+  .asm-process-copy { width: 100%; }
+  .asm-steps li { gap: 16px; padding-block: 17px; }
+  .asm-step-number { font-size: 28px; min-width: 37px; }
+  .asm-steps h3 { font-size: .9375rem; }
+  .asm-steps p { font-size: .875rem; }
+  .asm-faq { margin-top: 28px; padding-top: 24px; }
+  .asm-faq > h3 { font-size: 1.0625rem; }
+  .asm-faq .faq-list { grid-template-columns: 1fr; }
+  .asm-faq .faq-list summary { font-size: .875rem; }
+  .asm-faq .faq-list details p { font-size: .875rem; }
+  .asm-final { padding-block: 52px 48px; }
+  .asm-final h2 { font-size: clamp(1.8rem,7vw,2.25rem); }
+  .asm-final .asm-perk { text-align: left; }
+  .asm-embers { background-image: url("/assets/assembly/brasas-800.webp"); opacity: .17; }
+  .asm-ground-fog { height: 100px; }
+  .asm-dark { background-image: linear-gradient(90deg, #1d3148a3, #25394b4a), url("/assets/assembly/fundo-escuro-900.webp"); }
+  .asm-light { background-image: linear-gradient(90deg, #d4dee963, #d4dee938), url("/assets/assembly/fundo-claro-900.webp"); }
+}
+@media (max-width: 480px) {
+  .asm-goal-cards { grid-template-columns: 1fr; }
+  .asm-goal-cards li { display: grid; grid-template-columns: 30px 1fr; gap: 0 15px; }
+  .asm-goal-cards svg { grid-column: 1; grid-row: 1 / 3; margin: 0; }
+  .asm-goal-cards :is(h3,p) { grid-column: 2; }
+  .asm-part-cards { grid-template-columns: 1fr; }
+  .asm-forge-card { display: grid; grid-template-columns: 80px minmax(0,1fr); gap: 17px; align-items: center; padding: 18px; }
+  .asm-part-image { width: 80px; height: 90px; }
+}
+@media (prefers-reduced-motion: reduce) { .theme-assembly * { scroll-behavior: auto; transition: none; } }

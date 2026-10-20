@@ -17,6 +17,7 @@ Pessoas que precisam consertar, manter, montar ou melhorar um computador. A pág
 
 - O site principal preserva a identidade azul e clara existente.
 - A área gamer e o montador já têm tema próprio; montagem completa usa Kratos e Atreus em um cenário azul frio.
+- A montagem completa foi atualizada para cinco cenas Ragnarök alternadas escuras/claras, com Cinzel, logo original, personagens naturais e FAQ preservado. Direção em `docs/assembly-direction.md`, origens em `docs/assembly-assets.json`.
 - A nova rota `/gamer/upgrade-de-pecas` usa a composição Resident Evil fornecida pelo usuário, isolada em `.theme-upgrade`.
 - A referência e o contrato desta superfície estão em `docs/upgrade-direction.md`; as origens das imagens estão em `docs/upgrade-assets.json`.
 - `/gamer/limpeza-e-pasta-termica` usa Red Dead Redemption 2 com Arthur Morgan, cenários terrosos suaves e cinco seções. Direção em `docs/cleaning-direction.md`, imagens ilustrativas e origens em `docs/cleaning-assets.json`.

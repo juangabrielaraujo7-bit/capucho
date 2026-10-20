@@ -1,57 +1,35 @@
+import { useState } from "react";
 import { Link } from "react-router";
-import { ArrowLeft, ArrowRight, Info, WhatsappLogo } from "@phosphor-icons/react";
+import { ArrowRight, ArrowUpRight, Briefcase, Coins, GameController, Gear, Info, List, Monitor, WhatsappLogo, X } from "@phosphor-icons/react";
+import "@fontsource-variable/cinzel";
 import FaqList from "../components/FaqList";
-import AssemblyParts from "../components/AssemblyParts";
-import { asset, wa } from "../config";
+import { asset, business, maps, wa } from "../config";
 import "../assembly.css";
 
-// Página do serviço "Montagem completa" (card da área gamer), com a atmosfera de gelo azul
-// das referências de God of War Ragnarök. Cores e tipografia ficam isoladas em assembly.css.
-// Cada seção explicativa tem um personagem grande ao lado e as explicações em cards de fala.
-
 const builderPath = "/gamer/monte-seu-pc";
-const helpLink = wa(
-  "Olá! Quero ajuda para montar meu PC gamer. Gostaria de conversar sobre os jogos que pretendo jogar e meu orçamento.",
-);
-
-// Artes dos personagens: o usuário coloca os arquivos em public/assets/ e informa o nome aqui.
-// Com null, o espaço do personagem continua reservado, sem imagem.
-const characterArt = {
-  hero: "kratos-atreus-hero.webp",
-  atreus: null,
-  kratos: null,
-};
-
+const helpLink = wa("Olá, Capucho! Quero ajuda para montar meu PC gamer. Gostaria de conversar sobre meus jogos, meu monitor e meu orçamento para definir uma configuração compatível.");
+const media = name => asset(`assembly/${name}`);
 const goals = [
-  ["Seus jogos", "Quais jogos você quer rodar? Vamos começar por eles."],
-  ["Seu monitor", "Qual monitor você usa ou pretende comprar? A resolução e a taxa de atualização influenciam a escolha das peças."],
-  ["Além dos jogos", "Vai trabalhar, estudar, editar ou fazer lives nesse PC? Isso também conta."],
-  ["Seu orçamento", "Quanto pretende investir? A Capucho ajuda a escolher as prioridades."],
+  { title: "Seus jogos", text: "Quais jogos você quer rodar? Vamos começar por eles.", icon: GameController },
+  { title: "Seu monitor", text: "Resolução e taxa de atualização ajudam a orientar as escolhas.", icon: Monitor },
+  { title: "Além dos jogos", text: "Trabalho, estudo, edição ou lives também entram no plano.", icon: Briefcase },
+  { title: "Seu orçamento", text: "Definimos as prioridades para o seu investimento.", icon: Coins },
 ];
-
 const parts = [
-  ["Processador", "Escolha um processador para os seus jogos e tarefas. Ele precisa ser compatível com a placa-mãe."],
-  ["Placa de vídeo", "Considere os jogos, a resolução e a qualidade gráfica que você quer alcançar."],
-  ["Memória RAM", "É o espaço de trabalho dos jogos e programas. Capacidade e padrão precisam combinar com a configuração."],
-  ["SSD", "É onde ficam seus jogos e arquivos. Confira espaço, conexão e velocidade de carregamento."],
-  ["Fonte", "Não escolha só pelos watts. Qualidade, potência e conectores precisam atender ao conjunto."],
-  ["Refrigeração e gabinete", "As peças precisam caber e trabalhar bem refrigeradas. Espaço e circulação de ar importam."],
+  { title: "Processador", text: "Define o desempenho geral e precisa ser compatível com a placa-mãe.", image: "processador", height: 484 },
+  { title: "Placa de vídeo", text: "Responsável pelos gráficos dos seus jogos; também exige compatibilidade.", image: "placa-video", height: 465 },
+  { title: "Memória RAM", text: "Mais fluidez para jogos e outras tarefas, sempre na configuração ideal.", image: "memoria", height: 454 },
+  { title: "SSD", text: "Deixa o sistema e os jogos muito mais rápidos, com o tipo e a capacidade certos.", image: "ssd", height: 410 },
+  { title: "Fonte", text: "Fornece energia estável e segura para todo o sistema, com a potência adequada.", image: "fonte", height: 464 },
+  { title: "Refrigeração e gabinete", text: "Mantêm as temperaturas ideais e garantem um conjunto bonito e bem ventilado.", image: "refrigeracao", height: 485 },
 ];
-
 const steps = [
-  ["Escolha seu caminho", "Selecione as peças no montador ou peça ajuda à Capucho para definir a configuração."],
-  ["Confira o conjunto", "A Capucho confirma compatibilidade, disponibilidade, valor e prazo pelo WhatsApp."],
-  ["Aprove o orçamento", "Confira a proposta. A montagem só começa com a sua aprovação."],
-  ["Preparação e entrega", "A Capucho monta e testa o computador antes da entrega."],
+  ["Escolha seu caminho", "Use o montador ou peça ajuda para definir a configuração."],
+  ["Confira o conjunto", "Confirmamos compatibilidade, disponibilidade, valor e prazo."],
+  ["Aprove o orçamento", "A montagem começa com a sua aprovação."],
+  ["Preparação e entrega", "Montamos e testamos o computador antes da entrega."],
 ];
-
-const care = [
-  ["Conferência das peças", "A Capucho verifica a compatibilidade dos componentes."],
-  ["Pronto para usar", "O PC sai da loja com o Windows licenciado e os programas instalados."],
-  ["Já comprou suas peças?", "A Capucho também pode montar com elas, após verificar compatibilidade e condições."],
-  ["Montagem grátis", "Comprando as peças com a Capucho, a montagem não tem custo."],
-];
-
+// Condições já publicadas preservadas da implementação anterior.
 const faq = [
   ["Posso levar peças que já comprei?", "Sim. A Capucho verifica a compatibilidade e as condições das peças antes de realizar a montagem."],
   ["Vocês me ajudam a escolher os componentes?", "Sim. Conte quais jogos e programas pretende usar, qual monitor tem e quanto quer investir. A gente ajuda a avaliar a configuração."],
@@ -61,223 +39,55 @@ const faq = [
   ["O Windows e os programas já vêm instalados?", "Sim. O PC sai da loja com o Windows licenciado e os programas instalados, pronto para usar."],
 ];
 
+function AssemblyBrand() {
+  return <Link to="/" className="asm-brand" aria-label="Capucho Informática, página inicial"><img src={asset("logo-400.webp")} srcSet={`${asset("logo-400.webp")} 400w, ${asset("logo.webp")} 600w`} sizes="180px" width="600" height="204" alt="Capucho Informática" /></Link>;
+}
+
+export function AssemblyHeader() {
+  const [open, setOpen] = useState(false);
+  return <header className="asm-header"><div className="asm-container asm-header-inner">
+    <AssemblyBrand />
+    <button className="asm-menu-toggle" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="assembly-nav" aria-label={open ? "Fechar menu" : "Abrir menu"}>{open ? <X size={26} /> : <List size={26} />}</button>
+    <nav id="assembly-nav" className={`asm-nav${open ? " is-open" : ""}`} aria-label="Navegação da montagem de PC"><Link to="/gamer" onClick={() => setOpen(false)}>Área gamer</Link><a href="#montagem" onClick={() => setOpen(false)}>A montagem</a><a href="#como-funciona" onClick={() => setOpen(false)}>Como funciona</a></nav>
+    <a className="asm-header-contact" href={helpLink} target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp sobre montagem"><WhatsappLogo size={20} /><span>Falar no WhatsApp</span></a>
+  </div></header>;
+}
+
+export function AssemblyFooter() {
+  return <footer className="asm-footer"><div className="asm-container"><AssemblyBrand /><p>Área gamer · {business.city}</p><div className="asm-footer-details"><a href={maps} target="_blank" rel="noopener noreferrer">{business.street} · {business.district}</a><a href={helpLink} target="_blank" rel="noopener noreferrer">{business.phone}</a><a href={business.instagram} target="_blank" rel="noopener noreferrer">Instagram <ArrowUpRight size={14} /></a></div></div></footer>;
+}
+
 function Actions() {
-  return (
-    <div className="asm-actions">
-      <Link className="asm-button asm-button-primary" to={builderPath}>
-        Escolher minhas peças
-        <ArrowRight size={20} weight="bold" />
-      </Link>
-      <a
-        className="asm-button asm-button-ghost"
-        href={helpLink}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <WhatsappLogo size={21} />
-        Quero ajuda para montar
-      </a>
-    </div>
-  );
+  return <div className="asm-actions"><Link className="asm-button asm-button-primary" to={builderPath}>Escolher minhas peças <ArrowRight size={19} /></Link><a className="asm-button asm-button-ghost" href={helpLink} target="_blank" rel="noopener noreferrer">Quero ajuda para montar</a></div>;
 }
 
-// Personagem grande ao lado das falas, com a base dissolvida na névoa.
-function Speaker({ who }) {
-  const art = characterArt[who.toLowerCase()];
-  return (
-    <div className={art ? "asm-speaker" : "asm-speaker is-empty"}>
-      {art && <img src={asset(art)} alt="" loading="lazy" decoding="async" />}
-      <p className="asm-nameplate">{who}</p>
-    </div>
-  );
+function Ornament() {
+  return <span className="asm-ornament" aria-hidden="true"><svg viewBox="0 0 240 14" fill="none"><path d="M0 7h14m8 0h218M18 1v12M12 7l6-5 6 5-6 5z" stroke="currentColor" strokeWidth="1" /></svg></span>;
 }
 
-// Seção explicativa: título, personagem de um lado e cards de fala do outro.
-// As falas são textos originais da página, não citações do jogo.
-function StageSection({ id, title, who, side, layout, character, children }) {
-  return (
-    <section className={`asm-section asm-stage asm-${id}`} aria-labelledby={`asm-${id}-title`}>
-      <div className="asm-container">
-        <h2 id={`asm-${id}-title`}>{title}</h2>
-        <div className={`asm-stage-grid is-${side}`}>
-          {character ?? <Speaker who={who} />}
-          <div className="asm-stage-body">
-            <ul className={`asm-says is-${layout} from-${side}`} data-who={who}>
-              {children}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+function Atmosphere() {
+  return <div className="asm-atmosphere" aria-hidden="true"><span className="asm-embers" /><span className="asm-ground-fog" /></div>;
 }
 
-function Say({ who, title, number, children }) {
-  return (
-    <li className="asm-say">
-      {number && (
-        <span className="asm-say-number" aria-hidden="true">
-          {number}
-        </span>
-      )}
-      <span className="asm-say-who">{who}</span>
-      <h3>{title}</h3>
-      <p>“{children}”</p>
-    </li>
-  );
+function Character({ name, variant, alt, hero = false }) {
+  const large = hero ? 800 : 640;
+  const small = hero ? 480 : 360;
+  return <div className={`asm-character asm-character--${variant}${hero ? " asm-hero-art" : ""}`}><img src={media(`${name}-${large}.webp`)} srcSet={`${media(`${name}-${small}.webp`)} ${small}w, ${media(`${name}-${large}.webp`)} ${large}w`} sizes={hero ? "(max-width: 600px) 280px, (max-width: 900px) 360px, 40vw" : "(max-width: 900px) 180px, 340px"} width={large} height={hero ? 667 : 960} alt={alt} loading={hero ? "eager" : "lazy"} fetchPriority={hero ? "high" : undefined} decoding="async" /><span className="asm-character-fog" aria-hidden="true" /></div>;
 }
 
 export default function AssemblyPage() {
-  return (
-    <div className="assembly-page">
-      <section className="asm-hero">
-        <div className={characterArt.hero ? "asm-container asm-hero-grid" : "asm-container asm-hero-grid is-solo"}>
-          <div className="asm-hero-copy">
-            <Link className="asm-back" to="/gamer">
-              <ArrowLeft size={17} />
-              Área gamer
-            </Link>
-            <h1>
-              Seu próximo PC começa com as <em>escolhas certas.</em>
-            </h1>
-            <Actions />
-            <p className="asm-perk">
-              <span>Montagem grátis</span> comprando as peças com a Capucho.
-            </p>
-          </div>
-          {characterArt.hero && (
-            <div className="asm-hero-art">
-              <img
-                src={asset(characterArt.hero)}
-                srcSet={`${asset("kratos-atreus-hero-480.webp")} 480w, ${asset("kratos-atreus-hero-800.webp")} 800w, ${asset(characterArt.hero)} 1312w`}
-                sizes="(max-width: 451px) calc(100vw - 32px), (max-width: 767px) 420px, (max-width: 1023px) 620px, (max-width: 1280px) 48vw, 600px"
-                width="1312"
-                height="1199"
-                alt="Kratos e Atreus"
-                fetchPriority="high"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-          )}
-        </div>
-      </section>
+  return <div className="assembly-page">
+    <section className="asm-section asm-hero asm-dark" aria-labelledby="asm-hero-title"><Atmosphere /><div className="asm-container asm-hero-grid"><div className="asm-hero-copy">
+      <nav className="asm-breadcrumb" aria-label="Caminho da página"><Link to="/gamer">Área gamer</Link><span aria-hidden="true">/</span><span>Montagem completa</span></nav>
+      <h1 id="asm-hero-title"><span>Seu próximo PC</span><span>começa com as</span><em>escolhas certas.</em></h1><Ornament /><Actions /><p className="asm-perk"><Gear size={20} aria-hidden="true" /><span>Montagem grátis comprando as peças com a Capucho.</span></p>
+    </div><Character name="dupla-hero" variant="hero" hero alt="Kratos de barba cheia e Atreus adolescente sem barba, juntos em uma pose natural" /></div></section>
 
-      <StageSection
-        id="goals" title="Que jornada você quer encarar?" who="Atreus" side="left" layout="grid"
-        character={
-          <div className="asm-goals-character">
-            <img
-              src={asset("atreus-jornada.webp")}
-              srcSet={`${asset("atreus-jornada-360.webp")} 360w, ${asset("atreus-jornada-600.webp")} 600w, ${asset("atreus-jornada.webp")} 1024w`}
-              sizes="(max-width: 767px) 180px, (max-width: 1023px) 30vw, 340px"
-              width="1024"
-              height="1536"
-              alt="Atreus olhando e gesticulando para os cards de planejamento à direita"
-              loading="lazy"
-              decoding="async"
-            />
-            <p className="asm-nameplate">Atreus</p>
-          </div>
-        }
-      >
-        {goals.map(([title, text]) => (
-          <Say key={title} who="Atreus" title={title}>
-            {text}
-          </Say>
-        ))}
-      </StageSection>
+    <section id="objetivos" className="asm-section asm-goals asm-light" aria-labelledby="asm-goals-title"><Atmosphere /><div className="asm-container asm-goals-grid"><div className="asm-goals-heading"><h2 id="asm-goals-title">Que jornada você quer encarar?</h2><Ornament /></div><Character name="atreus-objetivos" variant="goals" alt="Atreus adolescente sem barba, segurando a alça da roupa e olhando para os objetivos à direita" /><ul className="asm-goal-cards">{goals.map(({ title, text, icon: Icon }) => <li key={title}><Icon size={30} weight="regular" aria-hidden="true" /><h3>{title}</h3><p>{text}</p></li>)}</ul></div></section>
 
-      <section className="asm-section asm-stage asm-parts" aria-labelledby="asm-parts-title">
-        <div className="asm-container">
-          <h2 id="asm-parts-title">
-            Força sozinha <em>não resolve.</em>
-          </h2>
-          <AssemblyParts cards={parts} />
-        </div>
-      </section>
+    <section id="montagem" className="asm-section asm-parts asm-dark" aria-labelledby="asm-parts-title"><Atmosphere /><div className="asm-container"><h2 id="asm-parts-title">Força sozinha <em>não resolve.</em></h2><Ornament /><div className="asm-parts-grid"><div className="asm-parts-content"><ul className="asm-part-cards">{parts.map(({ title, text, image, height }) => <li className="asm-forge-card" key={title}><div className="asm-part-image"><img src={asset(`upgrade/${image}-480.webp`)} width="480" height={height} alt="" loading="lazy" decoding="async" /></div><div><h3>{title}</h3><p>{text}</p></div></li>)}</ul><p className="asm-illustrative">Componentes ilustrativos, sem oferta de modelos específicos.</p></div><Character name="kratos-componentes" variant="parts" alt="Kratos com barba cheia em uma pose natural, à direita dos componentes" /></div></div></section>
 
-      <section className="asm-section asm-stage asm-process" aria-labelledby="asm-process-title">
-        <div className="asm-container">
-          <h2 id="asm-process-title">Um plano claro antes de começar.</h2>
-          <div className="asm-stage-grid is-left">
-            <div className="asm-process-character">
-              <img
-                src={asset("kratos-plano.webp")}
-                srcSet={`${asset("kratos-plano-360.webp")} 360w, ${asset("kratos-plano-600.webp")} 600w, ${asset("kratos-plano.webp")} 989w`}
-                sizes="(max-width: 767px) 170px, (max-width: 1280px) 36vw, 420px"
-                width="989"
-                height="1591"
-                alt="Kratos olhando e gesticulando para as etapas à direita"
-                loading="lazy"
-                decoding="async"
-              />
-              <p className="asm-nameplate">Kratos</p>
-            </div>
-            <div className="asm-stage-body">
-              <ol className="asm-says is-list from-left">
-                {steps.map(([title, text], i) => (
-                  <Say key={title} who="Kratos" title={title} number={String(i + 1).padStart(2, "0")}>
-                    {text}
-                  </Say>
-                ))}
-              </ol>
-              <p className="asm-note">
-                <Info size={19} aria-hidden="true" />
-                Valores estimados. Preço final, disponibilidade e prazo são confirmados pelo WhatsApp.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <section id="como-funciona" className="asm-section asm-process asm-light" aria-labelledby="asm-process-title"><Atmosphere /><div className="asm-container"><div className="asm-process-grid"><div className="asm-process-heading"><h2 id="asm-process-title"><span>Um plano claro</span><span>antes de começar.</span></h2><Ornament /></div><Character name="kratos-etapas" variant="process" alt="Kratos de barba cheia com a mão junto ao peito, em uma pose tranquila ao lado das etapas" /><div className="asm-process-copy"><ol className="asm-steps">{steps.map(([title, text], index) => <li key={title}><span className="asm-step-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol><p className="asm-note"><Info size={18} aria-hidden="true" />Valores estimados. Confirmação final pelo WhatsApp.</p></div></div><div className="asm-faq" aria-labelledby="asm-faq-title"><h3 id="asm-faq-title">Antes de montar, tire suas dúvidas.</h3><FaqList items={faq} name="faq-montagem" /></div></div></section>
 
-      <StageSection
-        id="care" title="A montagem termina quando o conjunto está pronto." who="Atreus" side="right" layout="stagger"
-        character={
-          <div className="asm-care-character">
-            <img
-              src={asset("atreus-pronto.webp")}
-              srcSet={`${asset("atreus-pronto-360.webp")} 360w, ${asset("atreus-pronto-600.webp")} 600w, ${asset("atreus-pronto.webp")} 1024w`}
-              sizes="(max-width: 767px) 180px, (max-width: 1023px) 30vw, 340px"
-              width="1024"
-              height="1536"
-              alt="Atreus olhando e gesticulando para os cards sobre os cuidados da montagem à esquerda"
-              loading="lazy"
-              decoding="async"
-            />
-            <p className="asm-nameplate">Atreus</p>
-          </div>
-        }
-      >
-        {care.map(([title, text]) => (
-          <Say key={title} who="Atreus" title={title}>
-            {text}
-          </Say>
-        ))}
-      </StageSection>
-
-      <section className="asm-section asm-faq" aria-labelledby="asm-faq-title">
-        <div className="asm-container asm-faq-grid">
-          <h2 id="asm-faq-title">Antes de montar, tire suas dúvidas.</h2>
-          <FaqList items={faq} name="faq-montagem" />
-        </div>
-      </section>
-
-      <section className="asm-section asm-final" aria-labelledby="asm-final-title">
-        <div className="asm-container asm-final-inner">
-          <h2 id="asm-final-title">
-            Vamos montar o seu <em>próximo PC?</em>
-          </h2>
-          <Actions />
-          <p className="asm-perk asm-perk-final">
-            <span>Comprando as peças com a Capucho, a mão de obra é gratuita.</span>
-          </p>
-          <Link className="asm-back asm-back-end" to="/gamer">
-            <ArrowLeft size={17} />
-            Voltar para a Área gamer
-          </Link>
-        </div>
-      </section>
-    </div>
-  );
+    <section className="asm-section asm-final asm-dark" aria-labelledby="asm-final-title"><Atmosphere /><div className="asm-container"><h2 id="asm-final-title"><span>Vamos montar</span><span>seu próximo PC?</span></h2><Ornament /><Actions /><p className="asm-perk"><Gear size={20} aria-hidden="true" /><span>Comprando as peças com a Capucho, a montagem não tem custo.</span></p></div></section>
+  </div>;
 }
