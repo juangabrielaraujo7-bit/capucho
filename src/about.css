@@ -119,6 +119,15 @@ a.about-social-node:hover{box-shadow:0 4px 16px #102c6014}
 .about-tiktok-row>div{flex:1}
 .about-tiktok-row h2{font-size:1.7rem}
 .about-tiktok-row p{margin:12px 0 0}
+.about-tiktok-heading{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.about-tiktok-heading h2{display:flex;align-items:center;flex-wrap:wrap;gap:.28em;margin:0;color:var(--navy);font-size:clamp(1.5rem,2.5vw,2rem);line-height:1.2;letter-spacing:-.03em}
+.about-tiktok-brand{display:inline-flex;align-items:center;gap:.24em;flex:none;font-size:1.15em}
+.about-tiktok-word,.about-tiktok-mark{display:block;position:relative;overflow:hidden;flex:none}
+.about-tiktok-word{width:2.72em;height:.9em}
+.about-tiktok-word img{position:absolute;max-width:none;width:3.95em;height:auto;left:-1.23em;top:-.23em}
+.about-tiktok-mark{width:.91em;height:1.03em}
+.about-tiktok-mark img{position:absolute;max-width:none;width:3.48em;height:auto;left:0;top:0}
+.about-tiktok-content{max-width:560px;margin:40px auto 0}
 .about-pending-label{font-size:.9rem;color:var(--muted);white-space:nowrap}
 .about-google-section{background:#f7f8fb}
 .about-google-title{max-width:650px;margin:0 auto 40px;color:var(--navy);font-size:clamp(1.4rem,2.1vw,2rem);line-height:1.4;letter-spacing:-.03em;text-align:center;text-wrap:balance}
@@ -193,6 +202,15 @@ a.about-social-node:hover{box-shadow:0 4px 16px #102c6014}
 .feature-carousel-dots button::after{content:"";width:7px;height:7px;background:#a3b3d0;border-radius:50%;transition:background .2s,transform .2s}
 .feature-carousel-dots button[aria-current="true"]::after{background:var(--blue);transform:scale(1.3)}
 .feature-carousel-pause{display:grid;place-items:center;width:32px;height:32px;background:#fff;border:1px solid #c8d2e6;color:var(--navy);border-radius:50%;cursor:pointer}
+.feature-carousel-compact{touch-action:pan-y}
+.feature-carousel-compact .feature-carousel-stage{height:374px}
+.feature-carousel-compact .feature-carousel-slide{width:184px}
+.feature-carousel-compact .feature-carousel-slide figcaption{font-size:.85rem}
+.feature-carousel-preview{border:0;padding:0;background:transparent;color:var(--navy);cursor:pointer}
+.feature-carousel-preview .instagram-reel{display:block}
+.feature-carousel-preview .instagram-reel>img{display:block;width:100%;height:100%;object-fit:cover}
+.feature-carousel-compact img{user-select:none;-webkit-user-drag:none}
+.feature-carousel-preview:focus-visible{outline:3px solid var(--blue);outline-offset:5px}
 @media(max-width:700px){
  .about-instagram-content{max-width:100%;margin-top:48px}
  .feature-carousel-stage{height:430px}
@@ -200,5 +218,11 @@ a.about-social-node:hover{box-shadow:0 4px 16px #102c6014}
  .feature-carousel-arrow{top:165px;width:38px;height:38px}
  .feature-carousel-prev{left:0}.feature-carousel-next{right:0}
  .feature-carousel-slide figcaption{font-size:.85rem}
+ .about-tiktok-heading{flex-direction:column;align-items:center;gap:20px;text-align:center}
+ .about-tiktok-heading h2{justify-content:center;max-width:340px}
+ .about-tiktok-heading .button{font-size:.9rem;padding:12px 18px}
+ .about-tiktok-content{margin-top:28px}
+ .feature-carousel-compact .feature-carousel-stage{height:354px}
+ .feature-carousel-compact .feature-carousel-slide{width:174px}
 }
 @media(prefers-reduced-motion:reduce){.feature-carousel-slide,.feature-carousel-dots button::after{transition:none}}

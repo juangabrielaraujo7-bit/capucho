@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowLeft, ArrowUpRight, TiktokLogo } from "@phosphor-icons/react";
+import { ArrowLeft, ArrowUpRight } from "@phosphor-icons/react";
 import Stars from "../components/Stars";
 import ReviewsMonitor from "../components/ReviewsMonitor";
 import FeatureCarousel from "../components/ui/FeatureCarousel";
@@ -47,8 +47,16 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section id="tiktok" className="section">
-        <div className="container about-tiktok-row"><TiktokLogo size={64} weight="duotone" /><div><h2>A Capucho também no TikTok.</h2></div>{aboutMedia.tiktok ? <a className="button button-outline" href={aboutMedia.tiktok} target="_blank" rel="noreferrer">Ver no TikTok <ArrowUpRight size={20} /></a> : <span className="about-pending-label">Perfil em breve</span>}</div>
+      <section id="tiktok" className="section about-tiktok-section" aria-labelledby="tiktok-title">
+        <div className="container">
+          <div className="about-tiktok-heading">
+            <h2 id="tiktok-title">A Capucho também no <span className="about-tiktok-brand"><span className="about-tiktok-word"><img src={asset("tiktok-brand.png")} alt="TikTok" width="494" height="146" loading="lazy" draggable="false" /></span><span className="about-tiktok-mark" aria-hidden="true"><img src={asset("tiktok-brand.png")} alt="" width="494" height="146" loading="lazy" draggable="false" /></span></span></h2>
+            <a className="button button-outline" href={aboutMedia.tiktok} target="_blank" rel="noopener noreferrer">Ver no TikTok <ArrowUpRight size={20} /></a>
+          </div>
+          <div className="about-tiktok-content">
+            <FeatureCarousel compact gestures arrows={false} initialIndex={0} label="Vídeos da Capucho no TikTok" items={[{ file: "tiktok-bastidores", title: "Quem usa SSD vai entender" }, { file: "tiktok-dia-a-dia", title: "Ryzen ou Intel?" }]} />
+          </div>
+        </div>
       </section>
       <section id="reputacao" className="section about-google-section" aria-label="Avaliações no Google">
         <div className="container">
