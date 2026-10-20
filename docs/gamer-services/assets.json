@@ -1,0 +1,82 @@
+[
+  {
+    "file": "public/assets/gamer-services/montagem-completa-400.webp",
+    "width": 400,
+    "height": 500,
+    "bytes": 53718,
+    "source": "public/area gamer/cards area gamer/14699fd0-85a3-4170-b185-bd50dc973afe.png",
+    "sourceWidth": 1122,
+    "sourceHeight": 1402,
+    "transformation": "Proportional resize and WebP encoding only; no retouching, mirroring or color filter."
+  },
+  {
+    "file": "public/assets/gamer-services/montagem-completa-720.webp",
+    "width": 720,
+    "height": 900,
+    "bytes": 151036,
+    "source": "public/area gamer/cards area gamer/14699fd0-85a3-4170-b185-bd50dc973afe.png",
+    "sourceWidth": 1122,
+    "sourceHeight": 1402,
+    "transformation": "Proportional resize and WebP encoding only; no retouching, mirroring or color filter."
+  },
+  {
+    "file": "public/assets/gamer-services/upgrade-de-pecas-400.webp",
+    "width": 400,
+    "height": 500,
+    "bytes": 30770,
+    "source": "public/area gamer/cards area gamer/7d3494db-31c5-448a-b430-9761a0abbf71.png",
+    "sourceWidth": 1122,
+    "sourceHeight": 1402,
+    "transformation": "Proportional resize and WebP encoding only; no retouching, mirroring or color filter."
+  },
+  {
+    "file": "public/assets/gamer-services/upgrade-de-pecas-720.webp",
+    "width": 720,
+    "height": 900,
+    "bytes": 98496,
+    "source": "public/area gamer/cards area gamer/7d3494db-31c5-448a-b430-9761a0abbf71.png",
+    "sourceWidth": 1122,
+    "sourceHeight": 1402,
+    "transformation": "Proportional resize and WebP encoding only; no retouching, mirroring or color filter."
+  },
+  {
+    "file": "public/assets/gamer-services/limpeza-e-pasta-termica-400.webp",
+    "width": 400,
+    "height": 500,
+    "bytes": 43464,
+    "source": "public/area gamer/cards area gamer/8e1625f5-879a-4224-8835-370939e8912e.png",
+    "sourceWidth": 1122,
+    "sourceHeight": 1402,
+    "transformation": "Proportional resize and WebP encoding only; no retouching, mirroring or color filter."
+  },
+  {
+    "file": "public/assets/gamer-services/limpeza-e-pasta-termica-720.webp",
+    "width": 720,
+    "height": 900,
+    "bytes": 116224,
+    "source": "public/area gamer/cards area gamer/8e1625f5-879a-4224-8835-370939e8912e.png",
+    "sourceWidth": 1122,
+    "sourceHeight": 1402,
+    "transformation": "Proportional resize and WebP encoding only; no retouching, mirroring or color filter."
+  },
+  {
+    "file": "public/assets/gamer-services/formatacao-e-programas-400.webp",
+    "width": 400,
+    "height": 500,
+    "bytes": 36620,
+    "source": "public/area gamer/cards area gamer/5a533b84-706d-4c0d-9f9a-ce10159ccbdc.png",
+    "sourceWidth": 1122,
+    "sourceHeight": 1402,
+    "transformation": "Proportional resize and WebP encoding only; no retouching, mirroring or color filter."
+  },
+  {
+    "file": "public/assets/gamer-services/formatacao-e-programas-720.webp",
+    "width": 720,
+    "height": 900,
+    "bytes": 106514,
+    "source": "public/area gamer/cards area gamer/5a533b84-706d-4c0d-9f9a-ce10159ccbdc.png",
+    "sourceWidth": 1122,
+    "sourceHeight": 1402,
+    "transformation": "Proportional resize and WebP encoding only; no retouching, mirroring or color filter."
+  }
+]

@@ -2325,31 +2325,6 @@ blockquote {
 .build-empty p {
   margin: 0;
 }
-.gamer-services {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-}
-.gamer-service {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 26px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  transition: border-color 0.2s;
-}
-.gamer-service:hover {
-  border-color: #a45ee0;
-}
-.gamer-service > svg {
-  color: #b57bff;
-}
-.gamer-service p {
-  margin: 0;
-  flex: 1;
-}
 .gamer-cta .gradient-band::after {
   background: radial-gradient(60% 90% at 50% 50%, rgba(18, 4, 31, 0.55), transparent);
 }
@@ -2929,9 +2904,6 @@ blockquote {
   font-size: 1.15rem;
 }
 @media (max-width: 1023px) {
-  .gamer-services {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   .builder-layout {
     grid-template-columns: 1fr;
   }
@@ -2958,7 +2930,6 @@ blockquote {
   .build-card {
     width: 205px;
   }
-  .gamer-services,
   .builder-presets ul {
     grid-template-columns: 1fr;
   }

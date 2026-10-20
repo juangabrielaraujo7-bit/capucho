@@ -1,11 +1,7 @@
 import { Link } from "react-router";
 import {
   ArrowUpRight,
-  Broom,
-  Cpu,
   GameController,
-  Screwdriver,
-  WindowsLogo,
 } from "@phosphor-icons/react";
 import BuildCarousel from "../components/BuildCarousel";
 import GlitchButton from "../components/GlitchButton";
@@ -15,31 +11,36 @@ import LiquidButton from "../components/LiquidButton";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { asset } from "../config";
 import { gamerBuilds } from "../gamer";
+import "../gamer-services.css";
 
 // Serviços da Capucho para quem joga, cada um levando à página do serviço correspondente.
 const gamerServices = [
   {
-    icon: Screwdriver,
+    image: "montagem-completa",
+    tone: "red",
     title: "Montagem completa",
-    text: "Seu PC gamer montado do zero com as peças escolhidas e testado antes da entrega.",
+    text: "Seu PC montado do zero, com peças escolhidas e testadas.",
     link: "/gamer/montagem-completa",
   },
   {
-    icon: Cpu,
+    image: "upgrade-de-pecas",
+    tone: "red",
     title: "Upgrade de peças",
-    text: "Placa de vídeo, processador, memória, SSD e fonte, conferindo a compatibilidade antes.",
+    text: "Mais desempenho com as peças certas para o seu PC.",
     link: "/gamer/upgrade-de-pecas",
   },
   {
-    icon: Broom,
+    image: "limpeza-e-pasta-termica",
+    tone: "ochre",
     title: "Limpeza e pasta térmica",
-    text: "Poeira removida e pasta térmica nova para o PC voltar a trabalhar mais frio.",
+    text: "Cuidado por dentro para o seu PC trabalhar mais frio.",
     link: "/gamer/limpeza-e-pasta-termica",
   },
   {
-    icon: WindowsLogo,
+    image: "formatacao-e-programas",
+    tone: "olive",
     title: "Formatação e programas",
-    text: "Windows limpo, com os drivers e os programas que você usa instalados.",
+    text: "Um novo começo, com sistema e programas organizados.",
     link: "/gamer/formatacao-e-programas",
   },
 ];
@@ -116,19 +117,37 @@ export default function GamerPage() {
         </GradientBand>
       </section>
 
-      <section className="section section-tint">
+      <section className="section gamer-services-section" aria-labelledby="gamer-services-title">
         <div className="container">
-          <h2 className="eyebrow section-label">O que fazemos no seu PC gamer</h2>
+          <div className="gamer-services-heading">
+            <p className="gamer-services-label">SERVIÇOS GAMER</p>
+            <h2 id="gamer-services-title">O que fazemos no seu PC gamer</h2>
+            <p>Escolha o serviço para o seu PC.</p>
+          </div>
           <div className="gamer-services">
-            {gamerServices.map(({ icon: Icon, title, text, link }) => (
-              <Link key={title} className="gamer-service" to={link}>
-                <Icon size={34} weight="duotone" />
-                <h3>{title}</h3>
-                <p>{text}</p>
-                <span className="text-link">
-                  Saiba mais
-                  <ArrowUpRight size={18} />
-                </span>
+            {gamerServices.map(({ image, tone, title, text, link }) => (
+              <Link key={title} className={`gamer-service gamer-service--${image}`} to={link} aria-labelledby={`service-${image}`}>
+                <div className="gamer-service-art">
+                  <img
+                    src={asset(`gamer-services/${image}-400.webp`)}
+                    srcSet={`${asset(`gamer-services/${image}-400.webp`)} 400w, ${asset(`gamer-services/${image}-720.webp`)} 720w`}
+                    sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 1023px) calc((100vw - 60px) / 2), (max-width: 1303px) calc((100vw - 140px) / 4), 291px"
+                    width="1122"
+                    height="1402"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="gamer-service-content">
+                  <span className={`gamer-service-rule gamer-service-rule--${tone}`} aria-hidden="true" />
+                  <h3 id={`service-${image}`}>{title}</h3>
+                  <p>{text}</p>
+                  <span className="gamer-service-link">
+                    Explorar serviço
+                    <ArrowUpRight size={18} aria-hidden="true" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
