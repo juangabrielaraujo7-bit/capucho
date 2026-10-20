@@ -131,7 +131,7 @@ export default function GamerPage() {
                   <img
                     src={asset(`gamer-services/${image}-400.webp`)}
                     srcSet={`${asset(`gamer-services/${image}-400.webp`)} 400w, ${asset(`gamer-services/${image}-720.webp`)} 720w`}
-                    sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 1023px) calc((100vw - 60px) / 2), (max-width: 1303px) calc((100vw - 140px) / 4), 291px"
+                    sizes="(max-width: 599px) min(340px, calc(100vw - 32px)), (max-width: 1023px) calc((100vw - 60px) / 2), (max-width: 1199px) calc((100vw - 140px) / 4), 265px"
                     width="1122"
                     height="1402"
                     alt=""

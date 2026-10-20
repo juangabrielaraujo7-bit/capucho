@@ -2,6 +2,7 @@
 .gamer-services-section {
   background: radial-gradient(ellipse at 85% 0, #25133e33, transparent 55%), #0d0918;
 }
+.gamer-services-section > .container { max-width: 1120px; }
 .gamer-services-heading { margin-bottom: 32px; }
 .gamer-services-heading .gamer-services-label {
   margin: 0 0 12px;
@@ -38,33 +39,33 @@
 .gamer-service--upgrade-de-pecas img { object-position: 48% 0%; }
 .gamer-service--limpeza-e-pasta-termica img { object-position: 50% 0%; }
 .gamer-service--formatacao-e-programas img { object-position: 50% 4%; }
-.gamer-service-content { display: flex; flex-direction: column; flex: 1; padding: 0 24px 24px; }
+.gamer-service-content { display: flex; flex-direction: column; flex: 1; padding: 0 20px 20px; }
 .gamer-service-rule { width: 32px; height: 3px; margin: 0 0 15px; background: #bc2436; }
 .gamer-service-rule--ochre { background: #c49340; }
 .gamer-service-rule--olive { background: #7b8d43; }
 .gamer-services-section .gamer-service h3 {
   color: #f8f5ff;
   font-family: "Montserrat Variable", sans-serif; /* impeccable-disable-line overused-font -- Fonte já usada nos cards gamer; identidade existente preservada conforme pedido. */
-  font-size: clamp(1.125rem, 1.55vw, 1.5rem);
+  font-size: 1.25rem;
   font-weight: 800;
   line-height: 1.25;
   letter-spacing: -.02em;
   min-height: 2.5em;
 }
-.gamer-service p { flex: 1; margin: 12px 0 28px; color: #b8aecf; font-size: 1rem; line-height: 1.6; }
+.gamer-service p { flex: 1; margin: 10px 0 22px; color: #b8aecf; font-size: .9375rem; line-height: 1.6; }
 .gamer-service-link { display: flex; align-items: center; gap: 10px; color: #bd86f5; font-size: .9375rem; font-weight: 700; line-height: 1.5; }
 .gamer-service:hover .gamer-service-link { color: #d5b0ff; }
 .gamer-services-section ::selection { background: #7041a3; color: #fff; }
 @media (max-width: 1023px) {
   .gamer-services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .gamer-services-section .gamer-service h3 { font-size: 1.5rem; }
+  .gamer-services-section .gamer-service h3 { font-size: 1.375rem; }
 }
 @media (max-width: 599px) {
   .gamer-services-section { padding-block: 60px; }
   .gamer-services-heading { margin-bottom: 28px; }
   .gamer-services-heading > p:last-child { font-size: 1rem; }
-  .gamer-services { grid-template-columns: 1fr; gap: 24px; }
-  .gamer-services-section .gamer-service h3 { font-size: 1.4375rem; min-height: 0; }
+  .gamer-services { grid-template-columns: 1fr; gap: 24px; max-width: 340px; margin-inline: auto; }
+  .gamer-services-section .gamer-service h3 { font-size: 1.375rem; min-height: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .gamer-service { transition: none; }

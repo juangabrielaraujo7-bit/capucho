@@ -6,14 +6,16 @@ Refinamento local da seção “O que fazemos no seu PC gamer”, conforme `dire
 
 A seção anterior de cards de texto e ícones foi substituída por quatro cards ilustrados, mantendo os serviços e seus destinos. O diff de `src/styles.css` remove apenas as regras anteriores desses cards e seus ajustes responsivos; as regras atuais ficam em `src/gamer-services.css`. A comparação de SSR confirmou preservação exata do conteúdo fora da seção. As páginas de destino permanecem preservadas.
 
+Após essa implementação, o usuário pediu “deixe um pouco menor os cards”. O ajuste de tamanho posterior prevalece sobre o padding24 do briefing original. A alteração de interface ficou restrita a `src/gamer-services.css` e ao atributo `sizes` das imagens em `src/pages/GamerPage.jsx`; os assets não mudaram. Em 1440px, os cards passaram de 291px para 265px de largura e de aproximadamente 502,5px para 455,5px de altura, uma redução de 9,4% na altura.
+
 ## Valores implementados
 
 - Fundo da seção: `#0d0918`, com iluminação radial discreta `#25133e33`; base dos cards `#100b1b`.
 - Títulos: `#f8f5ff`; descrições: `#b8aecf`; rótulo: `#b57bff`; links e borda de hover: `#bd86f5`; borda normal: `#7c49ad`; foco: `#d5b0ff`.
 - Traços: vermelho `#bc2436` nos dois primeiros serviços, ocre `#c49340` na limpeza e oliva `#7b8d43` na formatação.
-- Cards com raio de 16px, conteúdo com 24px de padding lateral e inferior, arte quadrada e fade CSS restrito aos 28% inferiores da imagem. Sem filtro nas artes.
-- Grid de quatro colunas, duas até 1023px e uma até 599px; intervalos de 20px e 24px no celular. Títulos desktop reservam duas linhas e os links inferiores ficam alinhados por linha do grid.
-- Montserrat Variable existente nos títulos, peso 800; descrições de 1rem com entrelinha 1.6. O detector sinalizou uma vez `overused-font`; a exceção estreita está documentada junto à declaração CSS para preservar a fonte existente conforme pedido do usuário.
+- Container da seção com máximo de 1120px, anteriormente 1224px. Cards com raio de 16px, conteúdo com 20px de padding lateral e inferior, arte quadrada e fade CSS restrito aos 28% inferiores da imagem. Sem filtro nas artes.
+- Grid de quatro colunas, duas até 1023px e uma até 599px; intervalos de 20px e 24px no celular. No celular, largura máxima de 340px e centralização horizontal. Títulos desktop reservam duas linhas e os links inferiores ficam alinhados por linha do grid.
+- Montserrat Variable existente nos títulos, peso 800, tamanho de 20px no desktop e 22px em tablet/celular; descrições de 15px com entrelinha 1.6 e margens de 10px acima e 22px abaixo. O detector sinalizou uma vez `overused-font`; a exceção estreita está documentada junto à declaração CSS para preservar a fonte existente conforme pedido do usuário.
 - Hover de -3px com transição de 0.2s; movimento e transição desativados com preferência de movimento reduzido. Foco visível de 3px com afastamento de 5px.
 
 ## Artes e proveniência
@@ -24,10 +26,10 @@ As imagens têm dimensões declaradas, `srcSet`, `sizes`, carregamento adiado e 
 
 ## Evidências e resultado
 
-A revisão independente comparou a referência e sete capturas finais. Veredito: **pronto para publicar**, sem correção pendente. As quatro artes e os enquadramentos foram aprovados, assim como a hierarquia, o alinhamento dos textos e links e a resposta em 4/2/1 colunas.
+A revisão independente inicial comparou a referência e sete capturas finais. Após a redução, uma nova revisão independente (`gamer_cards_compact_review`) abriu a captura enviada pelo usuário e sete novas capturas. Veredito final: **pronto para publicar**, sem correção material pendente. Faces, chapéu, legibilidade, textos, destinos e conteúdo fora da seção foram preservados. As quatro artes e os enquadramentos foram aprovados, assim como a hierarquia, o alinhamento dos textos e links e a resposta em 4/2/1 colunas.
 
-Os resultados registrados em `.qa/gamer-services-checks.json` cobrem larguras de 360, 390, 768 e 1440px: sem overflow horizontal, conteúdo cortado, erros ou recursos ausentes. Confirmam fonte e cores calculadas, ausência de filtros, enquadramentos individuais e preservação fora da seção. Textos e destinos foram conferidos: montagem completa, upgrade de peças, limpeza e pasta térmica e formatação e programas levam às respectivas rotas `/gamer/…`.
+Os resultados atualizados após a redução, registrados em `.qa/gamer-services-checks.json`, cobrem larguras de 360, 390, 768 e 1440px: sem overflow horizontal, conteúdo cortado, erros ou recursos ausentes. Confirmam fonte e cores calculadas, ausência de filtros, enquadramentos individuais e preservação fora da seção. Em 1440px, os quatro cards medem 455,5px de altura. Textos e destinos foram conferidos: montagem completa, upgrade de peças, limpeza e pasta térmica e formatação e programas levam às respectivas rotas `/gamer/…`.
 
 Cada card é um único link, nomeado pelo título, com imagem decorativa e indicador visual de destino. Tab, Enter e navegação real até a montagem completa foram verificados; os quatro endereços e seus arquivos de destino pré-renderizados foram conferidos. Hover de -3px, preferência de movimento reduzido, dimensões de imagem e carregamento adiado também foram conferidos.
 
-Build concluído com 18 rotas e página 404. Permanece apenas o aviso preexistente de tamanho de chunk, sem falha de build. A revisão autoriza o início do deploy; este registro não afirma que a publicação já ocorreu.
+Novo build após a redução concluído com 18 rotas e página 404. Permanece apenas o aviso preexistente de tamanho de chunk, sem falha de build. A revisão autoriza o início do deploy; este registro não afirma que a publicação já ocorreu.
