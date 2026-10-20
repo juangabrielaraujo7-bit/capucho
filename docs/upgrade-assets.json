@@ -1,0 +1,127 @@
+[
+  {
+    "file": "leon-jaqueta-720.webp",
+    "width": 720,
+    "height": 1080,
+    "bytes": 176972,
+    "source": "public/area gamer/pagina resident evil/Leon Kennedy em pose tática-1.png"
+  },
+  {
+    "file": "leon-jaqueta-420.webp",
+    "width": 420,
+    "height": 630,
+    "bytes": 68176,
+    "source": "public/area gamer/pagina resident evil/Leon Kennedy em pose tática-1.png"
+  },
+  {
+    "file": "leon-upgrade-720.webp",
+    "width": 720,
+    "height": 1167,
+    "bytes": 183764,
+    "source": "public/area gamer/pagina resident evil/36959574-87a2-411a-9cec-b8da428ceb4d.png"
+  },
+  {
+    "file": "leon-upgrade-420.webp",
+    "width": 420,
+    "height": 681,
+    "bytes": 66630,
+    "source": "public/area gamer/pagina resident evil/36959574-87a2-411a-9cec-b8da428ceb4d.png"
+  },
+  {
+    "file": "ada-sinais-620.webp",
+    "width": 620,
+    "height": 1102,
+    "bytes": 127928,
+    "source": "public/area gamer/pagina resident evil/6b9617d9-bacb-46ba-9988-b6c12a3b13bf.png"
+  },
+  {
+    "file": "ada-sinais-360.webp",
+    "width": 360,
+    "height": 640,
+    "bytes": 47836,
+    "source": "public/area gamer/pagina resident evil/6b9617d9-bacb-46ba-9988-b6c12a3b13bf.png"
+  },
+  {
+    "file": "ada-etapas-620.webp",
+    "width": 620,
+    "height": 1102,
+    "bytes": 161170,
+    "source": "public/area gamer/pagina resident evil/fd3ac002-5791-46be-89d5-94f76135b64f.png"
+  },
+  {
+    "file": "ada-etapas-360.webp",
+    "width": 360,
+    "height": 640,
+    "bytes": 54478,
+    "source": "public/area gamer/pagina resident evil/fd3ac002-5791-46be-89d5-94f76135b64f.png"
+  },
+  {
+    "file": "memoria-480.webp",
+    "width": 480,
+    "height": 454,
+    "bytes": 32598,
+    "source": "public/area gamer/pagina resident evil/0cd4c1b3-6153-4637-878d-8527e63bbcf9.png",
+    "transparentPaddingTrimmed": true
+  },
+  {
+    "file": "placa-video-480.webp",
+    "width": 480,
+    "height": 465,
+    "bytes": 40632,
+    "source": "public/area gamer/pagina resident evil/31bb9bdf-50c7-4b85-afa4-92ad247d723d.png",
+    "transparentPaddingTrimmed": true
+  },
+  {
+    "file": "fonte-480.webp",
+    "width": 480,
+    "height": 464,
+    "bytes": 46188,
+    "source": "public/area gamer/pagina resident evil/6011133a-9dcf-495f-a85e-33285793eac4.png",
+    "transparentPaddingTrimmed": true
+  },
+  {
+    "file": "processador-480.webp",
+    "width": 480,
+    "height": 484,
+    "bytes": 36582,
+    "source": "public/area gamer/pagina resident evil/8a32cf5a-21e7-4919-b26b-70ec7b9a1f57.png",
+    "transparentPaddingTrimmed": true
+  },
+  {
+    "file": "refrigeracao-480.webp",
+    "width": 480,
+    "height": 485,
+    "bytes": 56684,
+    "source": "public/area gamer/pagina resident evil/a518d969-6d5d-421f-bdd7-05ec92b3c198.png",
+    "transparentPaddingTrimmed": true
+  },
+  {
+    "file": "ssd-480.webp",
+    "width": 480,
+    "height": 410,
+    "bytes": 29494,
+    "source": "public/area gamer/pagina resident evil/abf7ea87-781c-49c3-ba49-9d4cecc12d14.png",
+    "transparentPaddingTrimmed": true
+  },
+  {
+    "file": "floresta-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 56094,
+    "source": "public/area gamer/pagina resident evil/b35aa705-7244-447f-90e0-528e6953f8be.png"
+  },
+  {
+    "file": "floresta-900.webp",
+    "width": 900,
+    "height": 507,
+    "bytes": 24174,
+    "source": "public/area gamer/pagina resident evil/b35aa705-7244-447f-90e0-528e6953f8be.png"
+  },
+  {
+    "file": "nevoa-1600.webp",
+    "width": 1600,
+    "height": 640,
+    "bytes": 236880,
+    "source": "public/area gamer/pagina resident evil/10a599c1-2b5e-4411-bd41-9dd254bbcdc8.png"
+  }
+]

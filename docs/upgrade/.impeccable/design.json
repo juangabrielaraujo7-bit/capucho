@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T14:12:44.9068370Z",
+  "title": "Design System: Capucho — Upgrade Resident Evil",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "displayName": "Floresta noturna",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.018 240)",
+          "oklch(26% 0.018 240)",
+          "oklch(38% 0.018 240)",
+          "oklch(49% 0.018 240)",
+          "oklch(61% 0.018 240)",
+          "oklch(72% 0.018 240)",
+          "oklch(84% 0.018 240)",
+          "oklch(95% 0.018 240)"
+        ]
+      },
+      "ink": {
+        "displayName": "Marfim",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.008 105)",
+          "oklch(26% 0.008 105)",
+          "oklch(38% 0.008 105)",
+          "oklch(49% 0.008 105)",
+          "oklch(61% 0.008 105)",
+          "oklch(72% 0.008 105)",
+          "oklch(84% 0.008 105)",
+          "oklch(95% 0.008 105)"
+        ]
+      },
+      "muted": {
+        "displayName": "Cinza frio",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.008 220)",
+          "oklch(26% 0.008 220)",
+          "oklch(38% 0.008 220)",
+          "oklch(49% 0.008 220)",
+          "oklch(61% 0.008 220)",
+          "oklch(72% 0.008 220)",
+          "oklch(84% 0.008 220)",
+          "oklch(95% 0.008 220)"
+        ]
+      },
+      "red": {
+        "displayName": "Vermelho de reforço",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.23 22)",
+          "oklch(26% 0.23 22)",
+          "oklch(38% 0.23 22)",
+          "oklch(49% 0.23 22)",
+          "oklch(61% 0.23 22)",
+          "oklch(72% 0.23 22)",
+          "oklch(84% 0.23 22)",
+          "oklch(95% 0.23 22)"
+        ]
+      },
+      "red-hover": {
+        "displayName": "Vermelho em hover",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.2 22)",
+          "oklch(26% 0.2 22)",
+          "oklch(38% 0.2 22)",
+          "oklch(49% 0.2 22)",
+          "oklch(61% 0.2 22)",
+          "oklch(72% 0.2 22)",
+          "oklch(84% 0.2 22)",
+          "oklch(95% 0.2 22)"
+        ]
+      },
+      "border": {
+        "displayName": "Borda fria",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.018 230)",
+          "oklch(26% 0.018 230)",
+          "oklch(38% 0.018 230)",
+          "oklch(49% 0.018 230)",
+          "oklch(61% 0.018 230)",
+          "oklch(72% 0.018 230)",
+          "oklch(84% 0.018 230)",
+          "oklch(95% 0.018 230)"
+        ]
+      },
+      "panel": {
+        "displayName": "Painel translúcido",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.018 240)",
+          "oklch(26% 0.018 240)",
+          "oklch(38% 0.018 240)",
+          "oklch(49% 0.018 240)",
+          "oklch(61% 0.018 240)",
+          "oklch(72% 0.018 240)",
+          "oklch(84% 0.018 240)",
+          "oklch(95% 0.018 240)"
+        ]
+      },
+      "white": {
+        "displayName": "Branco",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(38% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "body": {
+        "displayName": "Leitura",
+        "purpose": "Texto e controles em DM Sans."
+      },
+      "headline": {
+        "displayName": "Título de seção",
+        "purpose": "Hierarquia condensada em caixa alta."
+      },
+      "display": {
+        "displayName": "Título de abertura",
+        "purpose": "Hero em Bebas Neue com desgaste CSS."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "value": "background-color .18s, border-color .18s",
+        "purpose": "Resposta de hover dos CTAs; desativada em prefers-reduced-motion.",
+        "name": "button-state"
+      },
+      {
+        "value": "transform .18s ease",
+        "purpose": "Sublinhado de navegação; desativado em prefers-reduced-motion.",
+        "name": "nav-underline"
+      }
+    ],
+    "breakpoints": [
+      {
+        "value": "1100px",
+        "name": "compact-desktop"
+      },
+      {
+        "value": "700px",
+        "name": "mobile"
+      }
+    ]
+  },
+  "components": [
+    {
+      "html": "<a class=\"ds-primary\" href=\"#\">Quero fazer um upgrade <svg aria-hidden=\"true\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg></a>",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "name": "CTA primário",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:54px;padding:15px 24px;border:1px solid transparent;border-radius:3px;font:650 1rem/1.25 \"DM Sans Variable\",sans-serif;text-decoration:none;transition:background-color .18s,border-color .18s;background:var(--up-red,#eb0927);color:#fff}.ds-primary:hover{background:#bf071f}.ds-primary:focus-visible { outline:2px solid #f7f3e9; outline-offset:5px; }@media(max-width:700px){.ds-primary{min-height:48px;padding:13px 17px;font-size:.875rem;gap:10px}}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}",
+      "description": "Link de ação para orçamento no WhatsApp."
+    },
+    {
+      "html": "<a class=\"ds-outline\" href=\"#\">Ver possibilidades</a>",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "name": "CTA contornado",
+      "css": ".ds-outline{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:54px;padding:15px 24px;border:1px solid transparent;border-radius:3px;font:650 1rem/1.25 \"DM Sans Variable\",sans-serif;text-decoration:none;transition:background-color .18s,border-color .18s;background:#02070a33;border-color:#a5adb0;color:var(--up-ink,#eaeae4)}.ds-outline:hover{background:#d4dfeb12;border-color:var(--up-ink,#eaeae4)}.ds-outline:focus-visible { outline:2px solid #f7f3e9; outline-offset:5px; }@media(max-width:700px){.ds-outline{min-height:48px;padding:13px 17px;font-size:.875rem}}@media(prefers-reduced-motion:reduce){.ds-outline{transition:none}}",
+      "description": "Link para explorar as possibilidades na página."
+    },
+    {
+      "description": "Links do header com estado atual sublinhado.",
+      "css": ".ds-nav{display:flex;align-items:center;gap:36px;background:var(--up-bg,#060d11);padding:12px;font:600 .9375rem \"DM Sans Variable\",sans-serif}.ds-nav a{position:relative;padding:14px 0;color:var(--up-ink,#eaeae4);text-decoration:none}.ds-nav a::after{content:\"\";position:absolute;bottom:4px;left:0;right:0;height:2px;background:var(--up-red,#eb0927);transform:scaleX(0);transition:transform .18s ease}.ds-nav a:hover::after,.ds-nav .ds-current::after{transform:scaleX(1)}.ds-nav a:focus-visible{outline:2px solid #f7f3e9;outline-offset:5px}@media(max-width:700px){.ds-nav{flex-direction:column;align-items:stretch;gap:10px;background:#071116fa;padding:18px 24px 24px;border-bottom:1px solid var(--up-border,rgba(169,188,198,.3))}.ds-nav a::after{right:auto;width:30px}}@media(prefers-reduced-motion:reduce){.ds-nav a::after{transition:none}}",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navegação de upgrades\"><a href=\"#\">Área gamer</a><a class=\"ds-current\" href=\"#\" aria-current=\"page\">Upgrades</a><a href=\"#\">Como funciona</a></nav>",
+      "name": "Navegação",
+      "kind": "nav"
+    },
+    {
+      "html": "<article class=\"ds-part\"><h3>Placa de vídeo</h3><p>Mais potencial gráfico.</p></article>",
+      "kind": "card",
+      "refersTo": "part-card",
+      "name": "Card de componente",
+      "css": ".ds-part{padding:14px 20px 20px;background:#050d12b8;border:1px solid var(--up-border,rgba(169,188,198,.3));border-radius:4px;font-family:\"DM Sans Variable\",sans-serif;color:var(--up-ink,#eaeae4)}.ds-part h3{margin:0;font-size:1.125rem;font-weight:650;line-height:1.3;letter-spacing:-.02em}.ds-part h3::before{content:\"\";display:block;width:22px;height:3px;margin-bottom:9px;background:var(--up-red,#eb0927)}.ds-part p{margin:4px 0 0;font-size:.9375rem;line-height:1.55;color:var(--up-muted,#c0c6c8)}@media(max-width:700px){.ds-part{padding:10px 12px 16px}.ds-part h3{font-size:.9375rem}.ds-part p{font-size:.8125rem;line-height:1.4}}",
+      "description": "Superfície informativa de peça; imagem omitida no snippet para não criar dependência externa."
+    },
+    {
+      "description": "Painel numerado estático da lista ordenada.",
+      "css": ".ds-steps{list-style:none;margin:0;padding:0}.ds-step{display:grid;grid-template-columns:42px 22px minmax(0,1fr);align-items:center;gap:18px;min-height:78px;padding:12px 24px;background:#050d12b8;border:1px solid var(--up-border,rgba(169,188,198,.3));border-radius:4px}.ds-number{font:400 2.75rem/1 \"Bebas Neue\",sans-serif;color:var(--up-red,#eb0927)}.ds-dash{width:22px;height:2px;background:var(--up-red,#eb0927)}.ds-step h3{margin:0;color:var(--up-ink,#eaeae4);font:550 1rem/1.3 \"DM Sans Variable\",sans-serif}@media(max-width:700px){.ds-step{min-height:70px;padding:14px 16px;gap:12px;grid-template-columns:32px 14px minmax(0,1fr)}.ds-number{font-size:2.375rem}.ds-dash{width:14px}.ds-step h3{font-size:.875rem}}",
+      "html": "<ol class=\"ds-steps\"><li class=\"ds-step\"><span class=\"ds-number\" aria-hidden=\"true\">01</span><span class=\"ds-dash\" aria-hidden=\"true\"></span><h3>Conte o que você quer melhorar</h3></li></ol>",
+      "name": "Etapa do atendimento",
+      "kind": "custom"
+    }
+  ],
+  "narrative": {
+    "northStar": "Floresta fria, reforço preciso",
+    "overview": "Atmosfera cinematográfica de Resident Evil: floresta fria, personagens de escala moderada e informação clara sobre upgrade. Este documento descreve somente `/gamer/upgrade-de-pecas`; a implementação vive em `.theme-upgrade`. O tema principal claro, o gamer roxo e a montagem completa azul permanecem mundos independentes.\n\nA composição aprovada é `public/area gamer/pagina resident evil/aa7d85a9-4d44-4821-af24-df6539216732.png`. A origem de cada asset otimizado consta em `../upgrade-assets.json`; o contrato da superfície está em `../upgrade-direction.md`. A referência orienta a composição; títulos, textos, navegação, cards e CTAs são HTML/CSS.",
+    "keyCharacteristics": [
+      "Floresta já desfocada e névoa transparente estática fornecidas pelo usuário.",
+      "Marfim legível, vermelho pontual e painéis escuros discretos.",
+      "Títulos condensados com desgaste fino em CSS; corpo limpo."
+    ],
+    "rules": [
+      {
+        "body": "O vermelho destaca ação e palavras-chave; os painéis permanecem escuros.",
+        "section": "colors",
+        "name": "The Acento Preciso Rule"
+      },
+      {
+        "body": "Desgaste é tratamento CSS do título; não substituir conteúdo por imagens.",
+        "section": "typography",
+        "name": "The Texto Vivo Rule"
+      }
+    ],
+    "dos": [
+      "**Do** restringir este sistema à rota e ao tema de upgrade.",
+      "**Do** usar os quatro personagens e assets fornecidos, preservando proporções e escala moderada.",
+      "**Do** manter títulos, cards, navegação e CTAs em HTML/CSS e os dados de contato em `src/config.js`.",
+      "**Do** preservar a floresta já desfocada, a névoa estática e as variantes responsivas existentes."
+    ],
+    "donts": [
+      "**Don't** propagar este tema para as páginas principal, gamer, montador ou montagem completa.",
+      "**Don't** acrescentar neon, roxo, vídeo, 3D, animação de névoa ou blur pesado nesta superfície.",
+      "**Don't** usar a referência como página rasterizada ou recortá-la para obter personagens."
+    ]
+  }
+}

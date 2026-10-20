@@ -28,7 +28,7 @@ const gamerServices = [
     icon: Cpu,
     title: "Upgrade de peças",
     text: "Placa de vídeo, processador, memória, SSD e fonte, conferindo a compatibilidade antes.",
-    link: "/servicos/upgrade-e-montagem",
+    link: "/gamer/upgrade-de-pecas",
   },
   {
     icon: Broom,

@@ -14,6 +14,7 @@ import ServiceHubPage from "./pages/ServiceHubPage";
 import GamerPage from "./pages/GamerPage";
 import PcBuilder from "./pages/PcBuilder";
 import AssemblyPage from "./pages/AssemblyPage";
+import UpgradePage, { UpgradeHeader, UpgradeFooter } from "./pages/UpgradePage";
 import NotFound from "./pages/NotFound";
 import { legacyHubs, redirects, services } from "./content";
 import { wa } from "./config";
@@ -40,14 +41,15 @@ export default function App() {
   const gamer = /^\/gamer(\/|$)/.test(pathname);
   // Montagem completa tem tema próprio, claro e frio (assembly.css).
   const assembly = pathname.startsWith("/gamer/montagem-completa");
+  const upgrade = pathname.startsWith("/gamer/upgrade-de-pecas");
   return (
     <IconContext.Provider value={{ size: 24, weight: "regular" }}>
-      <div className={assembly ? "site theme-assembly" : gamer ? "site theme-gamer" : "site"}>
+      <div className={upgrade ? "site theme-upgrade" : assembly ? "site theme-assembly" : gamer ? "site theme-gamer" : "site"}>
         <RouteEffects />
         <a className="skip-link" href="#conteudo">
           Pular para o conteúdo
         </a>
-        <Header gamerActive={gamerAccent} />
+        {upgrade ? <UpgradeHeader /> : <Header gamerActive={gamerAccent} />}
         <main id="conteudo">
           <Routes>
             <Route path="/" element={<Home gamerActive={gamerAccent} onEquipmentChange={setHeroEquipment} />} />
@@ -56,11 +58,12 @@ export default function App() {
             <Route path="/gamer" element={<GamerPage />} />
             <Route path="/gamer/monte-seu-pc" element={<PcBuilder />} />
             <Route path="/gamer/montagem-completa" element={<AssemblyPage />} />
+            <Route path="/gamer/upgrade-de-pecas" element={<UpgradePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        <Footer />
-        {!builder && (
+        {upgrade ? <UpgradeFooter /> : <Footer />}
+        {!builder && !upgrade && (
           <a
             className="floating-whatsapp"
             href={wa()}

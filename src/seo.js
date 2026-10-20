@@ -14,6 +14,7 @@ export const routes = [
   "/gamer",
   "/gamer/monte-seu-pc",
   "/gamer/montagem-completa",
+  "/gamer/upgrade-de-pecas",
 ];
 
 // Endereços antigos mantidos como índice (pré-renderizados, mas fora do sitemap e com noindex).
@@ -34,6 +35,11 @@ const gamerPages = {
     title: "Montagem de PC gamer | Capucho Informática",
     description:
       "Escolha as peças do seu PC gamer ou conte com a Capucho para definir a configuração. Montagem e testes antes da entrega, com orçamento pelo WhatsApp.",
+  },
+  "/gamer/upgrade-de-pecas": {
+    title: "Upgrade de peças para PC gamer | Capucho Informática",
+    description:
+      "Placa de vídeo, processador, memória, SSD, fonte e refrigeração para seu PC gamer. Planeje seu upgrade com a Capucho, com avaliação de compatibilidade e orçamento antes do serviço.",
   },
 };
 
