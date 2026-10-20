@@ -17,7 +17,7 @@ const helpLink = wa(
 // Artes dos personagens: o usuário coloca os arquivos em public/assets/ e informa o nome aqui.
 // Com null, o espaço do personagem continua reservado, sem imagem.
 const characterArt = {
-  hero: null,
+  hero: "kratos-atreus-hero.webp",
   atreus: null,
   kratos: null,
 };
@@ -149,8 +149,14 @@ export default function AssemblyPage() {
             <div className="asm-hero-art">
               <img
                 src={asset(characterArt.hero)}
+                srcSet={`${asset("kratos-atreus-hero-480.webp")} 480w, ${asset("kratos-atreus-hero-800.webp")} 800w, ${asset(characterArt.hero)} 1312w`}
+                sizes="(max-width: 451px) calc(100vw - 32px), (max-width: 767px) 420px, (max-width: 1023px) 620px, (max-width: 1280px) 48vw, 600px"
+                width="1312"
+                height="1199"
                 alt="Kratos e Atreus"
                 fetchPriority="high"
+                loading="eager"
+                decoding="async"
               />
             </div>
           )}

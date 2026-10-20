@@ -192,13 +192,18 @@
 
 /* --- Hero --- */
 .asm-hero {
-  padding-block: clamp(36px, 5vw, 64px) clamp(56px, 7vw, 96px);
+  padding-block: clamp(36px, 5vw, 64px) 0;
+  border-bottom: 1px solid rgba(40, 125, 168, 0.28);
 }
 .asm-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: stretch;
   gap: clamp(24px, 4vw, 56px);
+}
+.asm-hero-copy {
+  align-self: center;
+  padding-bottom: clamp(32px, 4vw, 56px);
 }
 .asm-hero-grid.is-solo {
   grid-template-columns: minmax(0, 46rem);
@@ -263,12 +268,18 @@
 .asm-perk-final::before {
   display: none;
 }
+.asm-hero-art {
+  display: flex;
+  align-items: flex-end;
+  align-self: end;
+  min-width: 0;
+}
 .asm-hero-art img {
+  display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 1312 / 1199;
   object-fit: contain;
-  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
 }
 
 /* --- Seções explicativas: personagem (≈38%) + cards de fala (≈62%) --- */
@@ -537,6 +548,14 @@
 @media (max-width: 1023px) {
   .asm-hero-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .asm-hero-copy {
+    padding-bottom: 0;
+  }
+  .asm-hero-art {
+    width: min(100%, 620px);
+    justify-self: center;
   }
   .asm-stage-grid,
   .asm-stage-grid.is-right {
@@ -595,6 +614,12 @@
   }
   .asm-hero {
     padding-top: 20px;
+  }
+  .asm-hero-grid {
+    gap: 20px;
+  }
+  .asm-hero-art {
+    max-width: 420px;
   }
   .asm-back {
     margin-bottom: 8px;
