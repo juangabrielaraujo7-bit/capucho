@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T14:59:58.398Z",
+  "title": "Design System: Capucho — Limpeza e pasta térmica",
+  "extensions": {
+    "scope": {
+      "route": "/gamer/limpeza-e-pasta-termica",
+      "selector": ".theme-cleaning",
+      "sourceFiles": [
+        "../../../src/cleaning.css",
+        "../../../src/pages/CleaningPage.jsx"
+      ],
+      "assetManifest": "../../cleaning-assets.json"
+    },
+    "colorMeta": {
+      "terra": {
+        "role": "primary",
+        "displayName": "terra",
+        "tonalRamp": [
+          "oklch(15.00% 0.1340 33.67)",
+          "oklch(26.43% 0.1340 33.67)",
+          "oklch(37.86% 0.1340 33.67)",
+          "oklch(49.29% 0.1340 33.67)",
+          "oklch(60.71% 0.1340 33.67)",
+          "oklch(72.14% 0.1340 33.67)",
+          "oklch(83.57% 0.1340 33.67)",
+          "oklch(95.00% 0.1340 33.67)"
+        ]
+      },
+      "terra-clara": {
+        "role": "primary",
+        "displayName": "terra clara",
+        "tonalRamp": [
+          "oklch(15.00% 0.1238 34.58)",
+          "oklch(26.43% 0.1238 34.58)",
+          "oklch(37.86% 0.1238 34.58)",
+          "oklch(49.29% 0.1238 34.58)",
+          "oklch(60.71% 0.1238 34.58)",
+          "oklch(72.14% 0.1238 34.58)",
+          "oklch(83.57% 0.1238 34.58)",
+          "oklch(95.00% 0.1238 34.58)"
+        ]
+      },
+      "carvao": {
+        "role": "neutral",
+        "displayName": "carvao",
+        "tonalRamp": [
+          "oklch(15.00% 0.0097 88.79)",
+          "oklch(26.43% 0.0097 88.79)",
+          "oklch(37.86% 0.0097 88.79)",
+          "oklch(49.29% 0.0097 88.79)",
+          "oklch(60.71% 0.0097 88.79)",
+          "oklch(72.14% 0.0097 88.79)",
+          "oklch(83.57% 0.0097 88.79)",
+          "oklch(95.00% 0.0097 88.79)"
+        ]
+      },
+      "pergaminho": {
+        "role": "neutral",
+        "displayName": "pergaminho",
+        "tonalRamp": [
+          "oklch(15.00% 0.0448 87.19)",
+          "oklch(26.43% 0.0448 87.19)",
+          "oklch(37.86% 0.0448 87.19)",
+          "oklch(49.29% 0.0448 87.19)",
+          "oklch(60.71% 0.0448 87.19)",
+          "oklch(72.14% 0.0448 87.19)",
+          "oklch(83.57% 0.0448 87.19)",
+          "oklch(95.00% 0.0448 87.19)"
+        ]
+      },
+      "texto-suave": {
+        "role": "neutral",
+        "displayName": "texto suave",
+        "tonalRamp": [
+          "oklch(15.00% 0.0426 82.46)",
+          "oklch(26.43% 0.0426 82.46)",
+          "oklch(37.86% 0.0426 82.46)",
+          "oklch(49.29% 0.0426 82.46)",
+          "oklch(60.71% 0.0426 82.46)",
+          "oklch(72.14% 0.0426 82.46)",
+          "oklch(83.57% 0.0426 82.46)",
+          "oklch(95.00% 0.0426 82.46)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Título western",
+        "purpose": "Hero; Alfa Slab One 400, SIL OFL 1.1."
+      },
+      "headline": {
+        "displayName": "Título de cena",
+        "purpose": "Hierarquia de cinco cenas."
+      },
+      "title": {
+        "displayName": "Título de item",
+        "purpose": "DM Sans nos sinais e cuidados."
+      },
+      "label": {
+        "displayName": "Ação",
+        "purpose": "Texto das ações."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "action-transition",
+        "value": "background-color .18s ease, color .18s ease",
+        "purpose": "Hover das ações; removido em prefers-reduced-motion."
+      },
+      {
+        "name": "dust",
+        "value": "none",
+        "purpose": "Poeira estática."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "1050px"
+      },
+      {
+        "name": "mobile",
+        "value": "700px"
+      },
+      {
+        "name": "compact",
+        "value": "480px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Ação primária",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Convite ao cuidado ou avaliação.",
+      "html": "<button class=\"ds-preview ds-primary\">Quero cuidar do meu PC</button>",
+      "css": ".ds-primary{font-family:'DM Sans Variable',sans-serif;font-size:.9375rem;line-height:1.3;background:#211f1a;color:#fff0d0;border:1px solid #e7d3b5;border-radius:3px;padding:13px 20px;min-height:50px;font-weight:700;transition:background-color .18s ease,color .18s ease}.ds-primary:hover{background:#342e24}.ds-preview:focus-visible{outline:2px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Ação secundária",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Âncora explicativa.",
+      "html": "<button class=\"ds-preview ds-outline\">Entenda o serviço</button>",
+      "css": ".ds-outline{font-family:'DM Sans Variable',sans-serif;font-size:.9375rem;line-height:1.3;background:#65302730;color:#fff2d3;border:1px solid #e7d3b5;border-radius:3px;padding:13px 20px;min-height:50px;font-weight:700;transition:background-color .18s ease,color .18s ease}.ds-outline:hover{background:#211f1a66}.ds-preview:focus-visible{outline:2px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-outline{transition:none}}"
+    },
+    {
+      "name": "Sinal de cuidado",
+      "kind": "card",
+      "refersTo": "symptom",
+      "description": "Linha clara para reconhecer sintomas.",
+      "html": "<div class=\"ds-signal\"><h3>Temperatura elevada</h3><p>O PC esquenta mais durante o uso.</p></div>",
+      "css": ".ds-signal{font-family:'DM Sans Variable',sans-serif;background:#f1e3c3;color:#28251e;border:1px solid #b6a383;border-radius:4px;padding:22px 26px}.ds-signal h3{font-size:1.125rem;line-height:1.25;font-weight:750;margin:0;letter-spacing:-.02em}.ds-signal p{font-size:.9375rem;line-height:1.6;color:#514433;margin:5px 0 0}"
+    },
+    {
+      "name": "Etapa numerada",
+      "kind": "custom",
+      "refersTo": "process-row",
+      "description": "Atendimento em quatro passos.",
+      "html": "<div class=\"ds-step\"><span>01</span><h3>Conte o que está acontecendo</h3></div>",
+      "css": ".ds-step{display:flex;align-items:center;gap:18px;padding:14px 20px;min-height:68px;background:#211f1acc;color:#f1e3c3;border:1px solid #c5b39399;border-radius:4px}.ds-step span{font:400 31px/1 'Alfa Slab One',serif;color:#d87962;font-variant-numeric:tabular-nums}.ds-step h3{font:.9375rem/1.5 'DM Sans Variable',sans-serif;font-weight:550;margin:0}"
+    },
+    {
+      "name": "Navegação",
+      "kind": "nav",
+      "description": "Links compactos com sublinhado no hover.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-preview\" href=\"#gamer\">Área gamer</a><a class=\"ds-preview\" href=\"#servico\">O serviço</a><a class=\"ds-preview\" href=\"#etapas\">Como funciona</a></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;gap:36px;font-family:'DM Sans Variable',sans-serif;font-size:.9375rem;line-height:1.3;font-weight:600;background:#211f1a;padding:16px;color:#f1e3c3}.ds-nav a{color:inherit;padding:12px 0;text-decoration:none;text-underline-offset:6px}.ds-nav a:hover{text-decoration:underline}.ds-preview:focus-visible{outline:2px solid currentColor;outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Cuidar antes da próxima jornada",
+    "overview": "Western suave em terra, carvão e pergaminho. Cenários discretos e Arthur Morgan em escala moderada enquadram o atendimento; os textos e as ações permanecem centrais.\n\nEste documento vale somente para `/gamer/limpeza-e-pasta-termica`, em `.theme-cleaning`. A autoridade humana é a prévia `../../public/area gamer/pagina red dead/255843c2-0272-4754-aeeb-04971d1e3eb7.png` (763 × 2061); a direção está em `../cleaning-direction.md`. Os demais temas mantêm seus próprios sistemas.",
+    "keyCharacteristics": [
+      "Cinco cenas com transições suaves.",
+      "Tipografia slab western e corpo legível.",
+      "Personagens moderados e poeira estática.",
+      "Ações retangulares e painéis sóbrios."
+    ],
+    "rules": [
+      {
+        "name": "The Contexto Local Rule.",
+        "body": "Aplicar esta paleta somente à superfície de limpeza.",
+        "section": "colors"
+      },
+      {
+        "name": "The Duas Vozes Rule.",
+        "body": "Reservar a slab aos títulos, marca e números das etapas; usar DM Sans nas explicações e ações.",
+        "section": "typography"
+      },
+      {
+        "name": "The Imagem Rastreável Rule.",
+        "body": "Cada raster publicado deve manter origem e dimensões no manifesto `../cleaning-assets.json`.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "**Do** preservar a sequência das cinco cenas e o foco nas ações.",
+      "**Do** manter Arthur moderado, sem espelhamento, e poeira estática.",
+      "**Do** declarar dimensões e manter a origem dos rasters no manifesto."
+    ],
+    "donts": [
+      "**Don't** aplicar este sistema às demais rotas.",
+      "**Don't** converter a direção aprovada em roxo gamer ou grunge pesado.",
+      "**Don't** tratar as imagens ilustrativas como fotografias de serviços reais."
+    ]
+  }
+}

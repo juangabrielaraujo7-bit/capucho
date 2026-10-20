@@ -34,7 +34,7 @@ const gamerServices = [
     icon: Broom,
     title: "Limpeza e pasta térmica",
     text: "Poeira removida e pasta térmica nova para o PC voltar a trabalhar mais frio.",
-    link: "/servicos/limpeza-preventiva",
+    link: "/gamer/limpeza-e-pasta-termica",
   },
   {
     icon: WindowsLogo,

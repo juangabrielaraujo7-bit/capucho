@@ -15,12 +15,17 @@ export const routes = [
   "/gamer/monte-seu-pc",
   "/gamer/montagem-completa",
   "/gamer/upgrade-de-pecas",
+  "/gamer/limpeza-e-pasta-termica",
 ];
 
 // Endereços antigos mantidos como índice (pré-renderizados, mas fora do sitemap e com noindex).
 export const hubRoutes = legacyHubs.map((h) => `/servicos/${h.slug}`);
 
 const gamerPages = {
+  "/gamer/limpeza-e-pasta-termica": {
+    title: "Limpeza e pasta térmica para PC gamer | Capucho",
+    description: "Limpeza interna, pasta térmica, cuidados com a refrigeração e testes do seu PC gamer. Avaliação e orçamento com a Capucho antes do serviço, em São Paulo.",
+  },
   "/gamer": {
     title: "Área Gamer: PC gamer montado e upgrade | Capucho",
     description:
