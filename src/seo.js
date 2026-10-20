@@ -16,12 +16,17 @@ export const routes = [
   "/gamer/montagem-completa",
   "/gamer/upgrade-de-pecas",
   "/gamer/limpeza-e-pasta-termica",
+  "/gamer/formatacao-e-programas",
 ];
 
 // Endereços antigos mantidos como índice (pré-renderizados, mas fora do sitemap e com noindex).
 export const hubRoutes = legacyHubs.map((h) => `/servicos/${h.slug}`);
 
 const gamerPages = {
+  "/gamer/formatacao-e-programas": {
+    title: "Formatação e programas para PC gamer | Capucho",
+    description: "Formatação do PC gamer com backup combinado, instalação do sistema, drivers e programas definidos no orçamento. Solicite uma avaliação à Capucho Informática.",
+  },
   "/gamer/limpeza-e-pasta-termica": {
     title: "Limpeza e pasta térmica para PC gamer | Capucho",
     description: "Limpeza interna, pasta térmica, cuidados com a refrigeração e testes do seu PC gamer. Avaliação e orçamento com a Capucho antes do serviço, em São Paulo.",

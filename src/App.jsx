@@ -16,6 +16,7 @@ import PcBuilder from "./pages/PcBuilder";
 import AssemblyPage from "./pages/AssemblyPage";
 import UpgradePage, { UpgradeHeader, UpgradeFooter } from "./pages/UpgradePage";
 import CleaningPage, { CleaningHeader, CleaningFooter } from "./pages/CleaningPage";
+import FormattingPage, { FormattingHeader, FormattingFooter } from "./pages/FormattingPage";
 import NotFound from "./pages/NotFound";
 import { legacyHubs, redirects, services } from "./content";
 import { wa } from "./config";
@@ -44,14 +45,15 @@ export default function App() {
   const assembly = pathname.startsWith("/gamer/montagem-completa");
   const upgrade = pathname.startsWith("/gamer/upgrade-de-pecas");
   const cleaning = pathname.startsWith("/gamer/limpeza-e-pasta-termica");
+  const formatting = pathname.startsWith("/gamer/formatacao-e-programas");
   return (
     <IconContext.Provider value={{ size: 24, weight: "regular" }}>
-      <div className={cleaning ? "site theme-cleaning" : upgrade ? "site theme-upgrade" : assembly ? "site theme-assembly" : gamer ? "site theme-gamer" : "site"}>
+      <div className={formatting ? "site theme-formatting" : cleaning ? "site theme-cleaning" : upgrade ? "site theme-upgrade" : assembly ? "site theme-assembly" : gamer ? "site theme-gamer" : "site"}>
         <RouteEffects />
         <a className="skip-link" href="#conteudo">
           Pular para o conteúdo
         </a>
-        {cleaning ? <CleaningHeader /> : upgrade ? <UpgradeHeader /> : <Header gamerActive={gamerAccent} />}
+        {formatting ? <FormattingHeader /> : cleaning ? <CleaningHeader /> : upgrade ? <UpgradeHeader /> : <Header gamerActive={gamerAccent} />}
         <main id="conteudo">
           <Routes>
             <Route path="/" element={<Home gamerActive={gamerAccent} onEquipmentChange={setHeroEquipment} />} />
@@ -62,11 +64,12 @@ export default function App() {
             <Route path="/gamer/montagem-completa" element={<AssemblyPage />} />
             <Route path="/gamer/upgrade-de-pecas" element={<UpgradePage />} />
             <Route path="/gamer/limpeza-e-pasta-termica" element={<CleaningPage />} />
+            <Route path="/gamer/formatacao-e-programas" element={<FormattingPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        {cleaning ? <CleaningFooter /> : upgrade ? <UpgradeFooter /> : <Footer />}
-        {!builder && !upgrade && !cleaning && (
+        {formatting ? <FormattingFooter /> : cleaning ? <CleaningFooter /> : upgrade ? <UpgradeFooter /> : <Footer />}
+        {!builder && !upgrade && !cleaning && !formatting && (
           <a
             className="floating-whatsapp"
             href={wa()}

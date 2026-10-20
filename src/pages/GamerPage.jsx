@@ -40,7 +40,7 @@ const gamerServices = [
     icon: WindowsLogo,
     title: "Formatação e programas",
     text: "Windows limpo, com os drivers e os programas que você usa instalados.",
-    link: "/servicos/formatacao-e-programas",
+    link: "/gamer/formatacao-e-programas",
   },
 ];
 

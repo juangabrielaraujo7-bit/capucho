@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T17:03:06.972Z",
+  "title": "Design System: Capucho — Formatação e programas",
+  "extensions": {
+    "colorMeta": {
+      "charcoal": {
+        "role": "neutral",
+        "displayName": "Carvão musgo",
+        "tonalRamp": [
+          "oklch(15% 0.012 145)",
+          "oklch(27% 0.012 145)",
+          "oklch(39% 0.012 145)",
+          "oklch(51% 0.012 145)",
+          "oklch(63% 0.012 145)",
+          "oklch(75% 0.012 145)",
+          "oklch(87% 0.012 145)",
+          "oklch(95% 0.012 145)"
+        ],
+        "rampNote": "Exploração sintetizada; não é escala implementada e não substitui o token CSS."
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Marfim",
+        "tonalRamp": [
+          "oklch(15% 0.012 100)",
+          "oklch(27% 0.012 100)",
+          "oklch(39% 0.012 100)",
+          "oklch(51% 0.012 100)",
+          "oklch(63% 0.012 100)",
+          "oklch(75% 0.012 100)",
+          "oklch(87% 0.012 100)",
+          "oklch(95% 0.012 100)"
+        ],
+        "rampNote": "Exploração sintetizada; não é escala implementada e não substitui o token CSS."
+      },
+      "olive": {
+        "role": "primary",
+        "displayName": "Oliva contido",
+        "tonalRamp": [
+          "oklch(15% 0.045 105)",
+          "oklch(27% 0.045 105)",
+          "oklch(39% 0.045 105)",
+          "oklch(51% 0.045 105)",
+          "oklch(63% 0.045 105)",
+          "oklch(75% 0.045 105)",
+          "oklch(87% 0.045 105)",
+          "oklch(95% 0.045 105)"
+        ],
+        "rampNote": "Exploração sintetizada; não é escala implementada e não substitui o token CSS."
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Marfim suave",
+        "tonalRamp": [
+          "oklch(15% 0.014 110)",
+          "oklch(27% 0.014 110)",
+          "oklch(39% 0.014 110)",
+          "oklch(51% 0.014 110)",
+          "oklch(63% 0.014 110)",
+          "oklch(75% 0.014 110)",
+          "oklch(87% 0.014 110)",
+          "oklch(95% 0.014 110)"
+        ],
+        "rampNote": "Exploração sintetizada; não é escala implementada e não substitui o token CSS."
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Linha vegetal translúcida",
+        "tonalRamp": [
+          "oklch(15% 0.035 110)",
+          "oklch(27% 0.035 110)",
+          "oklch(39% 0.035 110)",
+          "oklch(51% 0.035 110)",
+          "oklch(63% 0.035 110)",
+          "oklch(75% 0.035 110)",
+          "oklch(87% 0.035 110)",
+          "oklch(95% 0.035 110)"
+        ],
+        "rampNote": "Exploração sintetizada; não é escala implementada e não substitui o token CSS."
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta musgo",
+        "tonalRamp": [
+          "oklch(15% 0.014 140)",
+          "oklch(27% 0.014 140)",
+          "oklch(39% 0.014 140)",
+          "oklch(51% 0.014 140)",
+          "oklch(63% 0.014 140)",
+          "oklch(75% 0.014 140)",
+          "oklch(87% 0.014 140)",
+          "oklch(95% 0.014 140)"
+        ],
+        "rampNote": "Exploração sintetizada; não é escala implementada e não substitui o token CSS."
+      },
+      "light-ground": {
+        "role": "neutral",
+        "displayName": "Fundo marfim vegetal",
+        "tonalRamp": [
+          "oklch(15% 0.018 105)",
+          "oklch(27% 0.018 105)",
+          "oklch(39% 0.018 105)",
+          "oklch(51% 0.018 105)",
+          "oklch(63% 0.018 105)",
+          "oklch(75% 0.018 105)",
+          "oklch(87% 0.018 105)",
+          "oklch(95% 0.018 105)"
+        ],
+        "rampNote": "Exploração sintetizada; não é escala implementada e não substitui o token CSS."
+      },
+      "light-card": {
+        "role": "neutral",
+        "displayName": "Card claro translúcido",
+        "tonalRamp": [
+          "oklch(15% 0.016 100)",
+          "oklch(27% 0.016 100)",
+          "oklch(39% 0.016 100)",
+          "oklch(51% 0.016 100)",
+          "oklch(63% 0.016 100)",
+          "oklch(75% 0.016 100)",
+          "oklch(87% 0.016 100)",
+          "oklch(95% 0.016 100)"
+        ],
+        "rampNote": "Exploração sintetizada; não é escala implementada e não substitui o token CSS."
+      },
+      "olive-hover": {
+        "role": "primary",
+        "displayName": "Oliva claro de hover",
+        "tonalRamp": [
+          "oklch(15% 0.045 105)",
+          "oklch(27% 0.045 105)",
+          "oklch(39% 0.045 105)",
+          "oklch(51% 0.045 105)",
+          "oklch(63% 0.045 105)",
+          "oklch(75% 0.045 105)",
+          "oklch(87% 0.045 105)",
+          "oklch(95% 0.045 105)"
+        ],
+        "rampNote": "Exploração sintetizada; não é escala implementada e não substitui o token CSS."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Título de abertura",
+        "purpose": "H1 em três linhas; Bebas Neue 400 SIL OFL 1.1."
+      },
+      "headline": {
+        "displayName": "Título de seção",
+        "purpose": "H2 condensado, com variações reais por seção e breakpoint."
+      },
+      "title": {
+        "displayName": "Título de card",
+        "purpose": "DM Sans para serviços e sintomas."
+      },
+      "hero-body": {
+        "displayName": "Mensagem de abertura",
+        "purpose": "Máximo de 45ch."
+      },
+      "button": {
+        "displayName": "Rótulo de ação",
+        "purpose": "Botões."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "button-background",
+        "value": "background-color .18s ease",
+        "purpose": "Hover dos botões, removido com movimento reduzido."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-desktop",
+        "value": "1050px"
+      },
+      {
+        "name": "mobile",
+        "value": "700px"
+      },
+      {
+        "name": "narrow-mobile",
+        "value": "480px"
+      }
+    ],
+    "scope": {
+      "route": "/gamer/formatacao-e-programas",
+      "theme": ".theme-formatting",
+      "sources": [
+        "src/pages/FormattingPage.jsx",
+        "src/formatting.css"
+      ],
+      "assetManifest": "docs/formatting-assets.json",
+      "rasterCount": 18,
+      "status": "Local; revisão visual final pendente; sem aprovação ou publicação declarada.",
+      "componentPreviewNote": "Valores literais porque tokens são locais a .theme-formatting; as fontes existentes devem estar disponíveis no host."
+    }
+  },
+  "components": [
+    {
+      "name": "Ação principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação da superfície, prévia sem navegação externa.",
+      "html": "<button class=\"ds-fm-button-primary\" type=\"button\">Quero formatar meu PC</button>",
+      "css": ".ds-fm-button-primary{font-family:\"DM Sans Variable\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:13px 20px;border:1px solid transparent;border-radius:3px;font-size:.9375rem;line-height:1.3;font-weight:650;transition:background-color .18s ease;background:#bfbd94;color:#20261f;}.ds-fm-button-primary:hover{background:#d1cfaa;}.ds-fm-button-primary:focus-visible{outline:2px solid currentColor;outline-offset:5px;}@media(prefers-reduced-motion:reduce){.ds-fm-button-primary{transition:none}}"
+    },
+    {
+      "name": "Ação secundária",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Ação da superfície, prévia sem navegação externa.",
+      "html": "<button class=\"ds-fm-button-outline\" type=\"button\">Entenda o serviço</button>",
+      "css": ".ds-fm-button-outline{font-family:\"DM Sans Variable\",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:13px 20px;border:1px solid transparent;border-radius:3px;font-size:.9375rem;line-height:1.3;font-weight:650;transition:background-color .18s ease;background:#272d2840;color:#f2f1e9;border-color:#e1e4d894;}.ds-fm-button-outline:hover{background:#272d2880;}.ds-fm-button-outline:focus-visible{outline:2px solid currentColor;outline-offset:5px;}@media(prefers-reduced-motion:reduce){.ds-fm-button-outline{transition:none}}"
+    },
+    {
+      "name": "Navegação",
+      "kind": "nav",
+      "description": "Links do cabeçalho; menu móvel controlado pelo React descrito no DESIGN.md.",
+      "html": "<nav class=\"ds-fm-nav\" aria-label=\"Navegação de formatação\"><a href=\"#gamer\">Área gamer</a><a href=\"#servico\">O serviço</a><a href=\"#etapas\">Como funciona</a></nav>",
+      "css": ".ds-fm-nav{font-family:\"DM Sans Variable\",sans-serif;display:flex;gap:36px;align-items:center;justify-content:center;font-size:.9375rem;background:#292e29;color:#f2f1e9;padding:16px}.ds-fm-nav a{padding:12px 0;color:inherit;text-decoration:none;text-underline-offset:6px}.ds-fm-nav a:hover{text-decoration:underline}.ds-fm-nav a:focus-visible{outline:2px solid currentColor;outline-offset:5px;}@media(max-width:700px){.ds-fm-nav{flex-direction:column;align-items:stretch;gap:8px}.ds-fm-nav a{min-height:44px}}"
+    },
+    {
+      "name": "Card de sintoma",
+      "kind": "card",
+      "refersTo": "symptom-card",
+      "description": "Tratamento do card com ícone vetorial inline.",
+      "html": "<article class=\"ds-fm-symptom\"><svg width=\"39\" height=\"39\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" aria-hidden=\"true\"><path d=\"M3 18a10 10 0 1 1 18 0M12 13l5-5\"/><circle cx=\"12\" cy=\"13\" r=\"1\"/></svg><h3>Lentidão no dia a dia</h3><p>Programas demoram para abrir e responder.</p><span></span></article>",
+      "css": ".ds-fm-symptom{font-family:\"DM Sans Variable\",sans-serif;max-width:220px;border:1px solid #a7aa8b50;border-radius:4px;padding:24px 18px 21px;background:#282e2852;color:#f2f1e9}.ds-fm-symptom svg{color:#c1bf94;margin-bottom:19px}.ds-fm-symptom h3{font-size:.9375rem;font-weight:700;line-height:1.3;letter-spacing:-.02em;margin:0}.ds-fm-symptom p{font-size:.875rem;line-height:1.55;color:#e0e2d8;margin:10px 0 0}.ds-fm-symptom span{display:block;width:30px;height:3px;background:#a4a37c;margin-top:18px}"
+    },
+    {
+      "name": "Card de serviço",
+      "kind": "card",
+      "refersTo": "service-card",
+      "description": "Prévia do tratamento tipográfico do card claro. Objeto raster omitido da prévia autônoma; origem real no manifesto.",
+      "html": "<article class=\"ds-fm-service\"><h3>Backup combinado</h3><p>Definimos quais arquivos serão preservados.</p><span></span></article>",
+      "css": ".ds-fm-service{font-family:\"DM Sans Variable\",sans-serif;max-width:240px;border:1px solid #747b5e42;border-radius:4px;padding:18px 22px 20px;background:#f6f4ebc4;color:#20261f}.ds-fm-service h3{font-size:1rem;font-weight:700;line-height:1.3;letter-spacing:-.02em;margin:0}.ds-fm-service p{font-size:.9375rem;line-height:1.55;color:#40493d;margin:9px 0 0}.ds-fm-service span{display:block;width:30px;height:3px;background:#a4a37c;margin-top:18px}"
+    },
+    {
+      "name": "Linha de etapa",
+      "kind": "custom",
+      "description": "Número condensado e divisórias finas, sem card individual.",
+      "html": "<div class=\"ds-fm-step\"><span>01</span><h3>Entendemos o que você precisa</h3></div>",
+      "css": ".ds-fm-step{display:flex;align-items:center;min-height:75px;border-bottom:1px solid #a7aa8b50;gap:26px;padding:16px 0;background:#292e29;color:#f2f1e9}.ds-fm-step span{font:400 42px/1 \"Bebas Neue\",sans-serif;color:#c1bf94;min-width:42px;text-align:center;font-variant-numeric:tabular-nums}.ds-fm-step h3{font-family:\"DM Sans Variable\",sans-serif;border-left:1px solid #c0c2aa70;padding-left:26px;font-size:1rem;line-height:1.45;font-weight:450;margin:0}@media(max-width:700px){.ds-fm-step{min-height:72px;gap:17px}.ds-fm-step span{font-size:34px;min-width:32px}.ds-fm-step h3{font-size:.9375rem;padding-left:18px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Um novo começo",
+    "overview": "Esta superfície usa a composição The Last of Us fornecida pelo usuário: ambiente abandonado suave, Joel e Ellie em quatro poses e contraste entre carvão e marfim. A atmosfera contida apoia a explicação de um serviço real; backup, programas, licenças, orçamento e prazo são combinados antes do atendimento.\n\nO registro descreve `src/pages/FormattingPage.jsx` e `src/formatting.css` em 20/10/2026, exclusivamente na rota `/gamer/formatacao-e-programas` e no tema `.theme-formatting`. A direção fornecida foi adotada; a revisão visual final desta implementação permanece pendente. Este documento não declara aprovação, publicação ou conclusão da revisão.",
+    "keyCharacteristics": [
+      "Carvão e musgo cinza, oliva contido e marfim.",
+      "Títulos condensados, corpo legível e ações retangulares.",
+      "Personagens fornecidos, objetos transparentes e atmosfera periférica estática.",
+      "Profundidade por fundos suaves, transparência e divisórias finas."
+    ],
+    "rules": [],
+    "dos": [
+      "Do manter todos os ajustes desta superfície dentro de `.theme-formatting` e dos componentes `fm-`.",
+      "Do preservar as quatro poses fornecidas e os objetos transparentes em cards claros.",
+      "Do manter três sintomas na mesma linha desktop e etapas separadas por divisórias finas.",
+      "Do manter a folhagem periférica e a névoa estática discreta.",
+      "Do confirmar backup, sistema, programas, licenças, valores e prazo antes do serviço."
+    ],
+    "donts": [
+      "Don't aplicar esta paleta ou tipografia às outras rotas sem autorização específica.",
+      "Don't espelhar personagens, cortar rostos ou mãos ou inventar gestos.",
+      "Don't introduzir uma estética futurista ou saturada nesta superfície.",
+      "Don't inventar preços, prazos, licenças incluídas ou promessa de que formatar resolve qualquer problema.",
+      "Don't publicar esta implementação enquanto o pedido atual de revisão local estiver vigente."
+    ]
+  }
+}

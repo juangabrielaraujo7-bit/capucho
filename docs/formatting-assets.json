@@ -1,0 +1,133 @@
+[
+  {
+    "file": "dupla-hero-800.webp",
+    "width": 800,
+    "height": 1200,
+    "bytes": 273940,
+    "source": "public/area gamer/the last of us/4de9bf4f-9749-4ad1-812d-181aeca05790.png"
+  },
+  {
+    "file": "dupla-hero-480.webp",
+    "width": 480,
+    "height": 720,
+    "bytes": 106840,
+    "source": "public/area gamer/the last of us/4de9bf4f-9749-4ad1-812d-181aeca05790.png"
+  },
+  {
+    "file": "ellie-sinais-640.webp",
+    "width": 640,
+    "height": 960,
+    "bytes": 118540,
+    "source": "public/area gamer/the last of us/4a92f607-30bd-4835-9e24-978467baf3a2.png"
+  },
+  {
+    "file": "ellie-sinais-360.webp",
+    "width": 360,
+    "height": 540,
+    "bytes": 41480,
+    "source": "public/area gamer/the last of us/4a92f607-30bd-4835-9e24-978467baf3a2.png"
+  },
+  {
+    "file": "joel-servicos-640.webp",
+    "width": 640,
+    "height": 960,
+    "bytes": 144342,
+    "source": "public/area gamer/the last of us/ba6deb2c-6888-4833-a26a-09ded385fc9e.png"
+  },
+  {
+    "file": "joel-servicos-360.webp",
+    "width": 360,
+    "height": 540,
+    "bytes": 48396,
+    "source": "public/area gamer/the last of us/ba6deb2c-6888-4833-a26a-09ded385fc9e.png"
+  },
+  {
+    "file": "ellie-etapas-640.webp",
+    "width": 640,
+    "height": 960,
+    "bytes": 114844,
+    "source": "public/area gamer/the last of us/f1ce8fc4-54fe-4fd7-a35b-2784631b79f0.png"
+  },
+  {
+    "file": "ellie-etapas-360.webp",
+    "width": 360,
+    "height": 540,
+    "bytes": 39350,
+    "source": "public/area gamer/the last of us/f1ce8fc4-54fe-4fd7-a35b-2784631b79f0.png"
+  },
+  {
+    "file": "fundo-claro-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 14518,
+    "source": "public/area gamer/the last of us/754ffd1a-78ee-4cf3-9e86-e1f6f9b80602.png"
+  },
+  {
+    "file": "fundo-claro-900.webp",
+    "width": 900,
+    "height": 507,
+    "bytes": 6226,
+    "source": "public/area gamer/the last of us/754ffd1a-78ee-4cf3-9e86-e1f6f9b80602.png"
+  },
+  {
+    "file": "fundo-escuro-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 21004,
+    "source": "public/area gamer/the last of us/ad017def-2b95-4a14-9a34-978e5d9d7cc0.png"
+  },
+  {
+    "file": "fundo-escuro-900.webp",
+    "width": 900,
+    "height": 507,
+    "bytes": 10404,
+    "source": "public/area gamer/the last of us/ad017def-2b95-4a14-9a34-978e5d9d7cc0.png"
+  },
+  {
+    "file": "nevoa-1400.webp",
+    "width": 1400,
+    "height": 467,
+    "bytes": 83336,
+    "source": "public/area gamer/the last of us/0ed97d4f-5445-4fd1-bf1f-fc17facf53fb.png"
+  },
+  {
+    "file": "folhagem-400.webp",
+    "width": 400,
+    "height": 862,
+    "bytes": 113856,
+    "source": "public/area gamer/the last of us/7a7a86d4-324b-491a-a75b-bb72cb3c196b.png",
+    "transparentPaddingTrimmed": true
+  },
+  {
+    "file": "backup-480.webp",
+    "width": 480,
+    "height": 361,
+    "bytes": 25178,
+    "source": "public/area gamer/the last of us/39ee1e7e-88d4-4869-b2ef-44f8994573b3.png",
+    "transparentPaddingTrimmed": true
+  },
+  {
+    "file": "sistema-480.webp",
+    "width": 480,
+    "height": 367,
+    "bytes": 15732,
+    "source": "public/area gamer/the last of us/4d1297ba-27a9-4abe-91cd-8c66f27dbb42.png",
+    "transparentPaddingTrimmed": true
+  },
+  {
+    "file": "drivers-480.webp",
+    "width": 480,
+    "height": 403,
+    "bytes": 62282,
+    "source": "public/area gamer/the last of us/08aa1ed6-80b2-47ab-85ce-09d564134d35.png",
+    "transparentPaddingTrimmed": true
+  },
+  {
+    "file": "programas-480.webp",
+    "width": 480,
+    "height": 158,
+    "bytes": 17122,
+    "source": "public/area gamer/the last of us/0cffb2c1-bb84-48c4-8238-95ab3cd5e6e7.png",
+    "transparentPaddingTrimmed": true
+  }
+]
