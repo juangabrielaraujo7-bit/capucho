@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { ArrowLeft, ArrowRight, Info, WhatsappLogo } from "@phosphor-icons/react";
 import FaqList from "../components/FaqList";
-import KratosStrike from "../components/KratosStrike";
+import AssemblyParts from "../components/AssemblyParts";
 import { asset, wa } from "../config";
 import "../assembly.css";
 
@@ -170,7 +170,7 @@ export default function AssemblyPage() {
           <h2 id="asm-parts-title">
             Força sozinha <em>não resolve.</em>
           </h2>
-          <KratosStrike cards={parts} />
+          <AssemblyParts cards={parts} />
         </div>
       </section>
 
