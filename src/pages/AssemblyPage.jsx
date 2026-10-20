@@ -178,7 +178,19 @@ export default function AssemblyPage() {
         <div className="asm-container">
           <h2 id="asm-process-title">Um plano claro antes de começar.</h2>
           <div className="asm-stage-grid is-left">
-            <Speaker who="Kratos" />
+            <div className="asm-process-character">
+              <img
+                src={asset("kratos-plano.webp")}
+                srcSet={`${asset("kratos-plano-360.webp")} 360w, ${asset("kratos-plano-600.webp")} 600w, ${asset("kratos-plano.webp")} 989w`}
+                sizes="(max-width: 767px) 170px, (max-width: 1280px) 36vw, 420px"
+                width="989"
+                height="1591"
+                alt="Kratos olhando e gesticulando para as etapas à direita"
+                loading="lazy"
+                decoding="async"
+              />
+              <p className="asm-nameplate">Kratos</p>
+            </div>
             <div className="asm-stage-body">
               <ol className="asm-says is-list from-left">
                 {steps.map(([title, text], i) => (

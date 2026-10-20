@@ -840,3 +840,40 @@
     width: clamp(130px, 35vw, 170px);
   }
 }
+
+/* Arte exclusiva da seção de etapas: inteira à esquerda, sem névoa sobre o recorte. */
+.asm-process .asm-stage-grid {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.5fr);
+  align-items: center;
+  gap: clamp(24px, 3vw, 40px);
+}
+.asm-process-character {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.asm-process-character img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  aspect-ratio: 989 / 1591;
+  object-fit: contain;
+}
+.assembly-page .asm-process-character .asm-nameplate {
+  margin: 16px 0 0;
+}
+@media (max-width: 767px) {
+  .asm-process .asm-stage-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .asm-process-character img {
+    width: clamp(130px, 35vw, 170px);
+  }
+  .assembly-page .asm-process-character .asm-nameplate {
+    margin-top: 12px;
+    font-size: 0.875rem;
+  }
+}
