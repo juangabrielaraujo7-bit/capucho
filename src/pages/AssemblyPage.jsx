@@ -225,7 +225,24 @@ export default function AssemblyPage() {
         </div>
       </section>
 
-      <StageSection id="care" title="A montagem termina quando o conjunto está pronto." who="Atreus" side="right" layout="stagger">
+      <StageSection
+        id="care" title="A montagem termina quando o conjunto está pronto." who="Atreus" side="right" layout="stagger"
+        character={
+          <div className="asm-care-character">
+            <img
+              src={asset("atreus-pronto.webp")}
+              srcSet={`${asset("atreus-pronto-360.webp")} 360w, ${asset("atreus-pronto-600.webp")} 600w, ${asset("atreus-pronto.webp")} 1024w`}
+              sizes="(max-width: 767px) 180px, (max-width: 1023px) 30vw, 340px"
+              width="1024"
+              height="1536"
+              alt="Atreus olhando e gesticulando para os cards sobre os cuidados da montagem à esquerda"
+              loading="lazy"
+              decoding="async"
+            />
+            <p className="asm-nameplate">Atreus</p>
+          </div>
+        }
+      >
         {care.map(([title, text]) => (
           <Say key={title} who="Atreus" title={title}>
             {text}

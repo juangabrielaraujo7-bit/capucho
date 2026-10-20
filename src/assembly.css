@@ -917,3 +917,45 @@
     font-size: 0.875rem;
   }
 }
+
+/* A arte de encerramento permanece à direita dos cards, na orientação recebida. */
+.asm-care .asm-stage-grid.is-right {
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(24px, 3vw, 40px);
+}
+.asm-care-character {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: start;
+  min-width: 0;
+  width: 100%;
+  max-width: 340px;
+}
+.asm-care-character img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+}
+.assembly-page .asm-care-character .asm-nameplate {
+  margin: 16px 0 0;
+}
+@media (max-width: 767px) {
+  .asm-care .asm-stage-grid.is-right {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .asm-care-character {
+    order: -1;
+    justify-self: center;
+    width: clamp(140px, 36vw, 180px);
+  }
+  .assembly-page .asm-care-character .asm-nameplate {
+    margin-top: 12px;
+    font-size: 0.875rem;
+  }
+}
