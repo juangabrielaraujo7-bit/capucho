@@ -12,6 +12,7 @@ import WhatsAppButton from "../components/WhatsAppButton";
 import { asset } from "../config";
 import { gamerBuilds } from "../gamer";
 import "../gamer-services.css";
+import CouponOffer, { useCouponOffer } from "../components/CouponOffer";
 
 // Serviços da Capucho para quem joga, cada um levando à página do serviço correspondente.
 const gamerServices = [
@@ -46,6 +47,7 @@ const gamerServices = [
 ];
 
 export default function GamerPage() {
+  const { offer } = useCouponOffer();
   return (
     <>
       <section className="gamer-band gamer-hero">
@@ -113,6 +115,7 @@ export default function GamerPage() {
                 Prefiro ajuda para escolher
               </WhatsAppButton>
             </div>
+            <CouponOffer offer={offer} />
           </div>
         </GradientBand>
       </section>

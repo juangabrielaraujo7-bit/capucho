@@ -24,10 +24,15 @@ import {
   X,
 } from "@phosphor-icons/react";
 import { loadCatalog } from "../catalog";
-import { asset, wa } from "../config";
+import { asset } from "../config";
+import CouponOffer, { useCouponOffer } from "../components/CouponOffer";
+import useOrderQuote from "../useOrderQuote";
+import { benefit, cents, money } from "../../shared/coupon.js";
 import {
   HELP,
   OWN,
+  NONE,
+  BOX,
   brl,
   describe,
   find,
@@ -74,24 +79,7 @@ function sanitize(pick, keep) {
 const priceLabel = (part) => (part?.price > 0 ? brl(part.price) : "Sob consulta");
 const hasUnpriced = (pick) => steps.some((s) => { const part = find(s.id, pick[s.id]); return part && !(part.price > 0); });
 const totalOf = (pick) =>
-  steps.reduce((sum, s) => sum + (find(s.id, pick[s.id])?.price || 0), 0);
-
-function message(pick) {
-  const lines = steps.map(
-    (s) => `• ${s.label}: ${describe(s.id, pick[s.id]) ?? "a definir"}`,
-  );
-  const total = totalOf(pick);
-  return [
-    "Olá, Capucho! Montei um PC no site e quero um orçamento com a montagem:",
-    "",
-    ...lines,
-    "",
-    total ? `Total estimado das peças: ${brl(total)}${hasUnpriced(pick) ? " (sem as peças sob consulta)" : ""}` : null,
-    "Pode confirmar preços, disponibilidade e prazo?",
-  ]
-    .filter((l) => l !== null)
-    .join("\n");
-}
+  steps.reduce((sum, s) => sum + cents(find(s.id, pick[s.id])?.price || 0), 0) / 100;
 
 // Foto provisória usada em todas as peças até a Capucho enviar as fotos reais (campo "image" em gamer.js).
 const PLACEHOLDER_IMAGE = "peca-modelo.webp";
@@ -325,6 +313,8 @@ export default function PcBuilder() {
   const [catalogAttempt, setCatalogAttempt] = useState(0);
   const mainRef = useRef(null);
   const savedPickRef = useRef(null);
+  const [couponInput, setCouponInput] = useState("");
+  const { offer } = useCouponOffer();
 
   // Catálogo do painel Sanity (src/catalog.js). Ao chegar, refaz a lista e tira da montagem
   // salva o que não existe mais ou deixou de combinar.
@@ -398,7 +388,17 @@ export default function PcBuilder() {
   const done = steps.filter((s) => pick[s.id]).length;
   const progress = Math.round((done / steps.length) * 100);
   const total = totalOf(pick);
-  const sendHref = wa(message(pick));
+  const selections = useMemo(() => steps.filter(s => pick[s.id]).map(s => {
+    const id = pick[s.id];
+    const option = { [HELP]: "help", [OWN]: "own", [NONE]: "none", [BOX]: "box" }[id];
+    return option ? { step: s.id, option } : { step: s.id, productId: find(s.id, id)?.documentId || "invalid" };
+  }), [pick, catalogVersion]);
+  const displayedItems = selections.filter(selection => selection.productId).map(selection => {
+    const part = find(selection.step, pick[selection.step]);
+    return { ...selection, name: part?.name, cents: part?.price > 0 ? cents(part.price) : null };
+  });
+  const order = useOrderQuote(selections, cents(total), displayedItems);
+  const estimatedTotal = order.quote?.totalCents ?? cents(total);
   const notes = useMemo(() => unverified(pick), [pick, catalogVersion]);
 
   const list = useMemo(() => {
@@ -580,14 +580,15 @@ export default function PcBuilder() {
               <ul>
                 {steps.map((s, i) => {
                   const part = find(s.id, pick[s.id]);
+                  const validated = order.quote?.items.find(item => item.step === s.id && item.productId);
                   return (
                     <li key={s.id}>
                       <span className="builder-review-label">{s.label}</span>
                       <span className={pick[s.id] ? "" : "is-missing"}>
-                        {describe(s.id, pick[s.id]) ?? "Não escolhido"}
+                        {validated?.name ?? describe(s.id, pick[s.id]) ?? "Não escolhido"}
                       </span>
                       <span className="builder-review-price">
-                        {part ? priceLabel(part) : ""}
+                        {validated ? validated.cents === null ? "Sob consulta" : money(validated.cents) : part ? priceLabel(part) : ""}
                       </span>
                       <span className="builder-review-actions">
                         <button type="button" className="text-link" onClick={() => go(i)}>
@@ -623,6 +624,12 @@ export default function PcBuilder() {
                   junto com o orçamento das peças.
                 </p>
               </div>
+              <form className="builder-coupon" onSubmit={event => { event.preventDefault(); order.apply(couponInput); }} aria-busy={order.busy}>
+                <label htmlFor="discount-code">Cupom de desconto</label>
+                {order.code ? <><p className="coupon-feedback">{order.quote?.coupon ? `Aplicado: ${order.code} · ${benefit(order.quote.coupon)}` : `${order.code} · aguardando validação`}</p><button type="button" className="coupon-remove" onClick={order.remove} disabled={order.busy}>Remover cupom</button></> : <div className="builder-coupon-field"><input id="discount-code" value={couponInput} onChange={event => setCouponInput(event.target.value)} maxLength={80} autoComplete="off" autoCapitalize="characters" spellCheck={false} placeholder="Digite o código" disabled={order.busy} /><button type="submit" disabled={order.busy}>{order.busy ? "Validando…" : "Aplicar"}</button></div>}
+                <p className="small-note">O benefício vale sobre as peças com preço informado. Frete e serviços à parte não entram no desconto.</p>
+                <div role="status" aria-live="polite">{(order.busy || order.error || order.notice) && <p className={`coupon-feedback${order.error ? " is-error" : ""}`}>{order.busy ? "Validando valores e cupom…" : order.error || order.notice}</p>}{order.error && <button type="button" className="coupon-remove" onClick={order.retry} disabled={order.busy}>Tentar validar novamente</button>}</div>
+              </form>
             </div>
           )}
         </div>
@@ -681,14 +688,19 @@ export default function PcBuilder() {
               </li>
             ))}
           </ul>
-          <div className="builder-total">
-            <span>{hasUnpriced(pick) ? "Total (sem peças sob consulta)" : "Total estimado"}</span>
-            <strong>{brl(total)}</strong>
-          </div>
-          <a className="button button-primary" href={sendHref} target="_blank" rel="noreferrer">
+          <CouponOffer offer={offer} />
+          {current !== REVIEW && <button type="button" className="text-link" onClick={() => go(REVIEW)}>Tenho um cupom de desconto</button>}
+          {order.code && <p className="coupon-feedback">Cupom {order.code}{order.quote?.coupon ? " aplicado" : " aguardando validação"} <button type="button" className="text-link" onClick={order.remove} disabled={order.busy}>Remover</button></p>}
+          <dl className="builder-amounts">
+            <div><dt>Subtotal das peças{hasUnpriced(pick) || order.quote?.partial ? " (sem peças sob consulta)" : ""}</dt><dd>{money(order.quote?.subtotalCents ?? cents(total))}</dd></div>
+            <div><dt>Desconto do cupom</dt><dd>− {money(order.quote?.discountCents ?? 0)}</dd></div>
+            <div className="is-total"><dt>{order.quote?.coupon ? "Total estimado com desconto" : "Total estimado"}</dt><dd>{money(estimatedTotal)}</dd></div>
+          </dl>
+          <div role="status" aria-live={current === REVIEW ? "off" : "polite"}>{order.busy && <p className="coupon-feedback">Validando valores e cupom…</p>}{order.notice && <p className="coupon-feedback">{order.notice}</p>}{order.error && <><p className="coupon-feedback is-error">{order.error}</p><button type="button" className="text-link" onClick={order.retry} disabled={order.busy}>Tentar validar novamente</button></>}</div>
+          <button type="button" className="button button-primary" onClick={order.checkout} disabled={order.busy}>
             <WhatsappLogo size={22} />
             Pedir orçamento
-          </a>
+          </button>
           <p className="small-note">
             Valores estimados, sujeitos à confirmação de preço e disponibilidade. Montagem cobrada à
             parte.
@@ -707,8 +719,8 @@ export default function PcBuilder() {
           Voltar
         </button>
         <div className="builder-bar-total">
-          <span>{hasUnpriced(pick) ? "Total (sem peças sob consulta)" : "Total estimado"}</span>
-          <strong>{brl(total)}</strong>
+          <span>{order.quote?.coupon ? "Total com desconto" : "Total estimado"}</span>
+          <strong>{money(estimatedTotal)}</strong>
         </div>
         {current < REVIEW ? (
           <button type="button" className="button button-primary" onClick={() => go(current + 1)}>
@@ -716,10 +728,10 @@ export default function PcBuilder() {
             <ArrowRight size={18} />
           </button>
         ) : (
-          <a className="button button-primary" href={sendHref} target="_blank" rel="noreferrer">
+          <button type="button" className="button button-primary" onClick={order.checkout} disabled={order.busy}>
             <WhatsappLogo size={20} />
             Enviar
-          </a>
+          </button>
         )}
       </div>
     </section>

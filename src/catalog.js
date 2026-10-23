@@ -30,6 +30,7 @@ function toPart(doc) {
   const part = {
     // Peças importadas mantêm o id antigo (as configurações prontas dependem dele).
     id: doc._id.replace(/^peca-[a-z]+-/, ""),
+    documentId: doc._id,
     name: doc.name,
     specs: doc.specs ?? "",
     price: doc.price > 0 ? doc.price : undefined,
