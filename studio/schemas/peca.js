@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { officeFields } from './office.js';
 
 // Etapas do montador. "value" é o mesmo id usado no site (src/gamer.js).
 export const categories = [
@@ -12,8 +13,8 @@ export const categories = [
   { value: "case", title: "Gabinetes" },
 ];
 
-const sockets = ["AM4", "AM5", "LGA1700", "LGA1851", "LGA1200"];
-const memories = ["DDR4", "DDR5"];
+const sockets = ["AM4", "AM5", "LGA1700", "LGA1851", "LGA1200", "LGA1155"];
+const memories = ["DDR3", "DDR4", "DDR5"];
 const forms = [
   { value: "mITX", title: "Mini-ITX" },
   { value: "mATX", title: "Micro-ATX" },
@@ -40,6 +41,7 @@ export const peca = defineType({
   title: "Peça",
   type: "document",
   fields: [
+    ...officeFields,
     defineField({
       name: "category",
       title: "Etapa do montador",

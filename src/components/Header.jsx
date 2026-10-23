@@ -8,6 +8,7 @@ import { asset } from "../config";
 const links = [
   ["Serviços", "servicos"],
   ["Área gamer", "gamer"],
+  ["PC Office", "pc-office"],
   ["Avaliações", "avaliacoes"],
   ["Sobre a Capucho", "sobre"],
   ["Contato", "contato"],
@@ -53,7 +54,7 @@ export default function Header({ gamerActive = false }) {
             <Link
               key={id}
               className={id === "gamer" ? "nav-gamer" : undefined}
-              to={id === "gamer" ? "/gamer" : `/#${id}`}
+              to={id === 'pc-office' ? '/pc-office' : `/#${id}`}
               onClick={() => setOpen(false)}
             >
               {label}

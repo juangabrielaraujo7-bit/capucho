@@ -10,6 +10,9 @@ const homeDescription =
 export const routes = [
   "/",
   "/sobre",
+  '/pc-office',
+  '/pc-office/monte-seu-pc',
+  '/pc-office/mini-pc',
   ...services.map((s) => `/servicos/${s.slug}`),
   "/gamer",
   "/gamer/monte-seu-pc",
@@ -23,6 +26,9 @@ export const routes = [
 export const hubRoutes = legacyHubs.map((h) => `/servicos/${h.slug}`);
 
 const gamerPages = {
+  '/pc-office': {title:'PC Office: computadores para trabalho | Capucho',description:'Monte seu computador para escritório ou conheça o Mini PC Office. Configurações e orçamento com a Capucho Informática em São Paulo.'},
+  '/pc-office/monte-seu-pc': {title:'Monte seu PC Office | Capucho Informática',description:'Escolha processador Intel, placa-mãe DDR3, memória e SSD com verificação de compatibilidade. Solicite seu PC Office montado à Capucho.'},
+  '/pc-office/mini-pc': {title:'Mini PC Office: Intel Core i3, i5 e i7 | Capucho',description:'Conheça as versões do Mini PC Office, confira a configuração disponível e peça seu orçamento pelo WhatsApp da Capucho Informática.'},
   "/gamer/formatacao-e-programas": {
     title: "Formatação e programas para PC gamer | Capucho",
     description: "Formatação do PC gamer com backup combinado, instalação do sistema, drivers e programas definidos no orçamento. Solicite uma avaliação à Capucho Informática.",

@@ -19,7 +19,7 @@ export async function createQuote(body, query = sanityQuery) {
   }
   const ids = body.selections.filter(s => s.productId).map(s => s.productId);
   // One published-content snapshot supplies both the promotion and current product prices.
-  const data = await query(`{"coupon":${couponProjection},"items":*[_type == "peca" && _id in $ids && active != false && revisao != "pendente"]{_id,category,name,price}}`, { ids });
+  const data = await query(`{"coupon":${couponProjection},"items":*[_type == "peca" && officeOnly != true && _id in $ids && active != false && revisao != "pendente"]{_id,category,name,price}}`, { ids });
   if (!data || !Array.isArray(data.items)) throw new Error("Catálogo indisponível");
   let subtotalCents = 0;
   const items = Object.entries(steps).map(([step, label]) => {

@@ -3,8 +3,8 @@ import { normalizeCode } from "../shared/coupon.js";
 import { quoteNeedsReview } from "../shared/quote-snapshot.js";
 
 // Every usable discount comes from the API, tied to the exact selected product IDs.
-export default function useOrderQuote(selections, subtotalCents, displayedItems = []) {
-  const key = JSON.stringify(selections);
+export default function useOrderQuote(selections, subtotalCents, displayedItems = [], context = {}) {
+  const key = JSON.stringify({ selections, context });
   const [saved, setSaved] = useState(null);
   const [code, setCode] = useState("");
   const codeRef = useRef("");
@@ -31,7 +31,7 @@ export default function useOrderQuote(selections, subtotalCents, displayedItems 
     const timeout = setTimeout(() => aborter.abort(), 12000);
     setBusy(true); setError(""); setNotice("");
     try {
-      const response = await fetch("/api/quote", { method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ selections, code: requestedCode }), signal: aborter.signal });
+      const response = await fetch("/api/quote", { method: "POST", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...context, selections, code: requestedCode }), signal: aborter.signal });
       const data = await response.json();
       if (!response.ok || !data.quote) throw new Error(data.message || "Não foi possível validar o cupom. Tente novamente.");
       if (id !== requestId.current) return;
@@ -39,7 +39,7 @@ export default function useOrderQuote(selections, subtotalCents, displayedItems 
       setSaved({ key, quote: next });
       codeRef.current = next.coupon?.code || ""; setCode(codeRef.current);
       if (data.invalidCoupon) { setError("Cupom inválido ou desativado. O desconto foi removido; confira o resumo antes de continuar."); return; }
-      const changed = purpose === "checkout" && quoteNeedsReview(quote, next, displayedItems, subtotalCents);
+      const changed = purpose === "checkout" && (quoteNeedsReview(quote, next, displayedItems, subtotalCents) || (data.catalogChanged && quote?.version !== next.version));
       if (changed) { setNotice("Os preços ou a condição do cupom mudaram. Confira o resumo atualizado e clique novamente para enviar."); return; }
       if (purpose === "checkout") {
         if (!/^https:\/\/wa\.me\/5511947009632\?text=/.test(data.whatsappUrl || "")) throw new Error("Não foi possível preparar o envio. Tente novamente.");

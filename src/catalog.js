@@ -11,7 +11,7 @@ for (const step of Object.keys(parts)) parts[step] = [];
 
 // Só entra no montador a peça ativa e sem revisão técnica pendente. Peça sem preço aparece como "Sob consulta"
 // e nunca conta como R$ 0 no total.
-const query = `*[_type == "peca" && active != false && revisao != "pendente"] | order(price asc) {
+const query = `*[_type == "peca" && officeOnly != true && active != false && revisao != "pendente"] | order(price asc) {
   _id, category, name, brand, specs, price, stock, socket, memory, form, igpu, boxCooler,
   tdp, psu, maxTdp, radiator, watts, forms, caseRadiator, "image": image.asset->url, "imported": defined(fornecedor.sku), "supplierSku": fornecedor.sku,
   chipset, chipsets, memSlots, memMax, m2Slots, sataPorts, gb, modules, speed, length, vram, slots,

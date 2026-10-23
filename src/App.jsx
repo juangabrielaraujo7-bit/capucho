@@ -18,6 +18,7 @@ import UpgradePage, { UpgradeHeader, UpgradeFooter } from "./pages/UpgradePage";
 import CleaningPage, { CleaningHeader, CleaningFooter } from "./pages/CleaningPage";
 import FormattingPage, { FormattingHeader, FormattingFooter } from "./pages/FormattingPage";
 import NotFound from "./pages/NotFound";
+import OfficePage, { OfficeBuilder } from './pages/OfficePage';
 import { legacyHubs, redirects, services } from "./content";
 import { wa } from "./config";
 import "./styles.css";
@@ -38,7 +39,7 @@ export default function App() {
   const { pathname } = useLocation();
   const [heroEquipment, setHeroEquipment] = useState("notebook");
   const gamerAccent = pathname === "/" && heroEquipment === "gamer";
-  const builder = pathname.startsWith("/gamer/monte-seu-pc");
+  const builder = pathname.startsWith("/gamer/monte-seu-pc") || pathname.startsWith('/pc-office/');
   // Área gamer (/gamer e subpáginas) usa o tema escuro roxo, separado das cores do site principal.
   const gamer = /^\/gamer(\/|$)/.test(pathname);
   // Montagem completa tem tema próprio, claro e frio (assembly.css).
@@ -58,6 +59,9 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home gamerActive={gamerAccent} onEquipmentChange={setHeroEquipment} />} />
             <Route path="/sobre" element={<AboutPage />} />
+            <Route path="/pc-office" element={<OfficePage />} />
+            <Route path="/pc-office/monte-seu-pc" element={<OfficeBuilder key="office" />} />
+            <Route path="/pc-office/mini-pc" element={<OfficeBuilder key="mini" mini />} />
             <Route path="/servicos/:slug" element={<ServiceRoute />} />
             <Route path="/gamer" element={<GamerPage />} />
             <Route path="/gamer/monte-seu-pc" element={<PcBuilder />} />
