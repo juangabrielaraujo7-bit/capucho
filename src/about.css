@@ -71,8 +71,8 @@ a.about-social-node:hover{box-shadow:0 4px 16px #102c6014}
 .about-person-photo{display:block;width:100%;max-width:420px;height:auto;border-radius:16px;justify-self:center}
 .about-person-copy{align-self:start;padding-top:clamp(32px,5vw,72px)}
 .about-person-copy h1{font-size:clamp(2rem,3.4vw,3.25rem);line-height:1.12;letter-spacing:-.03em;margin:0 0 28px;text-wrap:balance}
-.about-person-copy h1 span{color:var(--blue)}
 .about-person-copy>p{max-width:53ch;margin:0 0 20px;color:var(--muted);font-size:1.0625rem;line-height:1.8}
+.about-person-copy>.about-person-tagline{color:var(--blue);font-size:clamp(1.25rem,1.8vw,1.5rem);font-weight:650;line-height:1.4;margin-bottom:24px}
 @media(max-width:700px){.about-person-grid:has(.about-person-photo){grid-template-columns:1fr;gap:28px}.about-person-section{padding-top:32px}.about-person-copy{padding-top:0}.about-person-copy>p{font-size:1rem}.about-person-photo{max-width:360px}}
 .about-principles{margin:30px 0 0}
 .about-principles>div{display:grid;grid-template-columns:135px 1fr;gap:15px;padding:14px 0;border-top:1px solid var(--line);font-size:.9rem;line-height:1.6}

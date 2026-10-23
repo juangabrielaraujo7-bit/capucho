@@ -20,9 +20,11 @@ export default function AboutPage() {
         <div className="container about-person-grid">
           <img className="about-person-photo" src={asset("henrique-capucho.webp")} alt="Henrique em diferentes momentos do dia a dia na Capucho Informática" width="900" height="1600" decoding="async" fetchPriority="high" />
           <div className="about-person-copy">
-            <h1 id="henrique-title">Henrique.<br /><span>À frente da Capucho.</span></h1>
-            <p>Há 6 anos, Henrique toca o dia a dia da Capucho Informática. Dono da loja e profissional com 13 anos de experiência, ele está presente no atendimento, nos reparos e na montagem de computadores.</p>
-            <p>A Capucho reúne essa experiência com um jeito próximo de atender: ouvir quem chega, entender o que o computador precisa e cuidar de cada serviço com atenção.</p>
+            <h1 id="henrique-title">Henrique Capucho.</h1>
+            <p className="about-person-tagline">Tecnologia com propósito. Confiança em cada detalhe.</p>
+            <p>À frente da Capucho Informática, Henrique une mais de 13 anos de experiência em tecnologia a um atendimento próximo, transparente e focado em soluções de verdade.</p>
+            <p>Há 6 anos construindo a história da Capucho, ele participa de perto de cada etapa: do primeiro atendimento ao diagnóstico, dos reparos especializados à montagem de computadores personalizados.</p>
+            <p>Mais do que consertar computadores ou montar máquinas de alto desempenho, nosso compromisso é entender a necessidade de cada cliente, indicar a solução certa e entregar um serviço feito com cuidado, responsabilidade e qualidade.</p>
           </div>
         </div>
       </section>
