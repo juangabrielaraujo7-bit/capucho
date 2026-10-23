@@ -1,3 +1,5 @@
+import { assemblyBenefitsText, ownPartsAssemblyText, customerCareFaqs } from "../shared/customer-care.js";
+
 // Serviços com página própria (/servicos/<slug>). Cada página segue a lógica:
 // sinais percebidos → verificações e soluções → informação importante (opcional) → dúvidas.
 // Textos curtos e específicos; condições comerciais só as confirmadas no briefing.
@@ -751,18 +753,12 @@ export const faqs = [
     "Quanto tempo leva o serviço?",
     "O prazo é informado junto com o orçamento, depois da avaliação do computador. Você pode acompanhar o atendimento pelo WhatsApp.",
   ],
-  [
-    "Os serviços têm garantia?",
-    "A garantia informada para os serviços é de 90 dias. Consulte a cobertura e as condições aplicáveis ao seu atendimento antes de aprovar o orçamento.",
-  ],
+  ...customerCareFaqs,
   [
     "Vocês fazem retirada, entrega e visita?",
     "A retirada e a entrega são gratuitas na região atendida. Envie seu CEP ou endereço pelo WhatsApp para confirmar a cobertura. Visitas são combinadas por dia e horário; consulte o valor no primeiro contato.",
   ],
-  [
-    "E os meus arquivos?",
-    "Conte quais arquivos são importantes antes de entregar o equipamento. Os cuidados com os dados e a possibilidade de backup precisam ser combinados antes do serviço.",
-  ],
+  ["O que está incluído ao comprar as peças e montar com a Capucho?", `${assemblyBenefitsText} ${ownPartsAssemblyText}`],
   [
     "Quais são as formas de pagamento?",
     "Consulte as formas de pagamento disponíveis pelo WhatsApp, junto com o seu orçamento.",

@@ -28,6 +28,7 @@ import { asset } from "../config";
 import CouponOffer, { useCouponOffer } from "../components/CouponOffer";
 import useOrderQuote from "../useOrderQuote";
 import { benefit, cents, money } from "../../shared/coupon.js";
+import { assemblyBenefitsText, ownPartsAssemblyText } from "../../shared/customer-care.js";
 import {
   HELP,
   OWN,
@@ -436,6 +437,7 @@ export default function PcBuilder() {
           escolheu. No fim, envie a lista pelo WhatsApp e a Capucho confirma preços, disponibilidade e
           faz a montagem e os testes.
         </p>
+        <div className="builder-assembly"><Screwdriver size={28} weight="duotone" /><p><strong>Benefícios de montar com a Capucho.</strong> {assemblyBenefitsText}</p></div>
       </div>
 
       <div role="status" aria-live="polite">
@@ -620,8 +622,7 @@ export default function PcBuilder() {
               <div className="builder-assembly">
                 <Screwdriver size={28} weight="duotone" />
                 <p>
-                  <strong>Montagem e testes pela Capucho.</strong> O valor da montagem é confirmado
-                  junto com o orçamento das peças.
+                  <strong>Montagem e testes pela Capucho.</strong> {assemblyBenefitsText} {ownPartsAssemblyText}
                 </p>
               </div>
               <form className="builder-coupon" onSubmit={event => { event.preventDefault(); order.apply(couponInput); }} aria-busy={order.busy}>
@@ -702,8 +703,7 @@ export default function PcBuilder() {
             Pedir orçamento
           </button>
           <p className="small-note">
-            Valores estimados, sujeitos à confirmação de preço e disponibilidade. Montagem cobrada à
-            parte.
+            Valores estimados, sujeitos à confirmação de preço e disponibilidade. {ownPartsAssemblyText}
           </p>
         </aside>
       </div>

@@ -10,6 +10,7 @@ Pessoas que precisam consertar, manter, montar ou melhorar um computador. A pág
 
 - Nome, telefone, endereço e perfis oficiais vêm de `src/config.js`.
 - Compatibilidade, valores, disponibilidade e prazos são confirmados pela Capucho antes do serviço.
+- Condições confirmadas em 23/10/2026: garantia de 90 a 365 dias conforme produto/serviço; aviso prévio e cópia de todo o perfil antes da formatação; atendimento presencial e a empresas. Comprando as peças e montando com a Capucho, a montagem é gratuita e inclui Windows 10 ou 11 Pro licenciado e Office com licença vitalícia (não Microsoft 365 por assinatura). Para componentes próprios, o valor da montagem é informado no orçamento. Textos compartilhados em `shared/customer-care.js`.
 - O montador já existente permite escolher componentes; as páginas de serviço explicam o atendimento e encaminham ao WhatsApp.
 - Conteúdo de upgrade aprovado pelo usuário: cinco seções e as mensagens do briefing anexado.
 

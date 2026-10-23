@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { benefit, cents, discountInCents, money, normalizeCode, publishedCoupon } from "../shared/coupon.js";
 import { sanityQuery, couponProjection } from "./sanity.js";
 import { wa } from "../src/config.js";
+import { assemblyBenefitsText, ownPartsAssemblyText } from "../shared/customer-care.js";
 
 const steps = { cpu: "Processador", board: "Placa-mãe", ram: "Memória RAM", gpu: "Placa de vídeo", storage: "Armazenamento", cooler: "Cooler", psu: "Fonte", case: "Gabinete" };
 const optionLabels = { help: "Quero indicação da Capucho", own: "Já tenho essa peça", none: "Sem placa de vídeo (vídeo integrado)", box: "Cooler que vem com o processador" };
@@ -41,6 +42,17 @@ export async function createQuote(body, query = sanityQuery) {
   const version = createHash("sha256").update(JSON.stringify({ items, coupon, subtotalCents, discountCents, totalCents })).digest("hex");
   const partial = items.some(item => item.unpriced);
   const quote = { items, subtotalCents, discountCents, totalCents, coupon, version, partial };
-  const lines = ["Olá, Capucho! Montei um PC no site e quero um orçamento com a montagem:", "", ...items.map(item => `• ${item.label}: ${item.name}${item.productId ? ` — ${item.cents === null ? "Sob consulta" : money(item.cents)}` : ""}`), "", `Subtotal das peças: ${money(subtotalCents)}${partial ? " (sem peças sob consulta)" : ""}`, coupon ? `Cupom aplicado: ${coupon.code}` : "Cupom: não aplicado", coupon ? `Benefício: ${coupon.discountType === "percentage" ? "Porcentagem" : "Valor fixo"} — ${benefit(coupon)}` : null, `Desconto do cupom: ${money(discountCents)}`, `Total estimado${coupon ? " com desconto" : ""}: ${money(totalCents)}`, "Frete e serviços cobrados separadamente não entram no desconto. Montagem cobrada à parte.", "Disponibilidade, valores, prazo e orçamento são confirmados pela Capucho."];
+  const lines = [
+    "Olá, Capucho! Montei um PC no site e quero um orçamento com a montagem:", "",
+    ...items.map(item => `• ${item.label}: ${item.name}${item.productId ? ` — ${item.cents === null ? "Sob consulta" : money(item.cents)}` : ""}`), "",
+    `Subtotal das peças: ${money(subtotalCents)}${partial ? " (sem peças sob consulta)" : ""}`,
+    coupon ? `Cupom aplicado: ${coupon.code}` : "Cupom: não aplicado",
+    coupon ? `Benefício: ${coupon.discountType === "percentage" ? "Porcentagem" : "Valor fixo"} — ${benefit(coupon)}` : null,
+    `Desconto do cupom: ${money(discountCents)}`,
+    `Total estimado${coupon ? " com desconto" : ""}: ${money(totalCents)}`,
+    "Frete e serviços cobrados separadamente não entram no desconto.",
+    assemblyBenefitsText, ownPartsAssemblyText,
+    "Disponibilidade, valores, prazo e orçamento são confirmados pela Capucho.",
+  ];
   return { quote, invalidCoupon, whatsappUrl: invalidCoupon ? null : wa(lines.filter(l => l !== null).join("\n")) };
 }

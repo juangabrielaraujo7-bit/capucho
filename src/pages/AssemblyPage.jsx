@@ -5,6 +5,7 @@ import "@fontsource-variable/cinzel";
 import FaqList from "../components/FaqList";
 import { asset, business, maps, wa } from "../config";
 import "../assembly.css";
+import { assemblyBenefitsText, ownPartsAssemblyText, customerCareFaqs } from "../../shared/customer-care.js";
 
 const builderPath = "/gamer/monte-seu-pc";
 const helpLink = wa("Olá, Capucho! Quero ajuda para montar meu PC gamer. Gostaria de conversar sobre meus jogos, meu monitor e meu orçamento para definir uma configuração compatível.");
@@ -29,14 +30,15 @@ const steps = [
   ["Aprove o orçamento", "A montagem começa com a sua aprovação."],
   ["Preparação e entrega", "Montamos e testamos o computador antes da entrega."],
 ];
-// Condições já publicadas preservadas da implementação anterior.
+// Benefícios e condições compartilhados com o montador e as dúvidas da home.
 const faq = [
   ["Posso levar peças que já comprei?", "Sim. A Capucho verifica a compatibilidade e as condições das peças antes de realizar a montagem."],
   ["Vocês me ajudam a escolher os componentes?", "Sim. Conte quais jogos e programas pretende usar, qual monitor tem e quanto quer investir. A gente ajuda a avaliar a configuração."],
   ["O preço do montador é definitivo?", "Não. Os valores são estimados. O orçamento final e a disponibilidade das peças são confirmados pelo WhatsApp antes da aprovação."],
   ["Qual é o prazo para a montagem?", "O prazo é informado junto com o orçamento, considerando a configuração e a disponibilidade das peças."],
-  ["A montagem é cobrada à parte?", "Não, se você comprar as peças com a Capucho: nesse caso, a montagem é gratuita. Se você já tem os componentes, o valor da montagem é informado no orçamento."],
-  ["O Windows e os programas já vêm instalados?", "Sim. O PC sai da loja com o Windows licenciado e os programas instalados, pronto para usar."],
+  ["A montagem é cobrada à parte?", `Comprando as peças com a Capucho, a montagem é gratuita. ${ownPartsAssemblyText}`],
+  ["O Windows e o Office estão incluídos?", assemblyBenefitsText],
+  ...customerCareFaqs,
 ];
 
 function AssemblyBrand() {
@@ -79,7 +81,7 @@ export default function AssemblyPage() {
   return <div className="assembly-page">
     <section className="asm-section asm-hero asm-dark" aria-labelledby="asm-hero-title"><Atmosphere /><div className="asm-container asm-hero-grid"><div className="asm-hero-copy">
       <nav className="asm-breadcrumb" aria-label="Caminho da página"><Link to="/gamer">Área gamer</Link><span aria-hidden="true">/</span><span>Montagem completa</span></nav>
-      <h1 id="asm-hero-title"><span>Seu próximo PC</span><span>começa com as</span><em>escolhas certas.</em></h1><Ornament /><Actions /><p className="asm-perk"><Gear size={20} aria-hidden="true" /><span>Montagem grátis comprando as peças com a Capucho.</span></p>
+      <h1 id="asm-hero-title"><span>Seu próximo PC</span><span>começa com as</span><em>escolhas certas.</em></h1><Ornament /><Actions /><p className="asm-perk"><Gear size={20} aria-hidden="true" /><span>{assemblyBenefitsText}</span></p>
     </div><Character name="dupla-hero" variant="hero" hero alt="Kratos de barba cheia e Atreus adolescente sem barba, juntos em uma pose natural" /></div></section>
 
     <section id="objetivos" className="asm-section asm-goals asm-light" aria-labelledby="asm-goals-title"><Atmosphere /><div className="asm-container asm-goals-grid"><div className="asm-goals-heading"><h2 id="asm-goals-title">Que jornada você quer encarar?</h2><Ornament /></div><Character name="atreus-objetivos" variant="goals" alt="Atreus adolescente sem barba, segurando a alça da roupa e olhando para os objetivos à direita" /><ul className="asm-goal-cards">{goals.map(({ title, text, icon: Icon }) => <li key={title}><Icon size={30} weight="regular" aria-hidden="true" /><h3>{title}</h3><p>{text}</p></li>)}</ul></div></section>
@@ -88,6 +90,6 @@ export default function AssemblyPage() {
 
     <section id="como-funciona" className="asm-section asm-process asm-light" aria-labelledby="asm-process-title"><Atmosphere /><div className="asm-container"><div className="asm-process-grid"><div className="asm-process-heading"><h2 id="asm-process-title"><span>Um plano claro</span><span>antes de começar.</span></h2><Ornament /></div><Character name="kratos-etapas" variant="process" alt="Kratos de barba cheia com a mão junto ao peito, em uma pose tranquila ao lado das etapas" /><div className="asm-process-copy"><ol className="asm-steps">{steps.map(([title, text], index) => <li key={title}><span className="asm-step-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol><p className="asm-note"><Info size={18} aria-hidden="true" />Valores estimados. Confirmação final pelo WhatsApp.</p></div></div><div className="asm-faq" aria-labelledby="asm-faq-title"><h3 id="asm-faq-title">Antes de montar, tire suas dúvidas.</h3><FaqList items={faq} name="faq-montagem" /></div></div></section>
 
-    <section className="asm-section asm-final asm-dark" aria-labelledby="asm-final-title"><Atmosphere /><div className="asm-container"><h2 id="asm-final-title"><span>Vamos montar</span><span>seu próximo PC?</span></h2><Ornament /><Actions /><p className="asm-perk"><Gear size={20} aria-hidden="true" /><span>Comprando as peças com a Capucho, a montagem não tem custo.</span></p></div></section>
+    <section className="asm-section asm-final asm-dark" aria-labelledby="asm-final-title"><Atmosphere /><div className="asm-container"><h2 id="asm-final-title"><span>Vamos montar</span><span>seu próximo PC?</span></h2><Ornament /><Actions /><p className="asm-perk"><Gear size={20} aria-hidden="true" /><span>{assemblyBenefitsText}</span></p></div></section>
   </div>;
 }
