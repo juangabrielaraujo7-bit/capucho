@@ -73,3 +73,26 @@ test('catálogo público remove dados internos e peças incompletas',async()=>{
  const result=await getOfficeCatalog(async()=>data);assert.equal(result.products.length,7);assert.equal(result.products[0].fornecedor,undefined);assert.equal(result.config.approvalNotes,'Conferido pela Capucho');assert.ok(result.products[3].officeSsd);
  assert.equal(assemblyIssue(result.config,result.products,Object.fromEntries(officeRequest().selections.map(s=>[s.step,s.productId]))),'');
 });
+test('demonstração usa preço separado, preserva estoque/revisão e identifica a simulação no WhatsApp',async()=>{
+ const data=officeFixture();data.config.demonstration=true;data.config.active=false;data.config.baseConfirmed=false;
+ for(const p of data.products){p.officeDemoPrice=75;p.price=undefined;p.active=false;p.stock=false;p.revisao='pendente';}
+ data.products[1].officeCpuSupport=[];
+ const publicData=await getOfficeCatalog(async()=>data);
+ assert.equal(publicData.products.length,7);assert.equal(publicData.products[0].price,75);assert.equal(publicData.products[0].stock,false);assert.equal(publicData.products[0].revisao,'pendente');assert.equal(publicData.products[0].demonstration,true);
+ const result=await createOfficeQuote(officeRequest(),query(data));assert.equal(result.quote.demonstration,true);assert.equal(result.quote.subtotalCents,53025);
+ const message=decodeURIComponent(result.whatsappUrl);for(const text of ['preços fictícios','Não constitui oferta','compatibilidade não confirmados','orçamento real'])assert.ok(message.includes(text),text);
+ assert.equal(data.products[0].price,undefined);assert.equal(data.products[0].stock,false);
+});
+test('desligar demonstração nunca libera preços fictícios como valores comerciais',async()=>{
+ const data=officeFixture();for(const p of data.products){p.officeDemoPrice=10;p.price=undefined;}
+ data.config.demonstration=false;assert.equal((await getOfficeCatalog(async()=>data)).products.length,0);
+ await assert.rejects(()=>createOfficeQuote({...officeRequest(),demonstration:true},query(data)),e=>e.status===400);
+});
+test('demonstração do Mini tem três preços provisórios sem inventar modelos ou estoque',async()=>{
+ const data=officeFixture();data.mini.demonstration=true;data.mini.active=false;data.mini.fixedConfirmed=false;
+ for(const [i,v]of data.mini.variants.entries()){v.officeDemoPrice=899+i*300;v.price=undefined;v.model='Modelo a confirmar';v.confirmed=false;v.stock=false;v.active=false;}
+ for(const [i,family]of ['i3','i5','i7'].entries()){
+  const result=await createOfficeQuote({kind:'mini',family},query(data));assert.equal(result.quote.demonstration,true);assert.equal(result.quote.totalCents,(899+i*300)*100);assert.ok(result.quote.items[0].name.includes('Modelo a confirmar'));
+ }
+ data.mini.demonstration=false;await assert.rejects(()=>createOfficeQuote({kind:'mini',family:'i3',demonstration:true},query(data)),e=>e.status===400);
+});

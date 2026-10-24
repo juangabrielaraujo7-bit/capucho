@@ -5,10 +5,11 @@ Atualizado em 23/10/2026. Esta área estende o site existente: mantém o visual 
 ## Estado da entrega
 
 - Studio publicado em https://capucho.sanity.studio/, com a entrada **PC Office**.
-- Importação inicial executada com `studio/import/office.mjs`: **28 rascunhos**, sendo 21 processadores, duas placas-mãe, dois kits de RAM, um gabinete e dois documentos de configuração. Uma segunda execução criou zero documentos e preservou os 28 existentes.
-- Nenhum produto ou promoção foi publicado por esta entrega. Os cadastros iniciais estão desativados, sem estoque liberado e com revisão pendente quando aplicável.
-- O site segue o fluxo de publicação da branch principal na Vercel. A publicação do painel é independente da ativação comercial dos produtos.
-- Preços, disponibilidade e especificações comerciais vêm exclusivamente dos documentos publicados no Sanity. Valores e configurações usados nos testes são fictícios e ficam restritos às fixtures locais; não foram enviados ao catálogo de produção.
+- Após o pedido explícito do usuário para criar imagens e colocar preços fictícios temporários, o catálogo de demonstração foi publicado no Sanity. Foram preparados atomicamente **33 registros**: 31 peças, o documento de montagem e o documento do Mini PC.
+- As 31 peças são 21 CPUs, duas placas-mãe, dois kits de RAM, três SSDs existentes compartilhados e três itens de base (gabinete, fonte e cooler). Há imagens em 29 peças; fonte e cooler aparecem como texto no resumo.
+- Preços fictícios ficam no campo separado `officeDemoPrice`. Preço comercial, estoque e aprovações de BIOS/compatibilidade foram preservados. Publicar a demonstração não confirma uma oferta comercial.
+- O Studio está atualizado. O site consome o catálogo publicado pela API Office; alterações dos valores provisórios no painel não exigem novo deploy.
+- O modo de demonstração é explícito na interface e no WhatsApp, com solicitação de orçamento real. Desligá-lo restaura as verificações comerciais completas.
 
 ## Páginas e implementação
 
@@ -32,15 +33,25 @@ Entre no [Sanity Studio da Capucho](https://capucho.sanity.studio/) e abra **Cat
 
 Os documentos únicos não oferecem duplicação ou exclusão no painel. As listas Office criam peças com os campos de Office preparados, inicialmente desativadas. A lista de armazenamento também mostra os produtos já cadastrados no Gamer: edite o mesmo SSD, sem duplicá-lo.
 
-Salvar um rascunho não altera a oferta pública. Depois de verificar os dados, use **Publicar/Publish** no documento correspondente. O site usa apenas a versão publicada. Para retirar uma oferta já publicada, desmarque sua liberação ou estoque e publique a mudança; deixar apenas uma alteração em rascunho mantém a versão publicada anterior em vigor.
+Salvar um rascunho não altera a oferta pública. Depois de verificar os dados, use **Publicar/Publish** no documento correspondente. O site usa apenas a versão publicada. Fora do modo de demonstração, para retirar uma oferta, desmarque sua liberação ou estoque e publique. Para suspender a simulação, desligue também o modo de demonstração do documento de montagem ou Mini e publique. Deixar uma alteração apenas em rascunho mantém a versão publicada anterior em vigor.
+
+## Demonstração com fotos e preços fictícios
+
+Em **PC Office > Montagem · itens inclusos e liberação** e **PC Office > Mini PC · versões e preços**, o campo **Exibir demonstração com preços fictícios** (`demonstration`) controla cada experiência independentemente. O estado atual publicado permite simular sem afirmar estoque, suporte de BIOS ou compatibilidade real.
+
+Para editar os valores temporários das peças, abra a peça e altere **Preço fictício de demonstração Office (R$)** (`officeDemoPrice`). Para o Mini, edite **Preço fictício de demonstração (R$)** dentro de cada versão. Os valores publicados iniciais do Mini são i3 **R$ 899,00**, i5 **R$ 1.199,00** e i7 **R$ 1.499,00**, todos fictícios. Publique os documentos alterados. O campo comercial `price` permanece separado e não é sobrescrito pela simulação.
+
+O servidor relê o modo publicado no Sanity e adapta os preços apresentados somente enquanto esse modo está ligado. O navegador não pode solicitar uma exceção às validações por conta própria. A simulação do montador continua exigindo as quatro escolhas e as referências de gabinete, fonte e cooler; um pedido incompleto permanece bloqueado. Em demonstração, as matrizes técnicas não representam uma compatibilidade aprovada: a interface e a mensagem dizem que imagens/valores são ilustrativos, estoque/compatibilidade não estão confirmados e o visitante está solicitando um orçamento real.
+
+Para passar à oferta comercial, complete os passos de revisão abaixo, desligue **Exibir demonstração com preços fictícios** nos dois documentos e publique. Revise também **Liberar configurações no site** ou **Mostrar Mini PC no site** e as liberações individuais. Com o modo desligado, voltam a valer preço comercial, estoque, revisão técnica, BIOS e demais confirmações; itens sem esses dados ficam indisponíveis. Não copie os valores fictícios para o campo de preço comercial.
 
 ## 1. Completar os componentes do montador
 
-Em cada peça, preencha nome/modelo exato, marca, resumo técnico, foto, preço real da Capucho e estoque. Para aparecer e ser aceita no orçamento Office, a peça precisa estar publicada, com **Mostrar no site** e **Em estoque** ligados, **Revisão técnica: Revisada** e preço positivo. Informe preços em reais, preferencialmente com até duas casas decimais; os cálculos são arredondados consistentemente para centavos. Nas peças Office, marque **Usar no PC Office**. Use **Exclusiva do Office (ocultar no Gamer)** quando o item não deva entrar no montador Gamer.
+Os requisitos desta seção e das seções 2 e 3 descrevem a liberação comercial, com demonstração desligada. Em cada peça, preencha nome/modelo exato, marca, resumo técnico, foto, preço real da Capucho e estoque. Para aparecer e ser aceita no orçamento comercial Office, a peça precisa estar publicada, com **Mostrar no site** e **Em estoque** ligados, **Revisão técnica: Revisada** e preço positivo. Informe preços em reais, preferencialmente com até duas casas decimais; os cálculos são arredondados consistentemente para centavos. Nas peças Office, marque **Usar no PC Office**. Use **Exclusiva do Office (ocultar no Gamer)** quando o item não deva entrar no montador Gamer.
 
 ### Processadores
 
-Os 21 rascunhos correspondem ao briefing:
+Os 21 modelos publicados para demonstração correspondem ao briefing:
 
 | Família | 2ª geração | 3ª geração |
 | --- | --- | --- |
@@ -48,11 +59,11 @@ Os 21 rascunhos correspondem ao briefing:
 | i5 | i5-2300, i5-2310, i5-2320, i5-2400, i5-2500 | i5-3330, i5-3340, i5-3450, i5-3470, i5-3570 |
 | i7 | i7-2600, i7-2600K, i7-2700K | i7-3770, i7-3770K |
 
-Confira **Família Intel Office**, **Geração Intel**, soquete `LGA1155`, vídeo integrado e TDP real. Os rascunhos não afirmam suporte: cada modelo ainda precisa de uma linha de confirmação de CPU/BIOS na placa-mãe. Para adicionar um modelo, crie uma peça nesta lista e revise também as placas que poderão aceitá-lo. Para removê-lo da oferta, desative e publique; revise as referências de suporte.
+Confira **Família Intel Office**, **Geração Intel**, soquete `LGA1155`, vídeo integrado e TDP real. Os registros de demonstração não afirmam suporte: cada modelo ainda precisa de uma linha de confirmação de CPU/BIOS na placa-mãe para liberação comercial. Para adicionar um modelo, crie uma peça nesta lista e revise também as placas que poderão aceitá-lo. Para removê-lo da oferta comercial, desative e publique; revise as referências de suporte. Durante a demonstração, a presença de `officeDemoPrice` positivo permite sua participação na simulação independentemente do estoque comercial.
 
 ### Placas-mãe H61 e B75
 
-Substitua o nome genérico do rascunho pelo fabricante, modelo e revisão reais. Preencha chipset `H61` ou `B75`, soquete `LGA1155`, memória `DDR3`, tamanho físico, **Slots de memória** (`memSlots`), **Memória máxima (GB)** (`memMax`) e **Portas SATA** (`sataPorts`, maior que zero para SSD SATA).
+Substitua o nome genérico da demonstração pelo fabricante, modelo e revisão reais. Preencha chipset `H61` ou `B75`, soquete `LGA1155`, memória `DDR3`, tamanho físico, **Slots de memória** (`memSlots`), **Memória máxima (GB)** (`memMax`) e **Portas SATA** (`sataPorts`, maior que zero para SSD SATA).
 
 Em **Processadores e BIOS validados** (`officeCpuSupport`), crie uma linha para cada processador exato suportado: selecione a referência da CPU, informe a versão de BIOS verificada e marque **Suporte confirmado neste modelo/revisão de placa**. Confirme a BIOS instalada e registre evidências técnicas antes da liberação. Mesmo chipset ou soquete não bastam.
 
@@ -92,7 +103,7 @@ Abra **PC Office > Montagem · itens inclusos e liberação** e siga esta ordem:
 
 As regras automáticas verificam os campos e referências acima, o formato físico da placa no gabinete e as capacidades declaradas. A aprovação manual cobre aspectos que o código não consegue provar, como pinagem, conectores reais, revisão da unidade, ventilação e segurança de todas as combinações. Alterações de peças ou limites exigem nova conferência técnica.
 
-Ao trocar de placa no configurador, escolhas ainda compatíveis são mantidas; CPU, RAM ou SSD incompatíveis são removidos. Seleções salvas no navegador também são conferidas com o catálogo atualizado. Uma montagem incompleta, desativada, sem preço/estoque ou sem confirmação técnica não habilita o pedido.
+No modo comercial, ao trocar de placa no configurador, escolhas ainda compatíveis são mantidas; CPU, RAM ou SSD incompatíveis são removidos. Seleções salvas no navegador também são conferidas com o catálogo atualizado. Uma montagem comercial incompleta, desativada, sem preço/estoque ou sem confirmação técnica não habilita o pedido. A demonstração permite explorar as peças sem afirmar a aprovação técnica dessas combinações.
 
 ## 3. Cadastrar o Mini PC
 
@@ -114,20 +125,22 @@ O cupom continua em **Catálogo > Cupom de desconto**, fora da entrada PC Office
 
 O servidor consulta o Sanity diretamente, com perspectiva publicada e sem cache. O navegador atualiza o catálogo a cada 30 segundos enquanto a página está visível e ao retomar o foco. Antes de abrir o WhatsApp, o servidor consulta novamente preços, estoque, compatibilidade e cupom. Se o resumo mudar, a página apresenta os valores/especificações atualizados e solicita outro clique para conferência. Cupom inválido é removido e impede o envio naquela tentativa; falha de consulta mantém a compra bloqueada e oferece nova tentativa.
 
-A mensagem do montador inclui componentes, modelos, preços, BIOS validada, inclusos, subtotal, cupom, desconto e total. A mensagem do Mini inclui versão/modelo exato, configuração fixa e preço completo. O orçamento final, disponibilidade e prazo continuam sujeitos à confirmação da Capucho pelo WhatsApp.
+A mensagem comercial do montador inclui componentes, modelos, preços, BIOS validada, inclusos, subtotal, cupom, desconto e total. A mensagem comercial do Mini inclui versão/modelo exato, configuração fixa e preço completo. Em demonstração, o botão diz **Solicitar orçamento real**, o resumo usa **Total da simulação** e a mensagem contém **SIMULAÇÃO**, preços fictícios e ausência de confirmação de estoque/compatibilidade. O orçamento final, disponibilidade e prazo continuam sujeitos à confirmação da Capucho pelo WhatsApp.
 
 ## Schemas e campos alterados
 
-- **Novos:** `officeConfig` e `officeMini`, definidos em `studio/schemas/office.js`.
-- **Reutilizado e ampliado:** `peca`, com os campos `office`, `officeOnly`, `officeSsd`, `family`, `generation`, `officeModel`, `officeVerified`, `officeCpuSupport`, `officeRamSupport` e `officeStorageSupport`. A lista de soquetes inclui `LGA1155`.
+- **Novos:** `officeConfig` e `officeMini`, definidos em `studio/schemas/office.js`, ambos com o controle `demonstration`. As versões do Mini têm `officeDemoPrice` separado de `price`.
+- **Reutilizado e ampliado:** `peca`, com os campos `office`, `officeOnly`, `officeSsd`, `officeDemoPrice`, `family`, `generation`, `officeModel`, `officeVerified`, `officeCpuSupport`, `officeRamSupport` e `officeStorageSupport`. A lista de soquetes inclui `LGA1155`.
 - **Reutilizados:** preço, estoque, revisão, foto e características técnicas existentes de CPU, placa, RAM, SSD, gabinete, fonte e cooler; o schema de cupom existente é preservado.
 - **Studio:** estrutura PC Office e modelo de criação de peça Office em `studio/sanity.config.js`. SSDs mantêm o cadastro compartilhado.
 
-O script `studio/import/office.mjs` cria somente cadastros ausentes, preserva documentos publicados ou em rascunho com os mesmos IDs e não publica nada. A partir da pasta `studio`, sua execução técnica é `npx sanity exec import/office.mjs --with-user-token`; ele não é necessário para editar os 28 documentos já criados.
+O script inicial `studio/import/office.mjs` cria somente cadastros ausentes, preserva documentos publicados ou em rascunho com os mesmos IDs e não publica nada. A partir da pasta `studio`, sua execução técnica é `npx sanity exec import/office.mjs --with-user-token`; ele não é necessário para editar o catálogo atual. A publicação posterior da demonstração é uma operação distinta, autorizada pelo usuário, e mantém os SSDs nos mesmos IDs existentes.
 
 ## Fotos e informações ainda pendentes
 
-As imagens WebP em `public/assets/office/` derivam de fotos reais oficiais da Hayom e da PCYES One B300; origens e finalidade estão em `docs/office-assets.json`. A imagem PCYES é referência de formato: a configuração do produto de origem não é copiada para a oferta. Troque as referências por fotos adequadas da oferta confirmada no Sanity.
+As fotos reais do Hayom GB1752 e PCYES One B300 têm origens e finalidade em `docs/office-assets.json`. A imagem PCYES é referência de formato: a configuração do produto de origem não é copiada para a oferta. Os três SSDs reutilizam as fotos e os mesmos documentos existentes, sem duplicação.
+
+As categorias CPU, placa-mãe e RAM receberam imagens geradas com a ferramenta integrada de imagens, em `public/assets/office/cpu-illustrative.webp`, `board-illustrative.webp` e `ram-illustrative.webp`. São ilustrações de categoria compartilhadas pelos modelos, não fotografias comprovando cada peça exata. Prompts e arquivos de origem estão em `docs/office-generated-assets.json`. Fonte e cooler permanecem como inclusos em texto no resumo; não há imagens de produto confirmadas para eles. Substitua as imagens ilustrativas por fotos das peças reais quando disponíveis.
 
 Para disponibilizar a área comercial, a Capucho ainda precisa fornecer ou confirmar:
 
@@ -137,10 +150,10 @@ Para disponibilizar a área comercial, a Capucho ainda precisa fornecer ou confi
 - Aprovação técnica de todas as combinações liberadas e registro do responsável.
 - Modelo comercial exato do Mini PC, três CPUs específicas, três preços/disponibilidades e configuração fixa comum confirmada.
 
-Enquanto essas informações faltarem, mantenha os cadastros incompletos em rascunho/desativados. O visitante encontra o estado de preparação, sem poder enviar a configuração incompleta como pedido.
+Enquanto essas informações faltarem, a demonstração publicada pode permanecer disponível com sua identificação explícita. Não ative as confirmações comerciais para contornar pendências. Com demonstração desligada, cadastros sem requisitos comerciais permanecem desativados ou em preparação, sem pedido comercial incompleto.
 
 ## Verificação realizada
 
-A entrega registrou 51 testes Node aprovados, cobrindo cupons e regras Office. O roteiro local `.qa/office/browser.mjs` verificou larguras de 360, 390, 768 e 1440 px, com sete consultas de orçamento por largura: seleção, cupom percentual, remoção, código inválido, desconto fixo limitado ao subtotal, alteração de preço antes do envio, conferência de especificação fixa do Mini, catálogo vazio, falha e nova tentativa. Também verificou navegação móvel, ausência de transbordamento horizontal e de erros de página.
+A entrega atual registrou **54 testes Node aprovados**, cobrindo cupons, regras comerciais e separação da demonstração. A verificação de navegador usou snapshots do catálogo efetivamente publicado no Sanity em larguras de **360, 390, 768 e 1440 px**, com 29 peças com imagem, sem transbordamento horizontal nem erros de página.
 
-As capturas estão em `.qa/office/captures/`. O WhatsApp foi interceptado no teste; nenhuma mensagem foi enviada. Fixtures de demonstração não fazem parte do catálogo de produção. O build gerou 21 páginas e a página 404; o painel compilou e foi publicado. A revisão independente teve disposição **ship**, mantendo as restrições de compra até a Capucho confirmar os dados reais. A consulta direta ao Sanity confirmou que os rascunhos ficam ocultos e que pedidos incompletos são bloqueados. A conferência e publicação dos dados comerciais reais continuam necessárias antes de disponibilizar os produtos para compra.
+As capturas atuais estão em `.qa/office/demo-captures/`; as anteriores permanecem em `.qa/office/captures/`. O WhatsApp foi interceptado nos testes, sem envio de mensagens. O modo de demonstração publicado é intencional e separado dos dados comerciais: as fixtures locais continuam restritas aos testes. A nova implantação do site está pendente; a publicação dos dados comerciais confirmados continua necessária para transformar a simulação em oferta real.

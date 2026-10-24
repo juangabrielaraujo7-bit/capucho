@@ -1,0 +1,14 @@
+{
+  "cpu": {
+    "source": "C:\\Users\\Convidado 1\\.codex\\generated_images\\01a151df-6efa-7141-aaae-6cc29843ee10\\exec-7182d990-e805-4eb9-a7d0-235fbcfa27f1.png",
+    "prompt": "Create a premium photorealistic ecommerce product photograph of a generic desktop Intel-era LGA1155 processor. Square silver brushed-metal heat spreader on a dark green thin PCB, three-quarter elevated camera angle, crisp realistic details, restrained soft studio lighting, entire single CPU fully visible centered, no packaging, no branding, no text, no prices, no badges. Transparent background. Illustrative category image for PC Office parts catalog, not claiming a specific exact model."
+  },
+  "board": {
+    "source": "C:\\Users\\Convidado 1\\.codex\\generated_images\\01a151df-6efa-7141-aaae-6cc29843ee10\\exec-0abcd71a-66d6-4cc0-ab32-9e424d3a964a.png",
+    "prompt": "Create a premium photorealistic ecommerce product photograph of a generic compact micro-ATX desktop motherboard from the DDR3 LGA1155 era, dark brown PCB, two DDR3 memory slots, empty square silver CPU retention socket, SATA ports, rear IO connectors, no CPU installed, no RAM installed. Three-quarter elevated camera angle with entire motherboard fully visible and centered. Accurate plausible electronics, crisp details, neutral soft studio lighting. No brands or text, no packaging or prices. Transparent background. Illustrative category asset, not a specific verified board model."
+  },
+  "ram": {
+    "source": "C:\\Users\\Convidado 1\\.codex\\generated_images\\01a151df-6efa-7141-aaae-6cc29843ee10\\exec-0db87c4d-6fb6-4a04-80ad-fcd82843e29b.png",
+    "prompt": "Create a premium photorealistic ecommerce product photograph of two generic desktop DDR3 DIMM memory modules, unbranded dark green printed circuit boards, black memory chips and gold edge contacts, no tall heatsinks or RGB. Two modules staggered neatly in a three-quarter elevated camera view, fully visible centered, realistic proportions and crisp electronics details. Soft neutral studio lighting, no text or logos, no packaging or badges, transparent background. Illustrative PC Office catalog asset."
+  }
+}

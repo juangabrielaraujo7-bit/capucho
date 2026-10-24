@@ -6,6 +6,7 @@ export const officeConfig = defineType({
   name:'officeConfig', title:'Monte seu PC Office', type:'document',
   initialValue:{active:false,baseConfirmed:false,extrasConfirmed:false},
   fields:[
+    defineField({name:'demonstration',title:'Exibir demonstração com preços fictícios',type:'boolean',description:'Mostra fotos ilustrativas e Preço de demonstração das peças. Não altera preço comercial nem confirma estoque/compatibilidade. Desative após cadastrar os dados reais.'}),
     defineField({name:'active',title:'Liberar configurações no site',type:'boolean',description:'Só ative após conferir preços, estoque, BIOS, fonte, cooler, cabos e ventilação.'}),
     reference('case','Gabinete único · Hayom GB1752','case'),
     reference('psu','Fonte inclusa (preço somado ao pedido)','psu'),
@@ -25,6 +26,7 @@ export const officeMini = defineType({
   name:'officeMini',title:'Mini PC Office',type:'document',
   initialValue:{active:false,name:'Mini PC Office',memory:'8 GB de RAM',storage:'SSD de 256 GB',fixedConfirmed:false,variants:['i3','i5','i7'].map(family=>({_key:family,family,active:false,stock:false,confirmed:false}))},
   fields:[
+    defineField({name:'demonstration',title:'Exibir demonstração com preços fictícios',type:'boolean',description:'Usa os preços de demonstração de cada versão e informa que modelos e orçamento são provisórios.'}),
     defineField({name:'active',title:'Mostrar Mini PC no site',type:'boolean'}),
     defineField({name:'name',title:'Nome do produto',type:'string'}),
     defineField({name:'image',title:'Imagem',type:'image'}),
@@ -36,6 +38,7 @@ export const officeMini = defineType({
       {name:'family',title:'Família',type:'string',options:{list:['i3','i5','i7']},validation:r=>r.required()},
       {name:'model',title:'Modelo exato do processador',type:'string'},
       {name:'price',title:'Preço completo desta versão (R$)',type:'number',validation:positive},
+      {name:'officeDemoPrice',title:'Preço fictício de demonstração (R$)',type:'number',validation:positive},
       {name:'stock',title:'Disponível em estoque',type:'boolean'},
       {name:'active',title:'Liberar esta versão',type:'boolean'},
       {name:'confirmed',title:'Modelo e compatibilidade confirmados neste Mini PC',type:'boolean'},
@@ -46,6 +49,7 @@ export const officeMini = defineType({
 });
 
 export const officeFields = [
+  defineField({name:'officeDemoPrice',title:'Preço fictício de demonstração Office (R$)',type:'number',description:'Separado do preço comercial. Só é exibido no Office enquanto o modo de demonstração estiver ligado.',validation:positive}),
   defineField({name:'officeSsd',title:'SSD validado para uso no Office',description:'Marque no SSD já existente, sem duplicá-lo. Confirme SATA, formato 2.5 e a lista de suporte da placa-mãe.',type:'boolean',hidden:({parent})=>parent?.category!=='storage'}),
   defineField({name:'office',title:'Usar no PC Office',type:'boolean',initialValue:false}),
   defineField({name:'officeOnly',title:'Exclusiva do Office (ocultar no Gamer)',type:'boolean',initialValue:false}),
