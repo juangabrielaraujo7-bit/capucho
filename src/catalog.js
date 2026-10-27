@@ -3,21 +3,12 @@ import { parts } from "./gamer";
 // Catálogo do "Monte seu PC" vindo do painel Sanity (pasta studio/, https://capucho.sanity.studio).
 // O Sanity é a fonte do catálogo. A lista de exemplo de gamer.js serve apenas para a importação inicial.
 // Em falhas de rede, usa a última resposta válida deste navegador; nunca recupera preços de exemplo.
-const projectId = "9in9aaz1";
-const dataset = "production";
 const CACHE_KEY = "capucho-catalogo";
 
 for (const step of Object.keys(parts)) parts[step] = [];
 
-// Só entra no montador a peça ativa e sem revisão técnica pendente. Peça sem preço aparece como "Sob consulta"
-// e nunca conta como R$ 0 no total.
-const query = `*[_type == "peca" && officeOnly != true && active != false && revisao != "pendente"] | order(price asc) {
-  _id, category, name, brand, specs, price, stock, socket, memory, form, igpu, boxCooler,
-  tdp, psu, maxTdp, radiator, watts, forms, caseRadiator, "image": image.asset->url, "imported": defined(fornecedor.sku), "supplierSku": fornecedor.sku,
-  chipset, chipsets, memSlots, memMax, m2Slots, sataPorts, gb, modules, speed, length, vram, slots,
-  pcie8, p16, iface, storageForm, sockets, height, maxGpu, maxCooler, psuForms, psuForm
-}`;
-
+// A API usa a projeção publicada em shared/gamer-catalog.js. Peças sem preço
+// continuam como Sob consulta, sem substituir seus valores por preços de exemplo.
 // Campos técnicos extras (importação do fornecedor) que o montador usa nas conferências de compatibilidade.
 const EXTRA = [
   "chipset", "chipsets", "memSlots", "memMax", "m2Slots", "sataPorts", "gb", "modules", "speed", "length",
@@ -66,13 +57,20 @@ function apply(docs) {
 // Informa a origem dos dados para o montador explicar falhas e uso de cache.
 export async function loadCatalog() {
   if (typeof window === "undefined") return "unavailable";
-  const url = `https://${projectId}.apicdn.sanity.io/v2025-02-19/data/query/${dataset}?query=${encodeURIComponent(query)}`;
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 10000);
   try {
-    const response = await fetch(url, { signal: controller.signal });
-    if (!response.ok) throw new Error(response.status);
-    const { result } = await response.json();
+    let result;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const response = await fetch('/api/catalog', { cache: 'no-store', signal: AbortSignal.timeout(12000) });
+        if (!response.ok) throw new Error('Catálogo indisponível');
+        const data = await response.json();
+        if (!Array.isArray(data.result)) throw new Error('Resposta de catálogo inválida');
+        result = data.result;
+        break;
+      } catch (error) {
+        if (attempt === 1) throw error;
+      }
+    }
     apply(result);
     try {
       localStorage.setItem(CACHE_KEY, JSON.stringify(result));
@@ -92,7 +90,5 @@ export async function loadCatalog() {
     }
     apply([]);
     return "unavailable";
-  } finally {
-    clearTimeout(timeout);
   }
 }
