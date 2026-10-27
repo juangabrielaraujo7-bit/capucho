@@ -196,6 +196,7 @@ function ProductCutout({ src, alt }) {
 
     let cancelled = false;
     const image = new Image();
+    image.crossOrigin = "anonymous";
     image.decoding = "async";
     image.onload = () => {
       if (cancelled) return;
@@ -206,14 +207,22 @@ function ProductCutout({ src, alt }) {
       canvas.height = height;
       context.clearRect(0, 0, width, height);
       context.drawImage(image, 0, 0, width, height);
-      removeEdgeBackground(context, width, height);
+      // External photos need CORS permission for pixel reads. Keep the original
+      // photo visible if its host permits display but not background processing.
+      try { removeEdgeBackground(context, width, height); } catch { /* original remains drawn */ }
       canvas.dataset.ready = "true";
+    };
+    image.onerror = () => {
+      if (cancelled || image.crossOrigin === null) return;
+      image.crossOrigin = null;
+      image.src = src;
     };
     image.src = src;
 
     return () => {
       cancelled = true;
       image.onload = null;
+      image.onerror = null;
     };
   }, [src]);
 
